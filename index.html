@@ -2578,7 +2578,7 @@ mosaic.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;mosa
 window.addEventListener('pointermove',e=>{if(!mosaicDrag)return;const dx=e.clientX-mosaicDrag.x;if(Math.abs(dx)>4)mosaicMoved=true;mosaic.scrollLeft=mosaicDrag.left-dx});
 window.addEventListener('pointerup',()=>{if(!mosaicDrag)return;mosaicDrag=null;mosaic.classList.remove('is-drag')});
 mosaic.addEventListener('click',e=>{if(mosaicMoved){e.stopPropagation();e.preventDefault();mosaicMoved=false}},true);
-requestAnimationFrame(()=>{mosaicTiles[0]&&mosaicTiles[0].scrollIntoView({inline:'center',block:'nearest'});syncMosaic()});
+requestAnimationFrame(()=>{mosaic.scrollLeft=0;syncMosaic()});
 const mosaicReduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let mosaicPaused=false,mosaicResumeTimer=0;
 function pauseMosaic(){mosaicPaused=true;clearTimeout(mosaicResumeTimer)}
