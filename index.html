@@ -2590,7 +2590,7 @@ mosaic.addEventListener('touchstart',pauseMosaic,{passive:true});
 mosaic.addEventListener('touchend',resumeMosaicSoon,{passive:true});
 window.addEventListener('pointerup',()=>{if(mosaicDrag===null)resumeMosaicSoon()});
 function advanceMosaic(){if(mosaicPaused||document.hidden||mosaicReduce||mosaicTiles.length<2)return;const cur=Math.max(0,mosaicTiles.findIndex(t=>t.classList.contains('is-active')));const t=mosaicTiles[(cur+1)%mosaicTiles.length];const left=t.getBoundingClientRect().left-mosaic.getBoundingClientRect().left+mosaic.scrollLeft-(mosaic.clientWidth-t.offsetWidth)/2;mosaic.scrollTo({left,behavior:'smooth'})}
-setInterval(advanceMosaic,4000);
+setInterval(advanceMosaic,1000);
 coverVideo($('intro-video'),'GiYCr1gXkHo','Meet Luna · Watch the introduction',async()=>{try{await youtubeReady();const el=document.createElement('div');$('intro-video').replaceChildren(el);new YT.Player(el,{host:'https://www.youtube-nocookie.com',videoId:'GiYCr1gXkHo',playerVars:{playsinline:1,origin:location.origin},events:{onReady:e=>e.target.playVideo()}})}catch{window.open('https://youtu.be/GiYCr1gXkHo','_blank','noopener')}});
 $('year').textContent=new Date().getFullYear();
 document.querySelectorAll('[data-legal]').forEach(b=>b.onclick=()=>{const type=b.dataset.legal;const url=type==='privacy'?config.privacyPolicyUrl:config.termsUrl;if(url){location.href=url;return}$('legal-title').textContent=type==='privacy'?'Privacy Policy':'Terms and Conditions';$('legal-text').textContent='This document has not yet been provided for this website. Please contact Luna for the current information.';$('legal-dialog').showModal()});
