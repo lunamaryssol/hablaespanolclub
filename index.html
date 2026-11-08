@@ -2538,7 +2538,7 @@ $('close-legal').onclick=()=>$('legal-dialog').close();
    const shortZone=zoneFormat.formatToParts(instant).find(p=>p.type==='timeZoneName').value;
    const until=make('p',t('Until')+' '+displayTime(end)+(dateFormat.format(end)!==dateFormat.format(instant)?' · '+dayFormat.format(end):'')+' · '+shortZone,'slot-until');until.setAttribute('translate','no');item.appendChild(until);
    const regionTime=zone=>new Intl.DateTimeFormat('en-US',{timeZone:zone,hour:'numeric',minute:'2-digit',hour12:true}).format(instant).toLowerCase();
-   const regions=make('p','🇫🇷 '+t('France')+' '+regionTime('Europe/Paris')+' · 🇬🇧 '+t('United Kingdom')+' '+regionTime('Europe/London'),'slot-regions');regions.setAttribute('translate','no');item.appendChild(regions);
+   [['🇫🇷',t('France'),regionTime('Europe/Paris')],['🇬🇧',t('United Kingdom'),regionTime('Europe/London')]].forEach(([flagRegion,name,hour])=>{const line=make('p',flagRegion+' '+name+' '+hour,'slot-regions');line.setAttribute('translate','no');item.appendChild(line)});
    item.appendChild(make('p',t('90 minutes to converse'),'slot-duration'));
    item.appendChild(make('h3',t(topics[index])));
    item.appendChild(make('p',t(descriptions[index]),'slot-description'));
