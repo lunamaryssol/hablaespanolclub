@@ -2567,12 +2567,14 @@ function mosaicTile(item,idx){
  b.onclick=()=>{if(item.type==='video')playInlineTile(b,item);else openShot(item)};
  return b;
 }
-mosaic.replaceChildren(...testimonials.map(mosaicTile));
+// Carrusel infinito: se repiten las tarjetas en varias copias y, cuando el visitante deja de deslizar, se vuelve a centrar en la copia del medio (se ve igual, nunca llega a un final).
+const mosaicN=testimonials.length,MOSAIC_COPIES=mosaicN>=12?3:5,MOSAIC_MID=(MOSAIC_COPIES-1)/2;
+mosaic.replaceChildren(...Array.from({length:MOSAIC_COPIES*mosaicN},(_,g)=>{const t=mosaicTile(testimonials[g%mosaicN],g%mosaicN);if(Math.floor(g/mosaicN)!==MOSAIC_MID){t.setAttribute('aria-hidden','true');t.tabIndex=-1}return t}));
 const mosaicTiles=[...mosaic.children];
-const mosaicDots=testimonials.map((t,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Show '+t.name+'’s testimonial');b.onclick=()=>mosaicTiles[i].scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});return b});
+const mosaicDots=testimonials.map((t,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Show '+t.name+'’s testimonial');b.onclick=()=>{const c=mosaic.getBoundingClientRect(),mid=c.left+c.width/2;let bt=null,bd=Infinity;for(let k=0;k<MOSAIC_COPIES;k++){const tt=mosaicTiles[k*mosaicN+i];const r=tt.getBoundingClientRect();const d=Math.abs(r.left+r.width/2-mid);if(d<bd){bd=d;bt=tt}}bt.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})};return b});
 $('mosaic-dots').replaceChildren(...mosaicDots);
 let mosaicFrame=0;
-function syncMosaic(){mosaicFrame=0;const c=mosaic.getBoundingClientRect();const mid=c.left+c.width/2;let best=0,bd=Infinity;mosaicTiles.forEach((t,i)=>{const r=t.getBoundingClientRect();const d=Math.abs(r.left+r.width/2-mid);if(d<bd){bd=d;best=i}});mosaicTiles.forEach((t,i)=>t.classList.toggle('is-active',i===best));mosaicDots.forEach((d,i)=>{d.classList.toggle('is-on',i===best);d.setAttribute('aria-current',String(i===best))})}
+function syncMosaic(){mosaicFrame=0;const c=mosaic.getBoundingClientRect();const mid=c.left+c.width/2;let best=0,bd=Infinity;mosaicTiles.forEach((t,i)=>{const r=t.getBoundingClientRect();const d=Math.abs(r.left+r.width/2-mid);if(d<bd){bd=d;best=i}});mosaicTiles.forEach((t,i)=>t.classList.toggle('is-active',i===best));const bi=best%mosaicN;mosaicDots.forEach((d,i)=>{d.classList.toggle('is-on',i===bi);d.setAttribute('aria-current',String(i===bi))})}
 mosaic.addEventListener('scroll',()=>{if(!mosaicFrame)mosaicFrame=requestAnimationFrame(syncMosaic)},{passive:true});
 window.addEventListener('resize',syncMosaic);
 let mosaicDrag=null,mosaicMoved=false;
@@ -2580,7 +2582,21 @@ mosaic.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;mosa
 window.addEventListener('pointermove',e=>{if(!mosaicDrag)return;const dx=e.clientX-mosaicDrag.x;if(Math.abs(dx)>4)mosaicMoved=true;mosaic.scrollLeft=mosaicDrag.left-dx});
 window.addEventListener('pointerup',()=>{if(!mosaicDrag)return;mosaicDrag=null;mosaic.classList.remove('is-drag')});
 mosaic.addEventListener('click',e=>{if(mosaicMoved){e.stopPropagation();e.preventDefault();mosaicMoved=false}},true);
-requestAnimationFrame(()=>{mosaic.scrollLeft=0;syncMosaic()});
+function mosaicSetW(){return mosaicTiles[mosaicN].offsetLeft-mosaicTiles[0].offsetLeft}
+function recenterMosaic(){
+ const w=mosaicSetW();if(w<=0)return false;
+ const base=w*MOSAIC_MID,target=base+(((mosaic.scrollLeft-base)%w)+w)%w;
+ if(Math.abs(target-mosaic.scrollLeft)<1)return false;
+ mosaic.style.scrollSnapType='none';mosaic.scrollTo({left:target,behavior:'instant'});
+ requestAnimationFrame(()=>{mosaic.style.scrollSnapType=''});return true;
+}
+let mosaicIdleTimer=0,mosaicTouching=false;
+function scheduleRecenter(){clearTimeout(mosaicIdleTimer);mosaicIdleTimer=setTimeout(()=>{if(mosaicDrag||mosaicTouching||mosaic.querySelector('.is-playing'))return;recenterMosaic()},180)}
+mosaic.addEventListener('scroll',scheduleRecenter,{passive:true});
+mosaic.addEventListener('touchstart',()=>{mosaicTouching=true},{passive:true});
+['touchend','touchcancel'].forEach(ev=>mosaic.addEventListener(ev,()=>{mosaicTouching=false;scheduleRecenter()},{passive:true}));
+window.addEventListener('resize',scheduleRecenter);
+requestAnimationFrame(()=>{mosaic.scrollLeft=mosaicSetW()*MOSAIC_MID;syncMosaic()});
 const mosaicReduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let mosaicPaused=false,mosaicResumeTimer=0;
 function pauseMosaic(){mosaicPaused=true;clearTimeout(mosaicResumeTimer)}
@@ -2591,15 +2607,9 @@ mosaic.addEventListener('touchend',resumeMosaicSoon,{passive:true});
 window.addEventListener('pointerup',()=>{if(mosaicDrag===null)resumeMosaicSoon()});
 function advanceMosaic(){
  if(mosaicPaused||document.hidden||mosaicTiles.length<2)return;
- const first=mosaic.firstElementChild,second=first&&first.nextElementSibling;if(!second)return;
- const step=second.offsetLeft-first.offsetLeft;if(step<=0)return;
- // Si la primera tarjeta ya salió por la izquierda, la pasamos al final (sin que se note) para que el carrusel nunca se acabe.
- if(mosaic.scrollLeft>=step-2){
-  mosaic.style.scrollSnapType='none';
-  mosaic.append(first);
-  mosaic.scrollTo({left:Math.max(0,mosaic.scrollLeft-step),behavior:'instant'});
- }
- requestAnimationFrame(()=>{mosaic.style.scrollSnapType='';mosaic.scrollTo({left:mosaic.scrollLeft+step,behavior:mosaicReduce?'instant':'smooth'})});
+ const step=mosaicTiles[1].offsetLeft-mosaicTiles[0].offsetLeft;if(step<=0)return;
+ if(!mosaicDrag&&!mosaicTouching)recenterMosaic();
+ requestAnimationFrame(()=>mosaic.scrollTo({left:mosaic.scrollLeft+step,behavior:mosaicReduce?'instant':'smooth'}));
 }
 setInterval(advanceMosaic,1000);
 const shotView=document.createElement('div');shotView.className='mosaic-shot';shotView.hidden=true;
