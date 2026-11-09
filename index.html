@@ -2891,4 +2891,21 @@ setTimeout(()=>{document.open();document.write(page);document.close()},0);
 for(const element of document.getElementById('export-scripts').content.querySelectorAll('script')){
 const copy=document.createElement('script');copy.textContent=element.textContent;document.body.append(copy);
 }}
+</script><script>
+(function(){
+function goCal(e){
+  var a=e.target.closest&&e.target.closest('a[href="#booking"]');
+  if(!a)return;
+  var box=document.getElementById('calendly-embed');
+  if(!box)return;
+  e.preventDefault();
+  var h=document.querySelector('header'),off=(h&&getComputedStyle(h).position!=='static'?h.offsetHeight:0)+16;
+  var y=box.getBoundingClientRect().top+window.pageYOffset-off;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  window.scrollTo({top:Math.max(0,y),behavior:reduce?'auto':'smooth'});
+  try{history.replaceState(null,'','#booking')}catch(_){}
+}
+document.addEventListener('click',goCal);
+if(location.hash==='#booking'){window.addEventListener('load',function(){setTimeout(function(){var b=document.getElementById('calendly-embed');if(b){var h=document.querySelector('header'),off=(h&&getComputedStyle(h).position!=='static'?h.offsetHeight:0)+16;window.scrollTo(0,Math.max(0,b.getBoundingClientRect().top+window.pageYOffset-off))}},600)})}
+})();
 </script></body></html>
