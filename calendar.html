@@ -64,6 +64,38 @@ main{padding:32px 0 66px}.toolbar{display:flex;justify-content:space-between;gap
 }
 @media(max-width:620px){.container{width:calc(100% - 26px)}.hero-inner{padding:34px 0}.hero h1{font-size:46px}.intro{font-size:16px}.month{min-width:195px;font-size:28px}.navbtn{width:35px;height:35px}.search{max-width:none;flex:1 1 100%}.weekdays{display:none}.calendar{border:0;box-shadow:none;overflow:visible}.dates{grid-template-columns:1fr;gap:10px}.day{display:none;min-height:0;border:0;border-radius:24px 18px 26px 20px;padding:12px 18px;background:rgba(0,56,147,.045);scroll-margin-top:12px}.day.has-event{display:block;padding:17px 18px}.day.current .num span{background:none;width:auto;height:auto;display:inline;border-radius:0;color:var(--blue)}.day.current-mobile{background:rgba(252,209,22,.19);box-shadow:none}.event-title{font-size:20px;font-weight:400}.category{font-size:13px;font-weight:400}.skool-link{width:42px;height:42px}.bottom{padding:24px;flex-direction:column;align-items:stretch}.bottom .skool-link{white-space:normal;justify-content:center}.dialog header{padding:24px}.dialog-content{padding:23px}}
 @media(prefers-reduced-motion:no-preference){.filter,.navbtn,.todaybtn,.bottom .skool-link{transition:background .15s,color .15s}}
+
+/* ===== Diseño sobrio y uniforme con la web principal (solo apariencia) ===== */
+html body .hero{background:#fff;color:var(--black);border-radius:0;border-bottom:1px solid rgba(0,56,147,.12)}
+html body .hero::before{display:none}
+html body .hero h1,html body .hero h1 em{color:var(--blue)}
+html body .eyebrow{color:var(--blue)}
+html body .stat{background:#fff;border:1px solid rgba(0,56,147,.16);box-shadow:0 8px 24px rgba(0,56,147,.07)}
+html body .stat strong{color:var(--blue)}
+html body .stat span{color:var(--black)}
+html body .navbtn{background:#fff;border:1.5px solid var(--blue)}
+html body .todaybtn{background:#fff;color:var(--blue);border:2px solid var(--blue);box-shadow:0 3px 0 var(--yellow)}
+html body .search input{background:#fff;border:1px solid rgba(0,56,147,.25)}
+html body .filter{background:#fff;border:1.5px solid rgba(0,56,147,.3);color:var(--blue)}
+html body .filter[aria-pressed='true']{background:#fff;border-color:var(--blue);color:var(--blue);box-shadow:0 3px 0 var(--yellow)}
+html body .calendar{background:#fff;border:1px solid rgba(0,56,147,.14);box-shadow:0 8px 28px rgba(0,56,147,.06)}
+html body .weekdays{background:#fff;color:var(--blue);border-radius:0;border-bottom:1px solid rgba(0,56,147,.14)}
+html body .day{background:#fff;border:1px solid rgba(0,56,147,.12)}
+html body .day.blank{background:transparent;border-color:transparent}
+html body .day.current,html body .day.current-mobile{background:#fff;border:2px solid var(--yellow);box-shadow:none}
+html body .current .num span{background:#fff;color:var(--blue);box-shadow:0 0 0 2px var(--yellow)}
+html body .skool-link:hover{background:#fff;box-shadow:0 4px 12px rgba(0,56,147,.16)}
+html body .result,html body .no-results{background:#fff;border:1px solid rgba(0,56,147,.14);box-shadow:0 6px 22px rgba(0,56,147,.06)}
+html body .bottom{background:#fff;color:var(--black);border:1px solid rgba(0,56,147,.16);box-shadow:0 8px 28px rgba(0,56,147,.07)}
+html body .bottom h2{color:var(--blue)}
+html body .bottom .skool-link{border:1px solid rgba(0,56,147,.2)}
+html body .dialog{box-shadow:0 16px 48px rgba(0,56,147,.18)}
+html body .dialog header{background:#fff;color:var(--blue);border-bottom:1px solid rgba(0,56,147,.12)}
+html body .dialog header small{color:var(--blue)}
+html body .dialog h2{color:var(--blue)}
+html body .close{background:#fff;border:1.5px solid var(--blue);color:var(--blue)}
+html body .dialog .skool-link{background:#fff;border:1px solid rgba(0,56,147,.2)}
+@media(max-width:620px){html body .day{background:#fff;border:1px solid rgba(0,56,147,.12)}html body .day.current-mobile{background:#fff;border:2px solid var(--yellow)}}
 </style>
 </head>
 <body>
