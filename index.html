@@ -2666,7 +2666,7 @@ function advanceMosaic(){
  if(!mosaicDrag&&!mosaicTouching)recenterMosaic();
  requestAnimationFrame(()=>mosaic.scrollTo({left:mosaic.scrollLeft+step,behavior:mosaicReduce?'instant':'smooth'}));
 }
-setInterval(advanceMosaic,1000);
+setInterval(advanceMosaic,3000);
 const shotView=document.createElement('div');shotView.className='mosaic-shot';shotView.hidden=true;
 const shotImg=document.createElement('img');shotImg.alt='';
 const shotClose=document.createElement('button');shotClose.type='button';shotClose.className='story-close';shotClose.setAttribute('aria-label','Close');shotClose.textContent='✕';
