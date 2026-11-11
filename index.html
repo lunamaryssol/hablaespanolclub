@@ -986,11 +986,13 @@ window.SAW_CONFIG = {
   ga4MeasurementId: 'G-JH5QKPEG3B',
   privacyPolicyUrl: '',
   termsUrl: '',
-  // Para agregar un video de reseña: {type:'video',name:'Nombre',videoId:'ID_DE_YOUTUBE'}. Se reproduce con un solo clic.
-  // (el video debe ser público o no listado y tener permitido insertarse en otros sitios).
+  // Orden fijo: Ana y Alí primero. Las nuevas reseñas de video se insertan antes de Samuel.
+  // Después de Samuel se mantienen las demás reseñas. El carrusel las repite en bucle infinito.
+  // Los videos deben ser públicos o no listados y permitir la inserción en otros sitios.
   testimonials: [
-    {type:'video',name:'Samuel',videoId:'gQ9ZdDN0Cco'},
     {type:'video',name:'Ana',videoId:'jrNvo9Fx3Zs'},
+    {type:'video',name:'Alí',videoId:'Cnx37T5gyCQ'},
+    {type:'video',name:'Samuel',videoId:'gQ9ZdDN0Cco'},
     {type:'video',name:'Ruby',videoId:'2ny1DkTtFQc'},
     {type:'video',name:'Jorge',videoId:'_e-YONfIzZE'},
     {type:'video',name:'Perry',videoId:'kBB5kV1fY40'},
