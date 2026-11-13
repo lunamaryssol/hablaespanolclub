@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="description" content="Clase interactiva B1–B2 de Habla Español Club: ¿Tener más opciones nos hace más felices?">
+  <title>Tema 010 · ¿Tener más opciones nos hace más felices? | Habla Español Club</title>
+  <link rel="preload" href="assets/fonts/LeagueSpartan-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/GochiHand-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <style>
+    @font-face{font-family:"League Spartan";src:url("assets/fonts/LeagueSpartan-VariableFont_wght.ttf") format("truetype");font-style:normal;font-weight:100 900;font-display:swap}
+    @font-face{font-family:"Gochi Hand";src:url("assets/fonts/GochiHand-Regular.ttf") format("truetype");font-style:normal;font-weight:400;font-display:swap}
+    :root{--blue:#003893;--yellow:#FCD116;--red:#CE1126;--white:#FFFFFF;--black:#000000;--muted:#535353;--soft-blue:rgba(0,56,147,.055);--soft-yellow:rgba(252,209,22,.17);--soft-red:rgba(206,17,38,.07);--font:"League Spartan",Arial,sans-serif;--hand:"Gochi Hand",cursive;--radius:28px;--shadow:0 3px 18px rgba(0,56,147,.055)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--white)}
+    body{margin:0;background:var(--white);color:var(--black);font:500 17px/1.48 var(--font);min-height:100vh}
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--red);outline-offset:4px}
+    a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:3px}
+    .shell{width:min(1120px,calc(100% - 38px));margin:0 auto}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,56,147,.08)}
+    .topbar-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
+    .brand img{width:48px;height:48px;object-fit:contain;flex:none}
+    .brand-name{font-size:14px;font-weight:800;letter-spacing:.015em;color:var(--blue);line-height:1.05}
+    .brand-sub{font-family:var(--hand);font-size:16px;color:var(--blue);margin-top:3px}
+    .top-actions{display:flex;align-items:center;gap:8px}
+    .top-label{font-size:13px;color:var(--muted);white-space:nowrap}
+    .icon-btn{width:42px;height:42px;border:0;border-radius:50%;background:var(--soft-blue);color:var(--blue);font-size:19px;font-weight:800;display:grid;place-items:center}
+    .icon-btn:hover{background:var(--soft-yellow)}
+    .progress-wrap{height:3px;background:rgba(0,56,147,.07)}
+    .progress-bar{height:3px;width:0;background:var(--red);transition:width .25s ease}
+    main{padding:34px 0 24px}
+    .deck-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px}
+    .deck-kicker{font:400 19px/1 var(--hand);color:var(--blue)}
+    .deck-count{font-size:13px;font-weight:700;color:var(--blue);font-variant-numeric:tabular-nums}
+    .slide-nav{display:flex;gap:7px;overflow-x:auto;padding:3px 2px 15px;scrollbar-width:thin;scrollbar-color:var(--yellow) transparent}
+    .slide-dot{flex:none;border:0;background:transparent;color:var(--blue);padding:7px 10px;border-radius:999px;font-size:12px;font-weight:750;min-width:34px}
+    .slide-dot[aria-current="step"]{background:var(--yellow);color:var(--black)}
+    .slide{display:none;animation:appear .22s ease both;min-height:460px}
+    .slide.active{display:block}
+    @keyframes appear{from{opacity:.45;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+    .slide-inner{padding:clamp(18px,3.2vw,38px) clamp(8px,1.4vw,16px) 30px}
+    .slide-heading{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:start;margin-bottom:28px}
+    .eyebrow{margin:0 0 10px;color:var(--blue);font:400 20px/1 var(--hand)}
+    h1,h2,h3,p{margin-top:0}
+    h1{font-size:clamp(38px,6.3vw,70px);line-height:.99;letter-spacing:-.045em;color:var(--blue);font-weight:800;margin:0 0 16px;max-width:850px}
+    h2{font-size:clamp(32px,4.6vw,49px);line-height:1.02;letter-spacing:-.035em;color:var(--blue);font-weight:800;margin:0 0 12px}
+    h3{font-size:19px;line-height:1.15;color:var(--blue);font-weight:800;margin:0 0 11px}
+    .subtitle{font-size:clamp(17px,2vw,21px);line-height:1.35;max-width:760px;margin:0;color:var(--black)}
+    .wave{ text-decoration:underline wavy var(--red);text-decoration-thickness:2px;text-underline-offset:8px }
+    .accent{font-family:var(--hand);font-weight:400;color:var(--blue)}
+    .doodle{width:82px;height:82px;flex:none;overflow:visible}
+    .doodle path,.doodle line,.doodle circle,.doodle polyline{fill:none;stroke:var(--black);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+    .doodle .yellow{fill:var(--yellow);stroke:none}.doodle .red{fill:var(--red);stroke:none}.doodle .blue{fill:var(--blue);stroke:none}
+    .cover-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(240px,.8fr);gap:clamp(24px,5vw,66px);align-items:center;padding:clamp(10px,3vw,35px) 0 15px}
+    .cover-side{display:grid;gap:20px;align-content:center}
+    .cover-side .doodle{width:128px;height:128px;justify-self:center;margin-bottom:4px}
+    .cover-summary{padding:8px 0 8px 18px;border-left:3px solid var(--yellow)}
+    .cover-summary p{margin:0;font-size:16px}
+    .cover-summary strong{display:block;color:var(--blue);font-size:13px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px}
+    .resource-line{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+    .resource-pill{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;background:var(--soft-blue);font-size:13px;font-weight:700;color:var(--blue)}
+    .grid{display:grid;gap:18px}
+    .grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .card{background:var(--white);border:0;border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(18px,2.5vw,27px);min-width:0}
+    .card-label{font:400 18px/1.05 var(--hand);color:var(--blue);margin-bottom:10px}
+    .card p:last-child{margin-bottom:0}
+    .card ul{margin:0;padding-left:20px}
+    .card li{margin:5px 0}
+    .dessert-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:12px}
+    .choice-chip,.option-button,.answer-button,.vote-button{border:0;border-radius:999px;padding:10px 14px;background:var(--soft-blue);color:var(--blue);font-size:14px;font-weight:700;text-align:left;transition:background .15s,transform .15s}
+    .choice-chip:hover,.option-button:hover,.answer-button:hover,.vote-button:hover{background:var(--soft-yellow);transform:translateY(-1px)}
+    .choice-chip[aria-pressed="true"],.option-button[aria-pressed="true"],.answer-button[aria-pressed="true"],.vote-button[aria-pressed="true"]{background:var(--yellow);color:var(--black)}
+    .choice-result,.feedback{margin-top:14px;padding:12px 15px;border-radius:18px;background:var(--soft-yellow);color:var(--black);font-size:14px;min-height:42px}
+    .phrases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:17px}
+    .phrase{padding:13px 16px;border-radius:19px;background:var(--white);box-shadow:var(--shadow);font-size:14px}
+    .phrase strong{display:block;color:var(--blue);font-size:12px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+    .prompt{margin-top:18px;padding:16px 18px 16px 21px;border-left:3px solid var(--red);background:var(--white);border-radius:0 18px 18px 0;box-shadow:var(--shadow)}
+    .prompt strong{display:block;color:var(--blue);font-size:12px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+    .prompt p{margin:0}
+    .btn{border:0;border-radius:999px;padding:12px 19px;font-size:14px;font-weight:800;transition:transform .15s,background .15s;color:var(--blue);background:var(--yellow)}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.secondary{background:var(--soft-blue);color:var(--blue)}
+    .btn.ghost{background:transparent;color:var(--blue);padding-left:10px;padding-right:10px}
+    .btn.small{padding:9px 14px;font-size:13px}
+    .button-row{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-top:15px}
+    .game-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px}
+    .score-pill{padding:9px 14px;border-radius:999px;background:var(--soft-yellow);color:var(--blue);font-weight:800;font-size:14px;font-variant-numeric:tabular-nums}
+    .activity-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+    .activity-option{display:flex;align-items:center;gap:12px;text-align:left;width:100%;border:0;background:var(--soft-blue);border-radius:19px;padding:13px 14px;color:var(--black)}
+    .activity-option.selected{background:var(--soft-yellow);box-shadow:inset 0 0 0 1px rgba(0,56,147,.18)}
+    .activity-option .cost{margin-left:auto;color:var(--blue);font-size:13px;font-weight:800;white-space:nowrap}
+    .activity-option strong{display:block;color:var(--blue);font-size:15px}
+    .activity-option small{display:block;color:var(--muted);font-size:12px}
+    .criteria{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:14px}
+    .criterion{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:16px;background:var(--soft-blue);font-size:13px}
+    .criterion input{accent-color:var(--blue);width:17px;height:17px}
+    .statement-list{display:grid;gap:13px}
+    .statement{padding:18px 20px;border-radius:22px;background:var(--white);box-shadow:var(--shadow)}
+    .statement p{font-size:18px;font-weight:700;margin:0 0 12px}
+    .statement-controls{display:flex;flex-wrap:wrap;gap:7px}
+    .vote-button{font-size:13px;padding:9px 13px}
+    .vote-count{font-size:12px;color:var(--muted);margin-top:9px}
+    .reading{font-size:18px;line-height:1.55}
+    .reading p{margin-bottom:15px}
+    .quiz-list{display:grid;gap:12px}
+    .quiz-item{padding:16px 18px;border-radius:20px;background:var(--white);box-shadow:var(--shadow)}
+    .quiz-statement{font-size:16px;font-weight:700;margin-bottom:11px}
+    .quiz-controls{display:flex;flex-wrap:wrap;gap:8px}
+    .quiz-item.correct{box-shadow:inset 0 0 0 2px rgba(0,56,147,.28)}
+    .quiz-item.incorrect{box-shadow:inset 0 0 0 2px rgba(206,17,38,.3)}
+    .video-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);gap:22px;align-items:start}
+    .video-frame{position:relative;width:100%;overflow:hidden;border-radius:25px;background:#fff;box-shadow:var(--shadow)}
+    .video-frame.vertical{aspect-ratio:9/16;max-width:340px;margin:0 auto}
+    .video-frame.wide{aspect-ratio:16/9}
+    .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .video-caption{font-size:13px;color:var(--muted);margin-top:10px}
+    .video-link{display:inline-block;margin-top:11px;font-size:13px;font-weight:800}
+    .reveal-box{padding:18px 20px;border-radius:22px;background:var(--soft-blue);margin-top:15px}
+    .reveal-box[hidden]{display:none}
+    .movie-choice{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+    .movie-choice .option-button{border-radius:18px;padding:15px;text-align:left;min-height:100px}
+    .movie-choice strong{display:block;margin-bottom:5px;font-size:14px}
+    .movie-choice span{display:block;font-size:12px;font-weight:500;line-height:1.3}
+    .traffic-stage{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:15px}
+    .traffic-card{padding:18px;border-radius:22px;background:var(--white);box-shadow:var(--shadow);opacity:.52;transition:opacity .2s,transform .2s}
+    .traffic-card.active{opacity:1;transform:translateY(-2px)}
+    .traffic-title{display:flex;align-items:center;gap:9px;color:var(--blue);font-weight:800;margin-bottom:9px}
+    .light{width:14px;height:14px;border-radius:50%;display:inline-block}
+    .light.red{background:var(--red)}.light.yellow{background:var(--yellow)}.light.green{background:#16803b}
+    .writing-area{width:100%;min-height:190px;resize:vertical;border:0;border-radius:20px;background:var(--soft-blue);padding:17px;color:var(--black);font:500 16px/1.5 var(--font)}
+    .writing-metrics{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}
+    .metric{padding:8px 12px;border-radius:999px;background:var(--soft-yellow);color:var(--blue);font-size:13px;font-weight:800}
+    .checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:13px}
+    .checklist label{display:flex;gap:9px;align-items:flex-start;padding:10px 12px;border-radius:16px;background:var(--soft-blue);font-size:13px}
+    .checklist input{accent-color:var(--blue);margin-top:3px}
+    details.teacher-note{margin-top:20px;border-top:1px solid rgba(0,56,147,.09);padding-top:14px}
+    details.teacher-note summary{cursor:pointer;color:var(--blue);font:400 18px/1.2 var(--hand);list-style:none}
+    details.teacher-note summary::-webkit-details-marker{display:none}
+    details.teacher-note summary:after{content:"＋";font:700 15px var(--font);margin-left:9px}
+    details.teacher-note[open] summary:after{content:"−"}
+    details.teacher-note p{font-size:13px;color:var(--muted);margin:10px 0 0;max-width:850px}
+    .deck-controls{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 0 38px}
+    .deck-controls .btn{min-width:125px}
+    .footer{padding:14px 0 28px;display:flex;justify-content:space-between;gap:15px;align-items:center;color:var(--muted);font-size:12px;border-top:1px solid rgba(0,56,147,.08)}
+    .footer strong{color:var(--blue);font-weight:800}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:760px){.shell{width:min(100% - 26px,650px)}.topbar-inner{min-height:62px}.brand img{width:42px;height:42px}.top-label{display:none}.slide-heading{grid-template-columns:1fr auto}.doodle{width:58px;height:58px}.cover-grid{grid-template-columns:1fr}.cover-side{grid-template-columns:1fr 1fr;gap:14px}.cover-side .doodle{grid-column:1/-1;width:82px;height:82px}.grid.two,.video-layout{grid-template-columns:1fr}.grid.three{grid-template-columns:1fr}.video-frame.vertical{max-width:300px}.movie-choice{grid-template-columns:1fr}.movie-choice .option-button{min-height:0}.traffic-stage{grid-template-columns:1fr}.traffic-card{opacity:.6}.activity-options,.phrases,.criteria,.checklist{grid-template-columns:1fr}.deck-controls .btn{min-width:0}.slide{min-height:0}}
+    @media(max-width:420px){body{font-size:16px}.shell{width:calc(100% - 22px)}.brand-name{font-size:12px}.brand-sub{font-size:14px}.top-actions{gap:4px}.icon-btn{width:38px;height:38px}.slide-inner{padding-left:2px;padding-right:2px}h1{font-size:39px}h2{font-size:31px}.deck-kicker{font-size:17px}.card{padding:17px;border-radius:22px}.statement p{font-size:16px}.dessert-grid{grid-template-columns:1fr}.footer{align-items:flex-start;flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+    @media print{.topbar,.slide-nav,.deck-controls,.footer,.top-actions,.teacher-note{display:none!important}.slide{display:block!important;page-break-after:always;min-height:0}.shell{width:100%}main{padding:0}.slide-inner{padding:18px}.card,.statement,.quiz-item{box-shadow:none;break-inside:avoid}body{font-size:12pt}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand">
+        <img src="img/logo-habla-espanol-club.png" alt="Logotipo de Habla Español Club">
+        <div><div class="brand-name">HABLA ESPAÑOL CLUB</div><div class="brand-sub">Unidos por el español</div></div>
+      </div>
+      <div class="top-actions">
+        <span class="top-label">Presentación de clase · Tema 010</span>
+        <button class="icon-btn" id="fullscreenBtn" type="button" aria-label="Activar pantalla completa" title="Pantalla completa">⛶</button>
+      </div>
+    </div>
+    <div class="progress-wrap" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+  </header>
+
+  <main class="shell">
+    <div class="deck-head">
+      <div class="deck-kicker">Una clase para conversar, elegir y argumentar</div>
+      <div class="deck-count" id="slideCount" aria-live="polite">01 / 11</div>
+    </div>
+    <nav class="slide-nav" id="slideNav" aria-label="Navegación de diapositivas"></nav>
+
+    <!-- PORTADA -->
+    <section class="slide active" data-label="Inicio" aria-label="Portada de la clase">
+      <div class="slide-inner">
+        <div class="cover-grid">
+          <div>
+            <p class="eyebrow">TEMA 010 · CONVERSACIÓN B1–B2</p>
+            <h1>¿Tener más opciones <span class="wave">nos hace más felices?</span></h1>
+            <p class="subtitle">Elegir, comparar y decidir sin quedarnos atrapados.</p>
+            <div class="resource-line">
+              <span class="resource-pill">9 actividades</span>
+              <span class="resource-pill">Juegos y debates</span>
+              <span class="resource-pill">Vídeos y música</span>
+            </div>
+          </div>
+          <div class="cover-side">
+            <svg class="doodle" viewBox="0 0 120 120" role="img" aria-label="Corazón dibujado a mano">
+              <path d="M59 99 C47 88 17 65 19 40 C21 18 48 14 60 36 C74 12 103 20 103 43 C104 66 78 88 59 99Z"/>
+              <path d="M11 23 L4 16 M60 9 L60 1 M107 18 L114 10"/>
+              <circle class="yellow" cx="10" cy="45" r="4"/><circle class="red" cx="108" cy="66" r="3.5"/><circle class="blue" cx="86" cy="8" r="3"/>
+            </svg>
+            <div class="cover-summary"><strong>Hoy practicamos</strong><p>Comparar alternativas, justificar preferencias y reconocer que una misma decisión puede verse de distintas maneras.</p></div>
+            <div class="cover-summary"><strong>Recursos para conversar</strong><p>Cuantas más opciones… · Por una parte… · Sin embargo… · Me inclino por… · No necesariamente… · Depende de…</p></div>
+          </div>
+        </div>
+        <div class="button-row"><button class="btn" type="button" data-go="1">Comenzar la clase</button></div>
+        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Presenta el tema y pide al grupo que recuerde una decisión reciente en la que comparar muchas opciones haya sido fácil o difícil.</p></details>
+      </div>
+    </section>
+
+    <!-- ACTIVIDAD 01 -->
+    <section class="slide" data-label="Menús" aria-label="Actividad 1: El menú que no se acaba">
+      <div class="slide-inner">
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 01</p><h2>El menú que no se acaba</h2><p class="subtitle">Compara los menús. Elige un postre y explica qué criterio has utilizado.</p></div></div>
+        <div class="grid two">
+          <article class="card"><div class="card-label">Menú A · 4 opciones</div><div class="dessert-grid" id="menuA">
+            <button class="choice-chip" type="button" data-dessert="Flan de caramelo">Flan de caramelo</button><button class="choice-chip" type="button" data-dessert="Tarta de limón">Tarta de limón</button><button class="choice-chip" type="button" data-dessert="Helado de vainilla">Helado de vainilla</button><button class="choice-chip" type="button" data-dessert="Brownie">Brownie</button>
+          </div></article>
+          <article class="card"><div class="card-label">Menú B · 12 opciones</div><div class="dessert-grid" id="menuB">
+            <button class="choice-chip" type="button" data-dessert="Tiramisú">Tiramisú</button><button class="choice-chip" type="button" data-dessert="Cheesecake">Cheesecake</button><button class="choice-chip" type="button" data-dessert="Mousse de chocolate">Mousse de chocolate</button><button class="choice-chip" type="button" data-dessert="Helado de mango">Helado de mango</button><button class="choice-chip" type="button" data-dessert="Sorbete de maracuyá">Sorbete de maracuyá</button><button class="choice-chip" type="button" data-dessert="Milhojas">Milhojas</button><button class="choice-chip" type="button" data-dessert="Panna cotta">Panna cotta</button><button class="choice-chip" type="button" data-dessert="Tarta de manzana">Tarta de manzana</button><button class="choice-chip" type="button" data-dessert="Helado de pistacho">Helado de pistacho</button><button class="choice-chip" type="button" data-dessert="Brownie con sal marina">Brownie con sal marina</button><button class="choice-chip" type="button" data-dessert="Helado de ajo">Helado de ajo</button><button class="choice-chip" type="button" data-dessert="Tarta de aceitunas">Tarta de aceitunas</button>
+          </div></article>
+        </div>
+        <div class="choice-result" id="dessertResult" aria-live="polite">Selecciona un postre. Después, explica por qué lo has elegido.</div>
+        <div class="prompt"><strong>Pistas para conversar</strong><p>¿Te ayuda ver más opciones? ¿Qué pasa si ninguna te convence? ¿Te cuesta renunciar a las que no eliges?</p></div>
+        <div class="phrases"><div class="phrase"><strong>Frases para empezar · B1</strong>Me quedo con… porque… · El menú A/B me parece…</div><div class="phrase"><strong>Para ir más lejos · B2</strong>Aunque hay más variedad, me inclino por… · Tener más posibilidades no significa…</div></div>
+        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Pide primero una elección rápida. Después, compara cuánto tardan en decidir entre los dos menús y qué criterios utilizan para descartar opciones.</p></details>
+      </div>
+    </section>
+
+    <!-- ACTIVIDAD 02 -->
+    <section class="slide" data-label="Juego" aria-label="Actividad 2: Seis fichas para el sábado">
+      <div class="slide-inner">
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 02 · JUEGO</p><h2>Seis fichas para el sábado</h2><p class="subtitle">Diseñen un plan compartido sin superar el presupuesto.</p></div></div>
+        <div class="grid two">
+          <article class="card">
+            <div class="card-label">Opciones disponibles</div>
+            <div class="activity-options" id="activityOptions">
+              <button class="activity-option" type="button" data-activity="Brunch" data-cost="2"><span><strong>Brunch</strong><small>Comida y conversación</small></span><span class="cost">2 fichas</span></button>
+              <button class="activity-option" type="button" data-activity="Museo" data-cost="2"><span><strong>Museo</strong><small>Visita cultural</small></span><span class="cost">2 fichas</span></button>
+              <button class="activity-option" type="button" data-activity="Concierto" data-cost="4"><span><strong>Concierto</strong><small>Música en directo</small></span><span class="cost">4 fichas</span></button>
+              <button class="activity-option" type="button" data-activity="Parque" data-cost="1"><span><strong>Parque</strong><small>Aire libre</small></span><span class="cost">1 ficha</span></button>
+              <button class="activity-option" type="button" data-activity="Spa" data-cost="3"><span><strong>Spa</strong><small>Descanso</small></span><span class="cost">3 fichas</span></button>
+              <button class="activity-option" type="button" data-activity="Cocina" data-cost="3"><span><strong>Cocina</strong><small>Actividad compartida</small></span><span class="cost">3 fichas</span></button>
+              <button class="activity-option" type="button" data-activity="Cine" data-cost="2"><span><strong>Cine</strong><small>Plan cultural</small></span><span class="cost">2 fichas</span></button>
+              <button class="activity-option" type="button" data-activity="Bicicleta" data-cost="2"><span><strong>Bicicleta</strong><small>Actividad al aire libre</small></span><span class="cost">2 fichas</span></button>
+            </div>
+          </article>
+          <article class="card">
+            <div class="game-top"><div class="card-label">Reglas del juego</div><span class="score-pill" id="budgetStatus">0 / 6 fichas</span></div>
+            <p>Tienen <strong>6 fichas</strong>. Elijan exactamente <strong>tres actividades</strong> sin superar el presupuesto.</p>
+            <div class="score-pill" id="selectionStatus">0 / 3 actividades</div>
+            <div class="feedback" id="budgetFeedback" aria-live="polite">Selecciona tres actividades para construir el plan.</div>
+            <div class="card-label" style="margin-top:20px">Criterios para valorar el plan</div>
+            <p style="font-size:13px;color:var(--muted)">Marca los criterios que el equipo logra justificar. Cada criterio marcado suma un punto.</p>
+            <div class="criteria">
+              <label class="criterion"><input type="checkbox" id="criterionBudget" disabled> Presupuesto respetado</label>
+              <label class="criterion"><input type="checkbox" class="manual-criterion"> Aire libre</label>
+              <label class="criterion"><input type="checkbox" class="manual-criterion"> Descanso</label>
+              <label class="criterion"><input type="checkbox" class="manual-criterion"> Plan social</label>
+              <label class="criterion"><input type="checkbox" class="manual-criterion"> Renuncia justificada</label>
+            </div>
+            <div class="game-top" style="margin-top:15px"><span class="score-pill" id="pointsStatus">0 / 5 puntos</span><button class="btn secondary small" id="resetBudget" type="button">Reiniciar juego</button></div>
+          </article>
+        </div>
+        <div class="phrases"><div class="phrase"><strong>Frases para empezar · B1</strong>Propongo… · Nos alcanza para… · Yo elegiría…</div><div class="phrase"><strong>Para ir más lejos · B2</strong>Si priorizamos…, tendremos que renunciar a…</div></div>
+        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Divide al grupo en equipos. Cada equipo elige tres actividades, justifica sus renuncias y defiende el plan. El criterio de puntuación visible permite comparar las propuestas.</p></details>
+      </div>
+    </section>
+
+    <!-- ACTIVIDAD 03 -->
+    <section class="slide" data-label="Debate" aria-label="Actividad 3: Más opciones, más libertad">
+      <div class="slide-inner">
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 03 · DEBATE</p><h2>¿Más opciones, más libertad?</h2><p class="subtitle">Toma posición, argumenta y escucha una perspectiva diferente.</p></div><svg class="doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M16 22 Q16 13 27 13 H73 Q84 13 84 24 V55 Q84 66 73 66 H43 L25 82 V66 Q16 65 16 55Z"/><circle class="yellow" cx="37" cy="40" r="4"/><circle class="blue" cx="50" cy="40" r="4"/><circle class="red" cx="63" cy="40" r="4"/></svg></div>
+        <div class="statement-list">
+          <article class="statement" data-statement="1"><p>1. Cuantas más opciones tengo, más libre me siento.</p><div class="statement-controls"><button class="vote-button" type="button" data-vote="De acuerdo" aria-pressed="false">De acuerdo</button><button class="vote-button" type="button" data-vote="Depende" aria-pressed="false">Depende</button><button class="vote-button" type="button" data-vote="En desacuerdo" aria-pressed="false">En desacuerdo</button></div><div class="vote-count" aria-live="polite">Aún no se ha registrado una postura.</div></article>
+          <article class="statement" data-statement="2"><p>2. Comparar alternativas siempre mejora mis decisiones.</p><div class="statement-controls"><button class="vote-button" type="button" data-vote="De acuerdo" aria-pressed="false">De acuerdo</button><button class="vote-button" type="button" data-vote="Depende" aria-pressed="false">Depende</button><button class="vote-button" type="button" data-vote="En desacuerdo" aria-pressed="false">En desacuerdo</button></div><div class="vote-count" aria-live="polite">Aún no se ha registrado una postura.</div></article>
+          <article class="statement" data-statement="3"><p>3. Prefiero que alguien reduzca las opciones por mí.</p><div class="statement-controls"><button class="vote-button" type="button" data-vote="De acuerdo" aria-pressed="false">De acuerdo</button><button class="vote-button" type="button" data-vote="Depende" aria-pressed="false">Depende</button><button class="vote-button" type="button" data-vote="En desacuerdo" aria-pressed="false">En desacuerdo</button></div><div class="vote-count" aria-live="polite">Aún no se ha registrado una postura.</div></article>
+          <article class="statement" data-statement="4"><p>4. A veces elegir rápido me hace más feliz.</p><div class="statement-controls"><button class="vote-button" type="button" data-vote="De acuerdo" aria-pressed="false">De acuerdo</button><button class="vote-button" type="button" data-vote="Depende" aria-pressed="false">Depende</button><button class="vote-button" type="button" data-vote="En desacuerdo" aria-pressed="false">En desacuerdo</button></div><div class="vote-count" aria-live="polite">Aún no se ha registrado una postura.</div></article>
+        </div>
+        <div class="prompt"><strong>Reto</strong><p>Escucha una objeción. ¿Mantienes tu postura? ¿Qué argumento te haría cambiar?</p></div>
+        <div class="phrases"><div class="phrase"><strong>Frases para empezar · B1</strong>Estoy de acuerdo porque… · En mi caso… · Depende de…</div><div class="phrase"><strong>Para ir más lejos · B2</strong>No necesariamente… · Cambiaría de opinión si…</div></div>
+        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Registra la postura inicial de cada participante. Después de escuchar argumentos contrarios, permite que cambien su respuesta y expliquen qué les hizo reconsiderarla.</p></details>
+      </div>
+    </section>
+
+    <!-- ACTIVIDAD 04 LECTURA -->
+    <section class="slide" data-label="Lectura" aria-label="Actividad 4: El experimento de las mermeladas">
+      <div class="slide-inner">
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 04 · LECTURA</p><h2>El experimento de las mermeladas</h2><p class="subtitle">¿Tener muchas alternativas puede dificultar la elección?</p></div><svg class="doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M18 28 Q50 16 82 28 L78 74 Q50 86 22 74Z"/><path d="M27 38 Q39 32 50 38 T73 38 M27 51 Q39 45 50 51 T73 51 M27 64 Q39 58 50 64 T73 64"/><circle class="yellow" cx="76" cy="20" r="5"/><circle class="red" cx="16" cy="74" r="3"/></svg></div>
+        <div class="card reading">
+          <div class="card-label">Lectura</div>
+          <p>En un supermercado, unos investigadores organizaron una degustación de mermeladas. En una ocasión ofrecieron <strong>24 variedades</strong> y, en otra, <strong>6</strong>. La mesa con más opciones atrajo a más personas. Sin embargo, quienes encontraron la selección pequeña tuvieron más probabilidades de comprar.</p>
+          <p>El experimento no demuestra que pocas opciones sean siempre mejores. La dificultad puede depender de cuánto se parecen las alternativas, de la importancia de la decisión y de si sabemos qué buscamos.</p>
+        </div>
+        <div class="grid two" style="margin-top:18px">
+          <div class="prompt" style="margin-top:0"><strong>Pregunta clave</strong><p>¿Por qué una mesa con más variedades puede atraer a más personas y generar menos compras?</p></div>
+          <div class="card"><div class="card-label">Fuente</div><p style="margin:0">Iyengar y Lepper (2000)<br><em>When Choice Is Demotivating</em></p></div>
+        </div>
+        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Invita a distinguir entre atraer visitantes y conseguir compras. Recalca que el propio texto limita la conclusión: el experimento no demuestra que menos opciones sean siempre mejores.</p></details>
+      </div>
+    </section>
+
+    <!-- ACTIVIDAD 04 COMPRENSIÓN -->
+    <section class="slide" data-label="Comprensión" aria-label="Actividad 4: Comprueba lo que dice el texto">
+      <div class="slide-inner">
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 04 · COMPRENSIÓN</p><h2>Comprueba lo que dice el texto</h2><p class="subtitle">Distingue entre resultados y conclusiones que el experimento no permite afirmar.</p></div></div>
+        <div class="quiz-list" id="readingQuiz">
+          <article class="quiz-item" data-answer="supported"><div class="quiz-statement">A. La mesa con 24 variedades atrajo más visitantes.</div><div class="quiz-controls"><button class="answer-button" type="button" data-answer-choice="supported">El texto lo respalda</button><button class="answer-button" type="button" data-answer-choice="unsupported">No se puede concluir</button></div></article>
+          <article class="quiz-item" data-answer="supported"><div class="quiz-statement">B. La selección de 6 tuvo más compras por visitante que probó.</div><div class="quiz-controls"><button class="answer-button" type="button" data-answer-choice="supported">El texto lo respalda</button><button class="answer-button" type="button" data-answer-choice="unsupported">No se puede concluir</button></div></article>
+          <article class="quiz-item" data-answer="unsupported"><div class="quiz-statement">C. Todas las personas son más felices con menos opciones.</div><div class="quiz-controls"><button class="answer-button" type="button" data-answer-choice="supported">El texto lo respalda</button><button class="answer-button" type="button" data-answer-choice="unsupported">No se puede concluir</button></div></article>
+          <article class="quiz-item" data-answer="supported"><div class="quiz-statement">D. No se puede afirmar que pocas opciones sean siempre mejores.</div><div class="quiz-controls"><button class="answer-button" type="button" data-answer-choice="supported">El texto lo respalda</button><button class="answer-button" type="button" data-answer-choice="unsupported">No se puede concluir</button></div></article>
+        </div>
+        <div class="button-row"><button class="btn" id="checkQuiz" type="button">Comprobar respuestas</button><button class="btn secondary" id="resetQuiz" type="button">Reiniciar</button><span class="score-pill" id="quizScore" aria-live="polite">0 / 4 correctas</span></div>
+        <div class="prompt"><strong>Preguntas para conversar</strong><p>¿Qué diferencia hay entre atraer visitantes y conseguir compras? ¿Dónde sucede algo parecido?</p></div>
+        <div class="phrases"><div class="phrase"><strong>B1</strong>El texto muestra que… · Me llamó la atención…</div><div class="phrase"><strong>B2</strong>El resultado no demuestra… · Necesitaríamos saber si…</div></div>
+        <div class="prompt"><strong>Idea para recordar</strong><p>Un resultado interesante no autoriza a generalizarlo a todas las personas ni decisiones.</p></div>
+        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>La clave es A, B y D: el texto respalda esas afirmaciones. C generaliza indebidamente y contradice la cautela del segundo párrafo.</p></details>
+      </div>
+    </section>
+
+    <!-- ACTIVIDAD 05 SHORT -->
+    <section class="slide" data-label="Short" aria-label="Actividad 5: ¿Te cuesta tomar decisiones?">
+      <div class="slide-inner">
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 05 · SHORT</p><h2>¿Te cuesta tomar decisiones?</h2><p class="subtitle">Mira el Short e identifica la metáfora utilizada para hablar de decisiones.</p></div></div>
+        <div class="video-layout">
+          <div><div class="video-frame vertical"><iframe title="Short: ¿Te cuesta tomar decisiones? — Píldoras de Psicología" data-src="https://www.youtube-nocookie.com/embed/01QEkvw_MrI?rel=0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="video-caption">Short de YouTube · Píldoras de Psicología</div><a class="video-link" href="https://www.youtube.com/shorts/01QEkvw_MrI" target="_blank" rel="noopener">Abrir Short en YouTube ↗</a></div>
+          <div class="grid" style="gap:13px">
+            <article class="card"><div class="card-label">Antes y durante</div><p><strong>Antes:</strong> piensa en una decisión cotidiana que sueles aplazar.</p><p><strong>Mientras lo ves:</strong> identifica la metáfora y la idea principal.</p></article>
+            <article class="card"><div class="card-label">Después del Short</div><p>¿Qué representa la metáfora? ¿Qué relación tiene con elegir entre alternativas? ¿Te parece útil?</p></article>
+            <div class="phrases" style="grid-template-columns:1fr"><div class="phrase"><strong>Frases B1</strong>La idea principal es… · La metáfora representa…</div><div class="phrase"><strong>Reto B2</strong>La comparación funciona porque… · No la aplicaría siempre, ya que…</div></div>
+          </div>
+        </div>
+        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Antes de reproducir el Short, recoge una decisión aplazada por el grupo. Después, pide que expliquen la metáfora con sus propias palabras, sin limitarse a repetirla.</p></details>
+      </div>
+    </section>
+
+    <!-- ACTIVIDAD 06 -->
+    <section class="slide" data-label="Decisión" aria-label="Actividad 6: La película que nunca empieza">
+      <div class="slide-inner">
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 06 · DECISIÓN</p><h2>La película que nunca empieza</h2><p class="subtitle">Elige con la información disponible y reacciona a una nueva condición.</p></div></div>
+        <div class="card">
+          <div class="card-label">Primera decisión · Elige una película</div>
+          <div class="movie-choice" id="movieChoices">
+            <button class="option-button" type="button" data-movie="A"><strong>A. Risas en el ascensor</strong><span>Comedia · 95 min · Ligera.</span></button>
+            <button class="option-button" type="button" data-movie="B"><strong>B. La última pista</strong><span>Misterio · 110 min · Final inesperado.</span></button>
+            <button class="option-button" type="button" data-movie="C"><strong>C. El mapa perdido</strong><span>Aventura · 85 min · Ritmo tranquilo.</span></button>
+          </div>
+          <p style="font-size:13px;color:var(--muted);margin:13px 0 0">Todas con audio en español.</p>
+          <div class="feedback" id="movieInitialFeedback" aria-live="polite">Elige una opción y explica qué criterio has utilizado. ¿Qué información te falta?</div>
+          <div class="button-row"><button class="btn" id="revealMovie" type="button" disabled>Mostrar nueva información</button></div>
+          <div class="reveal-box" id="movieReveal" hidden><div class="card-label">Nueva información</div><p>El último transporte sale en <strong>90 minutos</strong>. A y B ya no caben. C sí, pero alguien ya la vio y desea una historia nueva. ¿Qué hacen?</p><div class="button-row" id="movieFinalChoices"><button class="option-button" type="button" data-final="Ver C aunque alguien ya la vio">Ver C aunque alguien ya la vio</button><button class="option-button" type="button" data-final="Buscar otra película o cambiar el plan">Buscar otra película o cambiar el plan</button><button class="option-button" type="button" data-final="Negociar una alternativa con el grupo">Negociar una alternativa con el grupo</button></div><div class="feedback" id="movieFinalFeedback" aria-live="polite">Selecciona una respuesta y justifica el cambio.</div></div>
+        </div>
+        <div class="phrases"><div class="phrase"><strong>Frases B1</strong>Al principio elegí…, pero ahora…</div><div class="phrase"><strong>Reto B2</strong>El criterio que ahora pesa más es…</div></div>
+        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Haz que el grupo defienda la elección inicial. Revela la limitación de tiempo y pregunta qué criterio ha pasado a ser prioritario y cómo resolverían el desacuerdo.</p></details>
+      </div>
+    </section>
+
+    <!-- ACTIVIDAD 07 CANCIÓN -->
+    <section class="slide" data-label="Canción" aria-label="Actividad 7: Color esperanza">
+      <div class="slide-inner">
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 07 · CANCIÓN</p><h2>¿La felicidad depende de cómo miramos las cosas?</h2><p class="subtitle">Escucha la canción y conecta su mensaje con nuestras decisiones.</p></div><svg class="doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M27 15 V68 M27 15 L72 7 V59 M27 31 L72 23"/><path d="M11 69 C11 58 31 55 34 66 C37 77 12 84 11 69Z M56 60 C56 49 76 46 79 57 C82 68 57 75 56 60Z"/><circle class="yellow" cx="83" cy="20" r="4"/></svg></div>
+        <div class="video-layout">
+          <div><div class="video-frame wide"><iframe title="Diego Torres — Color Esperanza (vídeo oficial)" data-src="https://www.youtube-nocookie.com/embed/Nb1VOQRs-Vs?rel=0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="video-caption">Color Esperanza · Diego Torres · Vídeo oficial</div><a class="video-link" href="https://www.youtube.com/watch?v=Nb1VOQRs-Vs" target="_blank" rel="noopener">Abrir canción en YouTube ↗</a></div>
+          <div class="grid" style="gap:13px">
+            <article class="card"><div class="card-label">Escucha con un propósito</div><p>¿Qué idea resume mejor su mensaje?</p><div class="quiz-list" id="songQuiz">
+              <button class="answer-button" type="button" data-song-answer="A">A. Todo depende de tener muchas opciones.</button>
+              <button class="answer-button" type="button" data-song-answer="B">B. La esperanza ayuda a mirar el futuro de otra manera.</button>
+              <button class="answer-button" type="button" data-song-answer="C">C. Nunca debemos cambiar de opinión.</button>
+            </div><div class="feedback" id="songFeedback" aria-live="polite">Selecciona la idea que mejor resume el mensaje.</div></article>
+            <article class="card"><div class="card-label">Preguntas para conversar</div><p>¿La felicidad depende de lo que elegimos, de nuestras circunstancias o de ambas? ¿Más opciones garantizan satisfacción?</p></article>
+            <div class="phrases" style="grid-template-columns:1fr"><div class="phrase"><strong>Frases B1</strong>La canción transmite… · Me hace pensar en…</div><div class="phrase"><strong>Reto B2</strong>Aunque la actitud influye, también hay factores externos que…</div></div>
+          </div>
+        </div>
+        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>La respuesta más adecuada es B. No se trata de concluir que la actitud lo resuelve todo, sino de relacionar esperanza, circunstancias y decisiones personales. El enlace al Short musical que aparecía en el material base no pudo verificarse; se utiliza el vídeo oficial de Diego Torres para conservar la canción propuesta.</p></details>
+      </div>
+    </section>
+
+    <!-- ACTIVIDAD 08 -->
+    <section class="slide" data-label="Semáforo" aria-label="Actividad 8: Antes de elegir, enciende el semáforo">
+      <div class="slide-inner">
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 08 · SHORT + JUEGO</p><h2>Antes de elegir, enciende el semáforo</h2><p class="subtitle">Mira el Short y aplica la secuencia a una decisión cotidiana.</p></div></div>
+        <div class="video-layout">
+          <div><div class="video-frame vertical"><iframe title="Técnica del Semáforo — Mayores@Resilientes" data-src="https://www.youtube-nocookie.com/embed/rrW5gejXCUs?rel=0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="video-caption">Técnica del Semáforo · Mayores@Resilientes</div><a class="video-link" href="https://www.youtube.com/shorts/rrW5gejXCUs" target="_blank" rel="noopener">Abrir Short en YouTube ↗</a></div>
+          <div class="grid" style="gap:14px">
+            <article class="card"><div class="card-label">Elige un plan para el sábado</div><div class="quiz-list" id="saturdayChoices">
+              <button class="option-button" type="button" data-plan="Parque">A. Parque: gratis y tranquilo.</button>
+              <button class="option-button" type="button" data-plan="Cine">B. Cine: coste medio, horario fijo.</button>
+              <button class="option-button" type="button" data-plan="Festival">C. Festival: caro, muchas actividades.</button>
+            </div><div class="feedback" id="planFeedback" aria-live="polite">Selecciona una opción para analizarla.</div></article>
+            <div class="button-row"><button class="btn small" id="nextLight" type="button">Empezar con rojo</button><span class="score-pill" id="lightStatus">Paso 0 / 3</span></div>
+          </div>
+        </div>
+        <div class="traffic-stage">
+          <article class="traffic-card" id="lightRed"><div class="traffic-title"><span class="light red"></span>Rojo · Detente</div><p>¿Qué decisión necesitas tomar? Define el problema antes de actuar.</p></article>
+          <article class="traffic-card" id="lightYellow"><div class="traffic-title"><span class="light yellow"></span>Amarillo · Piensa</div><p>¿Qué criterios importan: presupuesto, tiempo, compañía o ganas?</p></article>
+          <article class="traffic-card" id="lightGreen"><div class="traffic-title"><span class="light green"></span>Verde · Actúa</div><p>Elige y explica por qué esa opción encaja con tus prioridades.</p></article>
+        </div>
+        <div class="prompt"><strong>Recursos para conversar</strong><p>Primero… · Después… · Finalmente… · El criterio decisivo para mí sería…</p></div>
+        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Reproduce el Short y después avanza por las tres luces. Pide que el grupo aplique cada fase a la opción elegida y explique qué información necesita antes de decidir.</p></details>
+      </div>
+    </section>
+
+    <!-- ACTIVIDAD 09 -->
+    <section class="slide" data-label="Escritura" aria-label="Actividad 9: Tu regla para elegir">
+      <div class="slide-inner">
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 09 · PRODUCCIÓN</p><h2>Tu regla para elegir</h2><p class="subtitle">Cierra la conversación con una recomendación breve y argumentada.</p></div><svg class="doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M15 20 Q15 12 25 12 H74 Q85 12 85 23 V57 Q85 68 74 68 H44 L26 84 V68 Q15 67 15 57Z"/><path d="M31 34 H69 M31 45 H60"/><circle class="yellow" cx="73" cy="77" r="5"/><circle class="red" cx="18" cy="84" r="3"/></svg></div>
+        <div class="grid two">
+          <article class="card"><div class="card-label">Producción escrita</div><p>Un amigo lleva días comparando doce destinos para sus vacaciones y no consigue reservar.</p><p>Escríbele un mensaje de <strong>4–6 frases</strong> con una recomendación. Incluye dos criterios, una ventaja, una renuncia y una conclusión.</p></article>
+          <article class="card"><div class="card-label">Después de escribir</div><p>Lee tu mensaje y explica por qué tu consejo puede ayudar. Escucha otras recomendaciones y decide cuál es más útil.</p><div class="phrases" style="grid-template-columns:1fr"><div class="phrase"><strong>Frases B1</strong>Te recomiendo… · Yo elegiría… · La ventaja es…</div><div class="phrase"><strong>Reto B2</strong>Aunque…, me inclino por… · Si priorizas…, entonces…</div></div></article>
+        </div>
+        <div class="card" style="margin-top:18px">
+          <label class="card-label" for="writingText">Escribe aquí el mensaje</label>
+          <textarea class="writing-area" id="writingText" placeholder="Hola… Te recomiendo que…"></textarea>
+          <div class="writing-metrics"><span class="metric" id="wordCount">0 palabras</span><span class="metric" id="sentenceCount">0 frases</span><span class="metric" id="checkCount">0 / 5 criterios</span></div>
+          <div class="checklist" id="writingChecklist">
+            <label><input type="checkbox"> Tiene entre 4 y 6 frases.</label>
+            <label><input type="checkbox"> Incluye dos criterios de elección.</label>
+            <label><input type="checkbox"> Explica una ventaja.</label>
+            <label><input type="checkbox"> Menciona una renuncia.</label>
+            <label><input type="checkbox"> Cierra con una conclusión.</label>
+          </div>
+          <div class="button-row"><button class="btn" id="copyWriting" type="button">Copiar texto</button><button class="btn secondary" id="clearWriting" type="button">Limpiar</button><span class="feedback" id="copyFeedback" aria-live="polite" style="margin:0;flex:1">El texto permanece en esta página mientras la tengas abierta.</span></div>
+        </div>
+        <div class="prompt"><strong>Cierre</strong><p>¿Qué te llevas: comparar más, definir criterios o aprender a renunciar a una opción?</p></div>
+        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Invita a leer los mensajes y comparar las recomendaciones. Pide que identifiquen qué criterio fue decisivo y qué alternativa tuvieron que descartar.</p></details>
+      </div>
+    </section>
+
+    <div class="deck-controls" aria-label="Controles de navegación">
+      <button class="btn secondary" id="prevBtn" type="button" disabled>← Anterior</button>
+      <button class="btn" id="nextBtn" type="button">Siguiente →</button>
+    </div>
+    <footer class="footer"><span><strong>@hablaespanolclub</strong> · Habla Español Club</span><span>Tema 010 · ¿Tener más opciones nos hace más felices?</span></footer>
+  </main>
+
+  <script>
+    (()=>{
+      const slides=[...document.querySelectorAll('.slide')];
+      const nav=document.getElementById('slideNav');
+      const prev=document.getElementById('prevBtn');
+      const next=document.getElementById('nextBtn');
+      const count=document.getElementById('slideCount');
+      const progress=document.getElementById('progressBar');
+      let current=0;
+      const navButtons=slides.map((slide,index)=>{
+        const b=document.createElement('button');b.type='button';b.className='slide-dot';b.textContent=String(index+1).padStart(2,'0');b.title=slide.dataset.label||`Diapositiva ${index+1}`;b.setAttribute('aria-label',`Ir a ${slide.dataset.label||`diapositiva ${index+1}`}`);b.addEventListener('click',()=>showSlide(index));nav.appendChild(b);return b;
+      });
+      function activateEmbeds(slide,active){
+        slide.querySelectorAll('iframe[data-src]').forEach(frame=>{
+          if(active){if(!frame.src||frame.src==='about:blank')frame.src=frame.dataset.src;}
+          else if(frame.src&&frame.src!=='about:blank')frame.src='about:blank';
+        });
+      }
+      function showSlide(index){
+        const target=Math.max(0,Math.min(slides.length-1,index));
+        if(target===current&&slides[target].classList.contains('active'))return;
+        activateEmbeds(slides[current],false);
+        slides[current].classList.remove('active');
+        current=target;slides[current].classList.add('active');activateEmbeds(slides[current],true);
+        navButtons.forEach((b,i)=>{if(i===current)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
+        count.textContent=`${String(current+1).padStart(2,'0')} / ${slides.length}`;
+        progress.style.width=`${((current+1)/slides.length)*100}%`;
+        prev.disabled=current===0;next.textContent=current===slides.length-1?'Volver al inicio ↺':'Siguiente →';
+        document.querySelector('.deck-head').scrollIntoView({behavior:'smooth',block:'start'});
+      }
+      prev.addEventListener('click',()=>showSlide(current-1));
+      next.addEventListener('click',()=>showSlide(current===slides.length-1?0:current+1));
+      document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>showSlide(Number(b.dataset.go))));
+      document.addEventListener('keydown',e=>{
+        const tag=(e.target?.tagName||'').toLowerCase();if(['input','textarea','select'].includes(tag)||e.target?.isContentEditable)return;
+        if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();showSlide(current+1)}
+        if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();showSlide(current-1)}
+        if(e.key==='Home'){e.preventDefault();showSlide(0)}
+        if(e.key==='End'){e.preventDefault();showSlide(slides.length-1)}
+      });
+      document.getElementById('fullscreenBtn').addEventListener('click',async()=>{
+        try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen();else await document.exitFullscreen();}catch(err){document.getElementById('slideCount').textContent='Pantalla completa no disponible';}
+      });
+      navButtons[0].setAttribute('aria-current','step');progress.style.width=`${100/slides.length}%`;
+
+      // Actividad 01: elección de postre.
+      document.querySelectorAll('[data-dessert]').forEach(button=>button.addEventListener('click',()=>{
+        document.querySelectorAll('[data-dessert]').forEach(b=>b.setAttribute('aria-pressed','false'));
+        button.setAttribute('aria-pressed','true');
+        document.getElementById('dessertResult').textContent=`Has elegido ${button.dataset.dessert}. Explica qué criterio has utilizado y qué opciones has descartado.`;
+      }));
+
+      // Actividad 02: presupuesto de seis fichas y tres actividades.
+      const selectedActivities=new Map();
+      const optionButtons=[...document.querySelectorAll('[data-activity]')];
+      const budgetStatus=document.getElementById('budgetStatus'),selectionStatus=document.getElementById('selectionStatus'),budgetFeedback=document.getElementById('budgetFeedback');
+      const budgetCheck=document.getElementById('criterionBudget'),manualCriteria=[...document.querySelectorAll('.manual-criterion')];
+      function updateBudget(){
+        const total=[...selectedActivities.values()].reduce((sum,v)=>sum+v.cost,0),n=selectedActivities.size,valid=n===3&&total<=6;
+        budgetStatus.textContent=`${total} / 6 fichas`;selectionStatus.textContent=`${n} / 3 actividades`;
+        budgetCheck.checked=valid;
+        if(n>3)budgetFeedback.textContent='El plan debe tener exactamente tres actividades. Quita una opción.';
+        else if(total>6)budgetFeedback.textContent='El plan supera las seis fichas. Cambia alguna actividad.';
+        else if(valid)budgetFeedback.textContent=`Plan válido: ${[...selectedActivities.keys()].join(', ')}. Justifiquen por qué estas opciones tienen prioridad.`;
+        else budgetFeedback.textContent='Selecciona exactamente tres actividades sin superar seis fichas.';
+        const points=(budgetCheck.checked?1:0)+manualCriteria.filter(c=>c.checked).length;
+        document.getElementById('pointsStatus').textContent=`${points} / 5 puntos`;
+      }
+      optionButtons.forEach(b=>b.addEventListener('click',()=>{
+        const name=b.dataset.activity,cost=Number(b.dataset.cost);
+        if(selectedActivities.has(name)){selectedActivities.delete(name);b.classList.remove('selected');b.setAttribute('aria-pressed','false');}
+        else if(selectedActivities.size<3){selectedActivities.set(name,{cost});b.classList.add('selected');b.setAttribute('aria-pressed','true');}
+        else{budgetFeedback.textContent='Ya has seleccionado tres actividades. Quita una antes de elegir otra.';return;}
+        updateBudget();
+      }));
+      manualCriteria.forEach(c=>c.addEventListener('change',updateBudget));
+      document.getElementById('resetBudget').addEventListener('click',()=>{selectedActivities.clear();optionButtons.forEach(b=>{b.classList.remove('selected');b.setAttribute('aria-pressed','false')});manualCriteria.forEach(c=>c.checked=false);updateBudget();});
+      updateBudget();
+
+      // Actividad 03: registrar postura individual/grupal por afirmación.
+      document.querySelectorAll('[data-statement]').forEach(statement=>{
+        statement.querySelectorAll('[data-vote]').forEach(button=>button.addEventListener('click',()=>{
+          statement.querySelectorAll('[data-vote]').forEach(b=>b.setAttribute('aria-pressed','false'));button.setAttribute('aria-pressed','true');
+          statement.querySelector('.vote-count').textContent=`Postura registrada: ${button.dataset.vote}. Pide a alguien que justifique la elección.`;
+        }));
+      });
+
+      // Actividad 04: comprensión lectora.
+      document.querySelectorAll('#readingQuiz .quiz-item').forEach(item=>{
+        item.querySelectorAll('[data-answer-choice]').forEach(button=>button.addEventListener('click',()=>{
+          item.querySelectorAll('[data-answer-choice]').forEach(b=>b.setAttribute('aria-pressed','false'));button.setAttribute('aria-pressed','true');item.dataset.selected=button.dataset.answerChoice;item.classList.remove('correct','incorrect');
+        }));
+      });
+      document.getElementById('checkQuiz').addEventListener('click',()=>{
+        let score=0;const items=[...document.querySelectorAll('#readingQuiz .quiz-item')];
+        items.forEach(item=>{const ok=item.dataset.selected===item.dataset.answer;item.classList.toggle('correct',ok);item.classList.toggle('incorrect',!ok);if(ok)score++;});
+        document.getElementById('quizScore').textContent=`${score} / 4 correctas`;
+      });
+      document.getElementById('resetQuiz').addEventListener('click',()=>{
+        document.querySelectorAll('#readingQuiz .quiz-item').forEach(item=>{delete item.dataset.selected;item.classList.remove('correct','incorrect');item.querySelectorAll('[data-answer-choice]').forEach(b=>b.setAttribute('aria-pressed','false'));});document.getElementById('quizScore').textContent='0 / 4 correctas';
+      });
+
+      // Actividad 06: decisión con información progresiva.
+      let initialMovie='';
+      document.querySelectorAll('[data-movie]').forEach(b=>b.addEventListener('click',()=>{
+        initialMovie=b.dataset.movie;document.querySelectorAll('[data-movie]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+        document.getElementById('movieInitialFeedback').textContent=`Has elegido ${initialMovie}. Explica qué criterio has utilizado y qué información te falta.`;document.getElementById('revealMovie').disabled=false;
+      }));
+      document.getElementById('revealMovie').addEventListener('click',()=>{document.getElementById('movieReveal').hidden=false;document.getElementById('movieReveal').scrollIntoView({behavior:'smooth',block:'nearest'});});
+      document.querySelectorAll('[data-final]').forEach(b=>b.addEventListener('click',()=>{
+        document.querySelectorAll('[data-final]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.getElementById('movieFinalFeedback').textContent=`El grupo propone: ${b.dataset.final}. ¿Qué criterio ha pesado más en la decisión final?`;
+      }));
+
+      // Actividad 07: comprensión del mensaje musical.
+      document.querySelectorAll('[data-song-answer]').forEach(b=>b.addEventListener('click',()=>{
+        document.querySelectorAll('[data-song-answer]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+        document.getElementById('songFeedback').textContent=b.dataset.songAnswer==='B'?'Correcto. La canción transmite un mensaje de esperanza y una mirada hacia el futuro.':'No es la opción que mejor resume el mensaje. Vuelve a escuchar y piensa en la idea de esperanza.';
+      }));
+
+      // Actividad 08: elección y semáforo progresivo.
+      let selectedPlan='';let lightStep=0;
+      document.querySelectorAll('[data-plan]').forEach(b=>b.addEventListener('click',()=>{
+        selectedPlan=b.dataset.plan;document.querySelectorAll('[data-plan]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.getElementById('planFeedback').textContent=`Has elegido ${selectedPlan}. Analiza el plan con el semáforo: problema, criterios y decisión.`;
+      }));
+      const lightCards=[document.getElementById('lightRed'),document.getElementById('lightYellow'),document.getElementById('lightGreen')];
+      document.getElementById('nextLight').addEventListener('click',()=>{
+        if(!selectedPlan){document.getElementById('planFeedback').textContent='Primero selecciona un plan para el sábado.';return;}
+        lightStep=Math.min(3,lightStep+1);lightCards.forEach((c,i)=>c.classList.toggle('active',i===lightStep-1));
+        document.getElementById('lightStatus').textContent=`Paso ${lightStep} / 3`;
+        const labels=['Empezar con rojo','Pasar a amarillo','Pasar a verde','Semáforo completado'];document.getElementById('nextLight').textContent=labels[lightStep];
+        if(lightStep===3)document.getElementById('planFeedback').textContent=`Plan analizado: ${selectedPlan}. Explica por qué encaja con las prioridades del grupo.`;
+      });
+
+      // Actividad 09: escritura, métricas y copia.
+      const writing=document.getElementById('writingText');
+      function updateWriting(){
+        const value=writing.value.trim();const words=value?value.split(/\s+/).filter(Boolean).length:0;const sentences=value?value.split(/[.!?]+/).filter(s=>s.trim().length>0).length:0;
+        document.getElementById('wordCount').textContent=`${words} palabras`;document.getElementById('sentenceCount').textContent=`${sentences} frases`;
+        const checked=document.querySelectorAll('#writingChecklist input:checked').length;document.getElementById('checkCount').textContent=`${checked} / 5 criterios`;
+      }
+      writing.addEventListener('input',updateWriting);document.querySelectorAll('#writingChecklist input').forEach(c=>c.addEventListener('change',updateWriting));
+      document.getElementById('clearWriting').addEventListener('click',()=>{writing.value='';document.querySelectorAll('#writingChecklist input').forEach(c=>c.checked=false);updateWriting();document.getElementById('copyFeedback').textContent='Texto eliminado.';});
+      document.getElementById('copyWriting').addEventListener('click',async()=>{
+        if(!writing.value.trim()){document.getElementById('copyFeedback').textContent='Escribe primero tu mensaje.';return;}
+        try{await navigator.clipboard.writeText(writing.value);document.getElementById('copyFeedback').textContent='Texto copiado.';}
+        catch(e){writing.focus();writing.select();document.getElementById('copyFeedback').textContent='Selecciona el texto y cópialo con Ctrl/Cmd + C.';}
+      });
+      updateWriting();
+    })();
+  </script>
+</body>
+</html>
