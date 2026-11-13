@@ -153,6 +153,74 @@
     @media(max-width:420px){body{font-size:16px}.shell{width:calc(100% - 22px)}.brand-name{font-size:12px}.brand-sub{font-size:14px}.top-actions{gap:4px}.icon-btn{width:38px;height:38px}.slide-inner{padding-left:2px;padding-right:2px}h1{font-size:39px}h2{font-size:31px}.deck-kicker{font-size:17px}.card{padding:17px;border-radius:22px}.statement p{font-size:16px}.dessert-grid{grid-template-columns:1fr}.footer{align-items:flex-start;flex-direction:column}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
     @media print{.topbar,.slide-nav,.deck-controls,.footer,.top-actions,.teacher-note{display:none!important}.slide{display:block!important;page-break-after:always;min-height:0}.shell{width:100%}main{padding:0}.slide-inner{padding:18px}.card,.statement,.quiz-item{box-shadow:none;break-inside:avoid}body{font-size:12pt}}
+  
+    /* Accesibilidad de lectura: tipografía ampliada para presbicia */
+    body{font-size:21px;line-height:1.55}
+    .brand-name{font-size:17px}.brand-sub{font-size:19px}.top-label{font-size:16px}
+    .deck-count{font-size:16px}.slide-dot{font-size:16px;padding:9px 12px}
+    .deck-kicker{font-size:22px}.eyebrow{font-size:24px}
+    h1{font-size:clamp(44px,6.8vw,76px);line-height:1.04}
+    h2{font-size:clamp(38px,4.9vw,58px);line-height:1.08}
+    h3{font-size:25px;line-height:1.2}
+    .subtitle{font-size:clamp(21px,2.25vw,25px);line-height:1.45}
+    .cover-summary p{font-size:21px;line-height:1.5}
+    .cover-summary strong{font-size:16px}
+    .resource-pill{font-size:17px;padding:9px 14px}
+    .card{padding:clamp(22px,2.8vw,32px)}
+    .card-label{font-size:23px;line-height:1.15}
+    .card p,.card li{font-size:21px;line-height:1.55}
+    .choice-chip,.option-button,.answer-button,.vote-button{font-size:18px;line-height:1.35;padding:13px 17px}
+    .choice-result,.feedback{font-size:18px;line-height:1.5;padding:15px 18px}
+    .phrase{font-size:18px;line-height:1.5;padding:16px 18px}
+    .phrase strong,.prompt strong{font-size:16px}
+    .prompt{padding:19px 21px 19px 24px}
+    .prompt p{font-size:21px;line-height:1.5}
+    .btn{font-size:19px;padding:15px 22px}
+    .btn.small{font-size:17px;padding:12px 17px}
+    .score-pill{font-size:18px}
+    .activity-option{font-size:20px;line-height:1.4;padding:16px 18px}
+    .activity-option .cost{font-size:16px}
+    .activity-option strong{font-size:20px}
+    .activity-option small{font-size:16px}
+    .criterion{font-size:17px;line-height:1.4;padding:12px 14px}
+    .statement p{font-size:21px;line-height:1.45}
+    .vote-button{font-size:17px}
+    .vote-count{font-size:16px}
+    .reading{font-size:21px;line-height:1.65}
+    .quiz-statement{font-size:19px;line-height:1.5}
+    .video-caption,.video-link{font-size:17px;line-height:1.5}
+    .movie-choice strong{font-size:19px}
+    .movie-choice span{font-size:17px;line-height:1.45}
+    .traffic-title{font-size:20px}
+    .writing-area{font-size:21px;line-height:1.6;min-height:220px}
+    .metric{font-size:17px;padding:10px 14px}
+    .checklist label{font-size:17px;line-height:1.45;padding:13px 15px}
+    details.teacher-note summary{font-size:22px}
+    details.teacher-note p{font-size:17px;line-height:1.5}
+    .footer{font-size:16px;line-height:1.5}
+    @media(max-width:760px){
+      body{font-size:20px}
+      .card p,.card li,.prompt p,.reading{font-size:20px}
+      .activity-options,.phrases,.criteria,.checklist{gap:12px}
+      .slide-dot{font-size:16px}
+    }
+    @media(max-width:420px){
+      body{font-size:19px}
+      .brand-name{font-size:15px}.brand-sub{font-size:17px}
+      h1{font-size:42px;line-height:1.06}
+      h2{font-size:36px;line-height:1.1}
+      h3{font-size:23px}
+      .subtitle{font-size:20px}
+      .card{padding:20px}
+      .card-label{font-size:22px}
+      .card p,.card li,.prompt p,.reading{font-size:19px}
+      .statement p{font-size:20px}
+      .footer{font-size:15px}
+    }
+    @media print{
+      body{font-size:14pt}
+      .card p,.card li,.prompt p,.reading{font-size:14pt}
+    }
   </style>
 </head>
 <body>
