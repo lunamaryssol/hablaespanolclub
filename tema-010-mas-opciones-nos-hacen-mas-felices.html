@@ -87,7 +87,8 @@
     .btn.secondary{background:var(--soft-blue);color:var(--blue)}
     .btn.ghost{background:transparent;color:var(--blue);padding-left:10px;padding-right:10px}
     .btn.small{padding:9px 14px;font-size:13px}
-    .button-row{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-top:15px}
+    .small-note{font-size:13px;color:var(--muted);margin:8px 0 0;line-height:1.4}.btn:focus-visible,.option-button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+      .button-row{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-top:15px}
     .game-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px}
     .score-pill{padding:9px 14px;border-radius:999px;background:var(--soft-yellow);color:var(--blue);font-weight:800;font-size:14px;font-variant-numeric:tabular-nums}
     .activity-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
@@ -413,7 +414,7 @@
           </div>
           <p style="font-size:13px;color:var(--muted);margin:13px 0 0">Todas con audio en español.</p>
           <div class="feedback" id="movieInitialFeedback" aria-live="polite">Elige una opción y explica qué criterio has utilizado. ¿Qué información te falta?</div>
-          <div class="button-row"><button class="btn" id="revealMovie" type="button" disabled>Mostrar nueva información</button></div>
+          <div class="button-row"><button class="btn" id="revealMovie" type="button" aria-describedby="movieRevealHint">Mostrar nueva información</button><p id="movieRevealHint" class="small-note">Primero selecciona una película (A, B o C). Después pulsa este botón para conocer la nueva condición.</p></div>
           <div class="reveal-box" id="movieReveal" hidden><div class="card-label">Nueva información</div><p>El último transporte sale en <strong>90 minutos</strong>. A y B ya no caben. C sí, pero alguien ya la vio y desea una historia nueva. ¿Qué hacen?</p><div class="button-row" id="movieFinalChoices"><button class="option-button" type="button" data-final="Ver C aunque alguien ya la vio" aria-pressed="false">Ver C aunque alguien ya la vio</button><button class="option-button" type="button" data-final="Buscar otra película o cambiar el plan" aria-pressed="false">Buscar otra película o cambiar el plan</button><button class="option-button" type="button" data-final="Negociar una alternativa con el grupo" aria-pressed="false">Negociar una alternativa con el grupo</button></div><div class="feedback" id="movieFinalFeedback" aria-live="polite">Selecciona una respuesta y justifica el cambio.</div></div>
         </div>
         <div class="phrases"><div class="phrase"><strong>Frases B1</strong>Al principio elegí…, pero ahora…</div><div class="phrase"><strong>Reto B2</strong>El criterio que ahora pesa más es…</div></div>
@@ -608,7 +609,15 @@
         initialMovie=b.dataset.movie;document.querySelectorAll('[data-movie]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
         document.getElementById('movieInitialFeedback').textContent=`Has elegido ${initialMovie}. Explica qué criterio has utilizado y qué información te falta.`;document.getElementById('revealMovie').disabled=false;
       }));
-      document.getElementById('revealMovie').addEventListener('click',()=>{document.getElementById('movieReveal').hidden=false;document.getElementById('movieReveal').scrollIntoView({behavior:'smooth',block:'nearest'});});
+      document.getElementById('revealMovie').addEventListener('click',()=>{
+        if(!initialMovie){
+          document.getElementById('movieInitialFeedback').textContent='Antes de continuar, selecciona una película: A, B o C. Después vuelve a pulsar «Mostrar nueva información».';
+          document.querySelector('[data-movie]')?.focus();
+          return;
+        }
+        document.getElementById('movieReveal').hidden=false;
+        document.getElementById('movieReveal').scrollIntoView({behavior:'smooth',block:'nearest'});
+      });
       document.querySelectorAll('[data-final]').forEach(b=>b.addEventListener('click',()=>{
         document.querySelectorAll('[data-final]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.getElementById('movieFinalFeedback').textContent=`El grupo propone: ${b.dataset.final}. ¿Qué criterio ha pesado más en la decisión final?`;
       }));
