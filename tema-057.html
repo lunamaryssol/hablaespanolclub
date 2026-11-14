@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#FFFFFF">
+<meta name="description" content="Clase interactiva B1–B2 de Habla Español Club: Todo es urgente: ¿qué hacemos primero?">
+<title>Tema 057 · Todo es urgente: ¿qué hacemos primero? | Habla Español Club</title>
+<link rel="preload" href="assets/fonts/LeagueSpartan-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="assets/fonts/GochiHand-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<style>
+    @font-face{font-family:"League Spartan";src:url("assets/fonts/LeagueSpartan-VariableFont_wght.ttf") format("truetype");font-style:normal;font-weight:100 900;font-display:swap}
+    @font-face{font-family:"Gochi Hand";src:url("assets/fonts/GochiHand-Regular.ttf") format("truetype");font-style:normal;font-weight:400;font-display:swap}
+    :root{--blue:#003893;--yellow:#FCD116;--red:#CE1126;--white:#FFFFFF;--black:#000000;--muted:#535353;--soft-blue:rgba(0,56,147,.055);--soft-yellow:rgba(252,209,22,.17);--soft-red:rgba(206,17,38,.07);--font:"League Spartan",Arial,sans-serif;--hand:"Gochi Hand",cursive;--radius:28px;--shadow:0 3px 18px rgba(0,56,147,.055)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--white)}
+    body{margin:0;background:var(--white);color:var(--black);font:500 17px/1.48 var(--font);min-height:100vh}
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--red);outline-offset:4px}
+    a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:3px}
+    .shell{width:min(1120px,calc(100% - 38px));margin:0 auto}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,56,147,.08)}
+    .topbar-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
+    .brand img{width:48px;height:48px;object-fit:contain;flex:none}
+    .brand-name{font-size:14px;font-weight:800;letter-spacing:.015em;color:var(--blue);line-height:1.05}
+    .brand-sub{font-family:var(--hand);font-size:16px;color:var(--blue);margin-top:3px}
+    .top-actions{display:flex;align-items:center;gap:8px}
+    .top-label{font-size:13px;color:var(--muted);white-space:nowrap}
+    .icon-btn{width:42px;height:42px;border:0;border-radius:50%;background:var(--soft-blue);color:var(--blue);font-size:19px;font-weight:800;display:grid;place-items:center}
+    .icon-btn:hover{background:var(--soft-yellow)}
+    .progress-wrap{height:3px;background:rgba(0,56,147,.07)}
+    .progress-bar{height:3px;width:0;background:var(--red);transition:width .25s ease}
+    main{padding:34px 0 24px}
+    .deck-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px}
+    .deck-kicker{font:400 19px/1 var(--hand);color:var(--blue)}
+    .deck-count{font-size:13px;font-weight:700;color:var(--blue);font-variant-numeric:tabular-nums}
+    .slide-nav{display:flex;gap:7px;overflow-x:auto;padding:3px 2px 15px;scrollbar-width:thin;scrollbar-color:var(--yellow) transparent}
+    .slide-dot{flex:none;border:0;background:transparent;color:var(--blue);padding:7px 10px;border-radius:999px;font-size:12px;font-weight:750;min-width:34px}
+    .slide-dot[aria-current="step"]{background:var(--yellow);color:var(--black)}
+    .slide{display:none;animation:appear .22s ease both;min-height:460px}
+    .slide.active{display:block}
+    @keyframes appear{from{opacity:.45;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+    .slide-inner{padding:clamp(18px,3.2vw,38px) clamp(8px,1.4vw,16px) 30px}
+    .slide-heading{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:start;margin-bottom:28px}
+    .eyebrow{margin:0 0 10px;color:var(--blue);font:400 20px/1 var(--hand)}
+    h1,h2,h3,p{margin-top:0}
+    h1{font-size:clamp(38px,6.3vw,70px);line-height:.99;letter-spacing:-.045em;color:var(--blue);font-weight:800;margin:0 0 16px;max-width:850px}
+    h2{font-size:clamp(32px,4.6vw,49px);line-height:1.02;letter-spacing:-.035em;color:var(--blue);font-weight:800;margin:0 0 12px}
+    h3{font-size:19px;line-height:1.15;color:var(--blue);font-weight:800;margin:0 0 11px}
+    .subtitle{font-size:clamp(17px,2vw,21px);line-height:1.35;max-width:760px;margin:0;color:var(--black)}
+    .wave{ text-decoration:underline wavy var(--red);text-decoration-thickness:2px;text-underline-offset:8px }
+    .accent{font-family:var(--hand);font-weight:400;color:var(--blue)}
+    .doodle{width:82px;height:82px;flex:none;overflow:visible}
+    .doodle path,.doodle line,.doodle circle,.doodle polyline{fill:none;stroke:var(--black);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+    .doodle .yellow{fill:var(--yellow);stroke:none}.doodle .red{fill:var(--red);stroke:none}.doodle .blue{fill:var(--blue);stroke:none}
+    .cover-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(240px,.8fr);gap:clamp(24px,5vw,66px);align-items:center;padding:clamp(10px,3vw,35px) 0 15px}
+    .cover-side{display:grid;gap:20px;align-content:center}
+    .cover-side .doodle{width:128px;height:128px;justify-self:center;margin-bottom:4px}
+    .cover-summary{padding:8px 0 8px 18px;border-left:3px solid var(--yellow)}
+    .cover-summary p{margin:0;font-size:16px}
+    .cover-summary strong{display:block;color:var(--blue);font-size:13px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px}
+    .resource-line{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+    .resource-pill{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;background:var(--soft-blue);font-size:13px;font-weight:700;color:var(--blue)}
+    .grid{display:grid;gap:18px}
+    .grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .card{background:var(--white);border:0;border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(18px,2.5vw,27px);min-width:0}
+    .card-label{font:400 18px/1.05 var(--hand);color:var(--blue);margin-bottom:10px}
+    .card p:last-child{margin-bottom:0}
+    .card ul{margin:0;padding-left:20px}
+    .card li{margin:5px 0}
+    .dessert-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:12px}
+    .choice-chip,.option-button,.answer-button,.vote-button{border:0;border-radius:999px;padding:10px 14px;background:var(--soft-blue);color:var(--blue);font-size:14px;font-weight:700;text-align:left;transition:background .15s,transform .15s}
+    .choice-chip:hover,.option-button:hover,.answer-button:hover,.vote-button:hover{background:var(--soft-yellow);transform:translateY(-1px)}
+    .choice-chip[aria-pressed="true"],.option-button[aria-pressed="true"],.answer-button[aria-pressed="true"],.vote-button[aria-pressed="true"]{background:var(--yellow);color:var(--black)}
+    .choice-result,.feedback{margin-top:14px;padding:12px 15px;border-radius:18px;background:var(--soft-yellow);color:var(--black);font-size:14px;min-height:42px}
+    .phrases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:17px}
+    .phrase{padding:13px 16px;border-radius:19px;background:var(--white);box-shadow:var(--shadow);font-size:14px}
+    .phrase strong{display:block;color:var(--blue);font-size:12px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+    .prompt{margin-top:18px;padding:16px 18px 16px 21px;border-left:3px solid var(--red);background:var(--white);border-radius:0 18px 18px 0;box-shadow:var(--shadow)}
+    .prompt strong{display:block;color:var(--blue);font-size:12px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+    .prompt p{margin:0}
+    .btn{border:0;border-radius:999px;padding:12px 19px;font-size:14px;font-weight:800;transition:transform .15s,background .15s;color:var(--blue);background:var(--yellow)}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.secondary{background:var(--soft-blue);color:var(--blue)}
+    .btn.ghost{background:transparent;color:var(--blue);padding-left:10px;padding-right:10px}
+    .btn.small{padding:9px 14px;font-size:13px}
+    .small-note{font-size:13px;color:var(--muted);margin:8px 0 0;line-height:1.4}.btn:focus-visible,.option-button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+      .button-row{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-top:15px}
+    .game-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px}
+    .score-pill{padding:9px 14px;border-radius:999px;background:var(--soft-yellow);color:var(--blue);font-weight:800;font-size:14px;font-variant-numeric:tabular-nums}
+    .activity-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+    .activity-option{display:flex;align-items:center;gap:12px;text-align:left;width:100%;border:0;background:var(--soft-blue);border-radius:19px;padding:13px 14px;color:var(--black)}
+    .activity-option.selected{background:var(--soft-yellow);box-shadow:inset 0 0 0 1px rgba(0,56,147,.18)}
+    .activity-option .cost{margin-left:auto;color:var(--blue);font-size:13px;font-weight:800;white-space:nowrap}
+    .activity-option strong{display:block;color:var(--blue);font-size:15px}
+    .activity-option small{display:block;color:var(--muted);font-size:12px}
+    .criteria{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:14px}
+    .criterion{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:16px;background:var(--soft-blue);font-size:13px}
+    .criterion input{accent-color:var(--blue);width:17px;height:17px}
+    .statement-list{display:grid;gap:13px}
+    .statement{padding:18px 20px;border-radius:22px;background:var(--white);box-shadow:var(--shadow)}
+    .statement p{font-size:18px;font-weight:700;margin:0 0 12px}
+    .statement-controls{display:flex;flex-wrap:wrap;gap:7px}
+    .vote-button{font-size:13px;padding:9px 13px}
+    .vote-count{font-size:12px;color:var(--muted);margin-top:9px}
+    .reading{font-size:18px;line-height:1.55}
+    .reading p{margin-bottom:15px}
+    .quiz-list{display:grid;gap:12px}
+    .quiz-item{padding:16px 18px;border-radius:20px;background:var(--white);box-shadow:var(--shadow)}
+    .quiz-statement{font-size:16px;font-weight:700;margin-bottom:11px}
+    .quiz-controls{display:flex;flex-wrap:wrap;gap:8px}
+    .quiz-item.correct{box-shadow:inset 0 0 0 2px rgba(0,56,147,.28)}
+    .quiz-item.incorrect{box-shadow:inset 0 0 0 2px rgba(206,17,38,.3)}
+    .video-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);gap:22px;align-items:start}
+    .video-frame{position:relative;width:100%;overflow:hidden;border-radius:25px;background:#fff;box-shadow:var(--shadow)}
+    .video-frame.vertical{aspect-ratio:9/16;max-width:340px;margin:0 auto}
+    .video-frame.wide{aspect-ratio:16/9}
+    .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .video-caption{font-size:13px;color:var(--muted);margin-top:10px}
+    .video-link{display:inline-block;margin-top:11px;font-size:13px;font-weight:800}
+    .reveal-box{padding:18px 20px;border-radius:22px;background:var(--soft-blue);margin-top:15px}
+    .reveal-box[hidden]{display:none}
+    .movie-choice{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+    .movie-choice .option-button{border-radius:18px;padding:15px;text-align:left;min-height:100px}
+    .movie-choice strong{display:block;margin-bottom:5px;font-size:14px}
+    .movie-choice span{display:block;font-size:12px;font-weight:500;line-height:1.3}
+    .traffic-stage{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:15px}
+    .traffic-card{padding:18px;border-radius:22px;background:var(--white);box-shadow:var(--shadow);opacity:.52;transition:opacity .2s,transform .2s}
+    .traffic-card.active{opacity:1;transform:translateY(-2px)}
+    .traffic-title{display:flex;align-items:center;gap:9px;color:var(--blue);font-weight:800;margin-bottom:9px}
+    .light{width:14px;height:14px;border-radius:50%;display:inline-block}
+    .light.red{background:var(--red)}.light.yellow{background:var(--yellow)}.light.green{background:#16803b}
+    .writing-area{width:100%;min-height:190px;resize:vertical;border:0;border-radius:20px;background:var(--soft-blue);padding:17px;color:var(--black);font:500 16px/1.5 var(--font)}
+    .writing-metrics{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}
+    .metric{padding:8px 12px;border-radius:999px;background:var(--soft-yellow);color:var(--blue);font-size:13px;font-weight:800}
+    .checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:13px}
+    .checklist label{display:flex;gap:9px;align-items:flex-start;padding:10px 12px;border-radius:16px;background:var(--soft-blue);font-size:13px}
+    .checklist input{accent-color:var(--blue);margin-top:3px}
+    details.teacher-note{margin-top:20px;border-top:1px solid rgba(0,56,147,.09);padding-top:14px}
+    details.teacher-note summary{cursor:pointer;color:var(--blue);font:400 18px/1.2 var(--hand);list-style:none}
+    details.teacher-note summary::-webkit-details-marker{display:none}
+    details.teacher-note summary:after{content:"＋";font:700 15px var(--font);margin-left:9px}
+    details.teacher-note[open] summary:after{content:"−"}
+    details.teacher-note p{font-size:13px;color:var(--muted);margin:10px 0 0;max-width:850px}
+    .deck-controls{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 0 38px}
+    .deck-controls .btn{min-width:125px}
+    .footer-link{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;cursor:pointer}.footer-link:hover,.footer-link:focus-visible{color:var(--blue);text-decoration-thickness:2px;outline-offset:3px}
+    .footer{padding:14px 0 28px;display:flex;justify-content:space-between;gap:15px;align-items:center;color:var(--muted);font-size:12px;border-top:1px solid rgba(0,56,147,.08)}
+    .footer strong{color:var(--blue);font-weight:800}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:760px){.shell{width:min(100% - 26px,650px)}.topbar-inner{min-height:62px}.brand img{width:42px;height:42px}.top-label{display:none}.slide-heading{grid-template-columns:1fr auto}.doodle{width:58px;height:58px}.cover-grid{grid-template-columns:1fr}.cover-side{grid-template-columns:1fr 1fr;gap:14px}.cover-side .doodle{grid-column:1/-1;width:82px;height:82px}.grid.two,.video-layout{grid-template-columns:1fr}.grid.three{grid-template-columns:1fr}.video-frame.vertical{max-width:300px}.movie-choice{grid-template-columns:1fr}.movie-choice .option-button{min-height:0}.traffic-stage{grid-template-columns:1fr}.traffic-card{opacity:.6}.activity-options,.phrases,.criteria,.checklist{grid-template-columns:1fr}.deck-controls .btn{min-width:0}.slide{min-height:0}}
+    @media(max-width:420px){body{font-size:16px}.shell{width:calc(100% - 22px)}.brand-name{font-size:12px}.brand-sub{font-size:14px}.top-actions{gap:4px}.icon-btn{width:38px;height:38px}.slide-inner{padding-left:2px;padding-right:2px}h1{font-size:39px}h2{font-size:31px}.deck-kicker{font-size:17px}.card{padding:17px;border-radius:22px}.statement p{font-size:16px}.dessert-grid{grid-template-columns:1fr}.footer{align-items:flex-start;flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+    @media print{.topbar,.slide-nav,.deck-controls,.footer,.top-actions,.teacher-note{display:none!important}.slide{display:block!important;page-break-after:always;min-height:0}.shell{width:100%}main{padding:0}.slide-inner{padding:18px}.card,.statement,.quiz-item{box-shadow:none;break-inside:avoid}body{font-size:12pt}}
+  
+    /* Accesibilidad de lectura: tipografía ampliada para presbicia */
+    body{font-size:21px;line-height:1.55}
+    .brand-name{font-size:17px}.brand-sub{font-size:19px}.top-label{font-size:16px}
+    .deck-count{font-size:16px}.slide-dot{font-size:16px;padding:9px 12px}
+    .deck-kicker{font-size:22px}.eyebrow{font-size:24px}
+    h1{font-size:clamp(44px,6.8vw,76px);line-height:1.04}
+    h2{font-size:clamp(38px,4.9vw,58px);line-height:1.08}
+    h3{font-size:25px;line-height:1.2}
+    .subtitle{font-size:clamp(21px,2.25vw,25px);line-height:1.45}
+    .cover-summary p{font-size:21px;line-height:1.5}
+    .cover-summary strong{font-size:16px}
+    .resource-pill{font-size:17px;padding:9px 14px}
+    .card{padding:clamp(22px,2.8vw,32px)}
+    .card-label{font-size:23px;line-height:1.15}
+    .card p,.card li{font-size:21px;line-height:1.55}
+    .choice-chip,.option-button,.answer-button,.vote-button{font-size:18px;line-height:1.35;padding:13px 17px}
+    .choice-result,.feedback{font-size:18px;line-height:1.5;padding:15px 18px}
+    .phrase{font-size:18px;line-height:1.5;padding:16px 18px}
+    .phrase strong,.prompt strong{font-size:16px}
+    .prompt{padding:19px 21px 19px 24px}
+    .prompt p{font-size:21px;line-height:1.5}
+    .btn{font-size:19px;padding:15px 22px}
+    .btn.small{font-size:17px;padding:12px 17px}
+    .score-pill{font-size:18px}
+    .activity-option{font-size:20px;line-height:1.4;padding:16px 18px}
+    .activity-option .cost{font-size:16px}
+    .activity-option strong{font-size:20px}
+    .activity-option small{font-size:16px}
+    .criterion{font-size:17px;line-height:1.4;padding:12px 14px}
+    .statement p{font-size:21px;line-height:1.45}
+    .vote-button{font-size:17px}
+    .vote-count{font-size:16px}
+    .reading{font-size:21px;line-height:1.65}
+    .quiz-statement{font-size:19px;line-height:1.5}
+    .video-caption,.video-link{font-size:17px;line-height:1.5}
+    .movie-choice strong{font-size:19px}
+    .movie-choice span{font-size:17px;line-height:1.45}
+    .traffic-title{font-size:20px}
+    .writing-area{font-size:21px;line-height:1.6;min-height:220px}
+    .metric{font-size:17px;padding:10px 14px}
+    .checklist label{font-size:17px;line-height:1.45;padding:13px 15px}
+    details.teacher-note summary{font-size:22px}
+    details.teacher-note p{font-size:17px;line-height:1.5}
+    .footer{font-size:16px;line-height:1.5}
+    @media(max-width:760px){
+      body{font-size:20px}
+      .card p,.card li,.prompt p,.reading{font-size:20px}
+      .activity-options,.phrases,.criteria,.checklist{gap:12px}
+      .slide-dot{font-size:16px}
+    }
+    @media(max-width:420px){
+      body{font-size:19px}
+      .brand-name{font-size:15px}.brand-sub{font-size:17px}
+      h1{font-size:42px;line-height:1.06}
+      h2{font-size:36px;line-height:1.1}
+      h3{font-size:23px}
+      .subtitle{font-size:20px}
+      .card{padding:20px}
+      .card-label{font-size:22px}
+      .card p,.card li,.prompt p,.reading{font-size:19px}
+      .statement p{font-size:20px}
+      .footer{font-size:15px}
+    }
+    @media print{
+      body{font-size:14pt}
+      .card p,.card li,.prompt p,.reading{font-size:14pt}
+    }
+  
+
+.slide-doodle{width:74px;height:74px;flex:none}
+.tag{display:inline-flex;align-items:center;border-radius:999px;padding:6px 11px;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;margin:0 0 12px}
+.tag-yellow{background:var(--soft-yellow);color:var(--blue)}.tag-red{background:var(--soft-red);color:var(--red)}.tag-blue{background:var(--soft-blue);color:var(--blue)}
+.scenario-quote{font-size:22px;line-height:1.25;font-weight:750;color:var(--blue)}
+.choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.choice-grid .vote-button{font-size:18px;line-height:1.3;padding:22px;border-radius:22px;min-height:100px}
+.choice-result{margin-top:16px;padding:16px 19px;border-left:3px solid var(--red);background:var(--white);border-radius:0 18px 18px 0;box-shadow:var(--shadow);font-weight:650}
+.classification-list,.task-grid,.condition-list,.question-list{display:grid;gap:10px}
+.classification-row,.task-row,.allocation-row,.condition,.question-item,.email-card{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--white);border-radius:18px;box-shadow:var(--shadow);min-width:0}
+.classification-row{justify-content:space-between}.classification-row p,.task-row small,.allocation-row small,.condition p{display:block;margin:4px 0 0;color:var(--muted);font-size:14px;line-height:1.35}
+.select-control{border:1px solid rgba(0,56,147,.2);border-radius:12px;background:#fff;color:var(--blue);padding:10px 12px;max-width:100%;font-weight:700;min-width:145px}
+.task-letter,.condition>span,.question-item>span{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--blue);color:#fff;font-weight:800;flex:none}
+.task-row>div,.condition>div{flex:1;min-width:0}.task-time{font-weight:800;color:var(--blue);white-space:nowrap;font-variant-numeric:tabular-nums}
+.dependency-chain{display:grid;gap:8px;justify-items:center}.dependency-chain span{padding:9px 14px;border-radius:999px;background:var(--soft-blue);color:var(--blue);font-weight:750;text-align:center;width:100%}.dependency-chain b{color:var(--red);font-size:20px;line-height:1}
+.timeline{display:grid;gap:12px;max-width:820px}.timeline-item{display:flex;align-items:flex-start;gap:14px}.timeline-dot{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--yellow);color:var(--blue);font-weight:850;flex:none}.timeline-item p{margin:3px 0 0}
+.email-card{display:block;padding:16px 20px}.email-meta{display:flex;justify-content:space-between;gap:12px;color:var(--blue);font-size:13px;font-weight:800;margin-bottom:8px}.email-card p{margin:0;font-size:17px;line-height:1.45}
+.short-layout{display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:24px;align-items:start}.short-frame{width:100%;max-width:300px;aspect-ratio:9/16;border-radius:24px;overflow:hidden;background:#111;box-shadow:var(--shadow)}.short-frame iframe{width:100%;height:100%;border:0}.short-details{display:grid;gap:14px;align-content:start}
+.phrase-bank{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.phrase-bank span{padding:8px 12px;border-radius:999px;background:var(--soft-blue);color:var(--blue);font-weight:700;font-size:13px}
+.big-stat{font-size:36px;line-height:1;color:var(--blue);font-weight:850;margin:6px 0}
+.allocation-wrap{display:grid;gap:7px}.allocation-row{display:grid;grid-template-columns:minmax(0,1fr) 74px minmax(130px,170px);gap:10px;padding:10px 13px}.allocation-row>span{font-weight:800;color:var(--blue);font-variant-numeric:tabular-nums}.allocation-head{background:transparent;box-shadow:none;padding:3px 13px;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.05em;font-weight:800}
+.metric-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}.metric{background:var(--soft-blue);border-radius:17px;padding:13px 15px;display:grid;gap:4px}.metric span{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase}.metric strong{font-size:23px;color:var(--blue);font-variant-numeric:tabular-nums}.metric small{font-size:12px;color:var(--muted)}
+.writing-panel{background:var(--white);border-radius:22px;box-shadow:var(--shadow);padding:20px}.writing-panel>label{display:block;color:var(--blue);font-weight:800;margin-bottom:8px}.writing-panel textarea{width:100%;border:1px solid rgba(0,56,147,.22);border-radius:16px;padding:15px;resize:vertical;min-height:160px;background:#fff;color:var(--black);line-height:1.45}.writing-metrics{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0;color:var(--muted);font-size:13px;font-weight:700}.check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}.check-grid label{display:flex;align-items:center;gap:8px;padding:9px 11px;border-radius:12px;background:var(--soft-blue);font-size:14px}.check-grid input{accent-color:var(--blue);width:16px;height:16px}
+.scenario-banner{padding:18px 20px;border-left:4px solid var(--yellow);border-radius:0 18px 18px 0;background:var(--white);box-shadow:var(--shadow);margin-bottom:18px}.scenario-banner p{margin:0;font-size:18px}
+.condition{align-items:flex-start}.condition>span{background:var(--red)}.question-item{align-items:flex-start}.question-item p{margin:4px 0 0}
+.agreement-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.closing-question{font-size:clamp(26px,4vw,42px);line-height:1.12;font-weight:800;color:var(--blue);padding:24px 0 28px;max-width:900px}
+@media(max-width:760px){.slide-doodle{width:58px;height:58px}.choice-grid,.grid.three,.short-layout,.metric-grid,.agreement-grid,.check-grid{grid-template-columns:1fr}.classification-row{align-items:flex-start;flex-direction:column}.allocation-row{grid-template-columns:minmax(0,1fr) 60px minmax(112px,130px);gap:7px;padding:9px}.allocation-row .select-control{min-width:0;width:100%;padding:8px 6px;font-size:13px}.short-frame{max-width:260px;margin:0 auto}.email-card p{font-size:15px}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="shell topbar-inner"><div class="brand"><img src="img/logo-habla-espanol-club.png" alt="Logotipo de Habla Español Club"><div><div class="brand-name">HABLA ESPAÑOL CLUB</div><div class="brand-sub">Unidos por el español</div></div></div><div class="top-actions"><span class="top-label">Presentación de clase · Tema 057</span><button class="icon-btn" id="fullscreenBtn" type="button" aria-label="Activar pantalla completa" title="Pantalla completa">⛶</button></div></div><div class="progress-wrap" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div></header>
+<main class="shell"><div class="deck-head"><div class="deck-kicker">Una clase para priorizar, negociar y decidir</div><div class="deck-count" id="slideCount" aria-live="polite">01 / 34</div></div>
+<nav class="slide-nav" id="slideNav" aria-label="Navegación de diapositivas"></nav>
+<section class="slide active" data-label="Inicio" aria-label="Inicio"><div class="slide-inner">
+  <div class="cover-grid"><div><p class="eyebrow">TEMA 057 · TRABAJO Y NEGOCIOS · B1–B2</p>
+  <h1>Todo es urgente: <span class="wave">¿qué hacemos primero?</span></h1>
+  <p class="subtitle">Priorizar tareas profesionales, justificar decisiones, redistribuir responsabilidades y negociar plazos realistas.</p>
+  <div class="resource-line"><span class="resource-pill">9 actividades</span><span class="resource-pill">90 minutos</span><span class="resource-pill">Método ROL</span><span class="resource-pill">B1–B2</span></div>
+  <div class="button-row"><button class="btn" type="button" data-go="1">Comenzar la clase</button></div></div>
+  <div class="cover-side"><svg class="doodle" viewBox="0 0 120 120" role="img" aria-label="Reloj dibujado a mano"><circle cx="60" cy="60" r="42" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><path d="M60 31V61L82 73M60 9V17M103 60H111M9 60H17M25 23L17 15M95 24L103 16" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><circle cx="17" cy="86" r="4" fill="#FCD116"/><circle cx="104" cy="87" r="4" fill="#CE1126"/><circle cx="91" cy="10" r="3" fill="#003893"/></svg>
+  <div class="cover-summary"><strong>Hoy vamos a practicar</strong><p>Cómo distinguir la urgencia real, organizar tareas y explicar por qué una decisión tiene sentido.</p></div>
+  <div class="cover-summary"><strong>Frases que usaremos</strong><p>Lo más urgente es… · Propongo empezar por… · ¿Podemos aplazar…? · Me encargo de…</p></div></div></div>
+  <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Presenta el tema y recuerda que la clase es una práctica de conversación. Las experiencias pueden ser ficticias; nadie necesita compartir información confidencial de su trabajo.</p></details>
+</div></section>
+<section class="slide" data-label="Actividad 1 · Situaciones" aria-label="Actividad 1 · Situaciones"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 01 · RELACIÓNATE</p><h2>¡URGENTE! ¡URGENTE!</h2><p class="subtitle">Lee las dos solicitudes. Fíjate en el plazo, las consecuencias y lo que necesita la otra persona.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M13 22Q13 15 21 15H71Q79 15 79 23V53Q79 61 71 61H45L31 76V61H21Q13 61 13 53Z" fill="none" stroke="#000" stroke-width="3.2" stroke-linejoin="round"/><path d="M42 39H64M28 39H34M28 49H59" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><path d="M72 71Q72 65 79 65H88Q94 65 94 72V83Q94 89 88 89H84L76 96V89Q72 89 72 83Z" fill="none" stroke="#000" stroke-width="2.6" stroke-linejoin="round"/><circle cx="12" cy="83" r="4" fill="#FCD116"/><circle cx="89" cy="20" r="4" fill="#CE1126"/><circle cx="58" cy="8" r="3" fill="#003893"/></svg></div>
+  <div class="grid two">
+    <article class="card"><div class="card-label">MENSAJE DEL JEFE · 9 DÍAS</div><div class="tag tag-yellow">URGENTE</div><p class="scenario-quote">«¿Puedes cambiar el color de los iconos de la presentación?»</p><p>El cliente recibirá la versión final dentro de nueve días. No hay ninguna reunión antes de esa fecha.</p></article>
+    <article class="card"><div class="card-label">MENSAJE DEL CLIENTE · 12 MINUTOS</div><div class="tag tag-red">REUNIÓN INMINENTE</div><p class="scenario-quote">«No puedo abrir la propuesta económica. La reunión empieza en 12 minutos».</p><p>El cliente está conectado y necesita consultar el documento antes de comenzar.</p></article>
+  </div><div class="prompt"><strong>Primera reacción</strong><p>¿Cuál de las dos solicitudes parece más urgente? ¿Qué dato te ayuda a decidir?</p></div>
+  <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>No reveles todavía una respuesta. Pide que observen el plazo y las consecuencias de no actuar.</p></details>
+</div></section>
+<section class="slide" data-label="Actividad 1 · Decisión" aria-label="Actividad 1 · Decisión"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 01 · DECIDE</p><h2>¿Qué atenderías primero?</h2><p class="subtitle">Elige una opción y explica el criterio que has utilizado.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><rect x="21" y="14" width="58" height="72" rx="8" fill="none" stroke="#000" stroke-width="3.2"/><path d="M34 34L40 40L51 27M57 35H68M34 56L40 62L51 49M57 57H68M34 76H66" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13" cy="25" r="4" fill="#FCD116"/><circle cx="88" cy="71" r="4" fill="#CE1126"/><path d="M80 12L86 7" stroke="#003893" stroke-width="3.2" stroke-linecap="round"/></svg></div>
+  <div class="choice-grid"><button class="vote-button" type="button" data-a1-choice="icons">Cambiar el color de los iconos.</button><button class="vote-button" type="button" data-a1-choice="client">Resolver el acceso del cliente a la propuesta.</button></div>
+  <div class="choice-result" id="a1Feedback" aria-live="polite">Selecciona una opción. Después, justifica tu decisión con una razón concreta.</div>
+  <div class="prompt"><strong>Para conversar</strong><p>¿Qué podría ocurrir si dejamos cada solicitud para después? ¿Qué información pedirías antes de aplazar una tarea?</p></div>
+</div></section>
+<section class="slide" data-label="Actividad 1 · Criterios" aria-label="Actividad 1 · Criterios"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 01 · OBSERVA</p><h2>Urgente no siempre significa prioritario</h2><p class="subtitle">Compara el plazo con las consecuencias de no actuar.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><rect x="16" y="22" width="68" height="62" rx="8" fill="none" stroke="#000" stroke-width="3.2"/><path d="M16 39H84M33 13V29M67 13V29M31 52H43M56 52H68M31 67H43M56 67H68" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><circle cx="13" cy="10" r="4" fill="#FCD116"/><circle cx="88" cy="91" r="4" fill="#CE1126"/><path d="M85 13L92 8" stroke="#003893" stroke-width="3.2" stroke-linecap="round"/></svg></div>
+  <div class="grid two"><article class="card"><div class="card-label">ATENCIÓN INMEDIATA</div><h3>El acceso del cliente</h3><p>La reunión comienza en 12 minutos. Si no puede abrir la propuesta, no podrá revisarla durante la reunión.</p><p><strong>Consecuencia:</strong> afecta una actividad que está a punto de ocurrir.</p></article><article class="card"><div class="card-label">SE PUEDE PROGRAMAR</div><h3>El color de los iconos</h3><p>La versión final se entrega dentro de nueve días y no hay una reunión previa.</p><p><strong>Consecuencia:</strong> el cambio puede planificarse sin interrumpir el trabajo inmediato.</p></article></div>
+  <div class="prompt"><strong>Expresiones útiles</strong><p>«Yo atendería primero… porque…» · «Aunque parece urgente, podemos…» · «Propongo dejarlo programado para…»</p></div>
+  <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>La segunda solicitud requiere atención inmediata. La primera puede ser importante, pero no presenta la misma presión temporal. Escribir URGENTE en mayúsculas no cambia por sí solo la prioridad.</p></details>
+</div></section>
+<section class="slide" data-label="Actividad 2 · Antes del Short" aria-label="Actividad 2 · Antes del Short"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 02 · RELACIÓNATE</p><h2>El radar de las urgencias</h2><p class="subtitle">Antes de ver el Short, piensa en tu manera habitual de organizar tareas.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M17 68C29 20 63 15 80 37C91 52 78 73 59 72M60 61L60 73L73 72" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21L26 12L31 21L40 26L31 31L26 40L21 31L12 26Z" fill="none" stroke="#000" stroke-width="2.8" stroke-linejoin="round"/><circle cx="84" cy="83" r="4" fill="#FCD116"/><circle cx="53" cy="10" r="4" fill="#CE1126"/><circle cx="9" cy="77" r="3" fill="#003893"/></svg></div>
+  <div class="grid two"><article class="card"><div class="card-label">PREGUNTA 1</div><h3>Cinco tareas pendientes</h3><p>¿Qué haces cuando tienes cinco tareas pendientes y todas parecen urgentes?</p></article><article class="card"><div class="card-label">PREGUNTA 2</div><h3>Un criterio</h3><p>¿En qué te fijas primero: el plazo, las consecuencias, la persona que lo solicita o el tiempo que necesitas?</p></article></div>
+  <div class="prompt"><strong>Anticipa</strong><p>¿Qué consejo podría dar un vídeo breve sobre cómo organizar las tareas?</p></div>
+  <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Activa conocimientos previos sin convertir la actividad en una explicación teórica. Pide ejemplos generales, no datos de empresas o clientes reales.</p></details>
+</div></section>
+<section class="slide" data-label="Actividad 2 · Short" aria-label="Actividad 2 · Short"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 02 · OBSERVA</p><h2>Cómo organizar tus tareas</h2><p class="subtitle">Mira el Short una vez. Identifica una recomendación y un criterio para decidir qué hacer primero.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M24 18H76M31 18V34L46 49L31 66V82H69V66L54 49L69 34V18" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M35 72Q50 62 65 72M38 29H62" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><circle cx="15" cy="42" r="4" fill="#FCD116"/><circle cx="83" cy="67" r="4" fill="#CE1126"/><circle cx="77" cy="13" r="3" fill="#003893"/></svg></div>
+  <div class="short-layout"><div class="short-frame"><iframe data-src="https://www.youtube.com/embed/grcbjv-8Dmk?rel=0" title="Cómo organizar tus tareas — Spinelli, YouTube Short" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+  <div class="short-details"><div class="card"><div class="card-label">RECURSO AUDIOVISUAL</div><h3>Cómo organizar tus tareas</h3><p>Spinelli · @gonza-spinelli</p><p><a href="https://www.youtube.com/shorts/grcbjv-8Dmk" target="_blank" rel="noopener noreferrer">Abrir el YouTube Short</a></p></div>
+  <div class="prompt"><strong>Mientras lo ves</strong><p>Recuerda una recomendación concreta. No necesitas tomar apuntes: después la explicarás con tus palabras.</p></div></div></div>
+  <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Comparte el audio del Short. Si el reproductor integrado no carga, abre el enlace directo en YouTube.</p></details>
+</div></section>
+<section class="slide" data-label="Actividad 2 · Clasificación" aria-label="Actividad 2 · Clasificación"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 02 · REACCIONA</p><h2>Clasifica las tareas</h2><p class="subtitle">Decide qué harías con cada situación. No hay una respuesta automática: explica los criterios que has utilizado.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="51" r="30" fill="none" stroke="#000" stroke-width="3.2"/><path d="M50 31V52L67 61M50 8V16M84 18L78 25M91 52H83M17 52H9" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><circle cx="19" cy="22" r="4" fill="#FCD116"/><circle cx="81" cy="82" r="4" fill="#CE1126"/><circle cx="73" cy="11" r="3" fill="#003893"/></svg></div>
+  <div class="classification-list">
+    <div class="classification-row"><div><strong>1. Cliente</strong><p>Un cliente no puede abrir la propuesta y la reunión empieza en 10 minutos.</p></div><select class="select-control" data-matrix="client" aria-label="Clasificación de la tarea del cliente"><option value="">Elige una acción</option><option>Atender ahora</option><option>Programar</option><option>Delegar</option><option>Revisar si aporta valor</option></select></div>
+    <div class="classification-row"><div><strong>2. Presupuesto</strong><p>Preparar el presupuesto del próximo trimestre, que se entrega en tres semanas.</p></div><select class="select-control" data-matrix="budget" aria-label="Clasificación del presupuesto"><option value="">Elige una acción</option><option>Atender ahora</option><option>Programar</option><option>Delegar</option><option>Revisar si aporta valor</option></select></div>
+    <div class="classification-row"><div><strong>3. Presentación</strong><p>Cambiar unos iconos de una presentación que se entrega en ocho días.</p></div><select class="select-control" data-matrix="icons" aria-label="Clasificación de los iconos"><option value="">Elige una acción</option><option>Atender ahora</option><option>Programar</option><option>Delegar</option><option>Revisar si aporta valor</option></select></div>
+    <div class="classification-row"><div><strong>4. Mensaje interno</strong><p>Responder un mensaje interno sin plazo definido.</p></div><select class="select-control" data-matrix="message" aria-label="Clasificación del mensaje"><option value="">Elige una acción</option><option>Atender ahora</option><option>Programar</option><option>Delegar</option><option>Revisar si aporta valor</option></select></div>
+  </div>
+  <div class="button-row"><button class="btn small" type="button" id="matrixCheck">Comprobar cuántas has clasificado</button><span class="score-pill" id="matrixStatus">0 / 4 clasificadas</span></div>
+  <div class="choice-result" id="matrixFeedback" aria-live="polite">Selecciona una acción para cada tarea. Después, compara tus criterios con los del grupo.</div>
+</div></section>
+<section class="slide" data-label="Actividad 2 · Reflexión" aria-label="Actividad 2 · Reflexión"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 02 · LÁNZATE</p><h2>Una herramienta, no una fórmula</h2><p class="subtitle">La matriz de Eisenhower ayuda a ordenar tareas según su urgencia e importancia. La decisión también depende del contexto.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M13 22Q13 15 21 15H71Q79 15 79 23V53Q79 61 71 61H45L31 76V61H21Q13 61 13 53Z" fill="none" stroke="#000" stroke-width="3.2" stroke-linejoin="round"/><path d="M42 39H64M28 39H34M28 49H59" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><path d="M72 71Q72 65 79 65H88Q94 65 94 72V83Q94 89 88 89H84L76 96V89Q72 89 72 83Z" fill="none" stroke="#000" stroke-width="2.6" stroke-linejoin="round"/><circle cx="12" cy="83" r="4" fill="#FCD116"/><circle cx="89" cy="20" r="4" fill="#CE1126"/><circle cx="58" cy="8" r="3" fill="#003893"/></svg></div>
+  <div class="grid two"><article class="card"><div class="card-label">PREGUNTA 1</div><h3>¿Qué requiere atención inmediata?</h3><p>Identifica la situación que no conviene aplazar y explica qué consecuencia tendría esperar.</p></article><article class="card"><div class="card-label">PREGUNTA 2</div><h3>¿Qué conviene programar o delegar?</h3><p>Explica qué tarea puede esperar y qué condiciones necesitas confirmar antes de asignarla a otra persona.</p></article></div>
+  <div class="prompt"><strong>Contrasta</strong><p>¿Cambiarías alguna clasificación si la persona que solicita la tarea fuera un cliente estratégico? ¿Por qué?</p></div>
+  <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>No presentes la matriz como una regla infalible. La clasificación depende del plazo, las consecuencias y los objetivos. Acepta alternativas justificadas.</p></details>
+</div></section>
+<section class="slide" data-label="Actividad 3 · Agenda" aria-label="Actividad 3 · Agenda"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 03 · RELACIÓNATE</p><h2>La agenda imposible</h2><p class="subtitle">Dos compañeros tienen 90 minutos para preparar una reunión. Estas son las tareas pendientes.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><rect x="21" y="14" width="58" height="72" rx="8" fill="none" stroke="#000" stroke-width="3.2"/><path d="M34 34L40 40L51 27M57 35H68M34 56L40 62L51 49M57 57H68M34 76H66" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13" cy="25" r="4" fill="#FCD116"/><circle cx="88" cy="71" r="4" fill="#CE1126"/><path d="M80 12L86 7" stroke="#003893" stroke-width="3.2" stroke-linecap="round"/></svg></div>
+  <div class="task-grid">
+    <div class="task-row"><span class="task-letter">A</span><div><strong>Confirmar la sala</strong><small>Antes de la reunión</small></div><span class="task-time">5 min</span></div>
+    <div class="task-row"><span class="task-letter">B</span><div><strong>Responder al cliente</strong><small>Antes de la reunión</small></div><span class="task-time">10 min</span></div>
+    <div class="task-row"><span class="task-letter">C</span><div><strong>Revisar las cifras</strong><small>Antes de redactar el resumen</small></div><span class="task-time">20 min</span></div>
+    <div class="task-row"><span class="task-letter">D</span><div><strong>Redactar el resumen</strong><small>Después de revisar las cifras</small></div><span class="task-time">15 min</span></div>
+    <div class="task-row"><span class="task-letter">E</span><div><strong>Preparar las diapositivas</strong><small>Después del resumen</small></div><span class="task-time">25 min</span></div>
+    <div class="task-row"><span class="task-letter">F</span><div><strong>Actualizar el CRM</strong><small>Antes de terminar el día</small></div><span class="task-time">10 min</span></div>
+  </div><div class="prompt"><strong>Tu reto</strong><p>Ordena las tareas, identifica cuáles pueden realizarse al mismo tiempo y distribuye el trabajo entre Ana y Bruno.</p></div>
+</div></section>
+<section class="slide" data-label="Actividad 3 · Secuencia" aria-label="Actividad 3 · Secuencia"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 03 · OBSERVA</p><h2>¿Qué depende de qué?</h2><p class="subtitle">Antes de decidir el orden, identifica las tareas que necesitan información o resultados de otras.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><rect x="16" y="22" width="68" height="62" rx="8" fill="none" stroke="#000" stroke-width="3.2"/><path d="M16 39H84M33 13V29M67 13V29M31 52H43M56 52H68M31 67H43M56 67H68" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><circle cx="13" cy="10" r="4" fill="#FCD116"/><circle cx="88" cy="91" r="4" fill="#CE1126"/><path d="M85 13L92 8" stroke="#003893" stroke-width="3.2" stroke-linecap="round"/></svg></div>
+  <div class="grid two"><article class="card"><div class="card-label">DEPENDENCIAS</div><div class="dependency-chain"><span>C · Revisar cifras</span><b>↓</b><span>D · Redactar resumen</span><b>↓</b><span>E · Preparar diapositivas</span></div></article><article class="card"><div class="card-label">TAREAS PARALELAS</div><p>Ana puede confirmar la sala y responder al cliente mientras Bruno revisa las cifras.</p><p>Actualizar el CRM no tiene que bloquear la preparación de la reunión; puede hacerse después.</p></article></div>
+  <div class="prompt"><strong>Conversen</strong><p>¿Qué tarea iniciarías primero? ¿Qué podrías hacer mientras otra persona revisa las cifras? ¿Qué dejarías para después?</p></div>
+  <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Pide que no confundan el orden de las tareas con el orden de importancia. La dependencia entre tareas puede determinar la secuencia.</p></details>
+</div></section>
+<section class="slide" data-label="Actividad 3 · Solución" aria-label="Actividad 3 · Solución"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 03 · LÁNZATE</p><h2>Una secuencia posible</h2><p class="subtitle">Compara esta propuesta con la que ha construido tu grupo. Explica qué cambiarías.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M17 68C29 20 63 15 80 37C91 52 78 73 59 72M60 61L60 73L73 72" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21L26 12L31 21L40 26L31 31L26 40L21 31L12 26Z" fill="none" stroke="#000" stroke-width="2.8" stroke-linejoin="round"/><circle cx="84" cy="83" r="4" fill="#FCD116"/><circle cx="53" cy="10" r="4" fill="#CE1126"/><circle cx="9" cy="77" r="3" fill="#003893"/></svg></div>
+  <div class="timeline">
+    <div class="timeline-item"><span class="timeline-dot">1</span><div><strong>Ana</strong><p>Confirma la sala (5 min) y responde al cliente (10 min).</p></div></div>
+    <div class="timeline-item"><span class="timeline-dot">2</span><div><strong>Bruno</strong><p>Revisa las cifras (20 min).</p></div></div>
+    <div class="timeline-item"><span class="timeline-dot">3</span><div><strong>Bruno</strong><p>Redacta el resumen (15 min).</p></div></div>
+    <div class="timeline-item"><span class="timeline-dot">4</span><div><strong>Bruno</strong><p>Prepara las diapositivas (25 min).</p></div></div>
+    <div class="timeline-item"><span class="timeline-dot">5</span><div><strong>Después de la reunión</strong><p>Actualizan el CRM (10 min).</p></div></div>
+  </div><div class="prompt"><strong>Pregunta clave</strong><p>¿Qué cambiaría si el cliente necesitara recibir la presentación antes de la reunión?</p></div>
+  <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Una solución posible asigna a Ana las dos tareas que pueden hacerse al principio y deja a Bruno la ruta crítica de 60 minutos: cifras, resumen y diapositivas. El CRM puede actualizarse después.</p></details>
+</div></section>
+<section class="slide" data-label="Actividad 4 · Lectura 1" aria-label="Actividad 4 · Lectura 1"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 04 · OBSERVA</p><h2>El correo que nadie entendió</h2><p class="subtitle">Lee los mensajes. Tu objetivo es reconstruir quién hace cada tarea y cuál es el plazo real.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M24 18H76M31 18V34L46 49L31 66V82H69V66L54 49L69 34V18" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M35 72Q50 62 65 72M38 29H62" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><circle cx="15" cy="42" r="4" fill="#FCD116"/><circle cx="83" cy="67" r="4" fill="#CE1126"/><circle cx="77" cy="13" r="3" fill="#003893"/></svg></div>
+  <div class="email-card"><div class="email-meta"><strong>Correo 1 · Clara</strong><span>9:00</span></div><p>Yo revisaré las cifras y Martín preparará las diapositivas. La versión final debe enviarse el jueves a las 16:00.</p></div>
+  <div class="email-card"><div class="email-meta"><strong>Correo 2 · Martín</strong><span>9:18</span></div><p>Entendido. Yo revisaré las cifras y Clara preparará las diapositivas. Todavía no he recibido el resumen.</p></div>
+  <div class="prompt"><strong>Mientras lees</strong><p>Subraya mentalmente los nombres, las tareas y los plazos. ¿Qué información no coincide?</p></div>
+</div></section>
+<section class="slide" data-label="Actividad 4 · Lectura 2" aria-label="Actividad 4 · Lectura 2"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 04 · OBSERVA</p><h2>La conversación continúa</h2><p class="subtitle">Lee los dos mensajes siguientes. Comprueba si aclaran o aumentan la confusión.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="51" r="30" fill="none" stroke="#000" stroke-width="3.2"/><path d="M50 31V52L67 61M50 8V16M84 18L78 25M91 52H83M17 52H9" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><circle cx="19" cy="22" r="4" fill="#FCD116"/><circle cx="81" cy="82" r="4" fill="#CE1126"/><circle cx="73" cy="11" r="3" fill="#003893"/></svg></div>
+  <div class="email-card"><div class="email-meta"><strong>Correo 3 · Clara</strong><span>9:42</span></div><p>El resumen ya está listo. Martín puede enviarlo al cliente antes de las 15:00.</p></div>
+  <div class="email-card"><div class="email-meta"><strong>Correo 4 · Cliente</strong><span>10:05</span></div><p>En nuestra última llamada acordamos recibir la versión final el viernes. Aún no tenemos el resumen. ¿Quién nos lo enviará?</p></div>
+  <div class="prompt"><strong>Piensa</strong><p>¿Qué datos están confirmados? ¿Qué afirmaciones son contradictorias? ¿Qué necesitarías preguntar antes de continuar?</p></div>
+</div></section>
+<section class="slide" data-label="Actividad 4 · Detectives" aria-label="Actividad 4 · Detectives"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 04 · REACCIONA</p><h2>Reconstruye lo ocurrido</h2><p class="subtitle">Responde con información del texto y señala qué dato necesita confirmación.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M13 22Q13 15 21 15H71Q79 15 79 23V53Q79 61 71 61H45L31 76V61H21Q13 61 13 53Z" fill="none" stroke="#000" stroke-width="3.2" stroke-linejoin="round"/><path d="M42 39H64M28 39H34M28 49H59" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><path d="M72 71Q72 65 79 65H88Q94 65 94 72V83Q94 89 88 89H84L76 96V89Q72 89 72 83Z" fill="none" stroke="#000" stroke-width="2.6" stroke-linejoin="round"/><circle cx="12" cy="83" r="4" fill="#FCD116"/><circle cx="89" cy="20" r="4" fill="#CE1126"/><circle cx="58" cy="8" r="3" fill="#003893"/></svg></div>
+  <div class="question-list"><div class="question-item"><span>1</span><p>¿Quién debe revisar las cifras?</p></div><div class="question-item"><span>2</span><p>¿Quién prepara las diapositivas?</p></div><div class="question-item"><span>3</span><p>¿Cuándo debe entregarse el informe?</p></div><div class="question-item"><span>4</span><p>¿El cliente recibió el resumen?</p></div><div class="question-item"><span>5</span><p>¿Qué información está confirmada y cuál necesita aclaración?</p></div></div>
+  <div class="prompt"><strong>Producto oral</strong><p>Formula tres preguntas que el equipo debería enviar antes de continuar trabajando.</p></div>
+</div></section>
+<section class="slide" data-label="Actividad 4 · Revelación" aria-label="Actividad 4 · Revelación"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 04 · LÁNZATE</p><h2>Tres contradicciones</h2><p class="subtitle">Compara tus respuestas con esta reconstrucción. Después, formula preguntas de aclaración.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><rect x="21" y="14" width="58" height="72" rx="8" fill="none" stroke="#000" stroke-width="3.2"/><path d="M34 34L40 40L51 27M57 35H68M34 56L40 62L51 49M57 57H68M34 76H66" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13" cy="25" r="4" fill="#FCD116"/><circle cx="88" cy="71" r="4" fill="#CE1126"/><path d="M80 12L86 7" stroke="#003893" stroke-width="3.2" stroke-linecap="round"/></svg></div>
+  <div class="grid three"><article class="card"><div class="card-label">RESPONSABILIDADES</div><p>Clara y Martín presentan versiones diferentes sobre quién revisa las cifras y quién prepara las diapositivas.</p></article><article class="card"><div class="card-label">PLAZO</div><p>Clara indica jueves a las 16:00; el cliente recuerda viernes. Hay que confirmar el acuerdo.</p></article><article class="card"><div class="card-label">RESUMEN</div><p>Clara afirma que está listo; el cliente dice que todavía no lo ha recibido.</p></article></div>
+  <div class="prompt"><strong>Preguntas útiles</strong><p>«¿Quién tiene asignada la revisión?» · «¿Podemos confirmar el plazo de entrega?» · «¿El resumen ya se envió o solamente está preparado?»</p></div>
+  <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>La lectura no permite decidir cuál es la versión correcta del plazo ni si el resumen fue enviado. La respuesta adecuada es pedir confirmación, no inventar una solución.</p></details>
+</div></section>
+<section class="slide" data-label="Actividad 5 · Mensajes" aria-label="Actividad 5 · Mensajes"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 05 · RELACIÓNATE</p><h2>Antes de decir que sí…</h2><p class="subtitle">Te llegan tres solicitudes. Todavía no puedes aceptar ninguna: primero necesitas información.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><rect x="16" y="22" width="68" height="62" rx="8" fill="none" stroke="#000" stroke-width="3.2"/><path d="M16 39H84M33 13V29M67 13V29M31 52H43M56 52H68M31 67H43M56 67H68" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><circle cx="13" cy="10" r="4" fill="#FCD116"/><circle cx="88" cy="91" r="4" fill="#CE1126"/><path d="M85 13L92 8" stroke="#003893" stroke-width="3.2" stroke-linecap="round"/></svg></div>
+  <div class="grid three"><article class="card"><div class="card-label">MENSAJE A</div><p class="scenario-quote">«¿Puedes revisar el informe cuanto antes?»</p></article><article class="card"><div class="card-label">MENSAJE B</div><p class="scenario-quote">«Necesito que te encargues de la presentación».</p></article><article class="card"><div class="card-label">MENSAJE C</div><p class="scenario-quote">«El cliente está esperando. Llámalo, por favor».</p></article></div>
+  <div class="prompt"><strong>Tu tarea</strong><p>Formula preguntas para saber qué debes hacer exactamente, cuál es el plazo, qué consecuencias tendría un retraso y qué recursos necesitas.</p></div>
+</div></section>
+<section class="slide" data-label="Actividad 5 · Preguntas" aria-label="Actividad 5 · Preguntas"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 05 · OBSERVA</p><h2>Pregunta antes de comprometerte</h2><p class="subtitle">Utiliza preguntas claras y naturales. No aceptes una responsabilidad sin conocer sus condiciones.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M17 68C29 20 63 15 80 37C91 52 78 73 59 72M60 61L60 73L73 72" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21L26 12L31 21L40 26L31 31L26 40L21 31L12 26Z" fill="none" stroke="#000" stroke-width="2.8" stroke-linejoin="round"/><circle cx="84" cy="83" r="4" fill="#FCD116"/><circle cx="53" cy="10" r="4" fill="#CE1126"/><circle cx="9" cy="77" r="3" fill="#003893"/></svg></div>
+  <div class="grid two"><article class="card"><div class="card-label">QUÉ NECESITAS SABER</div><ul><li>Qué debe hacerse exactamente.</li><li>Para cuándo se necesita.</li><li>Qué ocurre si se entrega más tarde.</li><li>Qué recursos o personas hacen falta.</li></ul></article><article class="card"><div class="card-label">EXPRESIONES PARA PRACTICAR</div><ul><li>¿Qué necesitas exactamente?</li><li>¿Para cuándo lo necesitas?</li><li>¿Qué ocurre si lo entregamos más tarde?</li><li>¿Podemos redistribuir las tareas?</li><li>Me encargo de eso, siempre que…</li></ul></article></div>
+  <div class="prompt"><strong>Reto</strong><p>Formula una pregunta diplomática para cada mensaje. Evita responder solamente «sí» o «no».</p></div>
+</div></section>
+<section class="slide" data-label="Actividad 5 · Información" aria-label="Actividad 5 · Información"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 05 · DESCUBRE</p><h2>La información que faltaba</h2><p class="subtitle">Revisa las respuestas. Ahora sí puedes decidir qué aceptar y qué necesitas negociar.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M24 18H76M31 18V34L46 49L31 66V82H69V66L54 49L69 34V18" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M35 72Q50 62 65 72M38 29H62" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><circle cx="15" cy="42" r="4" fill="#FCD116"/><circle cx="83" cy="67" r="4" fill="#CE1126"/><circle cx="77" cy="13" r="3" fill="#003893"/></svg></div>
+  <div class="grid two"><article class="card"><div class="card-label">MENSAJE A</div><p>Revisar el total de la tabla 4. Plazo: antes de las 15:00. Duración: 10 minutos.</p></article><article class="card"><div class="card-label">MENSAJE B</div><p>Preparar cinco diapositivas con cifras aprobadas. Entrega: mañana a las 10:00. Duración: 30 minutos. Todavía falta validar los datos.</p></article><article class="card"><div class="card-label">MENSAJE C</div><p>Llamar al cliente para confirmar que recibió la propuesta. No hay que negociar ni modificar nada. Plazo: dentro de 20 minutos. Duración: 5 minutos.</p></article><article class="card"><div class="card-label">RECUERDA</div><p>Una solicitud puede parecer urgente, pero necesitas conocer su alcance, su plazo y las dependencias antes de comprometerte.</p></article></div>
+</div></section>
+<section class="slide" data-label="Actividad 5 · Decisión" aria-label="Actividad 5 · Decisión"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 05 · LÁNZATE</p><h2>Decide y negocia</h2><p class="subtitle">Con la información completa, establece un orden y explica qué condiciones necesitas.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="51" r="30" fill="none" stroke="#000" stroke-width="3.2"/><path d="M50 31V52L67 61M50 8V16M84 18L78 25M91 52H83M17 52H9" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><circle cx="19" cy="22" r="4" fill="#FCD116"/><circle cx="81" cy="82" r="4" fill="#CE1126"/><circle cx="73" cy="11" r="3" fill="#003893"/></svg></div>
+  <div class="question-list"><div class="question-item"><span>1</span><p>¿Qué solicitud atenderías primero?</p></div><div class="question-item"><span>2</span><p>¿Cuál requiere esperar porque depende de otra tarea?</p></div><div class="question-item"><span>3</span><p>¿Qué responsabilidad podrías delegar?</p></div><div class="question-item"><span>4</span><p>¿Qué plazo necesitas negociar?</p></div></div>
+  <div class="prompt"><strong>Reto B2</strong><p>Formula una respuesta que mantenga una buena relación y, al mismo tiempo, evite aceptar un compromiso poco realista.</p></div>
+  <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Acepta distintas prioridades si están justificadas con plazos y consecuencias. La respuesta no consiste en decir sí a todo.</p></details>
+</div></section>
+<section class="slide" data-label="Actividad 6 · Antes de escuchar" aria-label="Actividad 6 · Antes de escuchar"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 06 · RELACIÓNATE</p><h2>El tiempo también cuenta</h2><p class="subtitle">Antes de escuchar, piensa en la relación entre el trabajo, el tiempo y la vida personal.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M13 22Q13 15 21 15H71Q79 15 79 23V53Q79 61 71 61H45L31 76V61H21Q13 61 13 53Z" fill="none" stroke="#000" stroke-width="3.2" stroke-linejoin="round"/><path d="M42 39H64M28 39H34M28 49H59" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><path d="M72 71Q72 65 79 65H88Q94 65 94 72V83Q94 89 88 89H84L76 96V89Q72 89 72 83Z" fill="none" stroke="#000" stroke-width="2.6" stroke-linejoin="round"/><circle cx="12" cy="83" r="4" fill="#FCD116"/><circle cx="89" cy="20" r="4" fill="#CE1126"/><circle cx="58" cy="8" r="3" fill="#003893"/></svg></div>
+  <div class="grid two"><article class="card"><div class="card-label">PREGUNTA 1</div><h3>Hacer algo a su debido tiempo</h3><p>¿Qué significa hacer algo a su debido tiempo?</p></article><article class="card"><div class="card-label">PREGUNTA 2</div><h3>Trabajar más rápido</h3><p>¿Siempre es mejor terminar una tarea cuanto antes? ¿Qué puede salir mal si aceleramos demasiado?</p></article></div>
+  <div class="prompt"><strong>Anticipa</strong><p>¿Qué ideas o emociones podría transmitir una canción que habla de esperar y seguir adelante?</p></div>
+</div></section>
+<section class="slide" data-label="Actividad 6 · Short musical" aria-label="Actividad 6 · Short musical"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 06 · OBSERVA Y ESCUCHA</p><h2>A Su Tiempo</h2><p class="subtitle">Escucha el fragmento y reconoce una idea relacionada con el tiempo, el esfuerzo o la vida familiar.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><rect x="21" y="14" width="58" height="72" rx="8" fill="none" stroke="#000" stroke-width="3.2"/><path d="M34 34L40 40L51 27M57 35H68M34 56L40 62L51 49M57 57H68M34 76H66" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13" cy="25" r="4" fill="#FCD116"/><circle cx="88" cy="71" r="4" fill="#CE1126"/><path d="M80 12L86 7" stroke="#003893" stroke-width="3.2" stroke-linecap="round"/></svg></div>
+  <div class="short-layout"><div class="short-frame"><iframe data-src="https://www.youtube.com/embed/j6DQKVrxj1c?rel=0" title="A Su Tiempo — Música Cristiana IA, YouTube Short" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+  <div class="short-details"><div class="card"><div class="card-label">RECURSO MUSICAL</div><h3>A Su Tiempo</h3><p>Música Cristiana IA · Short oficial</p><p><a href="https://www.youtube.com/shorts/j6DQKVrxj1c" target="_blank" rel="noopener noreferrer">Abrir el YouTube Short</a></p><p><a href="https://musicacristianastudios.com/musica/a-su-tiempo" target="_blank" rel="noopener noreferrer">Consultar la página oficial de la canción</a></p></div>
+  <div class="prompt"><strong>Durante la escucha</strong><p>Identifica una palabra o expresión, el tono predominante y una idea sobre el esfuerzo, el trabajo o la familia.</p></div></div></div>
+  <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>La página oficial del proyecto identifica este recurso como el Short de la canción A Su Tiempo. La canción tiene una perspectiva cristiana explícita; centra la actividad en el lenguaje y el mensaje, sin exigir que los estudiantes compartan creencias.</p></details>
+</div></section>
+<section class="slide" data-label="Actividad 6 · Comprensión" aria-label="Actividad 6 · Comprensión"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 06 · REACCIONA</p><h2>¿Qué mensaje transmite?</h2><p class="subtitle">Responde a partir de lo que has escuchado. No necesitas recordar frases exactas de la canción.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><rect x="16" y="22" width="68" height="62" rx="8" fill="none" stroke="#000" stroke-width="3.2"/><path d="M16 39H84M33 13V29M67 13V29M31 52H43M56 52H68M31 67H43M56 67H68" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><circle cx="13" cy="10" r="4" fill="#FCD116"/><circle cx="88" cy="91" r="4" fill="#CE1126"/><path d="M85 13L92 8" stroke="#003893" stroke-width="3.2" stroke-linecap="round"/></svg></div>
+  <div class="question-list"><div class="question-item"><span>1</span><p>¿Qué mensaje transmite sobre el paso del tiempo?</p></div><div class="question-item"><span>2</span><p>¿Qué relación plantea entre el trabajo y la vida familiar?</p></div><div class="question-item"><span>3</span><p>¿Qué emociones aparecen en el fragmento?</p></div><div class="question-item"><span>4</span><p>¿Estás de acuerdo con la idea de esperar el momento adecuado? ¿Por qué?</p></div></div>
+  <div class="prompt"><strong>Apoyo B1</strong><p>«La canción habla de…» · «Me transmite…» · «Estoy de acuerdo porque…»</p></div>
+</div></section>
+<section class="slide" data-label="Actividad 6 · Debate" aria-label="Actividad 6 · Debate"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 06 · LÁNZATE</p><h2>Paciencia, planificación o aplazamiento</h2><p class="subtitle">Distingue entre esperar porque existe una razón y aplazar una decisión sin un plan.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M17 68C29 20 63 15 80 37C91 52 78 73 59 72M60 61L60 73L73 72" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21L26 12L31 21L40 26L31 31L26 40L21 31L12 26Z" fill="none" stroke="#000" stroke-width="2.8" stroke-linejoin="round"/><circle cx="84" cy="83" r="4" fill="#FCD116"/><circle cx="53" cy="10" r="4" fill="#CE1126"/><circle cx="9" cy="77" r="3" fill="#003893"/></svg></div>
+  <div class="grid three"><article class="card"><div class="card-label">PACIENCIA</div><p>Esperar porque hay una condición que todavía no se cumple.</p></article><article class="card"><div class="card-label">PLANIFICACIÓN</div><p>Definir cuándo y cómo se realizará una tarea.</p></article><article class="card"><div class="card-label">APLAZAMIENTO</div><p>Posponer una tarea sin establecer un siguiente paso claro.</p></article></div>
+  <div class="prompt"><strong>Conversen</strong><p>¿Cuándo es razonable esperar y cuándo estamos evitando una decisión? ¿Qué papel tiene el tiempo personal en la organización del trabajo?</p></div>
+</div></section>
+<section class="slide" data-label="Actividad 7 · Juego" aria-label="Actividad 7 · Juego"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 07 · LÁNZATE</p><h2>El presupuesto de 90 minutos</h2><p class="subtitle">Juego cooperativo: distribuyan las tareas entre Ana y Bruno sin superar el tiempo disponible.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M24 18H76M31 18V34L46 49L31 66V82H69V66L54 49L69 34V18" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M35 72Q50 62 65 72M38 29H62" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><circle cx="15" cy="42" r="4" fill="#FCD116"/><circle cx="83" cy="67" r="4" fill="#CE1126"/><circle cx="77" cy="13" r="3" fill="#003893"/></svg></div>
+  <div class="grid two"><article class="card"><div class="card-label">RECURSOS</div><div class="big-stat">90 min</div><p>Duración total del bloque. Ambos deben asistir a una reunión interna de 30 minutos.</p><div class="big-stat">60 min</div><p>Tiempo de trabajo disponible para cada persona.</p></article><article class="card"><div class="card-label">REGLAS</div><ol><li>Distribuyan las tareas entre Ana y Bruno.</li><li>Nadie puede superar 60 minutos.</li><li>Respeten las dependencias.</li><li>Decidan qué tarea aplazar.</li><li>Justifiquen el plan.</li></ol></article></div>
+  <div class="prompt"><strong>Dato clave</strong><p>El equipo dispone de 120 minutos-persona. Las tareas suman 130 minutos: tendrán que aplazar al menos una.</p></div>
+</div></section>
+<section class="slide" data-label="Actividad 7 · Asignación" aria-label="Actividad 7 · Asignación"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 07 · JUEGA</p><h2>Distribuye las responsabilidades</h2><p class="subtitle">Selecciona quién se encargará de cada tarea. Observa cómo cambia el tiempo disponible.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="51" r="30" fill="none" stroke="#000" stroke-width="3.2"/><path d="M50 31V52L67 61M50 8V16M84 18L78 25M91 52H83M17 52H9" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><circle cx="19" cy="22" r="4" fill="#FCD116"/><circle cx="81" cy="82" r="4" fill="#CE1126"/><circle cx="73" cy="11" r="3" fill="#003893"/></svg></div>
+  <div class="allocation-wrap">
+    <div class="allocation-row allocation-head"><span>Tarea</span><span>Duración</span><span>Responsable</span></div>
+    <div class="allocation-row"><div><strong>Llamar al cliente</strong><small>Solo Ana · antes de 20 min</small></div><span>15 min</span><select class="select-control assign-select" data-task="client" aria-label="Responsable de llamar al cliente"><option value="">Sin asignar</option><option value="Ana">Ana</option></select></div>
+    <div class="allocation-row"><div><strong>Revisar las cifras</strong><small>Solo Bruno · antes de preparar las diapositivas</small></div><span>25 min</span><select class="select-control assign-select" data-task="figures" aria-label="Responsable de revisar cifras"><option value="">Sin asignar</option><option value="Bruno">Bruno</option></select></div>
+    <div class="allocation-row"><div><strong>Preparar cinco diapositivas</strong><small>Después de revisar las cifras · solo Bruno</small></div><span>35 min</span><select class="select-control assign-select" data-task="slides" aria-label="Responsable de las diapositivas"><option value="">Sin asignar</option><option value="Bruno">Bruno</option></select></div>
+    <div class="allocation-row"><div><strong>Confirmar la sala</strong><small>Antes de la reunión externa</small></div><span>5 min</span><select class="select-control assign-select" data-task="room" aria-label="Responsable de confirmar sala"><option value="">Sin asignar</option><option value="Ana">Ana</option><option value="Bruno">Bruno</option></select></div>
+    <div class="allocation-row"><div><strong>Actualizar el CRM</strong><small>Antes de terminar el día</small></div><span>15 min</span><select class="select-control assign-select" data-task="crm" aria-label="Responsable de actualizar CRM"><option value="">Sin asignar</option><option value="Ana">Ana</option><option value="Bruno">Bruno</option></select></div>
+    <div class="allocation-row"><div><strong>Responder un correo interno</strong><small>Sin plazo fijo</small></div><span>10 min</span><select class="select-control assign-select" data-task="email" aria-label="Responsable de responder correo"><option value="">Sin asignar</option><option value="Ana">Ana</option><option value="Bruno">Bruno</option></select></div>
+    <div class="allocation-row"><div><strong>Preparar resumen para dirección</strong><small>Para mañana</small></div><span>25 min</span><select class="select-control assign-select" data-task="summary" aria-label="Responsable de preparar resumen"><option value="">Sin asignar</option><option value="Ana">Ana</option><option value="Bruno">Bruno</option></select></div>
+  </div>
+  <div class="metric-grid"><div class="metric"><span>Ana</span><strong id="anaTotal">0 / 60</strong><small>minutos asignados</small></div><div class="metric"><span>Bruno</span><strong id="brunoTotal">0 / 60</strong><small>minutos asignados</small></div><div class="metric"><span>Pendientes</span><strong id="pendingTotal">130</strong><small>minutos sin asignar</small></div></div>
+  <div class="button-row"><button class="btn small" type="button" id="checkAllocation">Comprobar el plan</button><button class="btn secondary small" type="button" id="resetAllocation">Reiniciar</button></div>
+  <div class="choice-result" id="allocationFeedback" aria-live="polite">Asigna las tareas y comprueba si el equipo puede cumplir las restricciones.</div>
+</div></section>
+<section class="slide" data-label="Actividad 7 · Solución" aria-label="Actividad 7 · Solución"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 07 · COMPARA</p><h2>Una distribución posible</h2><p class="subtitle">Compara el resultado de tu equipo con esta solución. Explica qué criterio fue decisivo.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M13 22Q13 15 21 15H71Q79 15 79 23V53Q79 61 71 61H45L31 76V61H21Q13 61 13 53Z" fill="none" stroke="#000" stroke-width="3.2" stroke-linejoin="round"/><path d="M42 39H64M28 39H34M28 49H59" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><path d="M72 71Q72 65 79 65H88Q94 65 94 72V83Q94 89 88 89H84L76 96V89Q72 89 72 83Z" fill="none" stroke="#000" stroke-width="2.6" stroke-linejoin="round"/><circle cx="12" cy="83" r="4" fill="#FCD116"/><circle cx="89" cy="20" r="4" fill="#CE1126"/><circle cx="58" cy="8" r="3" fill="#003893"/></svg></div>
+  <div class="grid two"><article class="card"><div class="card-label">ANA · 60 MIN</div><ul><li>Llamar al cliente: 15 min</li><li>Confirmar la sala: 5 min</li><li>Actualizar el CRM: 15 min</li><li>Preparar resumen: 25 min</li></ul><div class="score-pill">Total: 60 / 60</div></article><article class="card"><div class="card-label">BRUNO · 60 MIN</div><ul><li>Revisar las cifras: 25 min</li><li>Preparar las diapositivas: 35 min</li></ul><div class="score-pill">Total: 60 / 60</div></article></div>
+  <div class="prompt"><strong>Se aplaza</strong><p>Responder el correo interno (10 minutos). No tiene un plazo fijo y no bloquea las tareas prioritarias.</p></div>
+  <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Esta es una solución posible que respeta las restricciones del juego. Pide al grupo que explique por qué el correo puede esperar y qué riesgo habría si no se actualizara el CRM antes de terminar el día.</p></details>
+</div></section>
+<section class="slide" data-label="Actividad 8 · Escritura" aria-label="Actividad 8 · Escritura"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 08 · OBSERVA</p><h2>Ese mensaje hay que escribirlo mejor</h2><p class="subtitle">Un cliente esperaba recibir una propuesta completa a las 15:00, pero falta validar una cifra.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><rect x="21" y="14" width="58" height="72" rx="8" fill="none" stroke="#000" stroke-width="3.2"/><path d="M34 34L40 40L51 27M57 35H68M34 56L40 62L51 49M57 57H68M34 76H66" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13" cy="25" r="4" fill="#FCD116"/><circle cx="88" cy="71" r="4" fill="#CE1126"/><path d="M80 12L86 7" stroke="#003893" stroke-width="3.2" stroke-linecap="round"/></svg></div>
+  <div class="scenario-banner"><div class="tag tag-yellow">SITUACIÓN</div><p>El equipo puede enviar inmediatamente un resumen con la información confirmada y entregar la propuesta completa a las 16:00.</p></div>
+  <div class="prompt"><strong>Tu tarea</strong><p>Escribe un mensaje de 40 a 60 palabras dirigido al cliente. Incluye el estado del trabajo, la razón del retraso, una alternativa concreta y una pregunta para confirmar el nuevo acuerdo.</p></div>
+  <div class="phrase-bank"><span>Estamos terminando de…</span><span>Necesitamos confirmar…</span><span>Para evitar…</span><span>Podemos enviarte…</span><span>¿Te funciona este plazo?</span><span>Me encargo de…</span></div>
+</div></section>
+<section class="slide" data-label="Actividad 8 · Redacción" aria-label="Actividad 8 · Redacción"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 08 · ESCRIBE</p><h2>Redacta tu mensaje</h2><p class="subtitle">Escribe una respuesta clara y realista. Después podrás revisar la extensión y los criterios.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><rect x="16" y="22" width="68" height="62" rx="8" fill="none" stroke="#000" stroke-width="3.2"/><path d="M16 39H84M33 13V29M67 13V29M31 52H43M56 52H68M31 67H43M56 67H68" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><circle cx="13" cy="10" r="4" fill="#FCD116"/><circle cx="88" cy="91" r="4" fill="#CE1126"/><path d="M85 13L92 8" stroke="#003893" stroke-width="3.2" stroke-linecap="round"/></svg></div>
+  <div class="writing-panel"><label for="writingText">Mensaje para el cliente</label><textarea id="writingText" rows="6" placeholder="Hola, Marta. Estamos terminando de…"></textarea>
+  <div class="writing-metrics"><span id="wordCount">0 palabras</span><span id="sentenceCount">0 frases</span><span id="checkCount">0 / 4 criterios</span></div>
+  <div class="check-grid" id="writingChecklist"><label><input type="checkbox"> Indiqué el estado actual.</label><label><input type="checkbox"> Expliqué qué falta.</label><label><input type="checkbox"> Propuse una alternativa.</label><label><input type="checkbox"> Pedí confirmar el nuevo plazo.</label></div>
+  <div class="button-row"><button class="btn small" type="button" id="copyWriting">Copiar mensaje</button><button class="btn secondary small" type="button" id="clearWriting">Limpiar</button><span class="small-note" id="copyFeedback" aria-live="polite"></span></div></div>
+</div></section>
+<section class="slide" data-label="Actividad 8 · Revisión" aria-label="Actividad 8 · Revisión"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 08 · COMPARTE</p><h2>¿El mensaje deja todo claro?</h2><p class="subtitle">Intercambia tu texto con otra persona y revisa el efecto que puede producir.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M17 68C29 20 63 15 80 37C91 52 78 73 59 72M60 61L60 73L73 72" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21L26 12L31 21L40 26L31 31L26 40L21 31L12 26Z" fill="none" stroke="#000" stroke-width="2.8" stroke-linejoin="round"/><circle cx="84" cy="83" r="4" fill="#FCD116"/><circle cx="53" cy="10" r="4" fill="#CE1126"/><circle cx="9" cy="77" r="3" fill="#003893"/></svg></div>
+  <div class="grid two"><article class="card"><div class="card-label">REVISA</div><ul><li>¿Se entiende qué ha ocurrido?</li><li>¿La nueva propuesta es realista?</li><li>¿El tono resulta adecuado?</li><li>¿Queda claro quién se responsabiliza?</li></ul></article><article class="card"><div class="card-label">RETO B2</div><p>Anticipa una posible objeción del cliente y añade una segunda alternativa sin prometer algo que el equipo no puede cumplir.</p></article></div>
+  <div class="prompt"><strong>Modelo de respuesta</strong><p>«Hola, Marta. Estamos terminando la validación de una cifra de la propuesta. Para que tengas información dentro del plazo, podemos enviarte ahora el resumen confirmado y compartir el documento completo a las 16:00. ¿Te funciona esta opción? Me encargo de enviarte ambos archivos».</p></div>
+</div></section>
+<section class="slide" data-label="Actividad 9 · Imprevisto" aria-label="Actividad 9 · Imprevisto"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 09 · LÁNZATE</p><h2>La última urgencia</h2><p class="subtitle">El equipo ya había organizado el trabajo. Ahora aparecen cambios que obligan a revisar el plan.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M24 18H76M31 18V34L46 49L31 66V82H69V66L54 49L69 34V18" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M35 72Q50 62 65 72M38 29H62" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><circle cx="15" cy="42" r="4" fill="#FCD116"/><circle cx="83" cy="67" r="4" fill="#CE1126"/><circle cx="77" cy="13" r="3" fill="#003893"/></svg></div>
+  <div class="scenario-banner"><div class="tag tag-blue">ACUERDO INICIAL</div><p>Ana verificaría las cifras. Bruno prepararía la presentación. Ana enviaría la propuesta al cliente.</p></div>
+  <div class="grid two"><article class="card"><div class="card-label">OBJETIVO</div><h3>Conservar un plan viable</h3><p>El equipo debe cumplir lo que pueda, aclarar las responsabilidades y negociar lo que ya no sea realista.</p></article><article class="card"><div class="card-label">PRIMERA PREGUNTA</div><h3>¿Qué cambia?</h3><p>¿Qué tarea se ha vuelto crítica? ¿Qué persona tiene la información o la autorización necesaria?</p></article></div>
+</div></section>
+<section class="slide" data-label="Actividad 9 · Nuevas condiciones" aria-label="Actividad 9 · Nuevas condiciones"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 09 · OBSERVA</p><h2>Cambio de condiciones</h2><p class="subtitle">Lee los cuatro imprevistos. No respondas todavía: primero identifica las nuevas restricciones.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="51" r="30" fill="none" stroke="#000" stroke-width="3.2"/><path d="M50 31V52L67 61M50 8V16M84 18L78 25M91 52H83M17 52H9" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><circle cx="19" cy="22" r="4" fill="#FCD116"/><circle cx="81" cy="82" r="4" fill="#CE1126"/><circle cx="73" cy="11" r="3" fill="#003893"/></svg></div>
+  <div class="condition-list">
+    <div class="condition"><span>1</span><div><strong>Ana debe ausentarse.</strong><p>Tiene que dejar el trabajo dentro de 20 minutos.</p></div></div>
+    <div class="condition"><span>2</span><div><strong>El cliente adelanta el plazo.</strong><p>Necesita una respuesta preliminar en 15 minutos y la propuesta definitiva 30 minutos antes del plazo que habían acordado.</p></div></div>
+    <div class="condition"><span>3</span><div><strong>Hay una restricción técnica.</strong><p>Bruno es el único que puede validar las cifras.</p></div></div>
+    <div class="condition"><span>4</span><div><strong>Aparece una tercera persona.</strong><p>Sofía puede subir documentos al portal del cliente, pero no puede modificar ni aprobar las cifras.</p></div></div>
+  </div>
+</div></section>
+<section class="slide" data-label="Actividad 9 · Negociación" aria-label="Actividad 9 · Negociación"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 09 · REACCIONA</p><h2>Reorganiza el trabajo</h2><p class="subtitle">Construye un nuevo plan que respete los plazos y las autorizaciones.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M13 22Q13 15 21 15H71Q79 15 79 23V53Q79 61 71 61H45L31 76V61H21Q13 61 13 53Z" fill="none" stroke="#000" stroke-width="3.2" stroke-linejoin="round"/><path d="M42 39H64M28 39H34M28 49H59" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round"/><path d="M72 71Q72 65 79 65H88Q94 65 94 72V83Q94 89 88 89H84L76 96V89Q72 89 72 83Z" fill="none" stroke="#000" stroke-width="2.6" stroke-linejoin="round"/><circle cx="12" cy="83" r="4" fill="#FCD116"/><circle cx="89" cy="20" r="4" fill="#CE1126"/><circle cx="58" cy="8" r="3" fill="#003893"/></svg></div>
+  <div class="question-list"><div class="question-item"><span>1</span><p>¿Qué hacemos primero?</p></div><div class="question-item"><span>2</span><p>¿Qué información podemos enviar al cliente dentro de 15 minutos?</p></div><div class="question-item"><span>3</span><p>¿Quién valida las cifras?</p></div><div class="question-item"><span>4</span><p>¿Quién prepara y envía el documento?</p></div><div class="question-item"><span>5</span><p>¿Qué tarea podemos aplazar?</p></div><div class="question-item"><span>6</span><p>¿Necesitamos negociar un nuevo plazo?</p></div></div>
+  <div class="prompt"><strong>Expresiones para negociar</strong><p>«Puedo encargarme de…» · «Necesitamos que Bruno valide…» · «Podemos enviar primero…» · «Para entregar la versión completa, necesitamos…»</p></div>
+</div></section>
+<section class="slide" data-label="Actividad 9 · Acuerdo" aria-label="Actividad 9 · Acuerdo"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 09 · LÁNZATE</p><h2>Presenta el acuerdo final</h2><p class="subtitle">El equipo debe cerrar con acciones, responsables y plazos concretos.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><rect x="21" y="14" width="58" height="72" rx="8" fill="none" stroke="#000" stroke-width="3.2"/><path d="M34 34L40 40L51 27M57 35H68M34 56L40 62L51 49M57 57H68M34 76H66" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13" cy="25" r="4" fill="#FCD116"/><circle cx="88" cy="71" r="4" fill="#CE1126"/><path d="M80 12L86 7" stroke="#003893" stroke-width="3.2" stroke-linecap="round"/></svg></div>
+  <div class="agreement-grid"><article class="card"><div class="card-label">ACCIÓN INMEDIATA</div><p>¿Qué se enviará al cliente dentro de 15 minutos?</p></article><article class="card"><div class="card-label">RESPONSABLES</div><p>¿Quién valida, prepara, carga y envía el documento?</p></article><article class="card"><div class="card-label">PLAZO</div><p>¿Qué fecha u hora puede comprometer el equipo?</p></article><article class="card"><div class="card-label">TAREA APLAZADA</div><p>¿Qué queda pendiente y cuándo se retomará?</p></article></div>
+  <div class="prompt"><strong>Una solución posible</strong><p>Ana envía una actualización antes de ausentarse. Bruno valida las cifras. Sofía prepara la carga y envía el documento cuando reciba la aprobación. Si no es posible cumplir el plazo, el equipo negocia una nueva hora de entrega.</p></div>
+  <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>No hay una única respuesta. La solución debe respetar que solo Bruno valida las cifras y que Sofía puede cargar el archivo, pero no modificarlo ni aprobarlo.</p></details>
+</div></section>
+<section class="slide" data-label="Cierre" aria-label="Cierre"><div class="slide-inner">
+  <div class="slide-heading"><div><p class="eyebrow">CIERRE · LÁNZATE</p><h2>¿Qué harás la próxima vez que todo parezca urgente?</h2><p class="subtitle">Recoge una idea, una frase o una decisión que te llevas de la conversación.</p></div><svg class="doodle slide-doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M17 68C29 20 63 15 80 37C91 52 78 73 59 72M60 61L60 73L73 72" fill="none" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21L26 12L31 21L40 26L31 31L26 40L21 31L12 26Z" fill="none" stroke="#000" stroke-width="2.8" stroke-linejoin="round"/><circle cx="84" cy="83" r="4" fill="#FCD116"/><circle cx="53" cy="10" r="4" fill="#CE1126"/><circle cx="9" cy="77" r="3" fill="#003893"/></svg></div>
+  <div class="closing-question">«Cuando todo parece urgente, yo…»</div>
+  <div class="grid two"><article class="card"><div class="card-label">UNA IDEA</div><p>¿Qué criterio vas a utilizar antes de empezar una tarea?</p></article><article class="card"><div class="card-label">UNA FRASE</div><p>¿Qué expresión de la clase te resultó más útil para negociar un plazo o distribuir responsabilidades?</p></article></div>
+  <div class="prompt"><strong>Despedida</strong><p>Comparte una frase que resuma cómo quieres organizar mejor tu tiempo y tus prioridades.</p></div>
+</div></section>
+<div class="deck-controls" aria-label="Controles de navegación"><button class="btn secondary" id="prevBtn" type="button" disabled>← Anterior</button><button class="btn" id="nextBtn" type="button">Siguiente →</button></div>
+<footer class="footer"><span><a class="footer-link" href="https://hablaespanol.club/" target="_top" rel="noopener noreferrer">hablaespanol.club</a> · <a class="footer-link" href="https://www.instagram.com/hablaespanolclub/" target="_top" rel="noopener noreferrer" aria-label="Abrir Instagram de Habla Español Club">@hablaespanolclub</a></span><span>Tema 057 · Todo es urgente: ¿qué hacemos primero?</span></footer>
+</main>
+<script>
+(() => {
+ const slides=[...document.querySelectorAll('.slide')],nav=document.getElementById('slideNav'),prev=document.getElementById('prevBtn'),next=document.getElementById('nextBtn'),count=document.getElementById('slideCount'),progress=document.getElementById('progressBar');
+ let current=0;
+ const navButtons=slides.map((s,i)=>{const b=document.createElement('button');b.type='button';b.className='slide-dot';b.textContent=String(i+1).padStart(2,'0');b.title=s.dataset.label||('Diapositiva '+(i+1));b.setAttribute('aria-label','Ir a '+(s.dataset.label||('diapositiva '+(i+1))));b.addEventListener('click',()=>showSlide(i));nav.appendChild(b);return b;});
+ function activateEmbeds(s,active){s.querySelectorAll('iframe[data-src]').forEach(f=>{if(active){if(!f.src||f.src==='about:blank')f.src=f.dataset.src;}else if(f.src&&f.src!=='about:blank')f.src='about:blank';});}
+ function showSlide(index){const target=Math.max(0,Math.min(slides.length-1,index));if(target===current&&slides[target].classList.contains('active'))return;activateEmbeds(slides[current],false);slides[current].classList.remove('active');current=target;slides[current].classList.add('active');activateEmbeds(slides[current],true);navButtons.forEach((b,i)=>{if(i===current)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});count.textContent=String(current+1).padStart(2,'0')+' / '+slides.length;progress.style.width=(((current+1)/slides.length)*100)+'%';prev.disabled=current===0;next.textContent=current===slides.length-1?'Volver al inicio ↺':'Siguiente →';document.querySelector('.deck-head').scrollIntoView({behavior:'smooth',block:'start'});}
+ prev.addEventListener('click',()=>showSlide(current-1));next.addEventListener('click',()=>showSlide(current===slides.length-1?0:current+1));document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>showSlide(Number(b.dataset.go))));
+ document.addEventListener('keydown',e=>{const tag=(e.target&&e.target.tagName||'').toLowerCase();if(['input','textarea','select'].includes(tag)||(e.target&&e.target.isContentEditable))return;if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();showSlide(current+1);}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();showSlide(current-1);}if(e.key==='Home'){e.preventDefault();showSlide(0);}if(e.key==='End'){e.preventDefault();showSlide(slides.length-1);}});
+ document.getElementById('fullscreenBtn').addEventListener('click',async()=>{try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen();else await document.exitFullscreen();}catch(err){count.textContent='Pantalla completa no disponible';}});
+ navButtons[0].setAttribute('aria-current','step');progress.style.width=(100/slides.length)+'%';
+ document.querySelectorAll('[data-a1-choice]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-a1-choice]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.getElementById('a1Feedback').textContent=b.dataset.a1Choice==='client'?'Esta solicitud requiere atención inmediata: la reunión comienza en 12 minutos y el cliente no puede consultar la propuesta.':'Cambiar los iconos puede ser importante, pero hay nueve días y no existe una reunión previa. Explica por qué lo atenderías antes que el problema del cliente.';}));
+ document.querySelectorAll('[data-matrix]').forEach(s=>s.addEventListener('change',()=>{const n=[...document.querySelectorAll('[data-matrix]')].filter(x=>x.value).length;document.getElementById('matrixStatus').textContent=n+' / 4 clasificadas';}));
+ document.getElementById('matrixCheck').addEventListener('click',()=>{const n=[...document.querySelectorAll('[data-matrix]')].filter(x=>x.value).length;document.getElementById('matrixFeedback').textContent=n===4?'Ya clasificaste las cuatro situaciones. Compara tus decisiones con el grupo: explica el plazo, las consecuencias y qué podría delegarse.':'Has clasificado '+n+' de 4 tareas. Completa las que faltan y justifica tus criterios.';});
+ const taskMinutes={client:15,figures:25,slides:35,room:5,crm:15,email:10,summary:25},assignSelects=[...document.querySelectorAll('.assign-select')];
+ function updateAllocation(){const totals={Ana:0,Bruno:0};let pending=0;assignSelects.forEach(s=>{const owner=s.value,mins=taskMinutes[s.dataset.task];if(owner)totals[owner]+=mins;else pending+=mins;});document.getElementById('anaTotal').textContent=totals.Ana+' / 60';document.getElementById('brunoTotal').textContent=totals.Bruno+' / 60';document.getElementById('pendingTotal').textContent=pending;return {totals,pending};}
+ assignSelects.forEach(s=>s.addEventListener('change',updateAllocation));
+ document.getElementById('checkAllocation').addEventListener('click',()=>{const {totals}=updateAllocation(),owners=Object.fromEntries(assignSelects.map(s=>[s.dataset.task,s.value])),required=['client','figures','slides','room','crm','summary'],allRequired=required.every(k=>owners[k]),rolesOK=owners.client==='Ana'&&owners.figures==='Bruno'&&owners.slides==='Bruno',emailDeferred=!owners.email,withinLimits=totals.Ana<=60&&totals.Bruno<=60,valid=allRequired&&rolesOK&&emailDeferred&&withinLimits;document.getElementById('allocationFeedback').textContent=valid?'Plan viable: Ana tiene 60/60 minutos y Bruno 60/60. El correo interno queda aplazado porque no tiene un plazo fijo.':'Revisa el plan: las tareas obligatorias deben estar asignadas, Ana debe llamar al cliente, Bruno debe revisar las cifras y preparar las diapositivas, nadie puede superar 60 minutos y el correo interno debe quedar aplazado.';});
+ document.getElementById('resetAllocation').addEventListener('click',()=>{assignSelects.forEach(s=>s.value='');updateAllocation();document.getElementById('allocationFeedback').textContent='Asignación reiniciada. Vuelve a distribuir las tareas.';});updateAllocation();
+ const writing=document.getElementById('writingText'),checks=[...document.querySelectorAll('#writingChecklist input')];
+ function updateWriting(){const value=writing.value.trim(),words=value?value.split(/\s+/).filter(Boolean).length:0,sentences=value?value.split(/[.!?]+/).filter(x=>x.trim()).length:0,checked=checks.filter(c=>c.checked).length;document.getElementById('wordCount').textContent=words+' palabras';document.getElementById('sentenceCount').textContent=sentences+' frases';document.getElementById('checkCount').textContent=checked+' / 4 criterios';}
+ writing.addEventListener('input',updateWriting);checks.forEach(c=>c.addEventListener('change',updateWriting));
+ document.getElementById('clearWriting').addEventListener('click',()=>{writing.value='';checks.forEach(c=>c.checked=false);updateWriting();document.getElementById('copyFeedback').textContent='Texto eliminado.';});
+ document.getElementById('copyWriting').addEventListener('click',async()=>{if(!writing.value.trim()){document.getElementById('copyFeedback').textContent='Escribe primero tu mensaje.';return;}try{await navigator.clipboard.writeText(writing.value);document.getElementById('copyFeedback').textContent='Texto copiado.';}catch(e){writing.focus();writing.select();document.getElementById('copyFeedback').textContent='Selecciona el texto y cópialo con Ctrl/Cmd + C.';}});updateWriting();
+})();
+</script>
+</body></html>
