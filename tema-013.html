@@ -145,7 +145,7 @@ html,body{max-width:100%;overflow-x:hidden}
     section.dataset.label=n===0?'Bienvenida · portada':'Actividad '+n;
     section.dataset.module=String(n);
     section.setAttribute('aria-label',n===0?'Módulo 0: bienvenida e introducción':'Módulo '+n+': actividad '+n);
-    section.hidden=n!==0;
+    section.hidden=n!==0&&!!document.getElementById('track');
     const content=document.createElement('div');content.className='module-content';
     const panels=groups[n];
     panels.forEach((panel,i)=>{
