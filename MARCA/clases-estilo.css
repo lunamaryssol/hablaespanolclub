@@ -1,0 +1,37 @@
+/* Habla Español Club · interfaz de clases · identidad @marca · 2026-11-16 */
+@font-face{font-family:"League Spartan";src:url("/MARCA/fuentes/LeagueSpartan-VariableFont_wght.ttf") format("truetype");font-style:normal;font-weight:100 900;font-display:swap}
+@font-face{font-family:"Gochi Hand";src:url("/MARCA/fuentes/GochiHand-Regular.ttf") format("truetype");font-style:normal;font-weight:400;font-display:swap}
+:root{--blue:#003893;--yellow:#FCD116;--red:#CE1126;--black:#000000;--white:#ffffff;--b:#003893;--y:#FCD116;--r:#CE1126;--font:"League Spartan",sans-serif;--hand:"Gochi Hand",cursive;--soft-blue:#ffffff;--soft-yellow:#ffffff;--soft-red:#ffffff;--shadow:none}
+html,body{background:#fff!important;color:#000!important;max-width:100%;overflow-x:hidden}
+body,button,input,select,textarea,option,summary,.content,.module-panel,.module-reveal-bar button,.module-step-count{font-family:"League Spartan",sans-serif!important}
+.eyebrow,.hand,.deck-kicker,.card-label,.brand-sub,.thanks,.brand-mark-note{font-family:"Gochi Hand",cursive!important;color:#003893!important}
+h1,h2,h3,.module-panel h1,.module-panel h2,.module-panel h3{font-family:"League Spartan",sans-serif!important;color:#000!important;letter-spacing:-.025em;line-height:1.1;overflow-wrap:break-word;hyphens:auto;text-wrap:balance}
+h1 .wave,h2 .wave,.statement,.scoreline strong{color:#003893!important}
+.brand,.brand-name,.brand span{color:#003893!important}.brand img{width:47px!important;height:47px!important;object-fit:contain!important}
+header,.topbar,.topbar-inner,.top,.meta,.deck-head,.track,.slide-nav,.module-index{background:#fff!important;box-shadow:none!important}
+header,.topbar{border-bottom:1px solid rgba(0,56,147,.12)!important}
+.module-panel,.module-content,.module-slide{background:#fff!important;max-width:100%;min-width:0}
+.module-panel .card,.module-panel .feedback,.module-panel .prompt,.module-panel .reveal,.module-panel .result,.module-panel .scoreboard,.module-panel .support>div,.module-panel .statement,.module-panel .quiz-item,.module-panel .classification-row,.module-panel .task-row,.module-panel .allocation-row,.module-panel .condition,.module-panel .question-item,.module-panel .email-card,.module-panel .cover-summary,.module-panel .resource-pill,.module-panel .tags span,.module-panel .option-card,.module-panel .traffic-card{background:#fff!important;box-shadow:none!important;border-color:rgba(0,56,147,.18)!important}
+.module-panel .card,.module-panel .support>div,.module-panel .result,.module-panel .classification-row,.module-panel .task-row,.module-panel .condition,.module-panel .email-card{border-width:1px!important;border-radius:18px!important}
+.module-panel .prompt{border-left:3px solid #CE1126!important}
+.module-panel .resource-pill,.module-panel .tags span{border:1px solid rgba(0,56,147,.16)!important;border-radius:999px!important;color:#003893!important}
+.module-panel .card h3,.module-panel .eyebrow,.module-panel .hand{color:#003893!important}
+.module-panel p,.module-panel li,.module-panel a,.module-panel .content{overflow-wrap:anywhere}
+.module-panel .btn,.module-panel .action,.module-panel button,.module-reveal-bar button{box-shadow:none!important}
+.module-panel .cover-grid,.module-panel .cover,.module-panel .hero,.module-panel .slide-inner{min-width:0;max-width:100%}
+.module-panel .cover-side{background:#fff!important;box-shadow:none!important}
+.module-panel img,.module-panel iframe,.module-panel video{max-width:100%}
+.module-panel .tags span,.module-panel .resource-pill{background:#fff!important}
+.module-reveal-bar{border-top:1px solid rgba(0,56,147,.17)!important}
+.module-reveal-bar .module-step-count{color:#003893!important}
+.module-slide .brand-illustration{display:flex;justify-content:flex-end;align-items:center;margin:10px 10px 4px auto;max-width:162px;pointer-events:none}
+.module-slide .brand-illustration svg{display:block;max-width:100%;height:auto;overflow:visible}
+.module-slide .brand-illustration.secondary{max-width:100px;margin:5px 14px 10px auto}
+.module-slide .brand-doodle-accent{display:flex;width:94px;max-width:23vw;justify-content:flex-end;align-items:center;margin:3px 10px 8px auto;pointer-events:none}
+.module-slide .brand-doodle-accent svg{width:100%;height:auto;overflow:visible}
+.brand-illustration svg path,.brand-illustration svg ellipse,.brand-illustration svg circle,.brand-doodle-accent svg path{vector-effect:non-scaling-stroke}
+footer,.footer{background:#fff!important;box-shadow:none!important}
+footer a,.footer a{color:#003893!important}
+@media(max-width:1100px){.module-panel .cover-grid,.module-panel .cover{grid-template-columns:minmax(0,1fr)!important}.module-panel h1{font-size:clamp(34px,5vw,56px)!important}.module-panel h2{font-size:clamp(30px,4.5vw,48px)!important}}
+@media(max-width:620px){.brand img{width:39px!important;height:39px!important}.module-slide .brand-illustration{max-width:105px;margin:5px 6px 10px auto}.module-slide .brand-illustration.secondary{max-width:85px}.module-slide .brand-doodle-accent{max-width:65px}.module-panel h1{font-size:clamp(32px,7vw,42px)!important}.module-panel h2{font-size:clamp(27px,6.5vw,37px)!important}}
+@media print{.brand-illustration,.brand-doodle-accent{display:none!important}}
