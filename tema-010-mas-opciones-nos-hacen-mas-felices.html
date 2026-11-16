@@ -675,7 +675,7 @@ html,body{max-width:100%;overflow-x:hidden}
       });
       function activateEmbeds(slide,active){
         slide.querySelectorAll('iframe[data-src]').forEach(frame=>{
-          if(active&&!frame.closest('.module-panel[hidden]')){if(!frame.src||frame.src==='about:blank')frame.src=frame.dataset.src;}
+          if(active&&!frame.closest('[hidden]')){if(!frame.src||frame.src==='about:blank')frame.src=frame.dataset.src;}
           else if(frame.src&&frame.src!=='about:blank')frame.src='about:blank';
         });
       }
