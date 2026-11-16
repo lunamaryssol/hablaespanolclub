@@ -223,7 +223,43 @@
       body{font-size:14pt}
       .card p,.card li,.prompt p,.reading{font-size:14pt}
     }
-  </style>
+  
+/* NAVEGACIÓN DOCENTE 0–9 · esquema modular, 16-11-2026 */
+html,body{max-width:100%;overflow-x:hidden}
+.module-slide,.module-content,.module-panel,.slide-inner,main{min-width:0;max-width:100%}
+.module-panel[hidden],.module-chunk[hidden],.module-reveal-bar[hidden]{display:none!important}
+.slide-nav,.track,.module-index{display:grid!important;grid-template-columns:repeat(10,minmax(0,1fr));gap:clamp(2px,.7vw,9px);width:100%;overflow:visible!important;max-width:100%;padding:8px 0 15px;margin:0 0 8px}
+.slide-dot,.dot,.module-index button{box-sizing:border-box;width:100%!important;min-width:0!important;padding:9px 0!important;border:0;border-radius:999px;background:transparent;color:#003893;font-size:clamp(15px,1.9vw,21px)!important;font-weight:800;text-align:center;cursor:pointer;line-height:1.5}
+.slide-dot[aria-current="step"],.dot[aria-current="step"],.module-index button[aria-current="step"]{background:#FCD116!important;color:#111!important}
+.module-slide{width:100%;overflow-wrap:break-word}
+.module-content{width:100%}
+.module-reveal-bar{display:flex;align-items:center;flex-wrap:wrap;justify-content:space-between;gap:10px;margin:22px 0 14px;padding:17px 0 6px;border-top:1px solid rgba(0,56,147,.18)}
+.module-reveal-bar button{appearance:none;border:1.5px solid #003893;background:#fff;color:#003893;border-radius:999px;padding:12px 18px;min-height:45px;cursor:pointer;font:800 16px/1.2 'League Spartan',LeagueSpartan,Arial,sans-serif}
+.module-reveal-bar button.module-advance{background:#FCD116;border-color:#FCD116}
+.module-reveal-bar button:disabled{opacity:.35;cursor:not-allowed}
+.module-reveal-bar .module-step-count{font:700 15px/1.3 Arial,sans-serif;color:#003893;text-align:center;min-width:96px}
+.module-panel{width:100%;min-width:0}
+.module-panel h1,.module-panel h2,.module-panel h3{max-width:100%;overflow-wrap:break-word}
+.module-panel img,.module-panel iframe,.module-panel video{max-width:100%}
+@media(max-width:1100px){
+ .cover-grid,.cover{grid-template-columns:minmax(0,1fr)!important}
+ .cover-side{max-width:100%;min-width:0}
+ .module-panel h1{font-size:clamp(36px,5.4vw,58px);line-height:1.03}
+ .module-panel h2{font-size:clamp(30px,4.8vw,49px);line-height:1.08}
+ .module-panel .slide-inner{max-width:100%}
+}
+@media(max-width:620px){
+ .slide-nav,.track,.module-index{gap:2px}
+ .slide-dot,.dot,.module-index button{font-size:15px!important;padding:8px 0!important}
+ .module-reveal-bar{justify-content:center}
+ .module-reveal-bar button{font-size:14px;padding:10px 12px}
+ .module-reveal-bar .module-step-count{order:-1;width:100%}
+ .module-panel h1{font-size:clamp(32px,7vw,42px)}
+ .module-panel h2{font-size:clamp(27px,6.5vw,37px)}
+}
+@media print{.module-reveal-bar,.module-index{display:none!important}.module-panel[hidden],.module-chunk[hidden]{display:block!important}}
+
+</style>
 </head>
 <body>
   <header class="topbar">
@@ -243,7 +279,7 @@
   <main class="shell">
     <div class="deck-head">
       <div class="deck-kicker">Una clase para conversar, elegir y argumentar</div>
-      <div class="deck-count" id="slideCount" aria-live="polite">01 / 11</div>
+      <div class="deck-count" id="slideCount" aria-live="polite">00 / 09</div>
     </div>
     <nav class="slide-nav" id="slideNav" aria-label="Navegación de diapositivas"></nav>
 
@@ -503,7 +539,130 @@
   </main>
 
   <script>
-    (()=>{
+/* Estructura 0–9: cada actividad es un módulo; sus pasos se descubren con botones. */
+(function(){
+  'use strict';
+  if(window.__lessonModuleSchema)return;
+  const originals=Array.from(document.querySelectorAll('section.slide'));
+  if(originals.length<10)return;
+  const groups=Array.from({length:10},()=>[]);
+  const formerIndexToModule=[];
+  let previous=0;
+  originals.forEach((s,i)=>{
+    const label=(s.dataset.label||'')+' '+(s.getAttribute('aria-label')||'')+' '+(s.querySelector('.eyebrow,.hand')?.textContent||'');
+    const match=label.match(/actividad\s*0?([1-9])\b/i);
+    let n=i===0?0:match?Number(match[1]):(/cierre|conclusi[oó]n/i.test(label)||i===originals.length-1?9:previous);
+    if(i>0&&n===0)n=previous||9;
+    previous=n;
+    groups[n].push(s);formerIndexToModule[i]=n;
+  });
+  if(groups.some(g=>!g.length)){console.error('El tema no tiene nueve actividades identificables; se conserva la navegación previa.');return;}
+  const parent=originals[0].parentElement;
+  const anchor=document.createComment('Índice único de actividades 0–9');
+  parent.insertBefore(anchor,originals[0]);
+  const modules=[];
+  const states=[];
+  function visibleMedia(module){
+    module.querySelectorAll('iframe[data-src]').forEach(frame=>{
+      const visible=module.classList.contains('active')&&!module.hidden&&!frame.closest('[hidden]');
+      if(visible&&(!frame.getAttribute('src')||frame.getAttribute('src')==='about:blank'))frame.setAttribute('src',frame.dataset.src);
+      if(!visible&&frame.getAttribute('src')&&frame.getAttribute('src')!=='about:blank')frame.setAttribute('src','about:blank');
+    });
+  }
+  function jumpToModule(target){
+    const n=Math.max(0,Math.min(9,target));
+    if(typeof window.__lessonGoModule==='function'){window.__lessonGoModule(n);return;}
+    const buttons=Array.from(document.querySelectorAll('#slideNav button,#track button,#moduleIndex button'));
+    if(buttons[n])buttons[n].click();
+  }
+  function revealAt(module,n){
+    const st=states[Number(module.dataset.module)];
+    if(!st)return;
+    st.position=Math.max(0,Math.min(st.total-1,n));
+    if(st.panels.length>1){
+      st.panels.forEach((panel,i)=>{panel.hidden=i!==st.position;panel.classList.toggle('is-visible',i===st.position);});
+    }else{
+      st.panels[0].hidden=false;
+      st.chunks.forEach((child,i)=>{child.hidden=i>=st.position;});
+    }
+    st.previous.disabled=st.position===0;
+    st.previous.hidden=st.position===0;
+    st.counter.textContent=st.total===1?'Actividad completa':'Paso '+(st.position+1)+' de '+st.total;
+    st.next.textContent=st.position===st.total-1?(Number(module.dataset.module)===9?'Volver a la bienvenida ↺':'Ir a la siguiente actividad →'):'Descubrir siguiente →';
+    visibleMedia(module);
+  }
+  for(let n=0;n<=9;n++){
+    const section=document.createElement('section');
+    section.className='slide module-slide'+(n===0?' active':'');
+    section.dataset.label=n===0?'Bienvenida · portada':'Actividad '+n;
+    section.dataset.module=String(n);
+    section.setAttribute('aria-label',n===0?'Módulo 0: bienvenida e introducción':'Módulo '+n+': actividad '+n);
+    section.hidden=n!==0;
+    const content=document.createElement('div');content.className='module-content';
+    const panels=groups[n];
+    panels.forEach((panel,i)=>{
+      panel.classList.remove('slide','active');
+      panel.classList.add('module-panel');
+      panel.hidden=i!==0;
+      panel.dataset.phase=String(i);
+      const oldCounter=panel.querySelector('.slide-head .n');
+      if(oldCounter)oldCounter.textContent='Paso '+(i+1)+' / '+panels.length;
+      content.appendChild(panel);
+    });
+    section.appendChild(content);
+    const chunks=[];
+    if(n>0&&panels.length===1){
+      const root=panels[0].querySelector('.slide-inner')||panels[0];
+      const children=Array.from(root.children);
+      const meaningful=children.filter(el=>!el.matches('details.teacher-note,.slide-heading,.heading,.slide-head,.under,h1,h2,h3,.eyebrow,.n'));
+      if(meaningful.length){
+        const firstVisible=meaningful.length>1?1:0;
+        meaningful.slice(firstVisible).forEach(el=>{el.classList.add('module-chunk');el.hidden=true;chunks.push(el);});
+      }
+    }
+    const total=panels.length>1?panels.length:1+chunks.length;
+    let control=null;
+    let previousButton=null,nextButton=null,counter=null;
+    if(n>0){
+      control=document.createElement('div');control.className='module-reveal-bar';control.setAttribute('aria-label','Revelaciones de la actividad '+n);
+      previousButton=document.createElement('button');previousButton.type='button';previousButton.className='module-back';previousButton.textContent='← Volver al paso anterior';
+      counter=document.createElement('span');counter.className='module-step-count';counter.setAttribute('aria-live','polite');
+      nextButton=document.createElement('button');nextButton.type='button';nextButton.className='module-advance';
+      previousButton.addEventListener('click',()=>revealAt(section,states[n].position-1));
+      nextButton.addEventListener('click',()=>states[n].position===states[n].total-1?jumpToModule(n===9?0:n+1):revealAt(section,states[n].position+1));
+      control.append(previousButton,counter,nextButton);section.appendChild(control);
+    }
+    states[n]={panels,chunks,total,position:0,previous:previousButton,next:nextButton,counter};
+    parent.insertBefore(section,anchor);
+    modules.push(section);
+    if(n>0)revealAt(section,0);
+  }
+  anchor.remove();
+  document.querySelectorAll('[data-go]').forEach(button=>{
+    const oldNumber=Number(button.dataset.go);
+    if(Number.isInteger(oldNumber)&&formerIndexToModule[oldNumber]!=null)button.dataset.go=String(formerIndexToModule[oldNumber]);
+  });
+  if(!document.getElementById('slideNav')&&!document.getElementById('track')){
+    const main=document.querySelector('main');
+    const index=document.createElement('nav');index.id='moduleIndex';index.className='module-index';index.setAttribute('aria-label','Índice de bienvenida y nueve actividades');
+    for(let n=0;n<=9;n++){
+      const btn=document.createElement('button');btn.type='button';btn.textContent=String(n);btn.title=n===0?'Portada y bienvenida':'Actividad '+n;
+      btn.setAttribute('aria-label',btn.title);btn.addEventListener('click',()=>jumpToModule(n));index.appendChild(btn);
+    }
+    main.prepend(index);
+    const highlight=()=>{
+      const active=modules.findIndex(m=>m.classList.contains('active'));
+      index.querySelectorAll('button').forEach((b,i)=>{if(i===active)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
+    };
+    const obs=new MutationObserver(highlight);modules.forEach(m=>obs.observe(m,{attributes:true,attributeFilter:['class']}));
+    highlight();
+  }
+  const sync=new MutationObserver(()=>{modules.forEach(visibleMedia);});
+  modules.forEach(m=>sync.observe(m,{attributes:true,attributeFilter:['class','hidden']}));
+  window.__lessonModuleSchema={count:10,groups:groups.map(g=>g.length),jump:jumpToModule};
+})();</script>
+<script>
+(()=>{
       const slides=[...document.querySelectorAll('.slide')];
       const nav=document.getElementById('slideNav');
       const prev=document.getElementById('prevBtn');
@@ -512,11 +671,11 @@
       const progress=document.getElementById('progressBar');
       let current=0;
       const navButtons=slides.map((slide,index)=>{
-        const b=document.createElement('button');b.type='button';b.className='slide-dot';b.textContent=String(index+1).padStart(2,'0');b.title=slide.dataset.label||`Diapositiva ${index+1}`;b.setAttribute('aria-label',`Ir a ${slide.dataset.label||`diapositiva ${index+1}`}`);b.addEventListener('click',()=>showSlide(index));nav.appendChild(b);return b;
+        const b=document.createElement('button');b.type='button';b.className='slide-dot';b.textContent=String(index);b.title=slide.dataset.label||`Diapositiva ${index+1}`;b.setAttribute('aria-label',`Ir a ${slide.dataset.label||`diapositiva ${index+1}`}`);b.addEventListener('click',()=>showSlide(index));nav.appendChild(b);return b;
       });
       function activateEmbeds(slide,active){
         slide.querySelectorAll('iframe[data-src]').forEach(frame=>{
-          if(active){if(!frame.src||frame.src==='about:blank')frame.src=frame.dataset.src;}
+          if(active&&!frame.closest('.module-panel[hidden]')){if(!frame.src||frame.src==='about:blank')frame.src=frame.dataset.src;}
           else if(frame.src&&frame.src!=='about:blank')frame.src='about:blank';
         });
       }
@@ -527,7 +686,7 @@
         slides[current].classList.remove('active');
         current=target;slides[current].classList.add('active');activateEmbeds(slides[current],true);
         navButtons.forEach((b,i)=>{if(i===current)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
-        count.textContent=`${String(current+1).padStart(2,'0')} / ${slides.length}`;
+        count.textContent=String(current).padStart(2,'0')+' / 09';
         progress.style.width=`${((current+1)/slides.length)*100}%`;
         prev.disabled=current===0;next.textContent=current===slides.length-1?'Volver al inicio ↺':'Siguiente →';
         document.querySelector('.deck-head').scrollIntoView({behavior:'smooth',block:'start'});
