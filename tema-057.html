@@ -4,11 +4,11 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#FFFFFF">
 <meta name="description" content="Clase interactiva B1–B2 de Habla Español Club: Todo es urgente: ¿qué hacemos primero?">
 <title>Tema 057 · Todo es urgente: ¿qué hacemos primero? | Habla Español Club</title>
-<link rel="preload" href="assets/fonts/LeagueSpartan-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="preload" href="assets/fonts/GochiHand-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="/MARCA/fuentes/LeagueSpartan-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="/MARCA/fuentes/GochiHand-Regular.ttf" as="font" type="font/ttf" crossorigin>
 <style>
-    @font-face{font-family:"League Spartan";src:url("assets/fonts/LeagueSpartan-VariableFont_wght.ttf") format("truetype");font-style:normal;font-weight:100 900;font-display:swap}
-    @font-face{font-family:"Gochi Hand";src:url("assets/fonts/GochiHand-Regular.ttf") format("truetype");font-style:normal;font-weight:400;font-display:swap}
+    
+    
     :root{--blue:#003893;--yellow:#FCD116;--red:#CE1126;--white:#FFFFFF;--black:#000000;--muted:#535353;--soft-blue:rgba(0,56,147,.055);--soft-yellow:rgba(252,209,22,.17);--soft-red:rgba(206,17,38,.07);--font:"League Spartan",Arial,sans-serif;--hand:"Gochi Hand",cursive;--radius:28px;--shadow:0 3px 18px rgba(0,56,147,.055)}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth;background:var(--white)}
@@ -286,9 +286,10 @@ html,body{max-width:100%;overflow-x:hidden}
 @media print{.module-reveal-bar,.module-index{display:none!important}.module-panel[hidden],.module-chunk[hidden]{display:block!important}}
 
 </style>
+<link rel="stylesheet" href="/MARCA/clases-estilo.css">
 </head>
 <body>
-<header class="topbar"><div class="shell topbar-inner"><div class="brand"><img src="img/logo-habla-espanol-club.png" alt="Logotipo de Habla Español Club"><div><div class="brand-name">HABLA ESPAÑOL CLUB</div><div class="brand-sub">Unidos por el español</div></div></div><div class="top-actions"><span class="top-label">Presentación de clase · Tema 057</span><button class="icon-btn" id="fullscreenBtn" type="button" aria-label="Activar pantalla completa" title="Pantalla completa">⛶</button></div></div><div class="progress-wrap" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div></header>
+<header class="topbar"><div class="shell topbar-inner"><div class="brand"><img src="/MARCA/logotipo-original.png" alt="Logotipo de Habla Español Club"><div><div class="brand-name">HABLA ESPAÑOL CLUB</div><div class="brand-sub">Unidos por el español</div></div></div><div class="top-actions"><span class="top-label">Presentación de clase · Tema 057</span><button class="icon-btn" id="fullscreenBtn" type="button" aria-label="Activar pantalla completa" title="Pantalla completa">⛶</button></div></div><div class="progress-wrap" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div></header>
 <main class="shell"><div class="deck-head"><div class="deck-kicker">Una clase para priorizar, negociar y decidir</div><div class="deck-count" id="slideCount" aria-live="polite">00 / 09</div></div>
 <nav class="slide-nav" id="slideNav" aria-label="Navegación de diapositivas"></nav>
 <section class="slide active" data-label="Inicio" aria-label="Inicio"><div class="slide-inner">
@@ -673,4 +674,5 @@ html,body{max-width:100%;overflow-x:hidden}
  document.getElementById('copyWriting').addEventListener('click',async()=>{if(!writing.value.trim()){document.getElementById('copyFeedback').textContent='Escribe primero tu mensaje.';return;}try{await navigator.clipboard.writeText(writing.value);document.getElementById('copyFeedback').textContent='Texto copiado.';}catch(e){writing.focus();writing.select();document.getElementById('copyFeedback').textContent='Selecciona el texto y cópialo con Ctrl/Cmd + C.';}});updateWriting();
 })();
 </script>
+<script src="/MARCA/clases-ilustraciones.js"></script>
 </body></html>
