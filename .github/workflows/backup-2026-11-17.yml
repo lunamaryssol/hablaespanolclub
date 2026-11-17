@@ -1,0 +1,84 @@
+name: Backup snapshot 2026-11-17
+on:
+  push:
+    branches:
+      - backup-2026-11-17
+
+permissions:
+  contents: read
+
+jobs:
+  create-restorable-backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout production snapshot with history
+        uses: actions/checkout@v4
+        with:
+          ref: d996f2766cd0421a0f3a57d9e2263ce8fd661b46
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Package website and full repository history
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/website-backup
+          git update-ref refs/heads/main d996f2766cd0421a0f3a57d9e2263ce8fd661b46
+          git bundle create /tmp/website-backup/hablaespanolclub-git-history.bundle --all
+          git bundle verify /tmp/website-backup/hablaespanolclub-git-history.bundle
+          git archive --format=tar.gz --prefix=hablaespanolclub/ -o /tmp/website-backup/hablaespanolclub-site-files.tar.gz d996f2766cd0421a0f3a57d9e2263ce8fd661b46
+          git ls-tree -r -l d996f2766cd0421a0f3a57d9e2263ce8fd661b46 > /tmp/website-backup/MANIFEST-FILES.txt
+          cat > /tmp/website-backup/LEEME-RESTAURACION.txt <<'README'
+          BACKUP HABLA ESPANOL CLUB - 2026-11-17
+          =========================================
+          Fecha de captura: 17 de noviembre de 2026 (Colombia).
+          Repositorio original: https://github.com/lunamaryssol/hablaespanolclub
+          Sitio: https://hablaespanol.club/
+          Rama principal: main
+          Commit exacto: d996f2766cd0421a0f3a57d9e2263ce8fd661b46
+
+          CONTENIDO DE ESTE ZIP:
+          - hablaespanolclub-site-files.tar.gz: TODOS los archivos publicados del repositorio (HTML, JS, CSS, imagenes, fuentes del repositorio, CNAME, etc.).
+          - hablaespanolclub-git-history.bundle: repositorio Git con historial de versiones y referencias.
+          - MANIFEST-FILES.txt: inventario y tamaños de los archivos originales.
+          - SHA256SUMS.txt: controles de integridad de los dos respaldos.
+
+          RESTAURAR DESDE EL HISTORIAL (RECOMENDADO):
+          1. Extrae todos los elementos de este ZIP en un equipo con Git.
+          2. Ejecuta: git clone hablaespanolclub-git-history.bundle hablaespanolclub
+          3. Entra a la carpeta: cd hablaespanolclub
+          4. Comprueba con: git log -1 --oneline
+          5. Crea un repositorio nuevo en tu cuenta de GitHub.
+          6. Vinculalo: git remote remove origin
+             git remote add origin https://github.com/TU_USUARIO/TU_REPOSITORIO.git
+          7. Publica: git push -u origin main
+          8. En GitHub > Settings > Pages, configura Deploy from a branch > main > /(root).
+          9. Configura el dominio personalizado hablaespanol.club en GitHub Pages.
+          10. Verifica los registros DNS del dominio en tu proveedor de DNS.
+
+          RESTAURAR SOLO LOS ARCHIVOS:
+          1. Extrae hablaespanolclub-site-files.tar.gz.
+          2. Sube su contenido a la raiz de un repositorio GitHub nuevo.
+          3. Habilita GitHub Pages desde main y /(root).
+          4. Configura dominio y DNS. Conserva CNAME en la raiz.
+
+          COMPROBAR INTEGRIDAD:
+          Ejecuta: sha256sum -c SHA256SUMS.txt
+
+          IMPORTANTE:
+          - Este backup NO incluye claves, contrasenas, configuracion interna de cuentas,
+            registros DNS del proveedor, bases de datos ni contenido alojado en
+            servicios externos (videos de YouTube, Skool, Calendly, etc.).
+          - Si se uso una integracion externa, habra que reconfigurarla.
+          - Guarda el ZIP fuera de GitHub para sobrevivir a la eliminacion del repositorio.
+          README
+          cd /tmp/website-backup
+          sha256sum hablaespanolclub-git-history.bundle hablaespanolclub-site-files.tar.gz > SHA256SUMS.txt
+          ls -lah
+      - name: Store restorable backup as GitHub artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: HablaEspanolClub_2026-11-17
+          path: /tmp/website-backup/*
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 6
