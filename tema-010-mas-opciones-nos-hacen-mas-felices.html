@@ -644,7 +644,7 @@ html,body{max-width:100%;overflow-x:hidden}
       counter=document.createElement('span');counter.className='module-step-count';counter.setAttribute('aria-live','polite');
       nextButton=document.createElement('button');nextButton.type='button';nextButton.className='module-advance';
       previousButton.addEventListener('click',()=>revealAt(section,states[n].position-1));
-      nextButton.addEventListener('click',()=>states[n].position===states[n].total-1?jumpToModule(n===9?0:n+1):revealAt(section,states[n].position+1));
+      nextButton.addEventListener('click',()=>{const st=states[n];if(st.maxRevealed>=st.total-1){jumpToModule(n===9?0:n+1);return;}revealAt(section,st.maxRevealed+1);});
       control.append(previousButton,counter,nextButton);section.appendChild(control);
     }
     states[n]={panels,chunks,total,position:0,maxRevealed:0,previous:previousButton,next:nextButton,counter};
