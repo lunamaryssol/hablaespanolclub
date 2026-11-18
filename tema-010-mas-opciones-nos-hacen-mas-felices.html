@@ -55,6 +55,10 @@
     .doodle{width:82px;height:82px;flex:none;overflow:visible}
     .doodle path,.doodle line,.doodle circle,.doodle polyline{fill:none;stroke:var(--black);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
     .doodle .yellow{fill:var(--yellow);stroke:none}.doodle .red{fill:var(--red);stroke:none}.doodle .blue{fill:var(--blue);stroke:none}
+    .doodle-art{display:block;width:132px;height:auto;max-width:100%;flex:none;overflow:visible}
+    .cover-side .doodle-art{width:220px;justify-self:center;margin-bottom:4px}
+    .doodle-hero{width:100%}
+
     .cover-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(240px,.8fr);gap:clamp(24px,5vw,66px);align-items:center;padding:clamp(10px,3vw,35px) 0 15px}
     .cover-side{display:grid;gap:20px;align-content:center}
     .cover-side .doodle{width:128px;height:128px;justify-self:center;margin-bottom:4px}
@@ -151,7 +155,7 @@
     .footer{padding:14px 0 28px;display:flex;justify-content:space-between;gap:15px;align-items:center;color:var(--muted);font-size:12px;border-top:1px solid rgba(0,56,147,.08)}
     .footer strong{color:var(--blue);font-weight:600}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    @media(max-width:760px){.shell{width:min(100% - 26px,650px)}.topbar-inner{min-height:62px}.brand img{width:42px;height:42px}.top-label{display:none}.slide-heading{grid-template-columns:1fr auto}.doodle{width:58px;height:58px}.cover-grid{grid-template-columns:1fr}.cover-side{grid-template-columns:1fr 1fr;gap:14px}.cover-side .doodle{grid-column:1/-1;width:82px;height:82px}.grid.two,.video-layout{grid-template-columns:1fr}.grid.three{grid-template-columns:1fr}.video-frame.vertical{max-width:300px}.movie-choice{grid-template-columns:1fr}.movie-choice .option-button{min-height:0}.traffic-stage{grid-template-columns:1fr}.traffic-card{opacity:.6}.activity-options,.phrases,.criteria,.checklist{grid-template-columns:1fr}.deck-controls .btn{min-width:0}.slide{min-height:0}}
+    @media(max-width:760px){.shell{width:min(100% - 26px,650px)}.topbar-inner{min-height:62px}.brand img{width:42px;height:42px}.top-label{display:none}.slide-heading{grid-template-columns:1fr auto}.doodle{width:58px;height:58px}.doodle-art{width:96px}.cover-side .doodle-art{width:150px}.cover-grid{grid-template-columns:1fr}.cover-side{grid-template-columns:1fr 1fr;gap:14px}.cover-side .doodle{grid-column:1/-1;width:82px;height:82px}.grid.two,.video-layout{grid-template-columns:1fr}.grid.three{grid-template-columns:1fr}.video-frame.vertical{max-width:300px}.movie-choice{grid-template-columns:1fr}.movie-choice .option-button{min-height:0}.traffic-stage{grid-template-columns:1fr}.traffic-card{opacity:.6}.activity-options,.phrases,.criteria,.checklist{grid-template-columns:1fr}.deck-controls .btn{min-width:0}.slide{min-height:0}}
     @media(max-width:420px){body{font-size:16px}.shell{width:calc(100% - 22px)}.brand-name{font-size:12px}.brand-sub{font-size:14px}.top-actions{gap:4px}.icon-btn{width:38px;height:38px}.slide-inner{padding-left:2px;padding-right:2px}h1{font-size:39px}h2{font-size:31px}.deck-kicker{font-size:17px}.card{padding:17px;border-radius:22px}.statement p{font-size:16px}.dessert-grid{grid-template-columns:1fr}.footer{align-items:flex-start;flex-direction:column}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
     @media print{.topbar,.slide-nav,.deck-controls,.footer,.top-actions,.teacher-note{display:none!important}.slide{display:block!important;page-break-after:always;min-height:0}.shell{width:100%}main{padding:0}.slide-inner{padding:18px}.card,.statement,.quiz-item{box-shadow:none;break-inside:avoid}body{font-size:12pt}}
@@ -255,7 +259,7 @@ html,body{max-width:100%;overflow-x:hidden}
  .module-reveal-bar button{font-size:14px;padding:10px 12px}
  .module-reveal-bar .module-step-count{order:-1;width:100%}
  .module-panel h1{font-size:clamp(32px,7vw,42px)}
- .module-panel h2{font-size:clamp(27px,6.5vw,37px)}
+ .module-panel h2{font-size:clamp(27px,6.5vw,37px)}.doodle-art{width:82px}.cover-side .doodle-art{width:128px}
 }
 @media print{.module-reveal-bar,.module-index{display:none!important}.module-panel[hidden],.module-chunk[hidden]{display:block!important}}
 
@@ -275,6 +279,191 @@ html body .pending .pending-text strong{font-weight:500!important}
 </style>
 </head>
 <body>
+
+<svg class="doodle-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+<defs>
+<symbol id="doodle-cover" viewBox="0 0 240 160">
+  <g fill="none" stroke="#000000" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M71 13Q76 5 91 7H153Q169 8 172 22V42Q170 56 155 57H112L96 70 99 56H89Q72 55 71 40Z" stroke="#003893" stroke-width="4.5"/>
+    <path d="M39 47Q22 38 28 25Q36 11 52 20Q68 5 79 20Q91 31 79 48" fill="#000000"/>
+    <path d="M37 47Q27 57 31 77Q34 100 56 105Q80 107 88 83Q95 60 78 43Q58 29 37 47Z" fill="#FFFFFF"/>
+    <path d="M31 44Q17 36 22 24Q28 12 41 20Q47 3 62 9Q77 7 81 23Q91 29 82 43Q72 33 62 34Q49 25 39 43Z" fill="#000000"/>
+    <path d="M42 55q6-6 12 0m14 0q6-5 11 1M61 61l-3 9 6 2m-13 10q11 10 22-1" />
+    <path d="M47 104l-2 10m24-9 3 10M24 157q5-30 28-35 22-5 39 9l8 26" />
+    <path d="M35 139q22 9 53 2m-54 10q24 8 53 1" stroke="#003893" stroke-width="4.5"/>
+    <ellipse cx="34" cy="88" rx="6" ry="9" stroke="#FCD116" stroke-width="4.5"/>
+    <path d="M148 47Q137 36 142 24Q148 10 160 19Q173 6 185 20Q198 12 205 28Q217 35 207 50Q199 43 190 47Q176 38 164 49Z" fill="#000000"/>
+    <path d="M151 49Q144 61 150 82Q156 103 178 105Q202 104 207 81Q212 59 196 44Q173 30 151 49Z" fill="#FFFFFF"/>
+    <path d="M149 55q8-12 17-9 12-13 22-3 10-8 18 4" fill="none"/>
+    <path d="M160 62q6-6 12 0m13 0q6-5 12 1m-19 7-2 8 6 2m-14 8q12 10 24-2"/>
+    <path d="M164 105l-1 10m22-10 2 10m-47 42q4-28 29-35 24-6 43 12l7 23" />
+    <path d="M146 133q26 10 62 1" stroke="#003893" stroke-width="3.8"/>
+    <path d="M93 117Q108 105 124 116L139 129" />
+    <path d="M86 117Q93 107 101 113L118 131Q122 137 116 142L105 136Z" fill="#FFFFFF"/>
+    <path d="M89 120l18 17m-12-21 17 17" stroke="#003893" stroke-width="2.8"/>
+    <path d="M91 145Q110 137 130 146" />
+    <path d="M113 125q10-14 19-4 6 10-6 16-12-1-13-12Z" fill="#FCD116"/>
+    <path d="M118 124q6-7 11 0m-9 5q5 4 10-1" stroke-width="2.5"/>
+    <path d="M139 130q10-12 20-5 8 9-4 17-13 2-16-12Z" fill="#FFFFFF"/>
+    <path d="M144 131q6-7 12 0" stroke="#CE1126" stroke-width="3.5"/>
+  </g>
+  <path d="M81 14q12-8 23-4m49 4q12-8 22-2" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/>
+  <path d="M16 18l-7-7m9 24-10 2m203-15 8-7m-3 20 10 2" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M125 20l5-8m-1 18 9-2m-24 1-5-7" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="doodle-dessert" viewBox="0 0 240 160">
+  <g fill="none" stroke="#000000" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 111Q34 137 119 139 202 138 216 111" />
+    <path d="M28 108Q48 91 118 92 191 91 213 108 202 126 120 128 43 127 28 108Z" fill="#FFFFFF"/>
+    <path d="M57 85L89 46Q94 39 101 47L132 85Q130 94 119 95H70Q57 95 57 85Z" fill="#FFFFFF"/>
+    <path d="M60 83l66 0m-54-14 45 1m-32-15 18 0" stroke="#003893" stroke-width="3.4"/>
+    <path d="M87 47q7-10 15-1 6 7 13-1" stroke="#CE1126" stroke-width="4"/>
+    <path d="M98 38q-7-10 3-14 10-2 11 9" stroke="#CE1126" stroke-width="3.5"/>
+    <path d="M146 85q-3-19 15-24 15-4 24 8 10 16-3 29h-24q-12-3-12-13Z" fill="#FFFFFF"/>
+    <path d="M149 76q8-15 17-5 7-14 17-4" stroke="#000000" stroke-width="4"/>
+    <path d="M150 94q16 6 33 0" stroke="#003893" stroke-width="3.2"/>
+    <path d="M164 54q-7-8 1-13 8-4 11 5" stroke="#CE1126" stroke-width="3.5"/>
+    <path d="M37 59q-2 15-1 26m-8-16 9 0" />
+    <path d="M188 39l-4-8m16 13 8-7m-6 20 10 1" />
+    <path d="M76 111q11 6 22 0m38 3q10 6 21 0" stroke="#003893" stroke-width="3"/>
+  </g>
+  <path d="M35 32l-6-8m17 3 2-10m139 12 8-8m-2 18 10-1" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M117 34l7-7m-1 16 9-2" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="doodle-path" viewBox="0 0 240 160">
+  <g fill="none" stroke="#000000" stroke-width="4.1" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M112 151Q91 125 100 102 109 81 79 64 49 48 22 62M113 151Q138 123 132 99 127 78 158 63 187 48 216 62"/>
+    <path d="M112 151Q109 133 119 115" stroke="#003893" stroke-width="3.4"/>
+    <path d="M22 62Q12 53 20 42m196 20q12-9 4-20" stroke="#000000"/>
+    <path d="M83 67q-7-16 2-31 9-11 20-3 9 8 2 20l-10 12Z" fill="#FFFFFF"/>
+    <path d="M86 45l15-1m-13 9 10-1" stroke="#003893" stroke-width="3"/>
+    <path d="M135 68q-5-16 4-29 10-10 20-2 8 9 0 21l-10 10Z" fill="#FFFFFF"/>
+    <path d="M140 45l14-1m-12 10 10-1" stroke="#CE1126" stroke-width="3"/>
+    <path d="M103 100q-10 3-13 13m48-14q10 5 12 15" />
+    <path d="M28 104q10-16 22-5 7 8-3 17-12 3-19-12Zm167-2q11-15 22-3 5 9-5 17-12 1-17-14Z" fill="#FFFFFF"/>
+    <path d="M35 111l9-5m151 6 10-5" stroke="#003893" stroke-width="3"/>
+  </g>
+  <path d="M18 30l-7-8m18 5 3-10m174 8 8-8m-4 19 10 2" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M73 20l7-7m-1 16 9-2m70-7 6-8" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="doodle-music" viewBox="0 0 240 160">
+  <g fill="none" stroke="#000000" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M58 112Q35 100 34 73 32 31 78 19 123 7 159 29 185 46 184 80"/>
+    <path d="M57 105Q40 96 42 75 44 42 79 33 116 22 146 39 165 51 167 78"/>
+    <path d="M49 80Q27 73 20 91 17 110 33 120 48 128 61 117Z" fill="#FFFFFF"/>
+    <path d="M158 79Q181 69 193 86 201 105 185 118 169 127 154 115Z" fill="#FFFFFF"/>
+    <path d="M34 91q10-9 19-1m-17 14q10-8 18 0m114-12q10-9 19 0m-18 13q10-7 18 1" stroke="#003893" stroke-width="3.2"/>
+    <path d="M96 16v30m0-30 31-8v31" stroke="#000000"/>
+    <path d="M96 46q-8-9-16-3-7 8 0 14 9 5 16-3Z" fill="#CE1126"/>
+    <path d="M127 39q-8-9-16-3-7 8 0 14 9 5 16-3Z" fill="#FCD116"/>
+    <path d="M75 132q25 8 49 0" stroke="#003893" stroke-width="3.4"/>
+  </g>
+  <path d="M206 31q-8 8 0 14 8 7 15-2 7-10-1-17" fill="none" stroke="#CE1126" stroke-width="4.2" stroke-linecap="round"/>
+  <path d="M210 24l5-9m4 17 10-1m-9 13 7 6" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M20 43l-8-7m12 23-10 1" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="doodle-traffic" viewBox="0 0 240 160">
+  <g fill="none" stroke="#000000" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M71 21Q73 10 86 10H142Q155 11 157 23V116Q155 130 142 131H86Q72 130 71 116Z" fill="#FFFFFF"/>
+    <path d="M83 25q7-7 13 0m-13 88q7 7 13 0" stroke="#003893" stroke-width="3"/>
+    <circle cx="114" cy="42" r="17" fill="#CE1126"/>
+    <circle cx="114" cy="80" r="17" fill="#FCD116"/>
+    <circle cx="114" cy="117" r="17" fill="#003893"/>
+    <path d="M114 132v16m-13 0h27" />
+    <path d="M15 150Q48 131 72 142m85-1q27-17 67 2" />
+    <path d="M26 142q10-13 18-1m145 0q10-14 19-2" />
+  </g>
+  <path d="M23 33l-7-8m17 3 2-10m172 8 8-7m-3 18 10 2" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M49 75l-7 8m14-1 5 7m117-24 8 7" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="doodle-tokens" viewBox="0 0 240 160">
+  <g fill="none" stroke="#000000" stroke-width="4.1" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M42 51Q33 34 47 20 60 5 78 18 92 4 105 19 120 31 109 49" fill="#000000"/>
+    <path d="M46 47Q37 59 42 80 47 103 69 106 92 107 101 84 109 62 95 44 72 29 46 47Z" fill="#FFFFFF"/>
+    <path d="M50 60q6-6 12 0m17 0q6-6 12 1m-23 7-3 8 7 2m-12 10q13 10 24-1" />
+    <path d="M56 105l-1 11m27-10 3 10M25 157q6-32 37-38 28-5 49 15l5 23" />
+    <path d="M31 137q27 9 81 1m-80 11q31 8 78 0" stroke="#003893" stroke-width="4.4"/>
+    <ellipse cx="44" cy="87" rx="6" ry="8" stroke="#FCD116" stroke-width="4"/>
+    <path d="M111 130q14-18 29-16 14 2 23 17l-5 10-26 0Z" fill="#FFFFFF"/>
+    <path d="M126 132q-9-15 2-21 10-7 17 4" />
+    <path d="M148 115q12-10 22-4 8 5 2 13-7 7-24 5" />
+    <circle cx="165" cy="44" r="17" fill="#003893"/>
+    <circle cx="198" cy="44" r="17" fill="#FCD116"/>
+    <circle cx="181" cy="82" r="17" fill="#CE1126"/>
+    <path d="M156 44h18m-9-9v18m24-9h18m-9-9v18m-9 29h18m-9-9v18" stroke="#FFFFFF" stroke-width="2.6"/>
+  </g>
+  <path d="M130 95l-6-8m17 2 2-10m49-22 8-8m-4 18 10 1" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M20 31l-7-8m18 5 3-9m184 9 8-7" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="doodle-movie" viewBox="0 0 240 160">
+  <g fill="none" stroke="#000000" stroke-width="4.1" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 34Q24 23 36 22L113 17Q124 18 126 30L131 73Q131 85 119 86L42 91Q29 91 28 79Z" fill="#FFFFFF"/>
+    <path d="M36 32l80-6m-74 18 79-5" stroke="#003893" stroke-width="3.3"/>
+    <path d="M45 23l9 12m16-14 9 12m17-13 9 12" stroke="#CE1126" stroke-width="3.2"/>
+    <path d="M141 45Q141 35 153 34L213 30Q225 31 226 43L229 87Q229 99 217 100L156 104Q144 103 143 91Z" fill="#FFFFFF"/>
+    <path d="M153 47l64-5m-62 18 66-4" stroke="#003893" stroke-width="3.2"/>
+    <path d="M160 35l9 12m17-13 8 12m16-13 8 12" stroke="#FCD116" stroke-width="3.2"/>
+    <path d="M68 113Q75 96 97 98L119 102 137 96Q157 94 168 109L161 148H75Z" fill="#FFFFFF"/>
+    <path d="M75 111q17 9 38 1m-33 11q25 8 53 0m-49 13q22 7 46 0" stroke="#CE1126" stroke-width="3.2"/>
+    <path d="M82 102q-8-12 2-17 9-4 13 7m8-4q-3-12 8-14 10 0 10 12m4 2q2-12 12-10 11 3 7 14" fill="#FCD116"/>
+    <path d="M93 97q-5-10 4-15m17 8q-3-10 7-15m11 19q0-10 10-12" />
+  </g>
+  <path d="M17 111l-8-8m13 24-10 3m197-96 8-8m-3 19 10 1" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M130 18l7-8m0 18 9-2" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="doodle-debate" viewBox="0 0 240 160">
+  <g fill="none" stroke="#000000" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 30Q19 14 37 13H128Q148 15 149 33V79Q148 96 130 97H77L55 119 58 97H38Q19 96 18 78Z" fill="#FFFFFF" stroke="#003893" stroke-width="4.5"/>
+    <path d="M106 70Q108 57 123 56H205Q222 57 222 73V111Q221 127 204 128H177L159 145 161 128H124Q107 127 106 111Z" fill="#FFFFFF" stroke="#CE1126" stroke-width="4.5"/>
+    <path d="M49 54q8-9 16 0m16 0q8-9 16 0m16 0q8-9 16 0" stroke="#003893" stroke-width="4"/>
+    <path d="M136 91q7-8 14 0m15 0q7-8 14 0m15 0q7-8 14 0" stroke="#CE1126" stroke-width="4"/>
+    <path d="M42 132q13-9 25-2l14 11m107-4q11-11 23-6" />
+  </g>
+  <path d="M23 12l-7-7m21 7 3-9m156 8 7-8m11 19 9 2" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M90 124l6-9m1 18 10-3m85-15 7-7" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="doodle-jars" viewBox="0 0 240 160">
+  <g fill="none" stroke="#000000" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M36 42Q35 31 48 31H102Q115 32 114 44L109 126Q108 140 94 141H56Q42 140 41 126Z" fill="#FFFFFF"/>
+    <path d="M34 30q2-11 14-12h56q12 1 13 12l-5 9H39Z" fill="#FCD116"/>
+    <path d="M45 60q29 11 62 0m-60 11q28 10 58 0" stroke="#CE1126" stroke-width="3.2"/>
+    <path d="M137 48Q136 36 149 35H197Q210 36 209 49L204 126Q203 139 190 140H157Q143 139 142 126Z" fill="#FFFFFF"/>
+    <path d="M135 35q2-10 14-11h50q12 1 13 12l-5 9h-67Z" fill="#003893"/>
+    <path d="M146 69q29 11 54 0m-53 12q25 9 51 0" stroke="#CE1126" stroke-width="3.2"/>
+    <path d="M61 27q-2-11 8-13 9-1 10 10m74 10q-2-11 8-13 9-1 10 10" />
+    <path d="M81 79q-9-9-17 0-8 10 3 20 12 10 23 0 10-11-1-20Z" fill="#CE1126"/>
+    <path d="M171 84q-8-8-15 0-6 9 3 17 10 8 18 0 8-9-2-17Z" fill="#FCD116"/>
+    <path d="M89 77q5-9 12-7m70 7q4-9 12-7" stroke="#003893" stroke-width="3.2"/>
+    <path d="M116 19l18-10m-6 17 17-4" />
+  </g>
+  <path d="M24 92l-8-6m12 20-10 4m192-89 8-7m-4 17 10 1" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M124 134l8 8m-1-18 9-3" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="doodle-notebook" viewBox="0 0 240 160">
+  <g fill="none" stroke="#000000" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M23 41Q24 27 39 28L111 34 117 139Q91 126 68 130L34 137Q21 135 22 122Z" fill="#FFFFFF"/>
+    <path d="M117 34l77-7q14 1 14 15l-1 81q0 14-15 13-31-5-75 3Z" fill="#FFFFFF"/>
+    <path d="M117 34l-1 105m-1-93q-14-7-28-6m28 22q-15-8-30-5m31 27q-16-7-31-4" stroke="#003893" stroke-width="3.1"/>
+    <path d="M139 54l8 8 14-18m-22 40 8 8 14-18" stroke="#CE1126" stroke-width="4.1"/>
+    <path d="M34 75q26-7 53 1m-52 16q25-7 48 1m-48 16q19-6 38 0" stroke="#003893" stroke-width="3.1"/>
+    <path d="M78 22q0-12 8-12 9 0 9 13m13 0q0-12 9-12 8 0 8 13m12-1q0-12 9-12 8 0 8 12" />
+    <path d="M185 68l22-39q4-7 10-3 6 4 2 11l-23 39-14 9Z" fill="#FCD116"/>
+    <path d="M184 83l-5 15 14-8" fill="#FFFFFF"/>
+  </g>
+  <path d="M24 18l-8-7m18 3 2-10m162 117 9 3m-2 10 10 2" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M62 18l7-8m-1 17 10-2" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
+</symbol>
+</defs>
+</svg>
   <header class="topbar">
     <div class="shell topbar-inner">
       <div class="brand">
@@ -311,11 +500,7 @@ html body .pending .pending-text strong{font-weight:500!important}
             </div>
           </div>
           <div class="cover-side">
-            <svg class="doodle" viewBox="0 0 120 120" role="img" aria-label="Corazón dibujado a mano">
-              <path d="M59 99 C47 88 17 65 19 40 C21 18 48 14 60 36 C74 12 103 20 103 43 C104 66 78 88 59 99Z" fill="none" stroke="#000000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M11 23 L4 16 M60 9 L60 1 M107 18 L114 10" fill="none" stroke="#000000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle class="yellow" fill="#FCD116" stroke="none" cx="10" cy="45" r="4"/><circle class="red" fill="#CE1126" stroke="none" cx="108" cy="66" r="3.5"/><circle class="blue" fill="#003893" stroke="none" cx="86" cy="8" r="3"/>
-            </svg>
+            <svg class="doodle-art doodle-hero" viewBox="0 0 240 160" role="img" aria-label="Marysol y Fernando conversan mientras comparan un menú"><use href="#doodle-cover"></use></svg>
             <div class="cover-summary"><strong>Hoy practicamos</strong><p>Comparar alternativas, justificar preferencias y reconocer que una misma decisión puede verse de distintas maneras.</p></div>
             <div class="cover-summary"><strong>Recursos para conversar</strong><p>Cuantas más opciones… · Por una parte… · Sin embargo… · Me inclino por… · No necesariamente… · Depende de…</p></div>
           </div>
@@ -328,7 +513,7 @@ html body .pending .pending-text strong{font-weight:500!important}
     <!-- ACTIVIDAD 01 -->
     <section class="slide" data-label="Menús" aria-label="Actividad 1: El menú que no se acaba">
       <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 01</p><h2>El menú que no se acaba</h2><p class="subtitle">Compara los menús. Elige un postre y explica qué criterio has utilizado.</p></div></div>
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 01</p><h2>El menú que no se acaba</h2><p class="subtitle">Compara los menús. Elige un postre y explica qué criterio has utilizado.</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Dos postres sobre un plato"><use href="#doodle-dessert"></use></svg></div>
         <div class="grid two">
           <article class="card"><div class="card-label">Menú A · 4 opciones</div><div class="dessert-grid" id="menuA">
             <button class="choice-chip" type="button" data-dessert="Flan de caramelo" aria-pressed="false">Flan de caramelo</button><button class="choice-chip" type="button" data-dessert="Tarta de limón" aria-pressed="false">Tarta de limón</button><button class="choice-chip" type="button" data-dessert="Helado de vainilla" aria-pressed="false">Helado de vainilla</button><button class="choice-chip" type="button" data-dessert="Brownie" aria-pressed="false">Brownie</button>
@@ -347,7 +532,7 @@ html body .pending .pending-text strong{font-weight:500!important}
     <!-- ACTIVIDAD 02 SHORT -->
     <section class="slide" data-label="Short" aria-label="Actividad 2: ¿Te cuesta tomar decisiones?">
       <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 02 · SHORT</p><h2>¿Te cuesta tomar decisiones?</h2><p class="subtitle">Mira el Short e identifica la metáfora utilizada para hablar de decisiones.</p></div></div>
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 02 · SHORT</p><h2>¿Te cuesta tomar decisiones?</h2><p class="subtitle">Mira el Short e identifica la metáfora utilizada para hablar de decisiones.</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Dos caminos posibles y señales"><use href="#doodle-path"></use></svg></div>
         <div class="video-layout">
           <div><div class="video-frame vertical"><iframe title="Short: ¿Te cuesta tomar decisiones? — Píldoras de Psicología" data-src="https://www.youtube-nocookie.com/embed/01QEkvw_MrI?rel=0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="video-caption">Short de YouTube · Píldoras de Psicología</div><a class="video-link" href="https://www.youtube.com/shorts/01QEkvw_MrI" target="_blank" rel="noopener">Abrir Short en YouTube ↗</a></div>
           <div class="grid" style="gap:13px">
@@ -363,7 +548,7 @@ html body .pending .pending-text strong{font-weight:500!important}
     <!-- ACTIVIDAD 03 CANCIÓN -->
     <section class="slide" data-label="Canción" aria-label="Actividad 3: Color esperanza">
       <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 03 · CANCIÓN</p><h2>¿La felicidad depende de cómo miramos las cosas?</h2><p class="subtitle">Escucha la canción y conecta su mensaje con nuestras decisiones.</p></div><svg class="doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M27 15 V68 M27 15 L72 7 V59 M27 31 L72 23" fill="none" stroke="#000000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 69 C11 58 31 55 34 66 C37 77 12 84 11 69Z M56 60 C56 49 76 46 79 57 C82 68 57 75 56 60Z" fill="none" stroke="#000000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><circle class="yellow" fill="#FCD116" stroke="none" cx="83" cy="20" r="4"/></svg></div>
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 03 · CANCIÓN</p><h2>¿La felicidad depende de cómo miramos las cosas?</h2><p class="subtitle">Escucha la canción y conecta su mensaje con nuestras decisiones.</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Auriculares y notas musicales"><use href="#doodle-music"></use></svg></div>
         <div class="video-layout">
           <div><div class="video-frame wide"><iframe title="Diego Torres — Color Esperanza (vídeo oficial)" data-src="https://www.youtube-nocookie.com/embed/SJLgBChvkzs?rel=0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="video-caption">Color Esperanza · Diego Torres · Vídeo oficial</div><a class="video-link" href="https://www.youtube.com/watch?v=SJLgBChvkzs" target="_blank" rel="noopener">Abrir canción en YouTube ↗</a></div>
           <div class="grid" style="gap:13px">
@@ -383,7 +568,7 @@ html body .pending .pending-text strong{font-weight:500!important}
     <!-- ACTIVIDAD 04 -->
     <section class="slide" data-label="Semáforo" aria-label="Actividad 4: Antes de elegir, enciende el semáforo">
       <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 04 · SHORT + JUEGO</p><h2>Antes de elegir, enciende el semáforo</h2><p class="subtitle">Mira el Short y aplica la secuencia a una decisión cotidiana.</p></div></div>
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 04 · SHORT + JUEGO</p><h2>Antes de elegir, enciende el semáforo</h2><p class="subtitle">Mira el Short y aplica la secuencia a una decisión cotidiana.</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Semáforo con un camino"><use href="#doodle-traffic"></use></svg></div>
         <div class="video-layout">
           <div><div class="video-frame vertical"><iframe title="Técnica del Semáforo — Mayores@Resilientes" data-src="https://www.youtube-nocookie.com/embed/rrW5gejXCUs?rel=0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="video-caption">Técnica del Semáforo · Mayores@Resilientes</div><a class="video-link" href="https://www.youtube.com/shorts/rrW5gejXCUs" target="_blank" rel="noopener">Abrir Short en YouTube ↗</a></div>
           <div class="grid" style="gap:14px">
@@ -408,7 +593,7 @@ html body .pending .pending-text strong{font-weight:500!important}
     <!-- ACTIVIDAD 05 -->
     <section class="slide" data-label="Juego" aria-label="Actividad 5: Seis fichas para el sábado">
       <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 05 · JUEGO</p><h2>Seis fichas para el sábado</h2><p class="subtitle">Diseñen un plan compartido sin superar el presupuesto.</p></div></div>
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 05 · JUEGO</p><h2>Seis fichas para el sábado</h2><p class="subtitle">Diseñen un plan compartido sin superar el presupuesto.</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Marysol presenta tres fichas de colores"><use href="#doodle-tokens"></use></svg></div>
         <div class="grid two">
           <article class="card">
             <div class="card-label">Opciones disponibles</div>
@@ -448,7 +633,7 @@ html body .pending .pending-text strong{font-weight:500!important}
     <!-- ACTIVIDAD 06 -->
     <section class="slide" data-label="Decisión" aria-label="Actividad 6: La película que nunca empieza">
       <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 06 · DECISIÓN</p><h2>La película que nunca empieza</h2><p class="subtitle">Elige con la información disponible y reacciona a una nueva condición.</p></div></div>
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 06 · DECISIÓN</p><h2>La película que nunca empieza</h2><p class="subtitle">Elige con la información disponible y reacciona a una nueva condición.</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Entradas de cine y palomitas"><use href="#doodle-movie"></use></svg></div>
         <div class="card">
           <div class="card-label">Primera decisión · Elige una película</div>
           <div class="movie-choice" id="movieChoices">
@@ -469,7 +654,7 @@ html body .pending .pending-text strong{font-weight:500!important}
     <!-- ACTIVIDAD 07 -->
     <section class="slide" data-label="Debate" aria-label="Actividad 7: Más opciones, más libertad">
       <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 07 · DEBATE</p><h2>¿Más opciones, más libertad?</h2><p class="subtitle">Toma posición, argumenta y escucha una perspectiva diferente.</p></div><svg class="doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M16 22 Q16 13 27 13 H73 Q84 13 84 24 V55 Q84 66 73 66 H43 L25 82 V66 Q16 65 16 55Z" fill="none" stroke="#000000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><circle class="yellow" fill="#FCD116" stroke="none" cx="37" cy="40" r="4"/><circle class="blue" fill="#003893" stroke="none" cx="50" cy="40" r="4"/><circle class="red" fill="#CE1126" stroke="none" cx="63" cy="40" r="4"/></svg></div>
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 07 · DEBATE</p><h2>¿Más opciones, más libertad?</h2><p class="subtitle">Toma posición, argumenta y escucha una perspectiva diferente.</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Globos de diálogo para el debate"><use href="#doodle-debate"></use></svg></div>
         <div class="statement-list">
           <article class="statement" data-statement="1"><p>1. Cuantas más opciones tengo, más libre me siento.</p><div class="statement-controls"><button class="vote-button" type="button" data-vote="De acuerdo" aria-pressed="false">De acuerdo</button><button class="vote-button" type="button" data-vote="Depende" aria-pressed="false">Depende</button><button class="vote-button" type="button" data-vote="En desacuerdo" aria-pressed="false">En desacuerdo</button></div><div class="vote-count" aria-live="polite">Aún no se ha registrado una postura.</div></article>
           <article class="statement" data-statement="2"><p>2. Comparar alternativas siempre mejora mis decisiones.</p><div class="statement-controls"><button class="vote-button" type="button" data-vote="De acuerdo" aria-pressed="false">De acuerdo</button><button class="vote-button" type="button" data-vote="Depende" aria-pressed="false">Depende</button><button class="vote-button" type="button" data-vote="En desacuerdo" aria-pressed="false">En desacuerdo</button></div><div class="vote-count" aria-live="polite">Aún no se ha registrado una postura.</div></article>
@@ -485,7 +670,7 @@ html body .pending .pending-text strong{font-weight:500!important}
     <!-- ACTIVIDAD 08 LECTURA -->
     <section class="slide" data-label="Lectura" aria-label="Actividad 8: El experimento de las mermeladas">
       <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 08 · LECTURA</p><h2>El experimento de las mermeladas</h2><p class="subtitle">¿Tener muchas alternativas puede dificultar la elección?</p></div><svg class="doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M18 28 Q50 16 82 28 L78 74 Q50 86 22 74Z" fill="none" stroke="#000000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M27 38 Q39 32 50 38 T73 38 M27 51 Q39 45 50 51 T73 51 M27 64 Q39 58 50 64 T73 64" fill="none" stroke="#000000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><circle class="yellow" fill="#FCD116" stroke="none" cx="76" cy="20" r="5"/><circle class="red" fill="#CE1126" stroke="none" cx="16" cy="74" r="3"/></svg></div>
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 08 · LECTURA</p><h2>El experimento de las mermeladas</h2><p class="subtitle">¿Tener muchas alternativas puede dificultar la elección?</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Dos frascos de mermelada"><use href="#doodle-jars"></use></svg></div>
         <div class="card reading">
           <div class="card-label">Lectura</div>
           <p>En un supermercado, unos investigadores organizaron una degustación de mermeladas. En una ocasión ofrecieron <strong>24 variedades</strong> y, en otra, <strong>6</strong>. La mesa con más opciones atrajo a más personas. Sin embargo, quienes encontraron la selección pequeña tuvieron más probabilidades de comprar.</p>
@@ -520,7 +705,7 @@ html body .pending .pending-text strong{font-weight:500!important}
     <!-- ACTIVIDAD 09 -->
     <section class="slide" data-label="Escritura" aria-label="Actividad 9: Tu regla para elegir">
       <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 09 · PRODUCCIÓN</p><h2>Tu regla para elegir</h2><p class="subtitle">Cierra la conversación con una recomendación breve y argumentada.</p></div><svg class="doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M15 20 Q15 12 25 12 H74 Q85 12 85 23 V57 Q85 68 74 68 H44 L26 84 V68 Q15 67 15 57Z" fill="none" stroke="#000000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 34 H69 M31 45 H60" fill="none" stroke="#000000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><circle class="yellow" fill="#FCD116" stroke="none" cx="73" cy="77" r="5"/><circle class="red" fill="#CE1126" stroke="none" cx="18" cy="84" r="3"/></svg></div>
+        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 09 · PRODUCCIÓN</p><h2>Tu regla para elegir</h2><p class="subtitle">Cierra la conversación con una recomendación breve y argumentada.</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Cuaderno abierto y lápiz"><use href="#doodle-notebook"></use></svg></div>
         <div class="grid two">
           <article class="card"><div class="card-label">Producción escrita</div><p>Un amigo lleva días comparando doce destinos para sus vacaciones y no consigue reservar.</p><p>Escríbele un mensaje de <strong>4–6 frases</strong> con una recomendación. Incluye dos criterios, una ventaja, una renuncia y una conclusión.</p></article>
           <article class="card"><div class="card-label">Después de escribir</div><p>Lee tu mensaje y explica por qué tu consejo puede ayudar. Escucha otras recomendaciones y decide cuál es más útil.</p><div class="phrases" style="grid-template-columns:1fr"><div class="phrase"><strong>Frases B1</strong>Te recomiendo… · Yo elegiría… · La ventaja es…</div><div class="phrase"><strong>Reto B2</strong>Aunque…, me inclino por… · Si priorizas…, entonces…</div></div></article>
