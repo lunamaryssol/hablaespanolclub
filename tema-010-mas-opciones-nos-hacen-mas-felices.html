@@ -238,7 +238,7 @@ html,body{max-width:100%;overflow-x:hidden}
 .module-reveal-bar button.module-advance{background:#FCD116;border-color:#FCD116}
 .module-reveal-bar button:disabled{opacity:.35;cursor:not-allowed}
 .module-reveal-bar .module-step-count{font:700 15px/1.3 Arial,sans-serif;color:#003893;text-align:center;min-width:96px}
-.module-panel{width:100%;min-width:0}
+.module-panel{width:100%;min-width:0;scroll-margin-top:105px}.module-panel + .module-panel{margin-top:clamp(26px,4vw,42px);padding-top:clamp(18px,2.8vw,28px);border-top:1px solid rgba(0,56,147,.16)}.module-chunk{scroll-margin-top:105px}
 .module-panel h1,.module-panel h2,.module-panel h3{max-width:100%;overflow-wrap:break-word}
 .module-panel img,.module-panel iframe,.module-panel video{max-width:100%}
 @media(max-width:1100px){
@@ -579,18 +579,32 @@ html,body{max-width:100%;overflow-x:hidden}
   function revealAt(module,n){
     const st=states[Number(module.dataset.module)];
     if(!st)return;
+    const oldPosition=st.position;
     st.position=Math.max(0,Math.min(st.total-1,n));
+    // La revelación es acumulativa: cada paso nuevo se añade debajo y nunca oculta lo ya mostrado.
+    st.maxRevealed=Math.max(st.maxRevealed,st.position);
     if(st.panels.length>1){
-      st.panels.forEach((panel,i)=>{panel.hidden=i!==st.position;panel.classList.toggle('is-visible',i===st.position);});
+      st.panels.forEach((panel,i)=>{
+        const shown=i<=st.maxRevealed;
+        panel.hidden=!shown;
+        panel.classList.toggle('is-visible',shown);
+      });
     }else{
       st.panels[0].hidden=false;
-      st.chunks.forEach((child,i)=>{child.hidden=i>=st.position;});
+      st.chunks.forEach((child,i)=>{child.hidden=i>=st.maxRevealed;});
     }
     st.previous.disabled=st.position===0;
     st.previous.hidden=st.position===0;
     st.counter.textContent=st.total===1?'Actividad completa':'Paso '+(st.position+1)+' de '+st.total;
-    st.next.textContent=st.position===st.total-1?(Number(module.dataset.module)===9?'Volver a la bienvenida ↺':'Ir a la siguiente actividad →'):'Descubrir siguiente →';
+    st.next.textContent=st.position===st.total-1?(Number(module.dataset.module)===9?'Volver a la bienvenida ↺':'Ir a la siguiente actividad →'):'Descubrir siguiente ↓';
     visibleMedia(module);
+    // Desplaza hasta la parte recién descubierta; el contenido anterior permanece visible arriba.
+    if(module.classList.contains('active')&&st.position!==oldPosition){
+      const target=st.panels.length>1
+        ? st.panels[Math.min(st.position,st.panels.length-1)]
+        : (st.position===0?st.panels[0]:st.chunks[st.position-1]);
+      if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
+    }
   }
   for(let n=0;n<=9;n++){
     const section=document.createElement('section');
@@ -633,7 +647,7 @@ html,body{max-width:100%;overflow-x:hidden}
       nextButton.addEventListener('click',()=>states[n].position===states[n].total-1?jumpToModule(n===9?0:n+1):revealAt(section,states[n].position+1));
       control.append(previousButton,counter,nextButton);section.appendChild(control);
     }
-    states[n]={panels,chunks,total,position:0,previous:previousButton,next:nextButton,counter};
+    states[n]={panels,chunks,total,position:0,maxRevealed:0,previous:previousButton,next:nextButton,counter};
     parent.insertBefore(section,anchor);
     modules.push(section);
     if(n>0)revealAt(section,0);
