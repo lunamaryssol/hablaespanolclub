@@ -68,7 +68,7 @@
     if(modules.length!==10)return;
     modules.forEach((m,i)=>{
       if(m.querySelector(".brand-doodle-accent,.brand-illustration"))return;
-      if(i>0){
+      if(i>0&&theme!=="010"){
         const accent=document.createElement("div");
         accent.className="brand-doodle-accent";
         accent.setAttribute("aria-hidden","true");
@@ -76,7 +76,7 @@
         const content=m.querySelector(".module-content");
         if(content)m.insertBefore(accent,content);
       }
-      if(i===0||i===5){
+      if((i===0||i===5)&&theme!=="010"){
         const art=document.createElement("div");
         art.className="brand-illustration"+(i===5?" secondary":"");
         art.setAttribute("aria-hidden","true");
