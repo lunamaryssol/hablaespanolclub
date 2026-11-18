@@ -534,7 +534,7 @@ html,body{max-width:100%;overflow-x:hidden}
 
     <div class="deck-controls" aria-label="Controles de navegación">
       <button class="btn secondary" id="prevBtn" type="button" disabled>← Anterior</button>
-      <button class="btn" id="nextBtn" type="button">Siguiente →</button>
+      <button class="btn" id="nextBtn" type="button">Siguiente ejercicio →</button>
     </div>
     <footer class="footer"><span><a class="footer-link" href="https://hablaespanol.club/" target="_top" rel="noopener noreferrer">hablaespanol.club</a> · <a class="footer-link" href="https://www.instagram.com/hablaespanolclub/" target="_top" rel="noopener noreferrer" aria-label="Abrir Instagram de Habla Español Club">@hablaespanolclub</a></span><span>Tema 010 · ¿Tener más opciones nos hace más felices?</span></footer>
   </main>
@@ -596,7 +596,7 @@ html,body{max-width:100%;overflow-x:hidden}
     st.previous.disabled=st.position===0;
     st.previous.hidden=st.position===0;
     st.counter.textContent=st.total===1?'Actividad completa':'Paso '+(st.position+1)+' de '+st.total;
-    st.next.textContent=st.position===st.total-1?(Number(module.dataset.module)===9?'Volver a la bienvenida ↺':'Ir a la siguiente actividad →'):'Descubrir siguiente ↓';
+    st.next.textContent=st.position===st.total-1?(Number(module.dataset.module)===9?'Volver a la bienvenida ↺':'Ir al siguiente ejercicio →'):'Siguiente ↓';
     visibleMedia(module);
     // Desplaza hasta la parte recién descubierta; el contenido anterior permanece visible arriba.
     if(module.classList.contains('active')&&st.position!==oldPosition){
@@ -640,7 +640,7 @@ html,body{max-width:100%;overflow-x:hidden}
     let previousButton=null,nextButton=null,counter=null;
     if(n>0){
       control=document.createElement('div');control.className='module-reveal-bar';control.setAttribute('aria-label','Revelaciones de la actividad '+n);
-      previousButton=document.createElement('button');previousButton.type='button';previousButton.className='module-back';previousButton.textContent='← Volver al paso anterior';
+      previousButton=document.createElement('button');previousButton.type='button';previousButton.className='module-back';previousButton.textContent='↑ Ver parte anterior';
       counter=document.createElement('span');counter.className='module-step-count';counter.setAttribute('aria-live','polite');
       nextButton=document.createElement('button');nextButton.type='button';nextButton.className='module-advance';
       previousButton.addEventListener('click',()=>revealAt(section,states[n].position-1));
@@ -703,7 +703,7 @@ html,body{max-width:100%;overflow-x:hidden}
         navButtons.forEach((b,i)=>{if(i===current)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
         count.textContent=String(current).padStart(2,'0')+' / 09';
         progress.style.width=`${((current+1)/slides.length)*100}%`;
-        prev.disabled=current===0;next.textContent=current===slides.length-1?'Volver al inicio ↺':'Siguiente →';
+        prev.disabled=current===0;next.textContent=current===slides.length-1?'Volver al inicio ↺':'Siguiente ejercicio →';
         document.querySelector('.deck-head').scrollIntoView({behavior:'smooth',block:'start'});
       }
       prev.addEventListener('click',()=>showSlide(current-1));
