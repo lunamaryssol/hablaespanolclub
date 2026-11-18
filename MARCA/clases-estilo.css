@@ -38,10 +38,10 @@ footer a,.footer a{color:#003893!important}
 
 /* Preferencia de legibilidad de las clases: pesos medios, sin titulares excesivamente negros. */
 body,button,input,select,textarea,option,.module-panel,.module-panel p,.module-panel li,.module-panel small,.module-panel label,.module-panel .content{font-weight:450!important}
-.module-panel h1,.module-panel h2,.module-panel h3,h1,h2,h3{font-weight:600!important;letter-spacing:-.012em;line-height:1.14}
+.module-panel h1,.module-panel h2,.module-panel h3,h1,h2,h3{font-weight:550!important;letter-spacing:-.012em;line-height:1.14}
 .module-panel strong,.module-panel b,strong,b{font-weight:550!important}
 .module-panel button,.module-panel .btn,.module-panel .button,.module-panel .slide-dot,.module-panel .module-no,.module-panel .step-counter,.module-panel .board-head,.module-panel .pending-number{font-weight:550!important}
-.module-panel .pending-text strong{font-weight:550!important;font-size:21px!important;line-height:1.28!important}
+.module-panel .pending-text strong{font-weight:500!important;font-size:21px!important;line-height:1.28!important}
 .module-panel .pending-text small{font-weight:450!important;font-size:18px!important;line-height:1.42!important}
 .module-panel .pending-option{gap:15px!important}
 .module-panel .pending-option .pending-number{font-weight:550!important}
