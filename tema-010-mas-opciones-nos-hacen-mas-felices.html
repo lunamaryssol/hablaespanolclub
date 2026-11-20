@@ -167,6 +167,27 @@ textarea{width:100%;min-height:170px;border:1.5px solid var(--b);border-radius:1
 @media(max-width:600px){.topin{padding:6px 12px}.wrap{padding:10px 12px 22px}.brand img{width:40px;height:40px}.brand-name{font-size:15px}.nav{gap:3px}.nav button{font-size:17px;min-height:42px;border-radius:10px}.votes{grid-template-columns:1fr}.bar{grid-template-columns:105px 1fr 34px}.module-reveal-bar .btn{font-size:15px;padding:7px 12px;min-height:40px}.step{order:-1;width:100%}.mhead{grid-template-columns:minmax(0,1fr)}.mhead .doodle,.mhead .intro-art{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media print{.topbar,.nav,.module-reveal-bar{display:none!important}.module-slide[hidden],.chunk[hidden]{display:block!important}}
+
+/* Nuevas mecánicas: presupuesto de atención y relato ramificado */
+.budget-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}
+.budget-item{border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;display:grid;gap:10px;min-width:0}
+.budget-item h4{margin:0}
+.budget-item p{font-size:17px;line-height:1.3;margin:0;color:#222}
+.budget-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.budget-tag{font-family:var(--hand);font-size:19px;color:var(--b)}
+.budget-stepper{display:flex;align-items:center;gap:10px}
+.budget-stepper button{width:38px;height:38px;border:1.5px solid var(--b);border-radius:50%;background:#fff;color:var(--b);font-size:23px;line-height:1;cursor:pointer}
+.budget-stepper button:disabled{opacity:.3;cursor:not-allowed}
+.budget-value{min-width:24px;text-align:center;font-size:24px;font-weight:600;color:var(--b)}
+.budget-progress{height:7px;border-radius:8px;background:#eef2f8;overflow:hidden}
+.budget-progress span{display:block;height:100%;background:var(--y);transition:width .2s}
+.story-outcome{border-left:3px solid var(--r);padding:12px 16px;margin-top:14px;background:#fff;border-radius:0 14px 14px 0;line-height:1.4}
+.story-path{border:1.5px solid var(--line);border-radius:16px;padding:16px 18px;margin-top:14px}
+.story-path ol{margin:8px 0 0;padding-left:22px}
+.story-path li{margin:0 0 10px}
+.story-path li:last-child{margin-bottom:0}
+@media(max-width:900px){.budget-grid{grid-template-columns:1fr}}
+
 </style>
 <link rel="stylesheet" href="/MARCA/clases-estilo.css">
 </head>
@@ -290,47 +311,51 @@ textarea{width:100%;min-height:170px;border:1.5px solid var(--b);border-radius:1
 </section>
 
 <!-- ============ 3 · SHORT MUSICAL ============ -->
-<section class="module-slide module-panel" data-module="3" data-title="La banda sonora de una decisión" hidden aria-labelledby="t3">
+<section class="module-slide module-panel" data-module="3" data-title="Una canción y un mensaje para avanzar" hidden aria-labelledby="t3">
   <div class="mhead"><div>
     <p class="kicker">EJERCICIO 3 · SHORT MUSICAL <span class="rol">Relaciónate</span></p>
-    <h2 id="t3">La <span class="wave">banda sonora</span> de una decisión</h2>
-    <p class="sub">Escucha un fragmento y decide a qué momento de la vida le queda mejor.</p>
+    <h2 id="t3">Una canción y un <span class="wave">mensaje para avanzar</span></h2>
+    <p class="sub">Observa cómo la música y el cuerpo transmiten una idea sobre el cambio y las decisiones.</p>
   </div><div class="doodle" aria-hidden="true"><svg viewBox="0 0 160 120"><g class="ink"><path d="M38 76V62Q38 22 80 22T122 62V76"/><path d="M30 72Q30 66 37 66H46V102H37Q30 102 30 96Z"/><path d="M130 66H122V102H130Q137 102 137 96V72Q137 66 130 66Z"/><path d="M62 98V80l22-5v22"/><circle cx="58" cy="100" r="5"/><circle cx="80" cy="96" r="5"/></g><path class="bl" d="M50 38q8-12 22-14"/><path class="ye" d="M120 20l8-9m4 16l11-2"/><path class="re" d="M96 108q6 5 14 0"/></svg></div></div>
   <div class="content">
     <div class="chunk">
-      <p class="chunk-label">Antes de escuchar</p>
-      <div class="prompt">No importa entender cada palabra. Escucha la voz, el ritmo y la emoción.</div>
-      <p>¿Qué emoción te transmite? Elige una después de escuchar:</p>
-      <div class="pillrow" id="emo">
-        <button class="opt" type="button" aria-pressed="false">Duda</button>
-        <button class="opt" type="button" aria-pressed="false">Valentía</button>
-        <button class="opt" type="button" aria-pressed="false">Nostalgia</button>
-        <button class="opt" type="button" aria-pressed="false">Alivio</button>
-        <button class="opt" type="button" aria-pressed="false">Entusiasmo</button>
-      </div>
+      <p class="chunk-label">Antes de ver</p>
+      <div class="prompt">Una canción también puede contar una historia sin explicar cada detalle.</div>
+      <p>¿Qué puede comunicar una persona mediante sus gestos, movimientos y expresiones cuando interpreta una canción?</p>
+      <div class="support"><div><b>B1 · apoyo</b>Puede transmitir… · Me fijo en… · Creo que significa…</div><div><b>B2 · reto</b>La expresión corporal refuerza… · Aunque no entienda cada palabra, puedo interpretar…</div></div>
     </div>
     <div class="chunk" hidden>
       <p class="chunk-label">El Short musical</p>
       <div class="short">
-        <div class="frame-wrap"><div class="frame" id="frame-HJcvWhdiG3M"><button class="btn go" type="button" data-short="HJcvWhdiG3M" data-frame="frame-HJcvWhdiG3M">▶ Reproducir aquí</button></div></div>
+        <div class="frame-wrap"><div class="frame" id="frame-JLdK-d04YHM"><button class="btn go" type="button" data-short="JLdK-d04YHM" data-frame="frame-JLdK-d04YHM">▶ Reproducir aquí</button></div></div>
         <div>
-          <h3>«Elegirte»</h3>
-          <p class="src">Short de YouTube con un fragmento de una canción en español. Si no se reproduce aquí, ábrelo en YouTube y comparte el audio.</p>
-          <p><a href="https://www.youtube.com/shorts/HJcvWhdiG3M" target="_blank" rel="noopener">Abrir Short en YouTube ↗</a></p>
-          <div class="card"><h4>Escucha con un propósito</h4><p>¿La canción habla de dudar, de decidir o de quedarse con algo? Después elegirás una decisión de vida que combine con su sonido.</p></div>
+          <h3>Interpretación en lengua de señas de «Color Esperanza»</h3>
+          <p class="src">Canción de Diego Torres · Short de YouTube con interpretación visual de la canción.</p>
+          <p><a href="https://www.youtube.com/shorts/JLdK-d04YHM" target="_blank" rel="noopener">Abrir Short en YouTube ↗</a></p>
+          <div class="card"><h4>Observa y escucha</h4><p>Fíjate en los gestos, la expresión facial y la relación entre los movimientos y la música. No necesitas comprender cada palabra para captar el mensaje general.</p></div>
         </div>
       </div>
     </div>
     <div class="chunk" hidden>
-      <p class="chunk-label">¿A qué decisión le pondrías esta música?</p>
-      <div class="grid g3" id="cards"></div>
-      <div class="fb" id="cardsFb" aria-live="polite" hidden></div>
+      <p class="chunk-label">¿Qué mensaje transmite?</p>
+      <div class="prompt">Elige la interpretación que mejor se acerca al mensaje de la canción.</div>
+      <div class="grid g3" id="songTakeaway">
+        <button class="opt" type="button" aria-pressed="false" data-correct="false">Esperar a que las circunstancias cambien por sí solas.</button>
+        <button class="opt" type="button" aria-pressed="false" data-correct="true">Actuar con esperanza, aunque no conozcamos el resultado.</button>
+        <button class="opt" type="button" aria-pressed="false" data-correct="false">Evitar los cambios para no correr riesgos.</button>
+      </div>
+      <div class="fb" id="songTakeawayFb" aria-live="polite" hidden></div>
+      <div class="grid g2">
+        <div class="card"><h3>Sobre el video</h3><p>¿Qué gesto, movimiento o expresión te ayudó a interpretar el mensaje? ¿Por qué?</p></div>
+        <div class="card"><h3>Sobre la canción</h3><p>¿Qué idea de la canción relacionas con tomar una decisión o empezar algo nuevo?</p></div>
+      </div>
     </div>
     <div class="chunk" hidden>
-      <p class="chunk-label">Conversemos</p>
-      <div class="prompt">¿Qué ganas con esa decisión y a qué renuncias? ¿Elegimos la misma tarjeta? ¿Por qué no?</div>
-      <div class="support"><div><b>B1 · apoyo</b>La música me recuerda… · Ganas… pero dejas…</div><div><b>B2 · reto</b>Aunque suena…, creo que combina con… porque… · La emoción cambia si…</div></div>
-      <details class="teacher"><summary>Apoyo para la profesora</summary><p>Antes de la clase, escucha el Short una vez; si prefieres otro fragmento musical en español sobre elegir, el resto del ejercicio funciona igual. No se pide transcribir la letra. Con 1 estudiante, elige también una tarjeta tú. Con 40, cada subgrupo defiende una tarjeta distinta.</p></details>
+      <p class="chunk-label">Conectemos con el tema</p>
+      <div class="prompt">¿Tener más opciones ayuda a dar el primer paso o, a veces, lo retrasa?</div>
+      <p>¿En qué decisiones prefieres explorar muchas alternativas y en cuáles agradeces que alguien reduzca la lista?</p>
+      <div class="support"><div><b>B1 · apoyo</b>Me inclino por… · Para mí es mejor… porque…</div><div><b>B2 · reto</b>Por una parte…, sin embargo… · Cuantas más opciones…, más…</div></div>
+      <details class="teacher"><summary>Apoyo para la profesora</summary><p>El Short presenta una interpretación en lengua de señas de «Color Esperanza». Invita a describir recursos visuales concretos, no a evaluar la calidad de la interpretación. Con 1 estudiante, compara tu lectura con la suya. Con 40, cada subgrupo identifica un gesto y explica qué idea le comunica.</p></details>
     </div>
   </div>
   <div class="module-reveal-bar"></div>
@@ -369,32 +394,35 @@ textarea{width:100%;min-height:170px;border:1.5px solid var(--b);border-radius:1
 </section>
 
 <!-- ============ 5 · APARTAMENTOS ============ -->
-<section class="module-slide module-panel" data-module="5" data-title="Doce apartamentos, un solo hogar" hidden aria-labelledby="t5">
+<section class="module-slide module-panel" data-module="5" data-title="El presupuesto de atención" hidden aria-labelledby="t5">
   <div class="mhead"><div>
     <p class="kicker">EJERCICIO 5 · JUEGO <span class="rol">Observa</span></p>
-    <h2 id="t5">Doce apartamentos, <span class="wave">un solo hogar</span></h2>
-    <p class="sub">Descarten apartamentos con la menor cantidad posible de preguntas.</p>
-  </div><div class="doodle" aria-hidden="true"><svg viewBox="0 0 160 120"><g class="ink"><path d="M20 108V40H58V108"/><path d="M58 108V20H100V108"/><path d="M100 108V54H136V108"/><path d="M30 54h8M30 72h8M30 90h8M70 36h8M82 36h8M70 56h8M82 56h8M70 76h8M82 76h8M110 70h8M122 70h8M110 90h8M122 90h8"/><path d="M12 108H146"/></g><path class="bl" d="M66 14q10-8 24 0"/><path class="ye" d="M110 28l9-8m2 18l11-1"/><path class="re" d="M24 116h30"/></svg></div></div>
+    <h2 id="t5">El <span class="wave">presupuesto de atención</span></h2>
+    <p class="sub">Tienen diez fichas para decidir cuánto tiempo merece cada elección.</p>
+  </div><div class="doodle" aria-hidden="true"><svg viewBox="0 0 160 120"><g class="ink"><path d="M28 88h42v18H28zM38 70h42v18H38zM48 52h42v18H48z"/><path d="M92 105h42V88H92zM102 87h32V70h-32z"/><path d="M113 18v38M99 28h28M104 20l-5 8 5 8M122 20l6 8-6 8"/></g><path class="bl" d="M24 42q9-11 19-6"/><path class="ye" d="M112 12l7-7m8 12l10-2"/><path class="re" d="M30 113q15 4 28 0"/></svg></div></div>
   <div class="content">
     <div class="chunk">
+      <p class="chunk-label">El reto</p>
+      <div class="prompt">No todas las decisiones merecen la misma cantidad de tiempo.</div>
       <div class="grid g2">
-        <div class="card"><h3>Objetivo</h3><p>Quedarse con <strong>un solo</strong> apartamento haciendo las menos preguntas posibles.</p></div>
-        <div class="card"><h3>Reglas</h3><p>Cada pregunta que activen elimina los apartamentos que no la cumplen. Pueden quitar una pregunta si se arrepienten. Antes de activar una, el grupo debe estar de acuerdo.</p></div>
+        <div class="card"><h3>Objetivo</h3><p>Distribuir diez fichas de atención entre seis decisiones. Cada ficha representa tiempo y energía dedicados a comparar alternativas.</p></div>
+        <div class="card"><h3>Reglas</h3><p>En cada turno, el equipo añade o quita una ficha. Puede asignar entre cero y cuatro a cada decisión. El presupuesto debe quedar exactamente en diez.</p></div>
       </div>
+      <p class="small">Con 1 estudiante, la profesora forma un segundo equipo. Con grupos numerosos, cada subgrupo acuerda su reparto y la profesora registra un equipo por turno.</p>
     </div>
     <div class="chunk" hidden>
-      <p class="chunk-label">Hagan sus preguntas</p>
-      <div class="pillrow" id="crit"></div>
-      <div class="scoreline"><span id="qCount">Preguntas: 0</span><span id="leftCount">Quedan: 12</span><button class="btn sm" type="button" id="aptReset">Reiniciar juego</button></div>
-      <div class="apts" id="apts"></div>
-      <div class="fb" id="aptFb" aria-live="polite" hidden></div>
+      <p class="chunk-label">Repartan las diez fichas</p>
+      <div class="scoreline"><span id="budgetRemaining">Fichas disponibles: 10</span><span id="budgetUsed">Repartidas: 0 / 10</span></div>
+      <div class="budget-grid" id="budgetGrid"></div>
+      <div class="scoreline"><button class="btn go" type="button" id="budgetReveal" disabled>Revelar nuestro presupuesto</button><button class="btn sm" type="button" id="budgetReset">Reiniciar reparto</button></div>
+      <div class="fb" id="budgetResult" aria-live="polite" hidden></div>
     </div>
     <div class="chunk" hidden>
-      <p class="chunk-label">Conversemos</p>
-      <div class="prompt">¿Qué apartamento descartado les dolió dejar? ¿Qué criterio resultó más importante?</div>
-      <div class="prompt">Si pidieran todo, ¿era posible encontrar el apartamento perfecto?</div>
-      <div class="support"><div><b>B1 · apoyo</b>Para nosotros era importante… · Renunciamos a…</div><div><b>B2 · reto</b>Cuantas más condiciones poníamos, menos opciones… · Si cedemos en…, ganamos…</div></div>
-      <details class="teacher"><summary>Apoyo para la profesora</summary><p>Con 1 estudiante, tú sugieres preguntas pero la persona decide. Con 40, cada subgrupo juega el mismo tablero y comparan cuántas preguntas usaron. Pista: con cinco preguntas siempre se queda sin apartamentos; ahí aparece la renuncia.</p></details>
+      <p class="chunk-label">Comparemos las estrategias</p>
+      <div class="prompt">¿En qué decisión gastaron más fichas? ¿En cuál decidieron no invertir casi nada?</div>
+      <p>¿La cantidad de opciones debería depender de la importancia de la decisión? ¿Cuándo conviene comparar y cuándo conviene decidir sin seguir buscando?</p>
+      <div class="support"><div><b>B1 · apoyo</b>Le dimos más tiempo a… · No invertiría tanto en…</div><div><b>B2 · reto</b>Cuantas más consecuencias tiene una decisión…, más… · Sin embargo, dedicar demasiado tiempo a…</div></div>
+      <details class="teacher"><summary>Apoyo para la profesora</summary><p>No existe un reparto universalmente correcto. El resultado sirve para comparar prioridades y justificar el uso del tiempo. Con 40 participantes, compara dos o tres repartos distintos y pregunta qué criterios explican las diferencias.</p></details>
     </div>
   </div>
   <div class="module-reveal-bar"></div>
@@ -436,53 +464,50 @@ textarea{width:100%;min-height:170px;border:1.5px solid var(--b);border-radius:1
 </section>
 
 <!-- ============ 7 · TRIBUNAL ============ -->
-<section class="module-slide module-panel" data-module="7" data-title="El tribunal de las opciones" hidden aria-labelledby="t7">
+<section class="module-slide module-panel" data-module="7" data-title="El efecto dominó" hidden aria-labelledby="t7">
   <div class="mhead"><div>
-    <p class="kicker">EJERCICIO 7 · DEBATE <span class="rol">Lánzate</span></p>
-    <h2 id="t7">El <span class="wave">tribunal</span> de las opciones</h2>
-    <p class="sub">Se juzga una pregunta: ¿tener más opciones nos hace más felices?</p>
-  </div><div class="doodle" aria-hidden="true"><svg viewBox="0 0 160 120"><g class="ink"><path d="M80 14V100M56 104H104"/><path d="M34 34H126"/><path d="M34 34L20 66M34 34L48 66M20 66Q34 80 48 66Z"/><path d="M126 34L112 62M126 34L140 62M112 62Q126 76 140 62Z"/></g><path class="bl" d="M70 10q10-6 20 0"/><path class="ye" d="M138 14l7-8m2 17l9-3"/><path class="re" d="M24 90q10 6 20 0"/></svg></div></div>
+    <p class="kicker">EJERCICIO 7 · HISTORIA INTERACTIVA <span class="rol">Lánzate</span></p>
+    <h2 id="t7">El <span class="wave">efecto dominó</span></h2>
+    <p class="sub">Construyan una historia: cada elección cambia lo que sucede después.</p>
+  </div><div class="doodle" aria-hidden="true"><svg viewBox="0 0 160 120"><g class="ink"><rect x="25" y="60" width="22" height="48" rx="3" transform="rotate(-18 36 84)"/><path d="M36 76l5 5m-9 8l5 5"/><rect x="68" y="42" width="22" height="48" rx="3" transform="rotate(12 79 66)"/><path d="M76 57l6 5m-7 9l6 5"/><rect x="112" y="25" width="22" height="48" rx="3" transform="rotate(24 123 49)"/><path d="M118 39l7 5m-8 8l7 5"/><path d="M50 62q8-16 17-14m26-10q8-12 17-11"/></g><path class="bl" d="M20 38q10-8 18-2"/><path class="ye" d="M136 16l7-8m2 17l9-2"/><path class="re" d="M22 113q12 5 24 0"/></svg></div></div>
   <div class="content">
     <div class="chunk">
-      <p class="chunk-label">Los roles</p>
-      <div class="roles">
-        <div><b>Fiscalía</b>Defiende que más opciones pueden hacernos menos felices.</div>
-        <div><b>Defensa</b>Defiende que más opciones nos dan libertad y bienestar.</div>
-        <div><b>Jurado</b>Escucha, hace preguntas y decide. Si hay una sola persona, el jurado es quien conversa con la profesora.</div>
-      </div>
+      <p class="chunk-label">La historia comienza</p>
+      <div class="card"><h3>Cuatro días libres, demasiadas ideas</h3><p>Marta tiene cuatro días de vacaciones. Ha guardado dieciocho planes: conciertos, escapadas, museos, visitas familiares, rutas y playas. Quiere descansar, conocer algo nuevo y no gastar demasiado.</p></div>
+      <div class="prompt">Cada equipo construirá la historia tomando tres decisiones. No hay un final perfecto: cada ruta trae una ganancia y una renuncia.</div>
+      <p>En cada etapa, elijan una opción y añadan oralmente una frase que explique qué ocurre después.</p>
     </div>
     <div class="chunk" hidden>
-      <p class="chunk-label">Primer voto</p>
-      <div class="prompt">Antes de escuchar las pruebas: ¿tener más opciones nos hace más felices?</div>
-      <div class="votes" id="vote1"></div>
+      <p class="chunk-label">Primera decisión · ¿Cómo empieza?</p>
+      <div class="prompt">Marta mira su lista de dieciocho planes. ¿Qué hace?</div>
+      <div class="grid g2" id="storyChoices1"></div>
+      <div class="story-outcome" id="storyOutcome1" aria-live="polite" hidden></div>
     </div>
     <div class="chunk" hidden>
-      <p class="chunk-label">Las pruebas</p>
-      <p class="small">Cada lado elige una prueba, la presenta y explica por qué es importante.</p>
-      <div class="evid">
-        <div><h3>Fiscalía</h3>
-          <button class="opt" type="button" aria-pressed="false">Una persona pasa 40 minutos eligiendo qué ver y apaga el televisor sin ver nada.</button>
-          <button class="opt" type="button" aria-pressed="false">Alguien compra el celular «perfecto» y a la semana se arrepiente porque salió otro modelo.</button>
-          <button class="opt" type="button" aria-pressed="false">Un menú de treinta platos retrasa la comida de toda la mesa.</button>
-        </div>
-        <div><h3>Defensa</h3>
-          <button class="opt" type="button" aria-pressed="false">Una persona descubre una carrera que no existía hace veinte años y encuentra un trabajo que le encanta.</button>
-          <button class="opt" type="button" aria-pressed="false">Una familia con una dieta especial por fin encuentra restaurantes que cubren sus necesidades.</button>
-          <button class="opt" type="button" aria-pressed="false">Alguien deja un plan malo porque tiene alternativas.</button>
-        </div>
-      </div>
+      <p class="chunk-label">Segunda decisión · Aparece un problema</p>
+      <div class="prompt">El plan que eligió cuesta más de lo que esperaba. ¿Cómo reacciona?</div>
+      <div class="grid g2" id="storyChoices2"></div>
+      <div class="story-outcome" id="storyOutcome2" aria-live="polite" hidden></div>
     </div>
     <div class="chunk" hidden>
-      <p class="chunk-label">Preguntas del jurado</p>
-      <div class="prompt">¿Esa prueba vale para todas las personas? ¿Qué cambiaría si la decisión fuera más importante?</div>
-      <div class="support"><div><b>B1 · apoyo</b>Mi prueba muestra que… · Para mí es importante porque…</div><div><b>B2 · reto</b>Eso depende de… · Admito que…, sin embargo…</div></div>
+      <p class="chunk-label">Tercera decisión · Una invitación inesperada</p>
+      <div class="prompt">La víspera del viaje, una amiga le propone acompañarla. ¿Qué decide Marta?</div>
+      <div class="grid g2" id="storyChoices3"></div>
+      <div class="story-outcome" id="storyOutcome3" aria-live="polite" hidden></div>
     </div>
     <div class="chunk" hidden>
-      <p class="chunk-label">Segundo voto</p>
-      <div class="prompt">Después de las pruebas: ¿cambiaste de opinión? ¿Qué prueba te movió más?</div>
-      <div class="votes" id="vote2"></div>
-      <div class="bars" id="voteBars" aria-live="polite"></div>
-      <details class="teacher"><summary>Apoyo para la profesora</summary><p>Cuenta los votos de viva voz o por reacciones de Zoom y pulsa + para cada uno; no es obligatorio usar el chat. Aprueba el «depende»: es una postura válida. Con 1 estudiante, tú defiendes el lado contrario. Con 40, forma ocho jurados de cinco personas.</p></details>
+      <p class="chunk-label">El final que construyeron</p>
+      <p>Revisen las tres elecciones y las consecuencias que fueron encadenando.</p>
+      <button class="btn go" type="button" id="storyBuild" disabled>Ver nuestra historia</button>
+      <div class="story-path" id="storyPath" aria-live="polite" hidden></div>
+      <button class="btn sm" type="button" id="storyReset">Crear otra ruta</button>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Conversemos</p>
+      <div class="prompt">¿Qué decisión cambió más la historia? ¿Una opción adicional habría mejorado el resultado o habría complicado la elección?</div>
+      <p>¿Qué habría pasado si Marta hubiera cambiado solo una de las tres decisiones?</p>
+      <div class="support"><div><b>B1 · apoyo</b>Primero…, después… · Al final… · Me inclino por…</div><div><b>B2 · reto</b>Por una parte…, sin embargo… · Si hubiera elegido…, la historia habría…</div></div>
+      <details class="teacher"><summary>Apoyo para la profesora</summary><p>La consecuencia no es una respuesta correcta: cada equipo puede ampliarla con detalles propios. Con 1 estudiante, la profesora elige una ruta alternativa para comparar. Con 40, los subgrupos cuentan sus finales y detectan qué decisión produjo la mayor diferencia.</p></details>
     </div>
   </div>
   <div class="module-reveal-bar"></div>
@@ -786,15 +811,16 @@ document.addEventListener('click',e=>{
   });
 })();
 
-/* ---------- 3 · Emoción y tarjetas de decisión ---------- */
+/* ---------- 3 · Interpretación musical ---------- */
 (function(){
-  single($('#emo'));
-  const D=['Mudarte a otra ciudad','Cambiar de trabajo','Volver a estudiar','Comprar tu primera casa','Aceptar una oferta inesperada','Quedarte donde estás','Decidir si te quedas en una fiesta o te vas a dormir','Empezar un proyecto propio'];
-  const g=$('#cards');
-  g.innerHTML=D.map(t=>'<button class="opt" type="button" aria-pressed="false">'+esc(t)+'</button>').join('');
-  single(g,b=>{
-    const emo=$('#emo .opt[aria-pressed="true"]');
-    show($('#cardsFb'),'<strong>Eligieron:</strong> '+esc(b.textContent.replace(/^✓\s*/,''))+(emo?' · emoción: '+esc(emo.textContent.trim()):'')+'. Ahora expliquen qué ganan y a qué renuncian.');
+  const group=$('#songTakeaway');
+  single(group,b=>{
+    const fb=$('#songTakeawayFb');
+    if(b.dataset.correct==='true'){
+      show(fb,'<strong>Esta es la lectura más cercana:</strong> la canción anima a actuar con esperanza, aunque no podamos controlar el resultado. ¿Qué gesto o detalle del Short refuerza esa interpretación?');
+    }else{
+      show(fb,'<strong>Revisa la idea:</strong> la canción no propone quedarse esperando ni evitar todo riesgo. Busca la idea que relaciona esperanza con iniciativa.');
+    }
   });
 })();
 
@@ -828,44 +854,53 @@ document.addEventListener('click',e=>{
   });
 })();
 
-/* ---------- 5 · Doce apartamentos ---------- */
+/* ---------- 5 · Presupuesto de atención ---------- */
 (function(){
-  const CR=['Precio razonable','Con balcón','Cerca del metro','Acepta mascotas','Muy luminoso','Piso alto'];
-  const bits=['101100','110110','011011','111001','001110','100011','010101','111100','000111','101011','011110','110001'].map(s=>s.split('').map(Number));
-  const applied=new Set();
-  const cr=$('#crit'),box=$('#apts');
-  cr.innerHTML=CR.map((c,i)=>'<button class="opt" type="button" aria-pressed="false" data-i="'+i+'">'+esc(c)+'</button>').join('');
-  function paint(){
-    const left=[];
-    box.innerHTML=bits.map((b,n)=>{
-      const pass=[...applied].every(i=>b[i]);
-      if(pass)left.push(n);
-      const li=[...applied].sort().map(i=>'<li class="'+(b[i]?'ok':'no')+'">'+esc(CR[i])+'</li>').join('');
-      return '<div class="apt'+(pass?'':' out')+'" data-n="'+n+'"><h4>Apto '+(n+1)+'</h4><ul>'+li+'</ul></div>';
+  const D=[
+    {title:'Elegir una serie para esta noche',kind:'Cotidiana',hint:'Una decisión pequeña, con consecuencias limitadas.'},
+    {title:'Escoger un restaurante para almorzar',kind:'Cotidiana',hint:'Hay alternativas parecidas y poco tiempo para decidir.'},
+    {title:'Comprar un móvil para varios años',kind:'Intermedia',hint:'Precio, batería, cámara y duración importan.'},
+    {title:'Elegir el destino de vacaciones',kind:'Intermedia',hint:'Presupuesto, clima, tiempo y compañía entran en juego.'},
+    {title:'Aceptar una oferta de trabajo',kind:'Importante',hint:'Puede cambiar ingresos, horarios y rutina.'},
+    {title:'Decidir dónde vivir',kind:'Importante',hint:'Influyen el coste, los trayectos y el proyecto de vida.'}
+  ];
+  const allocation=Array(D.length).fill(0),budget=10,maxPerItem=4;
+  const grid=$('#budgetGrid'),reveal=$('#budgetReveal');
+  function used(){return allocation.reduce((a,b)=>a+b,0);}
+  function render(){
+    const spent=used(),remaining=budget-spent;
+    $('#budgetRemaining').textContent='Fichas disponibles: '+remaining;
+    $('#budgetUsed').textContent='Repartidas: '+spent+' / '+budget;
+    grid.innerHTML=D.map((d,i)=>{
+      const pct=allocation[i]/maxPerItem*100;
+      return '<div class="budget-item"><div class="budget-meta"><span class="budget-tag">'+d.kind+'</span><span class="budget-value" aria-live="polite">'+allocation[i]+'</span></div><h4>'+(i+1)+'. '+esc(d.title)+'</h4><p>'+esc(d.hint)+'</p><div class="budget-progress" aria-hidden="true"><span style="width:'+pct+'%"></span></div><div class="budget-stepper"><button type="button" data-action="minus" data-i="'+i+'" aria-label="Quitar una ficha a '+esc(d.title)+'" '+(allocation[i]===0?'disabled':'')+'>−</button><span class="budget-value">'+allocation[i]+'</span><button type="button" data-action="plus" data-i="'+i+'" aria-label="Añadir una ficha a '+esc(d.title)+'" '+(remaining===0||allocation[i]===maxPerItem?'disabled':'')+'>+</button></div></div>';
     }).join('');
-    $('#qCount').textContent='Preguntas: '+applied.size;
-    $('#leftCount').textContent='Quedan: '+left.length;
-    const fb=$('#aptFb');
-    if(!applied.size){fb.hidden=true;return;}
-    if(left.length===1){
-      const n=left[0];$$('.apt',box)[n].classList.add('win');
-      const ren=CR.filter((c,i)=>!applied.has(i)&&!bits[n][i]);
-      const rate=applied.size<=3?'¡Muy rápido!':applied.size===4?'Buen equilibrio.':'';
-      show(fb,'<strong>¡Llegaron al apartamento '+(n+1)+' con '+applied.size+' preguntas!</strong> '+rate+(ren.length?' Renuncian a: '+esc(ren.join(', '))+'.':''));
-    }else if(left.length===0){
-      show(fb,'<strong>Ningún apartamento cumple todo.</strong> Quiten una pregunta y decidan a qué renuncian.');
-    }else{
-      show(fb,'Quedan '+left.length+' apartamentos. Elijan la siguiente pregunta o quiten una.');
-    }
+    reveal.disabled=spent!==budget;
   }
-  cr.addEventListener('click',e=>{
-    const b=e.target.closest('.opt');if(!b)return;
+  grid.addEventListener('click',e=>{
+    const b=e.target.closest('button[data-action]');if(!b)return;
     const i=+b.dataset.i;
-    if(applied.has(i)){applied.delete(i);b.setAttribute('aria-pressed','false');}else{applied.add(i);b.setAttribute('aria-pressed','true');}
-    paint();
+    if(b.dataset.action==='plus'&&used()<budget&&allocation[i]<maxPerItem)allocation[i]++;
+    if(b.dataset.action==='minus'&&allocation[i]>0)allocation[i]--;
+    render();
   });
-  $('#aptReset').addEventListener('click',()=>{applied.clear();$$('.opt',cr).forEach(x=>x.setAttribute('aria-pressed','false'));paint();});
-  paint();
+  reveal.addEventListener('click',()=>{
+    if(used()!==budget)return;
+    const totals={Cotidiana:0,Intermedia:0,Importante:0};
+    D.forEach((d,i)=>totals[d.kind]+=allocation[i]);
+    const rows=D.map((d,i)=>'<li><strong>'+esc(d.title)+':</strong> '+allocation[i]+' '+(allocation[i]===1?'ficha':'fichas')+'</li>').join('');
+    show($('#budgetResult'),'<strong>Su reparto:</strong> '+totals.Cotidiana+' fichas en decisiones cotidianas · '+totals.Intermedia+' en decisiones intermedias · '+totals.Importante+' en decisiones importantes.<ol>'+rows+'</ol><p>Este reparto muestra qué decisiones consideran dignas de más tiempo; no existe una distribución universalmente correcta.</p>');
+    grid.querySelectorAll('button').forEach(b=>b.disabled=true);
+    reveal.disabled=true;
+    reveal.textContent='Presupuesto cerrado ✓';
+  });
+  $('#budgetReset').addEventListener('click',()=>{
+    allocation.fill(0);
+    $('#budgetResult').hidden=true;
+    reveal.textContent='Revelar nuestro presupuesto';
+    render();
+  });
+  render();
 })();
 
 /* ---------- 6 · Lectura ---------- */
@@ -901,27 +936,52 @@ document.addEventListener('click',e=>{
   $('#resetSents').addEventListener('click',()=>{mark.fill(false);draw();$('#sentsFb').hidden=true;});
 })();
 
-/* ---------- 7 · Tribunal ---------- */
+/* ---------- 7 · Historia ramificada ---------- */
 (function(){
-  multi($('.evid'));
-  const L1=['Sí','Depende','No'];
-  const v1=[0,0,0],v2=[0,0,0];
-  function box(el,arr,labels,after){
-    el.innerHTML=labels.map((l,i)=>'<div class="vote"><h4>'+esc(l)+'</h4><b aria-live="polite">0</b><div class="row"><button class="btn sm" type="button" data-i="'+i+'" data-d="-1" aria-label="Quitar un voto: '+esc(l)+'">−</button><button class="btn sm go" type="button" data-i="'+i+'" data-d="1" aria-label="Sumar un voto: '+esc(l)+'">+1</button></div></div>').join('');
-    el.addEventListener('click',e=>{
-      const b=e.target.closest('button[data-d]');if(!b)return;
-      const i=+b.dataset.i;arr[i]=Math.max(0,arr[i]+(+b.dataset.d));
-      $$('.vote b',el)[i].textContent=arr[i];after&&after();
+  const stages=[
+    {choices:[
+      {label:'Compara las dieciocho ideas una por una.',result:'Encuentra un plan que le encanta, pero pasa una tarde comparando y termina agotada antes de empezar.'},
+      {label:'Pide a una amiga que reduzca la lista a tres planes.',result:'Decide en diez minutos y se siente más tranquila, aunque se pregunta si dejó pasar una opción mejor.'}
+    ]},
+    {choices:[
+      {label:'Mantiene el plan aunque cueste un poco más.',result:'Conserva la organización inicial, pero tiene que recortar otros gastos.'},
+      {label:'Vuelve a comparar y cambia el plan.',result:'Encuentra una alternativa más económica, pero invierte otra vez tiempo y energía en decidir.'}
+    ]},
+    {choices:[
+      {label:'Acepta la invitación y adapta el viaje.',result:'Comparte la experiencia con su amiga, aunque renuncia a parte del itinerario que había preparado.'},
+      {label:'Mantiene el plan original.',result:'Disfruta de lo que había organizado, aunque se pregunta cómo habría sido viajar acompañada.'}
+    ]}
+  ];
+  const selected=[null,null,null];
+  stages.forEach((stage,i)=>{
+    const group=$('#storyChoices'+(i+1));
+    group.innerHTML=stage.choices.map((c,j)=>'<button class="opt" type="button" aria-pressed="false" data-choice="'+j+'">'+esc(c.label)+'</button>').join('');
+    group.addEventListener('click',e=>{
+      const b=e.target.closest('button[data-choice]');if(!b)return;
+      const choice=+b.dataset.choice;
+      selected[i]=choice;
+      group.querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+      show($('#storyOutcome'+(i+1)),'<strong>Consecuencia:</strong> '+esc(stage.choices[choice].result));
+      $('#storyBuild').disabled=selected.some(x=>x===null);
+      $('#storyPath').hidden=true;
     });
-  }
-  function bars(){
-    const mx=Math.max(1,...v1,...v2);
-    $('#voteBars').innerHTML=L1.map((l,i)=>'<div class="bar"><span>'+l+'</span><div><i style="width:'+Math.round(v1[i]/mx*100)+'%;background:var(--y)"></i><i style="width:'+Math.round(v2[i]/mx*100)+'%"></i></div><span>'+v1[i]+' → '+v2[i]+'</span></div>').join('')+'<p class="small">Amarillo = antes · Azul = después</p>';
-  }
-  box($('#vote1'),v1,L1,bars);
-  box($('#vote2'),v2,L1,bars);
-  bars();
-  box($('#vote3'),[0,0,0],['Sí, la aplicaría','Con ajustes','No']);
+  });
+  $('#storyBuild').addEventListener('click',()=>{
+    if(selected.some(x=>x===null))return;
+    const list=stages.map((stage,i)=>'<li><strong>'+esc(stage.choices[selected[i]].label)+'</strong><br>'+esc(stage.choices[selected[i]].result)+'</li>').join('');
+    show($('#storyPath'),'<strong>La ruta de Marta</strong><ol>'+list+'</ol><p>La historia no tiene una única versión feliz: cada decisión le dio algo y le hizo renunciar a otra cosa.</p>');
+  });
+  $('#storyReset').addEventListener('click',()=>{
+    selected.fill(null);
+    stages.forEach((stage,i)=>{
+      $('#storyChoices'+(i+1)).querySelectorAll('.opt').forEach(b=>b.setAttribute('aria-pressed','false'));
+      $('#storyOutcome'+(i+1)).hidden=true;
+      $('#storyOutcome'+(i+1)).innerHTML='';
+    });
+    $('#storyBuild').disabled=true;
+    $('#storyPath').hidden=true;
+    $('#storyPath').innerHTML='';
+  });
 })();
 
 /* ---------- 8 · Consultoría ---------- */
