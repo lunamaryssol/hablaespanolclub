@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="description" content="Clase interactiva B1–B2 de Habla Español Club: ¿Deberíamos dejar que la inteligencia artificial decida por nosotros?">
+  <title>Tema 036 · ¿Deberíamos dejar que la inteligencia artificial decida por nosotros? | Habla Español Club</title>
+  <link rel="preload" href="/MARCA/fuentes/LeagueSpartan-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/MARCA/fuentes/GochiHand-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="/MARCA/clases-estilo.css">
+  <style>
+    :root{--blue:#003893;--yellow:#FCD116;--red:#CE1126;--white:#fff;--black:#000;--muted:#555;--line:rgba(0,56,147,.2);--font:"League Spartan",Arial,sans-serif;--hand:"Gochi Hand",cursive}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:#fff}
+    body{margin:0;background:#fff;color:#000;font-family:var(--font);font-size:18px;font-weight:450;line-height:1.45;min-height:100vh}
+    button,a{font:inherit}
+    button{cursor:pointer}
+    a{color:var(--blue);text-underline-offset:3px}
+    button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--red);outline-offset:4px}
+    .shell{width:min(1120px,calc(100% - 40px));margin:0 auto}
+    .topbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.97);border-bottom:1px solid rgba(0,56,147,.13);backdrop-filter:blur(10px)}
+    .topbar-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:11px;min-width:0}
+    .brand img{width:48px;height:48px;object-fit:contain;flex:none}
+    .brand-name{font-size:14px;font-weight:500;letter-spacing:.02em;color:var(--blue);line-height:1.1}
+    .brand-sub{font-family:var(--hand);font-size:16px;color:var(--blue);margin-top:2px}
+    .top-actions{display:flex;align-items:center;gap:10px}
+    .top-label{font-size:14px;color:#444}
+    .icon-btn{width:42px;height:42px;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--blue);font-size:20px;display:grid;place-items:center}
+    .progress-wrap{height:3px;background:rgba(0,56,147,.08)}
+    .progress-bar{height:3px;width:0;background:var(--red);transition:width .2s ease}
+    .deck-head{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 0 2px}
+    .deck-kicker{font-family:var(--hand);font-size:20px;color:var(--blue)}
+    .deck-count{font-size:14px;color:var(--blue);font-variant-numeric:tabular-nums}
+    .slide-nav{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:6px;padding:10px 0 12px}
+    .slide-dot{border:0;border-radius:999px;background:#fff;color:var(--blue);min-width:0;min-height:39px;padding:6px 2px;font-size:16px;font-weight:500}
+    .slide-dot[aria-current="step"]{background:var(--yellow);color:#000}
+    .module-slide{display:none;min-width:0;overflow-wrap:anywhere}
+    .module-slide.active{display:block}
+    .module-content{width:100%;min-width:0;max-width:100%;padding:clamp(12px,2.2vw,24px) 0 20px}
+    .module-panel{width:100%;max-width:100%;min-width:0;background:#fff;padding:clamp(10px,2vw,22px) 0 22px;box-shadow:none;border:0}
+    .slide-inner{max-width:100%;min-width:0}
+    .eyebrow{font-family:var(--hand);font-size:20px;color:var(--blue);margin:0 0 8px}
+    h1,h2,h3,h4{font-family:var(--font);color:#000;line-height:1.12;letter-spacing:-.018em;font-weight:550;margin:0 0 13px;overflow-wrap:break-word}
+    h1{font-size:clamp(38px,5.2vw,64px);max-width:850px}
+    h2{font-size:clamp(31px,4.1vw,48px)}
+    h3{font-size:clamp(22px,2.5vw,28px);color:var(--blue)}
+    h4{font-size:20px;color:var(--blue)}
+    p{margin:0 0 12px}
+    .subtitle{font-size:clamp(20px,2.2vw,25px);line-height:1.3;max-width:900px;margin:0 0 18px}
+    .blue{color:var(--blue)}
+    .hand{font-family:var(--hand);color:var(--blue)}
+    .red-underline{display:inline-block;border-bottom:3px solid var(--red);padding-bottom:3px}
+    .cover-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(250px,.75fr);gap:clamp(24px,4vw,52px);align-items:center}
+    .cover-side{border-left:2px solid var(--line);padding:10px 0 10px 24px}
+    .cover-side p{margin-bottom:15px}
+    .resource-line,.button-row,.phrase-row,.choice-row,.score-row{display:flex;flex-wrap:wrap;align-items:center;gap:9px}
+    .resource-pill{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:7px 12px;color:var(--blue);font-size:15px}
+    .button-row{margin-top:20px}
+    .btn,.reveal-button,.choice-button,.score-button{border:1px solid var(--blue);border-radius:999px;background:#fff;color:var(--blue);padding:11px 17px;min-height:44px;font-size:16px;font-weight:500;line-height:1.2;transition:background .15s ease,border-color .15s ease}
+    .btn.primary{background:var(--yellow);border-color:var(--yellow);color:#000}
+    .btn:disabled{opacity:.35;cursor:not-allowed}
+    .reveal-button{border-color:rgba(0,56,147,.45);padding:9px 14px}
+    .choice-button{padding:8px 12px;min-height:39px;font-size:15px}
+    .choice-button[aria-pressed="true"]{background:var(--yellow);border-color:var(--yellow);color:#000}
+    .score-button{padding:8px 12px;min-height:38px}
+    .grid{display:grid;gap:15px}
+    .grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .card{min-width:0;background:#fff;border:1px solid var(--line);border-radius:17px;padding:17px 18px;box-shadow:none}
+    .card p:last-child{margin-bottom:0}
+    .card h3{margin-bottom:8px}
+    .card-label{font-family:var(--hand);font-size:18px;color:var(--blue);margin-bottom:6px}
+    .prompt{border-left:3px solid var(--red);padding:8px 0 8px 16px;margin:15px 0 19px}
+    .prompt strong{font-weight:550}
+    .small{font-size:15px;color:#444}
+    .muted{color:#555}
+    .phrase-row{margin:14px 0}
+    .phrase{display:inline-block;border-bottom:2px solid var(--red);padding:3px 2px;font-size:17px}
+    .choice-status{font-size:15px;color:var(--blue);margin:10px 0 0;min-height:20px}
+    .support-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:17px}
+    .support{border-top:1px solid var(--line);padding:12px 2px 0}
+    .support strong{display:block;color:var(--blue);font-weight:550;margin-bottom:4px}
+    .reveal-panel{border-top:1px solid var(--line);margin-top:15px;padding:15px 0 0}
+    .reveal-panel[hidden]{display:none!important}
+    .teacher-note{margin-top:17px;border-top:1px solid rgba(0,56,147,.12);padding-top:10px}
+    .teacher-note summary{cursor:pointer;color:var(--blue);font-size:15px;font-weight:500}
+    .teacher-note p{font-size:15px;color:#444;margin:10px 0 0}
+    .video-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:12px 0}
+    .video-shell{width:min(100%,660px);aspect-ratio:16/9;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:14px 0}
+    .video-shell[hidden]{display:none!important}
+    .video-shell iframe{display:block;width:100%;height:100%;border:0}
+    .reading{font-size:18px;line-height:1.58;border-left:3px solid var(--blue);padding:6px 0 6px 18px;max-width:940px}
+    .case-number{font-size:14px;color:var(--red);font-weight:550;margin-bottom:6px}
+    .ranking{counter-reset:rank}
+    .rank-card{position:relative;padding-left:54px}
+    .rank-card:before{counter-increment:rank;content:counter(rank);position:absolute;left:17px;top:16px;width:25px;height:25px;border:1.5px solid var(--blue);border-radius:50%;display:grid;place-items:center;color:var(--blue);font-size:14px}
+    .scoreboard{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0 18px}
+    .score{border-bottom:2px solid var(--blue);padding:6px 12px;min-width:110px}
+    .score strong{font-size:24px;color:var(--blue);font-weight:550}
+    .game-round{border:1px solid var(--line);border-radius:17px;padding:18px;margin:12px 0}
+    .game-round[hidden]{display:none!important}
+    .round-label{font-family:var(--hand);color:var(--blue);font-size:18px;margin-bottom:6px}
+    .game-final{border-left:3px solid var(--yellow);padding:12px 16px;margin-top:14px}
+    .game-final[hidden]{display:none!important}
+    .debate-role{border-top:1px solid var(--line);padding:12px 0}
+    .debate-role:first-child{border-top:0}
+    .footer{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:1px solid rgba(0,56,147,.13);padding:15px 0 24px;margin-top:15px;font-size:14px;color:#444}
+    .footer a{color:var(--blue)}
+    .deck-controls{display:flex;justify-content:space-between;gap:12px;padding:12px 0 18px}
+    .deck-controls .btn{min-width:130px}
+    .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:760px){
+      .shell{width:min(100% - 26px,1120px)}
+      .cover-grid,.grid.two,.grid.three,.support-grid{grid-template-columns:1fr}
+      .cover-side{border-left:0;border-top:1px solid var(--line);padding:17px 0 0}
+      .top-label{display:none}
+      .brand img{width:41px;height:41px}
+      .module-content{padding-top:12px}
+      .module-panel{padding-top:10px}
+      .slide-dot{font-size:14px;min-height:35px}
+      .card{padding:15px}
+      .footer{font-size:13px}
+      .deck-kicker{font-size:18px}
+      .video-shell{aspect-ratio:16/9}
+    }
+    @media(max-width:380px){
+      .shell{width:calc(100% - 20px)}
+      .slide-nav{gap:2px}
+      .slide-dot{font-size:13px;padding:4px 0}
+      .btn,.reveal-button{font-size:15px;padding:9px 12px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand">
+        <img src="/MARCA/logotipo-original.png" alt="Logotipo oficial de Habla Español Club">
+        <div><div class="brand-name">HABLA ESPAÑOL CLUB</div><div class="brand-sub">Unidos por el español</div></div>
+      </div>
+      <div class="top-actions">
+        <span class="top-label">Presentación de clase · Tema 036</span>
+        <button class="icon-btn" id="fullscreenBtn" type="button" aria-label="Activar pantalla completa" title="Pantalla completa">⛶</button>
+      </div>
+    </div>
+    <div class="progress-wrap" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+  </header>
+
+  <main class="shell">
+    <div class="deck-head">
+      <div class="deck-kicker">Una clase para conversar, evaluar y decidir</div>
+      <div class="deck-count" id="slideCount" aria-live="polite">00 / 09</div>
+    </div>
+    <nav class="slide-nav" id="slideNav" aria-label="Navegación de la presentación"></nav>
+
+    <!-- 00 · PORTADA -->
+    <section class="module-slide active" data-module="0" aria-label="Portada del tema 036">
+      <div class="module-content">
+        <div class="module-panel">
+          <div class="slide-inner">
+            <div class="cover-grid">
+              <div>
+                <p class="eyebrow">TEMA 036 · OPINIONES Y DEBATES</p>
+                <h1>¿Deberíamos dejar que la <span class="blue">inteligencia artificial</span> decida por nosotros?</h1>
+                <p class="subtitle">Usamos sistemas inteligentes para orientarnos, elegir y crear. La pregunta es cuánto control queremos conservar.</p>
+                <div class="resource-line">
+                  <span class="resource-pill">9 actividades</span>
+                  <span class="resource-pill">B1–B2</span>
+                  <span class="resource-pill">Vídeo + música + juego</span>
+                </div>
+                <div class="button-row"><button class="btn primary" type="button" data-go="1">Comenzar la clase →</button></div>
+              </div>
+              <div class="cover-side">
+                <p class="card-label">Hoy vamos a practicar</p>
+                <p>Debatir usos cotidianos de la IA, distinguir qué decisiones podemos delegar, evaluar riesgos y defender límites.</p>
+                <p class="card-label">Expresiones para argumentar</p>
+                <div class="phrase-row">
+                  <span class="phrase">Le confiaría…</span>
+                  <span class="phrase">No dejaría que…</span>
+                  <span class="phrase">El riesgo es…</span>
+                  <span class="phrase">Siempre que…</span>
+                </div>
+                <p class="small">No buscamos una respuesta única. Buscamos razones, condiciones y límites claros.</p>
+              </div>
+            </div>
+            <div class="teacher-note">
+              <p><strong>Guía para la profesora:</strong> la sesión avanza de experiencias cotidianas a criterios de confianza y, finalmente, a una postura argumentada. Los botones de cada ejercicio abren pistas, ejemplos o información que conviene revelar en el momento indicado.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 · RELACIÓNATE -->
+    <section class="module-slide" data-module="1" aria-label="Actividad 1: ¿Quién lleva el volante?">
+      <div class="module-content">
+        <div class="module-panel">
+          <div class="slide-inner">
+            <p class="eyebrow">ACTIVIDAD 01 · RELACIÓNATE</p>
+            <h2>¿Quién lleva el volante?</h2>
+            <p class="subtitle">Piensa en decisiones cotidianas. ¿Cuáles dejarías en manos de una IA, cuáles consultarías y cuáles tomarías tú?</p>
+            <div class="prompt"><strong>Elige una posición en cada caso.</strong> No hay respuestas correctas: lo importante es explicar qué te hace confiar o desconfiar.</div>
+            <div class="grid two">
+              <article class="card decision-card">
+                <div class="card-label">Caso 1 · Movilidad</div>
+                <h3>Una aplicación propone la ruta más rápida para llegar a casa.</h3>
+                <div class="choice-row">
+                  <button class="choice-button" type="button" data-pick="Le confiaría la ruta">Le confiaría</button>
+                  <button class="choice-button" type="button" data-pick="La consultaría">La consultaría</button>
+                  <button class="choice-button" type="button" data-pick="Decidiría yo">Decidiría yo</button>
+                </div>
+                <p class="choice-status" aria-live="polite">Tu posición aparecerá aquí.</p>
+              </article>
+              <article class="card decision-card">
+                <div class="card-label">Caso 2 · Comunicación</div>
+                <h3>Una IA redacta un correo delicado para un cliente o compañero.</h3>
+                <div class="choice-row">
+                  <button class="choice-button" type="button" data-pick="Le confiaría el borrador">Le confiaría el borrador</button>
+                  <button class="choice-button" type="button" data-pick="La usaría como apoyo">La usaría como apoyo</button>
+                  <button class="choice-button" type="button" data-pick="Lo escribiría yo">Lo escribiría yo</button>
+                </div>
+                <p class="choice-status" aria-live="polite">Tu posición aparecerá aquí.</p>
+              </article>
+              <article class="card decision-card">
+                <div class="card-label">Caso 3 · Entretenimiento</div>
+                <h3>Una plataforma elige qué vídeos o canciones mostrarte.</h3>
+                <div class="choice-row">
+                  <button class="choice-button" type="button" data-pick="Aceptaría sus sugerencias">Aceptaría sus sugerencias</button>
+                  <button class="choice-button" type="button" data-pick="Las revisaría">Las revisaría</button>
+                  <button class="choice-button" type="button" data-pick="Preferiría elegir">Preferiría elegir</button>
+                </div>
+                <p class="choice-status" aria-live="polite">Tu posición aparecerá aquí.</p>
+              </article>
+              <article class="card decision-card">
+                <div class="card-label">Caso 4 · Selección</div>
+                <h3>Una empresa utiliza IA para ordenar los currículos que recibirá una persona de selección.</h3>
+                <div class="choice-row">
+                  <button class="choice-button" type="button" data-pick="Le confiaría el filtro inicial">Le confiaría el filtro inicial</button>
+                  <button class="choice-button" type="button" data-pick="La usaría con revisión humana">La usaría con revisión humana</button>
+                  <button class="choice-button" type="button" data-pick="No la usaría para eso">No la usaría para eso</button>
+                </div>
+                <p class="choice-status" aria-live="polite">Tu posición aparecerá aquí.</p>
+              </article>
+            </div>
+            <div class="prompt">
+              <strong>Una situación un poco absurda:</strong> una IA elige tu foto de perfil y selecciona justo la imagen en la que estás estornudando. ¿La publicarías porque el algoritmo dice que es la más atractiva?
+            </div>
+            <div class="support-grid">
+              <div class="support"><strong>Apoyo B1</strong><p>«Le confiaría esta tarea porque…» / «Prefiero decidir yo porque…»</p></div>
+              <div class="support"><strong>Reto B2</strong><p>¿Cambiaría tu respuesta si la decisión fuera difícil de corregir o afectara a otra persona?</p></div>
+            </div>
+            <div class="teacher-note">
+              <p><strong>Adaptación:</strong> con una persona, la profesora toma una postura contraria en dos casos; con grupos, cada pareja elige un caso y explica su criterio. Pide razones, no solo preferencias.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · SHORT AUDIOVISUAL -->
+    <section class="module-slide" data-module="2" aria-label="Actividad 2: La IA ya está en tu día">
+      <div class="module-content">
+        <div class="module-panel">
+          <div class="slide-inner">
+            <p class="eyebrow">ACTIVIDAD 02 · OBSERVA</p>
+            <h2>La IA ya está en tu día</h2>
+            <p class="subtitle">Antes de ver el Short, intenta recordar tres momentos en los que una aplicación parece anticiparse a lo que necesitas.</p>
+            <div class="grid two">
+              <div class="card">
+                <h3>Antes de reproducir</h3>
+                <ul>
+                  <li>¿Qué aplicaciones utilizas para orientarte o elegir?</li>
+                  <li>¿Alguna vez has seguido una recomendación sin comprobarla?</li>
+                  <li>¿Qué te hace confiar en esa sugerencia?</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Mientras observas</h3>
+                <ul>
+                  <li>Identifica los ejemplos cotidianos que menciona la entrevistada.</li>
+                  <li>Escucha qué tienen en común las recomendaciones.</li>
+                  <li>Detecta qué ejemplo se relaciona con crear contenido nuevo.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="video-actions">
+              <button class="btn primary" type="button" data-load-video="aissa">Reproducir el Short</button>
+              <a href="https://www.youtube.com/shorts/OvKghIkfk3Y" target="_blank" rel="noopener noreferrer">Abrir en YouTube ↗</a>
+              <span class="small">Aissa García · 1:16</span>
+            </div>
+            <div class="video-shell" id="player-aissa" hidden>
+              <iframe title="Aissa García: La IA es parte de nuestra vida diaria y no lo sabemos" data-src="https://www.youtube-nocookie.com/embed/OvKghIkfk3Y?rel=0" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture;web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="button-row"><button class="reveal-button" type="button" data-reveal="aissa-analysis" aria-expanded="false" aria-controls="aissa-analysis">Mostrar una clave para analizarlo</button></div>
+            <div class="reveal-panel" id="aissa-analysis" hidden>
+              <h3>Dos familias de sistemas que conviene distinguir</h3>
+              <div class="grid two">
+                <div><p><strong class="blue">IA predictiva y sistemas de recomendación</strong></p><p>Analizan datos y patrones para estimar qué puede ocurrir o qué opción puede resultar relevante. Ejemplos: estimaciones de tráfico y recomendaciones de contenido.</p></div>
+                <div><p><strong class="blue">IA generativa</strong></p><p>Produce contenido nuevo, como texto, imágenes o audio, a partir de patrones aprendidos durante su entrenamiento.</p></div>
+              </div>
+              <p class="prompt">El vídeo resume la IA mediante la probabilidad. Es una explicación útil para algunos sistemas, pero no describe por completo todas las técnicas de inteligencia artificial.</p>
+              <p><strong>Pregunta para conversar:</strong> ¿Una aplicación que recomienda una ruta está decidiendo por ti o te está ofreciendo información para que decidas?</p>
+            </div>
+            <div class="support-grid">
+              <div class="support"><strong>Apoyo B1</strong><p>«La aplicación calcula…», «Me recomienda…», «Yo decido si…»</p></div>
+              <div class="support"><strong>Reto B2</strong><p>Explica por qué una recomendación basada en datos no equivale necesariamente a una decisión autónoma.</p></div>
+            </div>
+            <div class="teacher-note">
+              <p><strong>Adaptación:</strong> todos ven el Short desde la pantalla compartida. Con una persona, contrasta sus ejemplos con los de la profesora; en grupos, cada pareja clasifica un ejemplo y lo explica.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · SHORT MUSICAL -->
+    <section class="module-slide" data-module="3" aria-label="Actividad 3: Bonito, Bonito, el cafecito">
+      <div class="module-content">
+        <div class="module-panel">
+          <div class="slide-inner">
+            <p class="eyebrow">ACTIVIDAD 03 · ESCUCHA Y DESCUBRE</p>
+            <h2>Bonito, Bonito: el cafecito riquito</h2>
+            <p class="subtitle">Escucha primero sin conocer el origen del audio. Concéntrate en la voz, el ritmo y la sensación que te produce.</p>
+            <div class="video-actions">
+              <button class="btn primary" type="button" data-load-video="cafecito">Reproducir el Short</button>
+              <a href="https://www.youtube.com/shorts/jogEEWzwXRE" target="_blank" rel="noopener noreferrer">Abrir el Short en YouTube ↗</a>
+              <span class="small">Audio de referencia: «un cafecito riquito riquito»</span>
+            </div>
+            <div class="video-shell" id="player-cafecito" hidden>
+              <iframe title="Short de referencia: un cafecito riquito riquito" data-src="https://www.youtube-nocookie.com/embed/jogEEWzwXRE?rel=0" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture;web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="grid two">
+              <div class="card">
+                <div class="card-label">Antes de revelar</div>
+                <h3>¿Qué percibes?</h3>
+                <ul>
+                  <li>¿Cómo describirías la voz: tierna, espontánea, alegre, artificial?</li>
+                  <li>¿Qué sensación te produce la repetición?</li>
+                  <li>¿Te imaginas a alguien cantando mientras prepara un café?</li>
+                </ul>
+              </div>
+              <div class="card">
+                <div class="card-label">Después de escuchar</div>
+                <h3>¿Qué imaginaste?</h3>
+                <ul>
+                  <li>¿Quién crees que está detrás de la voz?</li>
+                  <li>¿Qué detalle te hizo pensar eso?</li>
+                  <li>¿Qué parte se te quedó en la cabeza?</li>
+                </ul>
+              </div>
+            </div>
+            <div class="button-row"><button class="reveal-button" type="button" data-reveal="song-origin" aria-expanded="false" aria-controls="song-origin">Revelar la información sobre su origen</button></div>
+            <div class="reveal-panel" id="song-origin" hidden>
+              <p class="card-label">El giro</p>
+              <h3>Este audio se presenta como una creación hecha con inteligencia artificial.</h3>
+              <p>Según la información compartida para esta actividad, la voz, el ritmo y la canción se habrían generado con IA, sin una interpretación vocal humana convencional en un estudio.</p>
+              <p class="prompt"><strong>Una pregunta importante:</strong> ¿qué fuente necesitaríamos para confirmar exactamente qué elementos fueron generados con IA y cuáles, si los hay, fueron editados o aportados por una persona?</p>
+            </div>
+            <div class="button-row"><button class="reveal-button" type="button" data-reveal="song-script" aria-expanded="false" aria-controls="song-script">Abrir el guion de revelación para la profesora</button></div>
+            <div class="reveal-panel" id="song-script" hidden>
+              <p><strong>Si has confirmado la procedencia:</strong> «Pues aquí va el plot twist: esa voz, el ritmo y la canción no los interpretó una persona en un estudio. Todo esto se creó con inteligencia artificial».</p>
+              <p><strong>Si no tienes una fuente verificable:</strong> «Este audio se presenta como creado con IA. No podemos confirmar solo por el Short qué partes se generaron artificialmente. ¿Qué necesitaríamos comprobar?».</p>
+            </div>
+            <h3>Después de la revelación</h3>
+            <ol>
+              <li>¿Cambia lo que sentiste al saber que el audio se presenta como creado con IA?</li>
+              <li>¿Una canción generada con IA puede llegar al corazón o solo quedarse en la cabeza?</li>
+              <li>¿Hace falta una voz humana real para transmitir emoción?</li>
+              <li>¿Qué te sorprende más: su viralidad o lo natural que puede parecernos?</li>
+            </ol>
+            <div class="support-grid">
+              <div class="support"><strong>Apoyo B1</strong><p>«Me transmite…», «Me sorprendió que…», «Ahora pienso que…»</p></div>
+              <div class="support"><strong>Reto B2</strong><p>Distingue entre la emoción que experimenta quien escucha y la intención o experiencia de quien crea una obra.</p></div>
+            </div>
+            <div class="teacher-note">
+              <p><strong>Importante:</strong> no pulses la revelación antes de escuchar las primeras impresiones. La procedencia del audio no se puede demostrar únicamente por cómo suena. Usa la versión directa del guion solo si has verificado la información.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · PRIORIZACIÓN -->
+    <section class="module-slide" data-module="4" aria-label="Actividad 4: El coste de equivocarse">
+      <div class="module-content">
+        <div class="module-panel">
+          <div class="slide-inner">
+            <p class="eyebrow">ACTIVIDAD 04 · OBSERVA</p>
+            <h2>El coste de equivocarse</h2>
+            <p class="subtitle">No todas las decisiones tienen las mismas consecuencias. Ordena estos casos de menor a mayor coste si la IA se equivoca.</p>
+            <div class="grid three ranking">
+              <article class="card rank-card">
+                <div class="card-label">Situación A</div>
+                <h3>Una lista de reproducción</h3>
+                <p>La plataforma selecciona música que no te gusta para una cena.</p>
+              </article>
+              <article class="card rank-card">
+                <div class="card-label">Situación B</div>
+                <h3>Un mensaje importante</h3>
+                <p>La IA redacta y envía sin revisión una respuesta a un cliente molesto.</p>
+              </article>
+              <article class="card rank-card">
+                <div class="card-label">Situación C</div>
+                <h3>Una oportunidad laboral</h3>
+                <p>Un sistema descarta automáticamente una candidatura sin que nadie revise el motivo.</p>
+              </article>
+            </div>
+            <div class="prompt"><strong>Negocia el orden:</strong> ¿cuál pondrías primero y cuál al final? No basta con decir que una decisión es importante: explica qué podría ocurrir y a quién afectaría.</div>
+            <div class="button-row"><button class="reveal-button" type="button" data-reveal="cost-criteria" aria-expanded="false" aria-controls="cost-criteria">Mostrar criterios para comparar</button></div>
+            <div class="reveal-panel" id="cost-criteria" hidden>
+              <div class="grid two">
+                <div><h3>Impacto</h3><p>¿Qué consecuencias tendría un error para la persona afectada?</p></div>
+                <div><h3>Reversibilidad</h3><p>¿Se puede corregir fácilmente o el daño puede ser difícil de reparar?</p></div>
+                <div><h3>Responsabilidad</h3><p>¿Quién debe explicar y responder por la decisión?</p></div>
+                <div><h3>Control</h3><p>¿Hay una persona que pueda revisar, detener o impugnar el resultado?</p></div>
+              </div>
+              <p class="small">El orden puede variar si cambian las circunstancias. Lo importante es que el criterio sea coherente.</p>
+            </div>
+            <div class="support-grid">
+              <div class="support"><strong>Apoyo B1</strong><p>«El mayor riesgo está en… porque…» / «Este caso es menos grave porque…»</p></div>
+              <div class="support"><strong>Reto B2</strong><p>¿Puede una decisión de bajo impacto convertirse en una de alto impacto si se repite a gran escala?</p></div>
+            </div>
+            <div class="teacher-note">
+              <p><strong>Adaptación:</strong> una persona ordena los casos y recibe una objeción de la profesora; en grupos, cada equipo propone un orden y debe negociar una clasificación común.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · DETECTIVES -->
+    <section class="module-slide" data-module="5" aria-label="Actividad 5: Cazadores de riesgos">
+      <div class="module-content">
+        <div class="module-panel">
+          <div class="slide-inner">
+            <p class="eyebrow">ACTIVIDAD 05 · OBSERVA</p>
+            <h2>Cazadores de riesgos</h2>
+            <p class="subtitle">Lee cada expediente. Detecta qué podría salir mal y qué medida ayudaría a reducir el riesgo.</p>
+            <div class="grid two">
+              <article class="card">
+                <div class="case-number">EXPEDIENTE 01</div>
+                <h3>El currículo invisible</h3>
+                <p>Una empresa entrena un sistema con datos de contrataciones anteriores. El sistema empieza a dar peores puntuaciones a personas que han tenido pausas largas en su trayectoria laboral.</p>
+                <button class="reveal-button" type="button" data-reveal="risk-one" aria-expanded="false" aria-controls="risk-one">Revelar una posible alerta</button>
+                <div class="reveal-panel" id="risk-one" hidden><p><strong>Riesgo posible:</strong> sesgo. Los datos históricos pueden reproducir desigualdades o utilizar señales indirectas que no miden la capacidad real.</p><p><strong>Control:</strong> revisar criterios, evaluar resultados y permitir una revisión humana de las candidaturas.</p></div>
+              </article>
+              <article class="card">
+                <div class="case-number">EXPEDIENTE 02</div>
+                <h3>El dato de más</h3>
+                <p>Una herramienta gratuita pide que introduzcas documentos personales y detalles privados para ofrecer una recomendación que podría darte con mucha menos información.</p>
+                <button class="reveal-button" type="button" data-reveal="risk-two" aria-expanded="false" aria-controls="risk-two">Revelar una posible alerta</button>
+                <div class="reveal-panel" id="risk-two" hidden><p><strong>Riesgo posible:</strong> privacidad. No siempre sabemos cómo se almacenan, utilizan o comparten los datos que entregamos.</p><p><strong>Control:</strong> compartir solo lo necesario, revisar las condiciones y evitar introducir información sensible sin una razón clara.</p></div>
+              </article>
+              <article class="card">
+                <div class="case-number">EXPEDIENTE 03</div>
+                <h3>La fuente fantasma</h3>
+                <p>Una IA responde con seguridad y menciona un estudio con autor, fecha y título. Cuando intentas localizarlo, no encuentras ninguna publicación con esos datos.</p>
+                <button class="reveal-button" type="button" data-reveal="risk-three" aria-expanded="false" aria-controls="risk-three">Revelar una posible alerta</button>
+                <div class="reveal-panel" id="risk-three" hidden><p><strong>Riesgo posible:</strong> alucinación o información inventada. Una respuesta convincente no garantiza que los datos o las fuentes existan.</p><p><strong>Control:</strong> abrir la fuente original, comprobar autoría y fecha y contrastar la información importante.</p></div>
+              </article>
+              <article class="card">
+                <div class="case-number">EXPEDIENTE 04</div>
+                <h3>La recomendación automática</h3>
+                <p>Una persona acepta siempre la primera recomendación de una aplicación. Deja de comprobar si el contexto ha cambiado o si la sugerencia sigue siendo adecuada.</p>
+                <button class="reveal-button" type="button" data-reveal="risk-four" aria-expanded="false" aria-controls="risk-four">Revelar una posible alerta</button>
+                <div class="reveal-panel" id="risk-four" hidden><p><strong>Riesgo posible:</strong> exceso de confianza en la automatización. La persona puede dejar de ejercer su propio criterio.</p><p><strong>Control:</strong> comprobar la recomendación, reconocer cuándo faltan datos y conservar la posibilidad de rechazarla.</p></div>
+              </article>
+            </div>
+            <div class="prompt"><strong>Tu trabajo:</strong> elige el expediente que te parece más preocupante. Explica el riesgo y propone una condición para confiar en esa herramienta.</div>
+            <div class="support-grid">
+              <div class="support"><strong>Apoyo B1</strong><p>«El problema puede ser…», «Para evitarlo, pediría…»</p></div>
+              <div class="support"><strong>Reto B2</strong><p>¿Qué riesgo es más difícil de detectar antes de que cause un daño? Justifica tu respuesta.</p></div>
+            </div>
+            <div class="teacher-note">
+              <p><strong>Adaptación:</strong> con una persona, analiza dos expedientes y compara; con grupos, asigna uno a cada pareja y después intercambian hallazgos. Las alertas son ejemplos posibles, no diagnósticos automáticos de cada sistema.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · LECTURA -->
+    <section class="module-slide" data-module="6" aria-label="Actividad 6: ¿Quién responde por la decisión?">
+      <div class="module-content">
+        <div class="module-panel">
+          <div class="slide-inner">
+            <p class="eyebrow">ACTIVIDAD 06 · LEE Y CONTRASTA</p>
+            <h2>¿Quién responde por la decisión?</h2>
+            <p class="subtitle">Lee este caso hipotético. Después, separa lo que sabemos de lo que estamos suponiendo.</p>
+            <div class="card">
+              <div class="card-label">Lectura · Un filtro que parece neutral</div>
+              <div class="reading">
+                Una empresa recibe cientos de candidaturas y decide utilizar un sistema de inteligencia artificial para ordenarlas. La herramienta compara los currículos con datos de procesos de selección anteriores y asigna una puntuación a cada persona. El equipo de contratación revisa primero las candidaturas con mejores resultados.
+
+                <br><br>La empresa considera que así ahorra tiempo. Sin embargo, algunas personas quedan fuera sin saber qué criterio influyó en su puntuación. Además, los datos del pasado pueden contener preferencias o desigualdades que no deberían repetirse. Si el sistema interpreta una pausa laboral como una señal negativa, podría perjudicar a alguien que tiene la experiencia necesaria para el puesto.
+
+                <br><br>La herramienta puede ayudar a organizar información, pero la empresa sigue necesitando criterios claros, revisión y una forma de explicar las decisiones que afectan a las personas.
+              </div>
+            </div>
+            <div class="grid two" style="margin-top:16px">
+              <div class="card">
+                <h3>Comprueba la lectura</h3>
+                <ol>
+                  <li>¿Qué tarea realiza el sistema?</li>
+                  <li>¿Qué ventaja busca la empresa?</li>
+                  <li>¿Qué información no reciben las personas descartadas?</li>
+                  <li>¿Qué podría ocurrir si los datos del pasado contienen sesgos?</li>
+                </ol>
+              </div>
+              <div class="card">
+                <h3>Ve más allá del texto</h3>
+                <ul>
+                  <li>¿Ahorrar tiempo justifica utilizar esta herramienta?</li>
+                  <li>¿Quién debería explicar una decisión injusta?</li>
+                  <li>¿Qué posibilidad de revisión debería tener una persona afectada?</li>
+                </ul>
+              </div>
+            </div>
+            <div class="button-row"><button class="reveal-button" type="button" data-reveal="reading-key" aria-expanded="false" aria-controls="reading-key">Mostrar una guía de lectura</button></div>
+            <div class="reveal-panel" id="reading-key" hidden>
+              <h3>Una forma de distinguir la información</h3>
+              <p><strong>Dato del caso:</strong> la empresa utiliza una herramienta que ordena candidaturas mediante puntuaciones.</p>
+              <p><strong>Inferencia razonable:</strong> si los datos reflejan desigualdades anteriores, el sistema podría repetirlas.</p>
+              <p><strong>Opinión que se puede debatir:</strong> la empresa no debería descartar candidaturas sin una revisión adecuada.</p>
+              <p class="small">La lectura es un caso inventado para debatir; no describe una empresa concreta.</p>
+            </div>
+            <div class="support-grid">
+              <div class="support"><strong>Apoyo B1</strong><p>«El texto dice que…», «Me preocupa que…», «La empresa debería…»</p></div>
+              <div class="support"><strong>Reto B2</strong><p>¿Qué diferencia hay entre explicar cómo se obtuvo una puntuación y justificar por qué una decisión es aceptable?</p></div>
+            </div>
+            <div class="teacher-note">
+              <p><strong>Adaptación:</strong> una persona lee un párrafo en voz alta y resume; en grupos, cada pareja identifica un dato, una inferencia y una pregunta que el texto no resuelve.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 · JUEGO -->
+    <section class="module-slide" data-module="7" aria-label="Actividad 7: El comité de confianza">
+      <div class="module-content">
+        <div class="module-panel">
+          <div class="slide-inner">
+            <p class="eyebrow">ACTIVIDAD 07 · JUEGO</p>
+            <h2>El comité de confianza</h2>
+            <p class="subtitle">Tres retos para decidir qué puede hacer la IA y qué control debería conservar una persona.</p>
+            <div class="grid two">
+              <div class="card">
+                <h3>Objetivo</h3>
+                <p>Conseguir puntos por justificar decisiones con un beneficio, un riesgo y una condición de uso.</p>
+              </div>
+              <div class="card">
+                <h3>Reglas</h3>
+                <p>En cada ronda, los equipos presentan sus razones. Se gana un punto por cada aportación concreta y justificada. Después de tres rondas, gana el equipo con más puntos.</p>
+              </div>
+            </div>
+            <div class="scoreboard" aria-live="polite">
+              <div class="score">Equipo A<br><strong id="scoreA">0</strong> puntos</div>
+              <div class="score">Equipo B<br><strong id="scoreB">0</strong> puntos</div>
+              <div class="score">Ronda<br><strong id="roundLabel">1 / 3</strong></div>
+            </div>
+            <div class="game-round" data-round="0">
+              <p class="round-label">RONDA 1 · UNA COMPRA INESPERADA</p>
+              <h3>La IA organiza una cena para cuatro personas y añade cuarenta kilos de cilantro a la lista de la compra.</h3>
+              <p>¿Qué parte de la planificación le confiarías? ¿Qué revisarías antes de comprar?</p>
+              <button class="reveal-button" type="button" data-reveal="game-hint-1" aria-expanded="false" aria-controls="game-hint-1">Mostrar una pista</button>
+              <div class="reveal-panel" id="game-hint-1" hidden><p>Piensa en la utilidad de organizar una lista, la posibilidad de interpretar mal una cantidad y la revisión antes de realizar un pedido.</p></div>
+            </div>
+            <div class="game-round" data-round="1" hidden>
+              <p class="round-label">RONDA 2 · UNA SELECCIÓN DELICADA</p>
+              <h3>Un sistema ordena candidaturas y recomienda descartar a quienes tienen pausas en su trayectoria laboral.</h3>
+              <p>¿Qué información debería revisar una persona antes de aceptar esa recomendación?</p>
+              <button class="reveal-button" type="button" data-reveal="game-hint-2" aria-expanded="false" aria-controls="game-hint-2">Mostrar una pista</button>
+              <div class="reveal-panel" id="game-hint-2" hidden><p>Piensa en los criterios utilizados, la relación entre una pausa y la capacidad real y la posibilidad de revisar cada candidatura.</p></div>
+            </div>
+            <div class="game-round" data-round="2" hidden>
+              <p class="round-label">RONDA 3 · UN MENSAJE QUE SALE SOLO</p>
+              <h3>Una IA redacta una respuesta a una reclamación y la envía automáticamente sin que nadie la lea.</h3>
+              <p>¿Qué podría salir mal y qué paso humano añadirías?</p>
+              <button class="reveal-button" type="button" data-reveal="game-hint-3" aria-expanded="false" aria-controls="game-hint-3">Mostrar una pista</button>
+              <div class="reveal-panel" id="game-hint-3" hidden><p>Piensa en el tono, los datos del caso, la promesa que puede hacer la empresa y la responsabilidad por el mensaje enviado.</p></div>
+            </div>
+            <div class="score-row">
+              <button class="score-button" type="button" data-game-point="A">+1 Equipo A</button>
+              <button class="score-button" type="button" data-game-point="B">+1 Equipo B</button>
+              <button class="btn primary" type="button" data-game-next>Siguiente reto →</button>
+              <button class="reveal-button" type="button" data-game-reset>Reiniciar partida</button>
+            </div>
+            <div class="game-final" id="game-final" hidden aria-live="polite">
+              <h3 id="game-result">Resultado</h3>
+              <p>Si hay empate, cada equipo debe proponer una regla que permita aprovechar la IA sin entregar el control de la decisión.</p>
+            </div>
+            <div class="support-grid">
+              <div class="support"><strong>Apoyo B1</strong><p>«La ventaja sería…», «El problema es…», «Yo añadiría…»</p></div>
+              <div class="support"><strong>Reto B2</strong><p>Defiende una condición que reduzca el riesgo sin eliminar toda la utilidad de la herramienta.</p></div>
+            </div>
+            <div class="teacher-note">
+              <p><strong>Con una persona:</strong> Equipo A es el estudiante y Equipo B es la profesora, que presenta una objeción. Con grupos, divide en dos equipos; todos deben aportar al menos una razón. Los puntos reconocen argumentos justificados, no opiniones idénticas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 · DEBATE -->
+    <section class="module-slide" data-module="8" aria-label="Actividad 8: Defiende tu límite">
+      <div class="module-content">
+        <div class="module-panel">
+          <div class="slide-inner">
+            <p class="eyebrow">ACTIVIDAD 08 · LÁNZATE</p>
+            <h2>Defiende tu límite</h2>
+            <p class="subtitle">Una organización quiere que un sistema de IA tome decisiones sobre las personas sin revisión humana. El grupo debe recomendar qué límites establecer.</p>
+            <div class="prompt"><strong>Pregunta central:</strong> ¿En qué decisiones debería ser obligatorio que una persona revise el resultado antes de actuar?</div>
+            <div class="grid two">
+              <article class="card debate-role">
+                <div class="card-label">Perspectiva 1</div>
+                <h3>La persona afectada</h3>
+                <p>Necesita entender por qué se tomó la decisión y cómo puede pedir que la revisen.</p>
+                <button class="reveal-button" type="button" data-reveal="role-one" aria-expanded="false" aria-controls="role-one">Abrir argumento posible</button>
+                <div class="reveal-panel" id="role-one" hidden><p>«No debería aceptar una decisión que me afecta si no puedo conocer el motivo ni solicitar una revisión».</p></div>
+              </article>
+              <article class="card debate-role">
+                <div class="card-label">Perspectiva 2</div>
+                <h3>La organización</h3>
+                <p>Busca ahorrar tiempo, ordenar información y mantener un proceso consistente.</p>
+                <button class="reveal-button" type="button" data-reveal="role-two" aria-expanded="false" aria-controls="role-two">Abrir argumento posible</button>
+                <div class="reveal-panel" id="role-two" hidden><p>«La IA puede ayudarnos a procesar muchos datos, siempre que tengamos controles y no deleguemos toda la responsabilidad».</p></div>
+              </article>
+              <article class="card debate-role">
+                <div class="card-label">Perspectiva 3</div>
+                <h3>El equipo técnico</h3>
+                <p>Conoce el funcionamiento general, pero no puede garantizar que cada resultado sea correcto.</p>
+                <button class="reveal-button" type="button" data-reveal="role-three" aria-expanded="false" aria-controls="role-three">Abrir argumento posible</button>
+                <div class="reveal-panel" id="role-three" hidden><p>«El sistema puede detectar patrones, pero sus resultados necesitan evaluación, contexto y supervisión».</p></div>
+              </article>
+              <article class="card debate-role">
+                <div class="card-label">Perspectiva 4</div>
+                <h3>La persona responsable</h3>
+                <p>Debe responder por la decisión final y por sus consecuencias.</p>
+                <button class="reveal-button" type="button" data-reveal="role-four" aria-expanded="false" aria-controls="role-four">Abrir argumento posible</button>
+                <div class="reveal-panel" id="role-four" hidden><p>«La herramienta puede apoyar el proceso, pero la organización debe poder explicar y revisar lo que hace».</p></div>
+              </article>
+            </div>
+            <h3 style="margin-top:22px">Banco de expresiones</h3>
+            <div class="phrase-row">
+              <span class="phrase">Le confiaría…</span>
+              <span class="phrase">No dejaría que…</span>
+              <span class="phrase">El riesgo es…</span>
+              <span class="phrase">Siempre que…</span>
+            </div>
+            <div class="prompt">
+              <strong>Ronda de debate:</strong> presenta tu postura, escucha una objeción, responde y termina con una condición concreta para confiar en la IA.
+            </div>
+            <div class="button-row"><button class="reveal-button" type="button" data-reveal="debate-counter" aria-expanded="false" aria-controls="debate-counter">Mostrar una objeción para responder</button></div>
+            <div class="reveal-panel" id="debate-counter" hidden>
+              <p>«Si una IA puede analizar más información y cometer menos errores que una persona en una tarea concreta, ¿por qué no dejar que tome la decisión final?».</p>
+              <p>Responde sin rechazar la tecnología por principio: explica qué tipo de decisión, qué evidencia y qué controles cambiarían tu postura.</p>
+            </div>
+            <div class="support-grid">
+              <div class="support"><strong>Apoyo B1</strong><p>Expresa tu opinión y da una razón: «Estoy a favor/en contra porque…».</p></div>
+              <div class="support"><strong>Reto B2</strong><p>Concede una ventaja a la postura contraria y después explica por qué mantienes tu límite.</p></div>
+            </div>
+            <div class="teacher-note">
+              <p><strong>Adaptación:</strong> con una persona, la profesora interpreta dos perspectivas distintas; con grupos, asigna roles y rota los argumentos. Nadie tiene que compartir experiencias privadas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 · ESCRITURA Y CIERRE -->
+    <section class="module-slide" data-module="9" aria-label="Actividad 9: Mi regla de confianza">
+      <div class="module-content">
+        <div class="module-panel">
+          <div class="slide-inner">
+            <p class="eyebrow">ACTIVIDAD 09 · LÁNZATE Y CIERRA</p>
+            <h2>Mi regla de confianza</h2>
+            <p class="subtitle">Escribe una recomendación breve para alguien que utiliza inteligencia artificial en su vida diaria.</p>
+            <div class="card">
+              <div class="card-label">Tu encargo</div>
+              <h3>Redacta una regla personal de uso responsable</h3>
+              <p>Escribe entre 3 y 6 frases. Explica qué tarea sí delegarías, qué decisión conservarías y qué condición pondrías antes de confiar.</p>
+              <p><strong>Destinatario:</strong> una persona cercana o un compañero que suele aceptar las recomendaciones de la IA sin revisarlas.</p>
+            </div>
+            <h3 style="margin-top:20px">Puedes apoyarte en estas estructuras</h3>
+            <div class="phrase-row">
+              <span class="phrase">Le confiaría…</span>
+              <span class="phrase">No dejaría que…</span>
+              <span class="phrase">El riesgo es…</span>
+              <span class="phrase">Siempre que…</span>
+            </div>
+            <div class="grid two">
+              <div class="card">
+                <h3>Comprueba tu texto</h3>
+                <ul>
+                  <li>¿Incluiste una tarea delegable?</li>
+                  <li>¿Explicaste un límite?</li>
+                  <li>¿Nombraste un riesgo?</li>
+                  <li>¿Propusiste una condición concreta?</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Después de escribir</h3>
+                <ul>
+                  <li>Lee tu regla en voz alta.</li>
+                  <li>Escucha otra postura.</li>
+                  <li>Si cambiaste de opinión, explica qué razón te convenció.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="button-row"><button class="reveal-button" type="button" data-reveal="writing-model" aria-expanded="false" aria-controls="writing-model">Mostrar un ejemplo posible</button></div>
+            <div class="reveal-panel" id="writing-model" hidden>
+              <p>«Le confiaría a la IA la organización de información y la preparación de un primer borrador. No dejaría que tomara por mí decisiones que afectan a la salud, al trabajo o a los derechos de otra persona. El riesgo es aceptar una respuesta sin comprobar de dónde viene. La utilizaría siempre que pueda revisar el resultado y corregirlo».</p>
+              <p class="small">Es un modelo para observar la estructura, no una respuesta que debas copiar.</p>
+            </div>
+            <div class="prompt">
+              <strong>Para cerrar:</strong> después de todo lo que conversamos, ¿qué decisión seguirías tomando personalmente, aunque una IA pudiera darte una respuesta inmediata?
+            </div>
+            <p class="hand">Una herramienta puede ayudar a pensar. El criterio también necesita una persona.</p>
+            <div class="teacher-note">
+              <p><strong>Adaptación:</strong> se puede escribir en papel o en el chat de Zoom si está disponible. Con una persona, la profesora comparte su propia regla y conversa sobre las diferencias; con grupos, se leen algunas propuestas de forma voluntaria.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="deck-controls" aria-label="Controles de navegación">
+      <button class="btn" id="prevBtn" type="button" disabled>← Anterior</button>
+      <button class="btn primary" id="nextBtn" type="button">Siguiente actividad →</button>
+    </div>
+    <footer class="footer">
+      <span><a href="https://hablaespanol.club/" target="_top" rel="noopener noreferrer">hablaespanol.club</a> · <a href="https://www.instagram.com/hablaespanolclub/" target="_top" rel="noopener noreferrer">@hablaespanolclub</a></span>
+      <span>Tema 036 · ¿Deberíamos dejar que la inteligencia artificial decida por nosotros?</span>
+    </footer>
+  </main>
+
+  <script>
+    (function(){
+      "use strict";
+      const slides=Array.from(document.querySelectorAll("section.module-slide[data-module]"));
+      const nav=document.getElementById("slideNav");
+      const count=document.getElementById("slideCount");
+      const progress=document.getElementById("progressBar");
+      const prev=document.getElementById("prevBtn");
+      const next=document.getElementById("nextBtn");
+      const labels=["Inicio","Actividad 1","Actividad 2","Actividad 3","Actividad 4","Actividad 5","Actividad 6","Actividad 7","Actividad 8","Actividad 9"];
+      let current=0;
+
+      labels.forEach(function(label,index){
+        const button=document.createElement("button");
+        button.type="button";
+        button.className="slide-dot";
+        button.textContent=String(index);
+        button.setAttribute("aria-label","Ir a "+label);
+        button.setAttribute("data-go",String(index));
+        nav.appendChild(button);
+      });
+
+      function stopHiddenVideos(){
+        slides.forEach(function(slide,index){
+          if(index===current)return;
+          slide.querySelectorAll(".video-shell iframe").forEach(function(frame){
+            if(frame.getAttribute("src")&&frame.getAttribute("src")!=="about:blank")frame.setAttribute("src","about:blank");
+          });
+          slide.querySelectorAll(".video-shell").forEach(function(shell){shell.hidden=true;});
+          slide.querySelectorAll("[data-load-video]").forEach(function(button){button.textContent="Reproducir el Short";});
+        });
+      }
+
+      function showSlide(index){
+        current=Math.max(0,Math.min(slides.length-1,index));
+        slides.forEach(function(slide,i){
+          const active=i===current;
+          slide.classList.toggle("active",active);
+          slide.setAttribute("aria-hidden",active?"false":"true");
+        });
+        Array.from(nav.querySelectorAll("button")).forEach(function(button,i){
+          if(i===current)button.setAttribute("aria-current","step");
+          else button.removeAttribute("aria-current");
+        });
+        count.textContent=String(current).padStart(2,"0")+" / 09";
+        progress.style.width=(current/9*100)+"%";
+        prev.disabled=current===0;
+        next.disabled=current===9;
+        next.textContent=current===8?"Ir al cierre →":"Siguiente actividad →";
+        stopHiddenVideos();
+        if(window.scrollY>110)window.scrollTo({top:0,behavior:"smooth"});
+      }
+
+      document.addEventListener("click",function(event){
+        const go=event.target.closest("[data-go]");
+        if(go){showSlide(Number(go.getAttribute("data-go")));return;}
+
+        const reveal=event.target.closest("[data-reveal]");
+        if(reveal){
+          const target=document.getElementById(reveal.getAttribute("data-reveal"));
+          if(!target)return;
+          const opening=target.hidden;
+          target.hidden=!opening;
+          reveal.setAttribute("aria-expanded",opening?"true":"false");
+          if(reveal.dataset.openLabel||reveal.dataset.closeLabel){
+            reveal.textContent=opening?(reveal.dataset.closeLabel||"Ocultar"): (reveal.dataset.openLabel||"Mostrar");
+          }
+          return;
+        }
+
+        const load=event.target.closest("[data-load-video]");
+        if(load){
+          const id=load.getAttribute("data-load-video");
+          const shell=document.getElementById("player-"+id);
+          const frame=shell?shell.querySelector("iframe[data-src]"):null;
+          if(!shell||!frame)return;
+          shell.hidden=!shell.hidden;
+          if(!shell.hidden){
+            if(!frame.getAttribute("src"))frame.setAttribute("src",frame.dataset.src);
+            load.textContent="Ocultar el Short";
+          }else{
+            frame.setAttribute("src","about:blank");
+            load.textContent="Reproducir el Short";
+          }
+          return;
+        }
+
+        const pick=event.target.closest("[data-pick]");
+        if(pick){
+          const card=pick.closest(".decision-card");
+          if(!card)return;
+          card.querySelectorAll("[data-pick]").forEach(function(button){
+            button.setAttribute("aria-pressed",button===pick?"true":"false");
+          });
+          const status=card.querySelector(".choice-status");
+          if(status)status.textContent="Tu posición: "+pick.getAttribute("data-pick")+". Explica por qué.";
+          return;
+        }
+
+        const point=event.target.closest("[data-game-point]");
+        if(point){
+          const team=point.getAttribute("data-game-point");
+          if(team==="A"||team==="B"){
+            scores[team]+=1;
+            updateScores();
+          }
+          return;
+        }
+
+        if(event.target.closest("[data-game-next]")){nextRound();return;}
+        if(event.target.closest("[data-game-reset]")){resetGame();return;}
+      });
+
+      prev.addEventListener("click",function(){showSlide(current-1);});
+      next.addEventListener("click",function(){showSlide(current+1);});
+      document.getElementById("fullscreenBtn").addEventListener("click",function(){
+        if(!document.fullscreenElement&&document.documentElement.requestFullscreen)document.documentElement.requestFullscreen();
+        else if(document.exitFullscreen)document.exitFullscreen();
+      });
+      document.addEventListener("keydown",function(event){
+        if(event.altKey||event.ctrlKey||event.metaKey)return;
+        const tag=event.target&&event.target.tagName?event.target.tagName.toLowerCase():"";
+        if(tag==="input"||tag==="textarea"||tag==="select")return;
+        if(event.key==="ArrowRight"){showSlide(current+1);}
+        if(event.key==="ArrowLeft"){showSlide(current-1);}
+        if(event.key==="Home"){showSlide(0);}
+        if(event.key==="End"){showSlide(9);}
+      });
+
+      let scores={A:0,B:0};
+      const rounds=Array.from(document.querySelectorAll(".game-round"));
+      let round=0;
+      function updateScores(){
+        document.getElementById("scoreA").textContent=String(scores.A);
+        document.getElementById("scoreB").textContent=String(scores.B);
+      }
+      function renderRound(){
+        rounds.forEach(function(item,index){item.hidden=index!==round;});
+        document.getElementById("roundLabel").textContent=(round+1)+" / 3";
+        document.getElementById("game-final").hidden=true;
+        const button=document.querySelector("[data-game-next]");
+        button.textContent=round===2?"Ver resultado →":"Siguiente reto →";
+      }
+      function nextRound(){
+        if(round<2){round+=1;renderRound();return;}
+        const result=document.getElementById("game-result");
+        if(scores.A>scores.B)result.textContent="Gana el Equipo A · "+scores.A+" a "+scores.B;
+        else if(scores.B>scores.A)result.textContent="Gana el Equipo B · "+scores.B+" a "+scores.A;
+        else result.textContent="Empate · "+scores.A+" a "+scores.B;
+        document.getElementById("game-final").hidden=false;
+      }
+      function resetGame(){
+        scores={A:0,B:0};
+        round=0;
+        updateScores();
+        renderRound();
+      }
+
+      showSlide(0);
+      updateScores();
+      renderRound();
+    })();
+  </script>
+  <script src="/MARCA/clases-ilustraciones.js"></script>
+</body>
+</html>
