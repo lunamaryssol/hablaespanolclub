@@ -325,12 +325,12 @@
             <h2>Bonito, Bonito: el cafecito riquito</h2>
             <p class="subtitle">Escucha primero sin conocer el origen del audio. Concéntrate en la voz, el ritmo y la sensación que te produce.</p>
             <div class="video-actions">
-              <button class="btn primary" type="button" data-load-video="cafecito">Reproducir el Short</button>
-              <a href="https://www.youtube.com/shorts/jogEEWzwXRE" target="_blank" rel="noopener noreferrer">Abrir el Short en YouTube ↗</a>
+              <button class="btn primary" type="button" data-load-video="cafecito">Reproducir el video</button>
+              <a href="https://www.youtube.com/watch?v=i5neBtAgc-c" target="_blank" rel="noopener noreferrer">Abrir el video en YouTube ↗</a>
               <span class="small">Audio de referencia: «un cafecito riquito riquito»</span>
             </div>
             <div class="video-shell" id="player-cafecito" hidden>
-              <iframe title="Short de referencia: un cafecito riquito riquito" data-src="https://www.youtube-nocookie.com/embed/jogEEWzwXRE?rel=0" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture;web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              <iframe title="Video de referencia: un cafecito riquito riquito" data-src="https://www.youtube-nocookie.com/embed/i5neBtAgc-c?rel=0" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture;web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <div class="grid two">
               <div class="card">
@@ -777,7 +777,7 @@
             if(frame.getAttribute("src")&&frame.getAttribute("src")!=="about:blank")frame.setAttribute("src","about:blank");
           });
           slide.querySelectorAll(".video-shell").forEach(function(shell){shell.hidden=true;});
-          slide.querySelectorAll("[data-load-video]").forEach(function(button){button.textContent="Reproducir el Short";});
+          slide.querySelectorAll("[data-load-video]").forEach(function(button){button.textContent=button.dataset.loadVideo==="cafecito"?"Reproducir el video":"Reproducir el Short";});
         });
       }
 
@@ -827,10 +827,10 @@
           shell.hidden=!shell.hidden;
           if(!shell.hidden){
             if(!frame.getAttribute("src")||frame.getAttribute("src")==="about:blank")frame.setAttribute("src",frame.dataset.src);
-            load.textContent="Ocultar el Short";
+            load.textContent=id==="cafecito"?"Ocultar el video":"Ocultar el Short";
           }else{
             frame.setAttribute("src","about:blank");
-            load.textContent="Reproducir el Short";
+            load.textContent=id==="cafecito"?"Reproducir el video":"Reproducir el Short";
           }
           return;
         }
