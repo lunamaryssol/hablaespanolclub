@@ -75,7 +75,7 @@
     if(modules.length!==10)return;
     modules.forEach((m,i)=>{
       if(m.querySelector(".brand-doodle-accent,.brand-illustration"))return;
-      if((i>0||theme==="036")&&theme!=="010"){
+      if(i>0&&theme!=="010"){
         const accent=document.createElement("div");
         accent.className="brand-doodle-accent";
         accent.setAttribute("aria-hidden","true");
