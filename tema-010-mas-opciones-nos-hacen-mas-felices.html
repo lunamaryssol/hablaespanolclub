@@ -188,6 +188,15 @@ textarea{width:100%;min-height:170px;border:1.5px solid var(--b);border-radius:1
 .story-path li:last-child{margin-bottom:0}
 @media(max-width:900px){.budget-grid{grid-template-columns:1fr}}
 
+
+/* Bingo oral de decisiones */
+.bingo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}
+.bingo-cell{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:8px;min-height:142px;font-size:18px}
+.bingo-num{font-family:var(--hand);font-size:21px;color:var(--b);line-height:1}
+.bingo-cell[aria-pressed="true"]{background:#fff9d9;border-color:var(--b)}
+@media(max-width:900px){.bingo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bingo-cell{min-height:118px}}
+@media(max-width:600px){.bingo-grid{grid-template-columns:1fr}.bingo-cell{min-height:auto}}
+
 </style>
 <link rel="stylesheet" href="/MARCA/clases-estilo.css">
 </head>
@@ -514,48 +523,49 @@ textarea{width:100%;min-height:170px;border:1.5px solid var(--b);border-radius:1
 </section>
 
 <!-- ============ 8 · CONSULTORÍA ============ -->
-<section class="module-slide module-panel" data-module="8" data-title="Consultoría exprés" hidden aria-labelledby="t8">
+<section class="module-slide module-panel" data-module="8" data-title="Bingo de decisiones" hidden aria-labelledby="t8">
   <div class="mhead"><div>
-    <p class="kicker">EJERCICIO 8 · IMPROVISACIÓN <span class="rol">Lánzate</span></p>
-    <h2 id="t8">Consultoría <span class="wave">exprés</span></h2>
-    <p class="sub">Un cliente llega con demasiadas opciones. En tres minutos, ayúdalo a decidir.</p>
-  </div><div class="doodle" aria-hidden="true"><svg viewBox="0 0 160 120"><g class="ink"><path d="M18 20Q18 12 26 12H88Q96 12 96 20V52Q96 60 88 60H52L36 74V60H26Q18 60 18 52Z"/><path d="M78 74Q78 68 86 68H134Q142 68 142 76V100Q142 108 134 108H116L104 118V108H86Q78 108 78 100Z"/><path d="M36 30h40M36 44h26"/><path d="M96 86h30"/></g><path class="bl" d="M20 14q8-8 20-4"/><path class="ye" d="M116 20l8-9m1 21l12-3"/><path class="re" d="M96 96q10 6 22 0"/></svg></div></div>
+    <p class="kicker">EJERCICIO 8 · BINGO ORAL <span class="rol">Lánzate</span></p>
+    <h2 id="t8">Bingo de <span class="wave">decisiones</span></h2>
+    <p class="sub">Descubre cómo deciden las personas que tienes delante. Aquí no hay respuestas correctas.</p>
+  </div><div class="doodle" aria-hidden="true"><svg viewBox="0 0 160 120"><g class="ink"><rect x="24" y="18" width="112" height="84" rx="5"/><path d="M61 18v84M99 18v84M24 46h112M24 74h112"/><path d="M34 33l7 7 12-15M72 61l7 7 12-15M110 88l7 7 12-15"/></g><path class="bl" d="M15 13q8-8 18-5"/><path class="ye" d="M122 10l8-7m3 17l10-2"/><path class="re" d="M20 110q14 5 26 0"/></svg></div></div>
   <div class="content">
     <div class="chunk">
-      <p class="chunk-label">Los roles</p>
-      <div class="roles">
-        <div><b>Cliente</b>Cuenta su problema y responde con sinceridad.</div>
-        <div><b>Asesor</b>Hace tres preguntas, reduce las opciones a dos y recomienda una.</div>
-        <div><b>Observadora</b>Anota una pregunta útil. Si son solo dos personas, no hay observadora.</div>
+      <p class="chunk-label">Cómo se juega</p>
+      <div class="grid g2">
+        <div class="card"><h3>El objetivo</h3><p>Encontrar compañeros que hayan vivido las situaciones del tablero y completar una línea de tres casillas: horizontal, vertical o diagonal.</p></div>
+        <div class="card"><h3>Las reglas</h3><p>Haz la pregunta, escucha un ejemplo y solo entonces marca la casilla. No puedes repetir el nombre de una misma persona en más de dos casillas.</p></div>
       </div>
-      <p class="small" style="margin-top:10px">Si hay una sola persona, la profesora asume el otro rol.</p>
+      <div class="prompt">Empieza así: «¿Alguna vez has…?» y, si la respuesta es sí, pregunta: «¿Qué pasó? ¿Cómo tomaste la decisión?»</div>
+      <p class="small">En grupos de 2 a 6, pregunten por turnos. Si hay una sola persona, la profesora participa. Con grupos grandes, jueguen en salas pequeñas.</p>
     </div>
     <div class="chunk" hidden>
-      <p class="chunk-label">El dilema</p>
-      <div class="dilemma" id="dilemma" aria-live="polite">Pulsa «Sacar dilema» para empezar.</div>
-      <div class="scoreline" style="gap:12px">
-        <button class="btn go" type="button" id="draw">Sacar dilema</button>
-        <span class="timer" id="timer" aria-label="Cronómetro">3:00</span>
-        <button class="btn sm" type="button" id="tStart">Iniciar</button>
-        <button class="btn sm" type="button" id="tReset">Reiniciar</button>
+      <p class="chunk-label">El tablero</p>
+      <div class="scoreline"><span id="bingoCount">Casillas completadas: 0 / 9</span><span>Una línea = ¡BINGO!</span></div>
+      <div class="bingo-grid" id="bingoBoard">
+        <button class="opt bingo-cell" type="button" aria-pressed="false" data-i="0"><span class="bingo-num">01</span> Ha comparado tantas opciones que terminó posponiendo una decisión.</button>
+        <button class="opt bingo-cell" type="button" aria-pressed="false" data-i="1"><span class="bingo-num">02</span> Ha pedido a alguien que le ayudara a reducir una lista.</button>
+        <button class="opt bingo-cell" type="button" aria-pressed="false" data-i="2"><span class="bingo-num">03</span> Ha elegido la primera opción que cumplía lo que necesitaba.</button>
+        <button class="opt bingo-cell" type="button" aria-pressed="false" data-i="3"><span class="bingo-num">04</span> Ha cambiado de opinión después de leer reseñas.</button>
+        <button class="opt bingo-cell" type="button" aria-pressed="false" data-i="4"><span class="bingo-num">05</span> Disfruta comparando muchas alternativas antes de elegir.</button>
+        <button class="opt bingo-cell" type="button" aria-pressed="false" data-i="5"><span class="bingo-num">06</span> Se ha arrepentido de descartar una opción.</button>
+        <button class="opt bingo-cell" type="button" aria-pressed="false" data-i="6"><span class="bingo-num">07</span> Ha tomado una decisión importante con poca información.</button>
+        <button class="opt bingo-cell" type="button" aria-pressed="false" data-i="7"><span class="bingo-num">08</span> Ha sentido alivio cuando dejó de buscar más opciones.</button>
+        <button class="opt bingo-cell" type="button" aria-pressed="false" data-i="8"><span class="bingo-num">09</span> Ha vuelto a considerar una alternativa que ya había descartado.</button>
       </div>
+      <div class="scoreline">
+        <button class="btn go" type="button" id="bingoCheck" disabled>Comprobar mi línea</button>
+        <button class="btn sm" type="button" id="bingoReset">Reiniciar tablero</button>
+      </div>
+      <div class="fb" id="bingoFb" aria-live="polite" hidden></div>
+      <div class="card" style="margin-top:14px"><h3>Una pregunta más</h3><p>¿Qué te hizo decidirte? · ¿Qué opción descartaste? · ¿Volverías a elegir lo mismo?</p></div>
     </div>
     <div class="chunk" hidden>
-      <p class="chunk-label">Frases útiles</p>
-      <div class="support"><div><b>B1 · apoyo</b>¿Qué es lo más importante para ti? · Entre estas dos… · Te recomiendo…</div><div><b>B2 · reto</b>Si tuvieras que renunciar a una, ¿a cuál? · Aunque la A parece mejor, me inclino por la B porque…</div></div>
-    </div>
-    <div class="chunk" hidden>
-      <p class="chunk-label">¿Cómo salió el cliente?</p>
-      <div class="prompt">¿Cuán tranquilo te sientes ahora con tu decisión?</div>
-      <div class="pillrow" id="calm">
-        <button class="opt" type="button" aria-pressed="false">1 · Sigo igual de confundido</button>
-        <button class="opt" type="button" aria-pressed="false">2</button>
-        <button class="opt" type="button" aria-pressed="false">3 · Más o menos</button>
-        <button class="opt" type="button" aria-pressed="false">4</button>
-        <button class="opt" type="button" aria-pressed="false">5 · Tranquilo</button>
-      </div>
-      <div class="fb" id="calmFb" aria-live="polite" hidden></div>
-      <details class="teacher"><summary>Apoyo para la profesora</summary><p>Momento de humor: el dilema de la boda con catorce menús casi siempre arranca risas. Si el cliente no quiere hablar de algo propio, puede inventarse el caso. Con grupos grandes, rotan los roles en cada ronda de tres minutos.</p></details>
+      <p class="chunk-label">Después del bingo</p>
+      <div class="prompt">¿Qué diferencias descubriste entre la forma en que deciden tus compañeros y la tuya?</div>
+      <p>¿Quién disfruta comparando? ¿Quién prefiere terminar pronto? ¿En qué situaciones cambia nuestra manera de elegir?</p>
+      <div class="support"><div><b>B1 · apoyo</b>Yo suelo… · Me cuesta decidir cuando… · Al final elegí…</div><div><b>B2 · reto</b>Aunque suelo…, cuando se trata de… · Lo que más influye en mi decisión es…</div></div>
+      <details class="teacher"><summary>Apoyo para la profesora</summary><p>No es necesario completar todas las casillas: el objetivo es escuchar experiencias distintas y formular preguntas de seguimiento. Si un grupo consigue bingo rápidamente, debe explicar qué respuestas le sorprendieron y qué criterio se repitió. Con 1 estudiante, alterna preguntas entre ambos para completar el tablero.</p></details>
     </div>
   </div>
   <div class="module-reveal-bar"></div>
@@ -984,40 +994,25 @@ document.addEventListener('click',e=>{
   });
 })();
 
-/* ---------- 8 · Consultoría ---------- */
+/* ---------- 8 · Bingo oral de decisiones ---------- */
 (function(){
-  const D=[
-    'Una boda con 14 menús para 20 invitados. Quieren que todos coman lo que más les gusta.',
-    'Un plan de celular: hay nueve planes casi iguales y todos prometen «el mejor precio».',
-    'Elegir un colegio para tu hijo: hay once que te gustan y ninguno cumple todo.',
-    'Un regalo de cumpleaños para tu jefe: tienes una lista de veinticinco ideas.',
-    'Una oferta de trabajo: tienes tres empleos aceptables y ninguno es perfecto.',
-    'Un gimnasio nuevo: ocho gimnasios, cinco planes y tres horarios posibles.',
-    'Un portátil para estudiar y trabajar: la tienda tiene treinta modelos.'
-  ];
-  let order=[],pos=0;
-  function shuffle(){order=D.map((_,i)=>i);for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]];}pos=0;}
-  shuffle();
-  $('#draw').addEventListener('click',()=>{
-    if(pos>=order.length)shuffle();
-    $('#dilemma').textContent=D[order[pos++]];
-    $('#draw').textContent='Otro dilema';
-    resetTimer();
+  const board=$('#bingoBoard'),cells=$('.bingo-cell',board);
+  const count=$('#bingoCount'),check=$('#bingoCheck'),feedback=$('#bingoFb');
+  const lines=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+  function marked(){return cells.map((b,i)=>b.getAttribute('aria-pressed')==='true'?i:null).filter(i=>i!==null);}
+  function update(){const total=marked().length;count.textContent='Casillas completadas: '+total+' / 9';check.disabled=total<3;}
+  board.addEventListener('click',e=>{
+    const b=e.target.closest('.bingo-cell');if(!b)return;
+    b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true'?'true':'false');
+    feedback.hidden=true;update();
   });
-  let sec=180,t=null;
-  const fmt=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
-  function paint(){$('#timer').textContent=sec===0?'¡Tiempo!':fmt(sec);}
-  function stop(){if(t){clearInterval(t);t=null;}$('#tStart').textContent='Iniciar';}
-  function resetTimer(){stop();sec=180;paint();}
-  $('#tStart').addEventListener('click',()=>{
-    if(t){stop();return;}
-    if(sec===0)sec=180;
-    $('#tStart').textContent='Pausar';
-    t=setInterval(()=>{sec--;paint();if(sec<=0){sec=0;paint();stop();}},1000);
+  check.addEventListener('click',()=>{
+    const chosen=marked(),bingo=lines.some(line=>line.every(i=>chosen.includes(i)));
+    if(bingo)show(feedback,'<strong>¡BINGO!</strong> Completen la línea contando qué experiencia les llamó la atención y qué pregunta permitió conocer mejor la decisión.');
+    else show(feedback,'Todavía no hay una línea completa. Sigan preguntando: necesitan tres casillas alineadas en horizontal, vertical o diagonal.');
   });
-  $('#tReset').addEventListener('click',resetTimer);
-  const calm=$('#calm');
-  single(calm,b=>{show($('#calmFb'),'<strong>Tranquilidad del cliente:</strong> '+esc(b.textContent.replace(/^✓\s*/,'').trim())+'. ¿Qué pregunta del asesor ayudó más?');});
+  $('#bingoReset').addEventListener('click',()=>{cells.forEach(b=>b.setAttribute('aria-pressed','false'));feedback.hidden=true;update();});
+  update();
 })();
 
 /* ---------- 9 · Escritura ---------- */
