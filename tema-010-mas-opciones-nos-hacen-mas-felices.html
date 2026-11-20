@@ -1,1036 +1,993 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#FFFFFF">
-  <meta name="description" content="Clase interactiva B1–B2 de Habla Español Club: ¿Tener más opciones nos hace más felices?">
-  <title>Tema 010 · ¿Tener más opciones nos hace más felices? | Habla Español Club</title>
-  <link rel="preload" href="/MARCA/fuentes/LeagueSpartan-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="preload" href="/MARCA/fuentes/GochiHand-Regular.ttf" as="font" type="font/ttf" crossorigin>
-  <style>
-    
-    
-    :root{--blue:#003893;--yellow:#FCD116;--red:#CE1126;--white:#FFFFFF;--black:#000000;--muted:#535353;--soft-blue:rgba(0,56,147,.055);--soft-yellow:rgba(252,209,22,.17);--soft-red:rgba(206,17,38,.07);--font:"League Spartan",Arial,sans-serif;--hand:"Gochi Hand",cursive;--radius:28px;--shadow:0 3px 18px rgba(0,56,147,.055)}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;background:var(--white)}
-    body{margin:0;background:var(--white);color:var(--black);font:500 17px/1.48 var(--font);min-height:100vh}
-    button,input,textarea,select{font:inherit}
-    button{cursor:pointer}
-    button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--red);outline-offset:4px}
-    a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:3px}
-    .shell{width:min(1120px,calc(100% - 38px));margin:0 auto}
-    .topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,56,147,.08)}
-    .topbar-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-    .brand{display:flex;align-items:center;gap:12px;min-width:0}
-    .brand img{width:48px;height:48px;object-fit:contain;flex:none}
-    .brand-name{font-size:14px;font-weight:600;letter-spacing:.015em;color:var(--blue);line-height:1.05}
-    .brand-sub{font-family:var(--hand);font-size:16px;color:var(--blue);margin-top:3px}
-    .top-actions{display:flex;align-items:center;gap:8px}
-    .top-label{font-size:13px;color:var(--muted);white-space:nowrap}
-    .icon-btn{width:42px;height:42px;border:0;border-radius:50%;background:var(--soft-blue);color:var(--blue);font-size:19px;font-weight:600;display:grid;place-items:center}
-    .icon-btn:hover{background:var(--soft-yellow)}
-    .progress-wrap{height:3px;background:rgba(0,56,147,.07)}
-    .progress-bar{height:3px;width:0;background:var(--red);transition:width .25s ease}
-    main{padding:34px 0 24px}
-    .deck-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px}
-    .deck-kicker{font:400 19px/1 var(--hand);color:var(--blue)}
-    .deck-count{font-size:13px;font-weight:600;color:var(--blue);font-variant-numeric:tabular-nums}
-    .slide-nav{display:flex;gap:7px;overflow-x:auto;padding:3px 2px 15px;scrollbar-width:thin;scrollbar-color:var(--yellow) transparent}
-    .slide-dot{flex:none;border:0;background:transparent;color:var(--blue);padding:7px 10px;border-radius:999px;font-size:12px;font-weight:600;min-width:34px}
-    .slide-dot[aria-current="step"]{background:var(--yellow);color:var(--black)}
-    .slide{display:none;animation:appear .22s ease both;min-height:460px}
-    .slide.active{display:block}
-    @keyframes appear{from{opacity:.45;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
-    .slide-inner{padding:clamp(18px,3.2vw,38px) clamp(8px,1.4vw,16px) 30px}
-    .slide-heading{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:start;margin-bottom:28px}
-    .eyebrow{margin:0 0 10px;color:var(--blue);font:400 20px/1 var(--hand)}
-    h1,h2,h3,p{margin-top:0}
-    h1{font-size:clamp(38px,6.3vw,70px);line-height:.99;letter-spacing:-.045em;color:var(--blue);font-weight:600;margin:0 0 16px;max-width:850px}
-    h2{font-size:clamp(32px,4.6vw,49px);line-height:1.02;letter-spacing:-.035em;color:var(--blue);font-weight:600;margin:0 0 12px}
-    h3{font-size:19px;line-height:1.15;color:var(--blue);font-weight:600;margin:0 0 11px}
-    .subtitle{font-size:clamp(17px,2vw,21px);line-height:1.35;max-width:760px;margin:0;color:var(--black)}
-    .wave{ text-decoration:underline wavy var(--red);text-decoration-thickness:2px;text-underline-offset:8px }
-    .accent{font-family:var(--hand);font-weight:400;color:var(--blue)}
-    .doodle{width:82px;height:82px;flex:none;overflow:visible}
-    .doodle path,.doodle line,.doodle circle,.doodle polyline{fill:none;stroke:var(--black);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
-    .doodle .yellow{fill:var(--yellow);stroke:none}.doodle .red{fill:var(--red);stroke:none}.doodle .blue{fill:var(--blue);stroke:none}
-    .doodle-art{display:block;width:132px;height:auto;max-width:100%;flex:none;overflow:visible}
-    .cover-side .doodle-art{width:220px;justify-self:center;margin-bottom:4px}
-    .doodle-hero{width:100%}
-
-    .cover-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(240px,.8fr);gap:clamp(24px,5vw,66px);align-items:center;padding:clamp(10px,3vw,35px) 0 15px}
-    .cover-side{display:grid;gap:20px;align-content:center}
-    .cover-side .doodle{width:128px;height:128px;justify-self:center;margin-bottom:4px}
-    .cover-summary{padding:8px 0 8px 18px;border-left:3px solid var(--yellow)}
-    .cover-summary p{margin:0;font-size:16px}
-    .cover-summary strong{display:block;color:var(--blue);font-size:13px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px}
-    .resource-line{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-    .resource-pill{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;background:var(--soft-blue);font-size:13px;font-weight:600;color:var(--blue)}
-    .grid{display:grid;gap:18px}
-    .grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .card{background:var(--white);border:0;border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(18px,2.5vw,27px);min-width:0}
-    .card-label{font:400 18px/1.05 var(--hand);color:var(--blue);margin-bottom:10px}
-    .card p:last-child{margin-bottom:0}
-    .card ul{margin:0;padding-left:20px}
-    .card li{margin:5px 0}
-    .dessert-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:12px}
-    .choice-chip,.option-button,.answer-button,.vote-button{border:0;border-radius:999px;padding:10px 14px;background:var(--soft-blue);color:var(--blue);font-size:14px;font-weight:600;text-align:left;transition:background .15s,transform .15s}
-    .choice-chip:hover,.option-button:hover,.answer-button:hover,.vote-button:hover{background:var(--soft-yellow);transform:translateY(-1px)}
-    .choice-chip[aria-pressed="true"],.option-button[aria-pressed="true"],.answer-button[aria-pressed="true"],.vote-button[aria-pressed="true"]{background:var(--yellow);color:var(--black)}
-    .choice-result,.feedback{margin-top:14px;padding:12px 15px;border-radius:18px;background:var(--soft-yellow);color:var(--black);font-size:14px;min-height:42px}
-    .phrases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:17px}
-    .phrase{padding:13px 16px;border-radius:19px;background:var(--white);box-shadow:var(--shadow);font-size:14px}
-    .phrase strong{display:block;color:var(--blue);font-size:12px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
-    .prompt{margin-top:18px;padding:16px 18px 16px 21px;border-left:3px solid var(--red);background:var(--white);border-radius:0 18px 18px 0;box-shadow:var(--shadow)}
-    .prompt strong{display:block;color:var(--blue);font-size:12px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
-    .prompt p{margin:0}
-    .btn{border:0;border-radius:999px;padding:12px 19px;font-size:14px;font-weight:600;transition:transform .15s,background .15s;color:var(--blue);background:var(--yellow)}
-    .btn:hover{transform:translateY(-1px)}
-    .btn.secondary{background:var(--soft-blue);color:var(--blue)}
-    .btn.ghost{background:transparent;color:var(--blue);padding-left:10px;padding-right:10px}
-    .btn.small{padding:9px 14px;font-size:13px}
-    .small-note{font-size:13px;color:var(--muted);margin:8px 0 0;line-height:1.4}.btn:focus-visible,.option-button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
-      .button-row{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-top:15px}
-    .game-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px}
-    .score-pill{padding:9px 14px;border-radius:999px;background:var(--soft-yellow);color:var(--blue);font-weight:600;font-size:14px;font-variant-numeric:tabular-nums}
-    .activity-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-    .activity-option{display:flex;align-items:center;gap:12px;text-align:left;width:100%;border:0;background:var(--soft-blue);border-radius:19px;padding:13px 14px;color:var(--black)}
-    .activity-option.selected{background:var(--soft-yellow);box-shadow:inset 0 0 0 1px rgba(0,56,147,.18)}
-    .activity-option .cost{margin-left:auto;color:var(--blue);font-size:13px;font-weight:600;white-space:nowrap}
-    .activity-option strong{display:block;color:var(--blue);font-size:15px}
-    .activity-option small{display:block;color:var(--muted);font-size:12px}
-    .criteria{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:14px}
-    .criterion{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:16px;background:var(--soft-blue);font-size:13px}
-    .criterion input{accent-color:var(--blue);width:17px;height:17px}
-    .statement-list{display:grid;gap:13px}
-    .statement{padding:18px 20px;border-radius:22px;background:var(--white);box-shadow:var(--shadow)}
-    .statement p{font-size:18px;font-weight:600;margin:0 0 12px}
-    .statement-controls{display:flex;flex-wrap:wrap;gap:7px}
-    .vote-button{font-size:13px;padding:9px 13px}
-    .vote-count{font-size:12px;color:var(--muted);margin-top:9px}
-    .reading{font-size:18px;line-height:1.55}
-    .reading p{margin-bottom:15px}
-    .quiz-list{display:grid;gap:12px}
-    .quiz-item{padding:16px 18px;border-radius:20px;background:var(--white);box-shadow:var(--shadow)}
-    .quiz-statement{font-size:16px;font-weight:600;margin-bottom:11px}
-    .quiz-controls{display:flex;flex-wrap:wrap;gap:8px}
-    .quiz-item.correct{box-shadow:inset 0 0 0 2px rgba(0,56,147,.28)}
-    .quiz-item.incorrect{box-shadow:inset 0 0 0 2px rgba(206,17,38,.3)}
-    .video-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);gap:22px;align-items:start}
-    .video-frame{position:relative;width:100%;overflow:hidden;border-radius:25px;background:#fff;box-shadow:var(--shadow)}
-    .video-frame.vertical{aspect-ratio:9/16;max-width:340px;margin:0 auto}
-    .video-frame.wide{aspect-ratio:16/9}
-    .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-    .video-caption{font-size:13px;color:var(--muted);margin-top:10px}
-    .video-link{display:inline-block;margin-top:11px;font-size:13px;font-weight:600}
-    .reveal-box{padding:18px 20px;border-radius:22px;background:var(--soft-blue);margin-top:15px}
-    .reveal-box[hidden]{display:none}
-    .movie-choice{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
-    .movie-choice .option-button{border-radius:18px;padding:15px;text-align:left;min-height:100px}
-    .movie-choice strong{display:block;margin-bottom:5px;font-size:14px}
-    .movie-choice span{display:block;font-size:12px;font-weight:500;line-height:1.3}
-    .traffic-stage{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:15px}
-    .traffic-card{padding:18px;border-radius:22px;background:var(--white);box-shadow:var(--shadow);opacity:.52;transition:opacity .2s,transform .2s}
-    .traffic-card.active{opacity:1;transform:translateY(-2px)}
-    .traffic-title{display:flex;align-items:center;gap:9px;color:var(--blue);font-weight:600;margin-bottom:9px}
-    .light{width:14px;height:14px;border-radius:50%;display:inline-block}
-    .light.red{background:var(--red)}.light.yellow{background:var(--yellow)}.light.green{background:#16803b}
-    .writing-area{width:100%;min-height:190px;resize:vertical;border:0;border-radius:20px;background:var(--soft-blue);padding:17px;color:var(--black);font:500 16px/1.5 var(--font)}
-    .writing-metrics{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}
-    .metric{padding:8px 12px;border-radius:999px;background:var(--soft-yellow);color:var(--blue);font-size:13px;font-weight:600}
-    .checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:13px}
-    .checklist label{display:flex;gap:9px;align-items:flex-start;padding:10px 12px;border-radius:16px;background:var(--soft-blue);font-size:13px}
-    .checklist input{accent-color:var(--blue);margin-top:3px}
-    details.teacher-note{margin-top:20px;border-top:1px solid rgba(0,56,147,.09);padding-top:14px}
-    details.teacher-note summary{cursor:pointer;color:var(--blue);font:400 18px/1.2 var(--hand);list-style:none}
-    details.teacher-note summary::-webkit-details-marker{display:none}
-    details.teacher-note summary:after{content:"＋";font:600 15px var(--font);margin-left:9px}
-    details.teacher-note[open] summary:after{content:"−"}
-    details.teacher-note p{font-size:13px;color:var(--muted);margin:10px 0 0;max-width:850px}
-    .deck-controls{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 0 38px}
-    .deck-controls .btn{min-width:125px}
-    .footer-link{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;cursor:pointer}.footer-link:hover,.footer-link:focus-visible{color:var(--blue);text-decoration-thickness:2px;outline-offset:3px}
-    .footer{padding:14px 0 28px;display:flex;justify-content:space-between;gap:15px;align-items:center;color:var(--muted);font-size:12px;border-top:1px solid rgba(0,56,147,.08)}
-    .footer strong{color:var(--blue);font-weight:600}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    @media(max-width:760px){.shell{width:min(100% - 26px,650px)}.topbar-inner{min-height:62px}.brand img{width:42px;height:42px}.top-label{display:none}.slide-heading{grid-template-columns:1fr auto}.doodle{width:58px;height:58px}.doodle-art{width:96px}.cover-side .doodle-art{width:150px}.cover-grid{grid-template-columns:1fr}.cover-side{grid-template-columns:1fr 1fr;gap:14px}.cover-side .doodle{grid-column:1/-1;width:82px;height:82px}.grid.two,.video-layout{grid-template-columns:1fr}.grid.three{grid-template-columns:1fr}.video-frame.vertical{max-width:300px}.movie-choice{grid-template-columns:1fr}.movie-choice .option-button{min-height:0}.traffic-stage{grid-template-columns:1fr}.traffic-card{opacity:.6}.activity-options,.phrases,.criteria,.checklist{grid-template-columns:1fr}.deck-controls .btn{min-width:0}.slide{min-height:0}}
-    @media(max-width:420px){body{font-size:16px}.shell{width:calc(100% - 22px)}.brand-name{font-size:12px}.brand-sub{font-size:14px}.top-actions{gap:4px}.icon-btn{width:38px;height:38px}.slide-inner{padding-left:2px;padding-right:2px}h1{font-size:39px}h2{font-size:31px}.deck-kicker{font-size:17px}.card{padding:17px;border-radius:22px}.statement p{font-size:16px}.dessert-grid{grid-template-columns:1fr}.footer{align-items:flex-start;flex-direction:column}}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
-    @media print{.topbar,.slide-nav,.deck-controls,.footer,.top-actions,.teacher-note{display:none!important}.slide{display:block!important;page-break-after:always;min-height:0}.shell{width:100%}main{padding:0}.slide-inner{padding:18px}.card,.statement,.quiz-item{box-shadow:none;break-inside:avoid}body{font-size:12pt}}
-  
-    /* Accesibilidad de lectura: tipografía ampliada para presbicia */
-    body{font-size:21px;line-height:1.55}
-    .brand-name{font-size:17px}.brand-sub{font-size:19px}.top-label{font-size:16px}
-    .deck-count{font-size:16px}.slide-dot{font-size:16px;padding:9px 12px}
-    .deck-kicker{font-size:22px}.eyebrow{font-size:24px}
-    h1{font-size:clamp(44px,6.8vw,76px);line-height:1.04}
-    h2{font-size:clamp(38px,4.9vw,58px);line-height:1.08}
-    h3{font-size:25px;line-height:1.2}
-    .subtitle{font-size:clamp(21px,2.25vw,25px);line-height:1.45}
-    .cover-summary p{font-size:21px;line-height:1.5}
-    .cover-summary strong{font-size:16px}
-    .resource-pill{font-size:17px;padding:9px 14px}
-    .card{padding:clamp(22px,2.8vw,32px)}
-    .card-label{font-size:23px;line-height:1.15}
-    .card p,.card li{font-size:21px;line-height:1.55}
-    .choice-chip,.option-button,.answer-button,.vote-button{font-size:18px;line-height:1.35;padding:13px 17px}
-    .choice-result,.feedback{font-size:18px;line-height:1.5;padding:15px 18px}
-    .phrase{font-size:18px;line-height:1.5;padding:16px 18px}
-    .phrase strong,.prompt strong{font-size:16px}
-    .prompt{padding:19px 21px 19px 24px}
-    .prompt p{font-size:21px;line-height:1.5}
-    .btn{font-size:19px;padding:15px 22px}
-    .btn.small{font-size:17px;padding:12px 17px}
-    .score-pill{font-size:18px}
-    .activity-option{font-size:20px;line-height:1.4;padding:16px 18px}
-    .activity-option .cost{font-size:16px}
-    .activity-option strong{font-size:20px}
-    .activity-option small{font-size:16px}
-    .criterion{font-size:17px;line-height:1.4;padding:12px 14px}
-    .statement p{font-size:21px;line-height:1.45}
-    .vote-button{font-size:17px}
-    .vote-count{font-size:16px}
-    .reading{font-size:21px;line-height:1.65}
-    .quiz-statement{font-size:19px;line-height:1.5}
-    .video-caption,.video-link{font-size:17px;line-height:1.5}
-    .movie-choice strong{font-size:19px}
-    .movie-choice span{font-size:17px;line-height:1.45}
-    .traffic-title{font-size:20px}
-    .writing-area{font-size:21px;line-height:1.6;min-height:220px}
-    .metric{font-size:17px;padding:10px 14px}
-    .checklist label{font-size:17px;line-height:1.45;padding:13px 15px}
-    details.teacher-note summary{font-size:22px}
-    details.teacher-note p{font-size:17px;line-height:1.5}
-    .footer{font-size:16px;line-height:1.5}
-    @media(max-width:760px){
-      body{font-size:20px}
-      .card p,.card li,.prompt p,.reading{font-size:20px}
-      .activity-options,.phrases,.criteria,.checklist{gap:12px}
-      .slide-dot{font-size:16px}
-    }
-    @media(max-width:420px){
-      body{font-size:19px}
-      .brand-name{font-size:15px}.brand-sub{font-size:17px}
-      h1{font-size:42px;line-height:1.06}
-      h2{font-size:36px;line-height:1.1}
-      h3{font-size:23px}
-      .subtitle{font-size:20px}
-      .card{padding:20px}
-      .card-label{font-size:22px}
-      .card p,.card li,.prompt p,.reading{font-size:19px}
-      .statement p{font-size:20px}
-      .footer{font-size:15px}
-    }
-    @media print{
-      body{font-size:14pt}
-      .card p,.card li,.prompt p,.reading{font-size:14pt}
-    }
-  
-/* NAVEGACIÓN DOCENTE 0–9 · esquema modular, 16-11-2026 */
-html,body{max-width:100%;overflow-x:hidden}
-.module-slide,.module-content,.module-panel,.slide-inner,main{min-width:0;max-width:100%}
-.module-panel[hidden],.module-chunk[hidden],.module-reveal-bar[hidden]{display:none!important}
-.slide-nav,.track,.module-index{display:grid!important;grid-template-columns:repeat(10,minmax(0,1fr));gap:clamp(2px,.7vw,9px);width:100%;overflow:visible!important;max-width:100%;padding:8px 0 15px;margin:0 0 8px}
-.slide-dot,.dot,.module-index button{box-sizing:border-box;width:100%!important;min-width:0!important;padding:9px 0!important;border:0;border-radius:999px;background:transparent;color:#003893;font-size:clamp(15px,1.9vw,21px)!important;font-weight:600;text-align:center;cursor:pointer;line-height:1.5}
-.slide-dot[aria-current="step"],.dot[aria-current="step"],.module-index button[aria-current="step"]{background:#FCD116!important;color:#111!important}
-.module-slide{width:100%;overflow-wrap:break-word}
-.module-content{width:100%}
-.module-reveal-bar{display:flex;align-items:center;flex-wrap:wrap;justify-content:space-between;gap:10px;margin:22px 0 14px;padding:17px 0 6px;border-top:1px solid rgba(0,56,147,.18)}
-.module-reveal-bar button{appearance:none;border:1.5px solid #003893;background:#fff;color:#003893;border-radius:999px;padding:12px 18px;min-height:45px;cursor:pointer;font:600 16px/1.2 'League Spartan',LeagueSpartan,Arial,sans-serif}
-.module-reveal-bar button.module-advance{background:#FCD116;border-color:#FCD116}
-.module-reveal-bar button:disabled{opacity:.35;cursor:not-allowed}
-.module-reveal-bar .module-step-count{font:600 15px/1.3 Arial,sans-serif;color:#003893;text-align:center;min-width:96px}
-.module-panel{width:100%;min-width:0;scroll-margin-top:105px}.module-panel + .module-panel{margin-top:clamp(26px,4vw,42px);padding-top:clamp(18px,2.8vw,28px);border-top:1px solid rgba(0,56,147,.16)}.module-chunk{scroll-margin-top:105px}
-.module-panel h1,.module-panel h2,.module-panel h3{max-width:100%;overflow-wrap:break-word}
-.module-panel img,.module-panel iframe,.module-panel video{max-width:100%}
-@media(max-width:1100px){
- .cover-grid,.cover{grid-template-columns:minmax(0,1fr)!important}
- .cover-side{max-width:100%;min-width:0}
- .module-panel h1{font-size:clamp(36px,5.4vw,58px);line-height:1.03}
- .module-panel h2{font-size:clamp(30px,4.8vw,49px);line-height:1.08}
- .module-panel .slide-inner{max-width:100%}
-}
-@media(max-width:620px){
- .slide-nav,.track,.module-index{gap:2px}
- .slide-dot,.dot,.module-index button{font-size:15px!important;padding:8px 0!important}
- .module-reveal-bar{justify-content:center}
- .module-reveal-bar button{font-size:14px;padding:10px 12px}
- .module-reveal-bar .module-step-count{order:-1;width:100%}
- .module-panel h1{font-size:clamp(32px,7vw,42px)}
- .module-panel h2{font-size:clamp(27px,6.5vw,37px)}.doodle-art{width:82px}.cover-side .doodle-art{width:128px}
-}
-@media print{.module-reveal-bar,.module-index{display:none!important}.module-panel[hidden],.module-chunk[hidden]{display:block!important}}
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="Tema 010 · ¿Tener más opciones nos hace más felices? Presentación de conversación B1–B2 de Habla Español Club.">
+<title>Tema 010 · ¿Tener más opciones nos hace más felices? | Habla Español Club</title>
+<link rel="preconnect" href="https://raw.githubusercontent.com">
+<link rel="preconnect" href="https://www.youtube-nocookie.com">
+<style>
+@font-face{font-family:"League Spartan";src:url("https://raw.githubusercontent.com/lunamaryssol/hablaespanolclub/main/MARCA/fuentes/LeagueSpartan-VariableFont_wght.ttf") format("truetype");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Gochi Hand";src:url("https://raw.githubusercontent.com/lunamaryssol/hablaespanolclub/main/MARCA/fuentes/GochiHand-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+:root{--b:#003893;--y:#FCD116;--r:#CE1126;--k:#000;--w:#fff;--line:rgba(0,56,147,.2);--font:"League Spartan",Arial,sans-serif;--hand:"Gochi Hand",cursive}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff;color:#000}
+body{font:400 21px/1.45 var(--font);min-height:100vh;display:flex;flex-direction:column}
+button{font-family:var(--font);color:inherit}
+a{color:var(--b)}
+:focus-visible{outline:3px solid var(--b);outline-offset:3px}
+.topbar{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line)}
+.topin{max-width:1180px;margin:auto;padding:8px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand img{width:50px;height:50px;object-fit:contain;flex:none}
+.brand-name{font-weight:500;color:var(--b);font-size:19px;line-height:1.1}
+.brand-sub{font-family:var(--hand);color:var(--b);font-size:16px;display:block}
+.fs{border:1.5px solid var(--b);background:#fff;color:var(--b);border-radius:999px;min-height:42px;padding:6px 16px;font-size:16px;cursor:pointer;font-weight:500}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding:12px 22px 28px;flex:1}
+.meta{display:flex;justify-content:space-between;gap:12px;color:var(--b);font-size:16px;font-weight:500;letter-spacing:.02em}
+.nav{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:6px;margin:10px 0 6px}
+.nav button{min-height:46px;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--b);font-size:21px;font-weight:500;cursor:pointer;padding:0}
+.nav button.seen{border-color:var(--b)}
+.nav button[aria-current="step"]{border-color:var(--b);border-width:3px;color:#000}
+.nav button[aria-current="step"]::after{content:"";display:block;height:4px;margin:0 22%;border-radius:4px;background:var(--y)}
+.module-slide[hidden]{display:none}
+.mhead{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:start;padding-top:14px}
+.kicker{font-family:var(--hand);color:var(--b);font-size:23px;margin:0 0 4px;letter-spacing:.01em}
+.rol{display:inline-block;font-size:15px;font-weight:500;color:var(--b);border:1px solid var(--line);border-radius:999px;padding:1px 12px;margin-left:8px;font-family:var(--font);vertical-align:2px}
+h1,h2,h3,h4{font-family:var(--font);font-weight:500;line-height:1.14;margin:0 0 10px;letter-spacing:-.012em;text-wrap:balance}
+h1{font-size:clamp(34px,5.2vw,62px)}
+h2{font-size:clamp(30px,4.2vw,50px)}
+h3{font-size:24px}
+h4{font-size:20px}
+.wave{color:var(--b);text-decoration:underline wavy var(--r);text-decoration-thickness:2px;text-underline-offset:9px}
+.sub{font-size:clamp(21px,2.4vw,27px);line-height:1.3;max-width:850px;margin:6px 0 0}
+.doodle{width:clamp(110px,16vw,190px);pointer-events:none;flex:none}
+.doodle svg{display:block;width:100%;height:auto;overflow:visible}
+.ink,.ink *{fill:none;stroke:#000;stroke-width:3.3;stroke-linecap:round;stroke-linejoin:round}
+.bl{fill:none;stroke:var(--b);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.ye{fill:none;stroke:var(--y);stroke-width:4.4;stroke-linecap:round;stroke-linejoin:round}
+.re{fill:none;stroke:var(--r);stroke-width:3.8;stroke-linecap:round;stroke-linejoin:round}
+.intro-art{display:flex;gap:6px;justify-content:flex-end;align-items:flex-end;max-width:360px}
+.intro-art svg{width:48%;height:auto;overflow:visible}
+.content{padding-bottom:6px}
+.chunk{margin:22px 0;animation:rise .35s ease both}
+.chunk[hidden]{display:none}
+.chunk{scroll-margin-top:96px}
+.bar>div{display:grid;gap:4px}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.chunk-label{font-family:var(--hand);color:var(--b);font-size:20px;margin:0 0 6px}
+p{margin:0 0 12px}
+.lead{font-size:clamp(22px,2.6vw,30px);line-height:1.3;max-width:900px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{border:1.5px solid var(--line);border-radius:18px;padding:18px 20px;background:#fff;min-width:0}
+.card p:last-child{margin-bottom:0}
+.prompt{border-left:3px solid var(--r);padding:6px 0 6px 18px;font-size:clamp(22px,2.5vw,29px);line-height:1.3;margin:6px 0}
+.tags{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0}
+.tag{border:1px solid var(--line);border-radius:999px;padding:3px 15px;color:var(--b);font-size:18px;font-weight:500}
+.support{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.support>div{border:1.5px solid var(--line);border-radius:16px;padding:14px 18px;font-size:19px}
+.support b{display:block;font-family:var(--hand);font-weight:400;color:var(--b);font-size:21px;margin-bottom:2px}
+details.teacher{margin-top:16px;border-top:1px solid var(--line);padding-top:10px;font-size:18px}
+details.teacher summary{cursor:pointer;color:var(--b);font-weight:500}
+details.teacher p{margin:8px 0 0}
+.btn{appearance:none;border:1.5px solid var(--b);background:#fff;color:var(--b);border-radius:999px;min-height:46px;padding:9px 20px;font-size:18px;font-weight:500;cursor:pointer}
+.btn:hover{border-width:2.5px;padding:8.5px 19.5px}
+.btn.go{background:var(--y);border-color:var(--y);color:var(--b)}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn.sm{min-height:38px;padding:5px 14px;font-size:16px}
+.opt{appearance:none;border:1.5px solid var(--line);background:#fff;color:#000;border-radius:16px;padding:12px 16px;text-align:left;font-size:19px;line-height:1.3;cursor:pointer;min-width:0}
+.opt:hover{border-color:var(--b)}
+.opt[aria-pressed="true"],.opt[aria-checked="true"]{border-color:var(--b);border-width:3px;padding:10.5px 14.5px}
+.opt[aria-pressed="true"]::before,.opt[aria-checked="true"]::before{content:"✓ ";color:var(--b)}
+.pillrow{display:flex;flex-wrap:wrap;gap:10px}
+.pillrow .opt{border-radius:999px;padding:8px 18px}
+.fb{margin-top:14px;padding:14px 18px;border:1.5px dashed var(--b);border-radius:16px;font-size:19px}
+.fb[hidden]{display:none}
+.fb strong{font-weight:500;color:var(--b)}
+.small{font-size:17px}
+/* termómetro */
+.th-row{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.th-text{font-size:20px;line-height:1.28}
+.th-scale{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.th-end{font-size:13px;color:var(--b);line-height:1.1;width:62px}
+.th-end.r{text-align:right}
+.th-dot{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line);background:#fff;font-size:17px;cursor:pointer;padding:0}
+.th-dot:hover{border-color:var(--b)}
+.th-dot[aria-checked="true"]{border:4px solid var(--b);font-weight:500}
+.th-star{border:1.5px solid var(--line);border-radius:999px;background:#fff;padding:4px 12px;font-size:15px;cursor:pointer;color:#000}
+.th-star[aria-pressed="true"]{border-color:var(--b);border-width:2.5px;color:var(--b)}
+.th-star[aria-pressed="true"]::before{content:"★ "}
+/* test */
+.q-item{border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:12px}
+.q-item h4{margin-bottom:8px}
+.q-item .grid{gap:10px}
+/* short */
+.short{display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:28px;align-items:start}
+.frame{width:100%;max-width:300px;aspect-ratio:9/16;border:1.5px solid var(--line);border-radius:20px;overflow:hidden;display:grid;place-items:center;text-align:center;padding:12px;background:#fff}
+.frame iframe{width:100%;height:100%;border:0;display:block}
+.frame-wrap{max-width:300px}
+.src{font-size:17px;color:#000}
+/* apartamentos */
+.apts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
+.apt{border:1.5px solid var(--line);border-radius:16px;padding:12px 14px;min-height:122px;transition:opacity .2s}
+.apt h4{margin:0 0 6px;font-size:21px}
+.apt.out{opacity:.38;border-style:dashed}
+.apt.out h4{text-decoration:line-through}
+.apt ul{list-style:none;margin:0;padding:0;font-size:16px;line-height:1.35}
+.apt li.ok::before{content:"✓ ";color:var(--b)}
+.apt li.no::before{content:"✗ ";color:var(--r)}
+.apt.win{border:3px solid var(--b)}
+.scoreline{display:flex;flex-wrap:wrap;gap:16px;align-items:center;font-size:19px;color:var(--b);font-weight:500;margin-top:10px}
+/* lectura */
+.letter{border:1.5px solid var(--line);border-radius:16px;padding:16px 20px}
+.letter h4{color:var(--b);margin-bottom:6px}
+.sent{display:block;width:100%;text-align:left;border:1.5px solid var(--line);border-radius:14px;background:#fff;padding:11px 16px;margin:0 0 9px;font-size:20px;line-height:1.35;cursor:pointer;color:#000}
+.sent:hover{border-color:var(--b)}
+.sent[aria-pressed="true"]{border-color:var(--b);border-width:3px;padding:9.5px 14.5px}
+.sent[aria-pressed="true"]::before{content:"? ";color:var(--b)}
+.sent.res-ok{border-color:var(--b);border-width:3px}
+.sent.res-no{border-color:var(--r);border-style:dashed}
+.sent small{display:block;color:var(--b);font-size:16px;margin-top:4px}
+/* votos */
+.votes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.vote{border:1.5px solid var(--line);border-radius:16px;padding:12px 14px;text-align:center}
+.vote b{display:block;font-size:40px;font-weight:500;color:var(--b);line-height:1.1}
+.vote .row{display:flex;gap:8px;justify-content:center;margin-top:8px}
+.bars{margin-top:12px;display:grid;gap:8px}
+.bar{display:grid;grid-template-columns:150px 1fr 40px;gap:10px;align-items:center;font-size:17px}
+.bar i{display:block;height:14px;border-radius:7px;background:var(--b);min-width:3px;transition:width .3s}
+.bar i.b2{background:var(--y)}
+.evid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.evid h3{margin-bottom:8px}
+.evid .opt{display:block;width:100%;margin-bottom:9px}
+/* consultoría */
+.dilemma{border:2px solid var(--b);border-radius:20px;padding:20px 22px;font-size:clamp(22px,2.4vw,28px);line-height:1.3;min-height:120px}
+.timer{font-size:44px;font-weight:500;color:var(--b);font-variant-numeric:tabular-nums;min-width:120px}
+.roles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.roles>div{border:1.5px solid var(--line);border-radius:16px;padding:12px 16px;font-size:18px}
+.roles b{display:block;font-family:var(--hand);font-weight:400;color:var(--b);font-size:22px}
+/* escritura */
+textarea{width:100%;min-height:170px;border:1.5px solid var(--b);border-radius:16px;padding:14px 16px;font:400 21px/1.4 var(--font);background:#fff;color:#000;resize:vertical}
+.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;margin:12px 0;font-size:18px}
+.checks label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.checks input{width:22px;height:22px;accent-color:var(--b);flex:none;margin-top:3px}
+.count{color:var(--b);font-weight:500;font-size:18px}
+/* barra */
+.module-reveal-bar{position:sticky;bottom:0;z-index:20;background:#fff;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding:12px 0 10px;margin-top:26px}
+.module-reveal-bar .left,.module-reveal-bar .right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.step{font-size:16px;color:var(--b);font-weight:500;min-width:92px;text-align:center}
+.site-footer{border-top:1px solid var(--line);padding:11px 22px;text-align:center;font-size:17px;color:#000;background:#fff}
+.site-footer a{color:var(--b);font-weight:500;text-underline-offset:3px}
+.site-footer .sep{margin:0 10px;color:var(--b)}
+@media(max-width:900px){body{font-size:19px}.g3{grid-template-columns:1fr}.apts{grid-template-columns:repeat(2,minmax(0,1fr))}.short{grid-template-columns:1fr}.frame-wrap,.frame{margin:auto}.th-row{grid-template-columns:1fr}.evid,.roles,.checks,.support,.g2{grid-template-columns:1fr}.mhead{grid-template-columns:minmax(0,1fr) 90px}.doodle{width:90px}.intro-art{max-width:150px}}
+@media(max-width:600px){.topin{padding:6px 12px}.wrap{padding:10px 12px 22px}.brand img{width:40px;height:40px}.brand-name{font-size:15px}.nav{gap:3px}.nav button{font-size:17px;min-height:42px;border-radius:10px}.votes{grid-template-columns:1fr}.bar{grid-template-columns:105px 1fr 34px}.module-reveal-bar .btn{font-size:15px;padding:7px 12px;min-height:40px}.step{order:-1;width:100%}.mhead{grid-template-columns:minmax(0,1fr)}.mhead .doodle,.mhead .intro-art{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{.topbar,.nav,.module-reveal-bar{display:none!important}.module-slide[hidden],.chunk[hidden]{display:block!important}}
 </style>
 <link rel="stylesheet" href="/MARCA/clases-estilo.css">
-
-<style id="hec-legibilidad-tipografica-2026-11-18">
-/* Legibilidad B1–B2: League Spartan Regular / Medium / Semibold. */
-html body{font-weight:400!important}
-html body :is(p,li,small,.content,.lead,.subtitle,.prompt,.pending-text,.tile p,.card p,.statement p,.quiz-statement,.quote-set p,.feedback,.hint,.source){font-weight:400!important}
-html body :is(h1,h2,h3,h4,h5,h6,.brand-name,.brand-text,.module-no,.tile strong,.pending-text strong,.question,.big-idea,.closing){font-weight:500!important}
-html body :is(b,strong,.slide-dot,.dot,.module-index button,.nav button,.btn,.button,.navaction,.pending-number,.q-num,.deck-count,.module-step-count,.score-pill,.meta,.kicker,.tag,.resource-pill,.board-head,.module-reveal-bar button){font-weight:600!important}
-html body button:not(.btn):not(.button):not(.navaction){font-weight:500!important}
-html body .pending .pending-text,
-html body .pending .pending-text small{font-weight:400!important;line-height:1.45}
-html body .pending .pending-text strong{font-weight:500!important}
-</style>
 </head>
 <body>
+<header class="topbar"><div class="topin">
+  <div class="brand"><img src="https://raw.githubusercontent.com/lunamaryssol/hablaespanolclub/main/MARCA/logotipo-original.png" alt="Logotipo de Habla Español Club"><div class="brand-name">Habla Español Club<span class="brand-sub">Unidos por el español</span></div></div>
+  <button class="fs" id="fs" type="button" aria-label="Pantalla completa">⛶ Pantalla completa</button>
+</div></header>
 
-<svg class="doodle-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
-<defs>
-<symbol id="doodle-cover" viewBox="0 0 240 160">
-  <g fill="none" stroke="#000000" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M71 13Q76 5 91 7H153Q169 8 172 22V42Q170 56 155 57H112L96 70 99 56H89Q72 55 71 40Z" stroke="#003893" stroke-width="4.5"/>
-    <path d="M39 47Q22 38 28 25Q36 11 52 20Q68 5 79 20Q91 31 79 48" fill="#000000"/>
-    <path d="M37 47Q27 57 31 77Q34 100 56 105Q80 107 88 83Q95 60 78 43Q58 29 37 47Z" fill="#FFFFFF"/>
-    <path d="M31 44Q17 36 22 24Q28 12 41 20Q47 3 62 9Q77 7 81 23Q91 29 82 43Q72 33 62 34Q49 25 39 43Z" fill="#000000"/>
-    <path d="M42 55q6-6 12 0m14 0q6-5 11 1M61 61l-3 9 6 2m-13 10q11 10 22-1" />
-    <path d="M47 104l-2 10m24-9 3 10M24 157q5-30 28-35 22-5 39 9l8 26" />
-    <path d="M35 139q22 9 53 2m-54 10q24 8 53 1" stroke="#003893" stroke-width="4.5"/>
-    <ellipse cx="34" cy="88" rx="6" ry="9" stroke="#FCD116" stroke-width="4.5"/>
-    <path d="M148 47Q137 36 142 24Q148 10 160 19Q173 6 185 20Q198 12 205 28Q217 35 207 50Q199 43 190 47Q176 38 164 49Z" fill="#000000"/>
-    <path d="M151 49Q144 61 150 82Q156 103 178 105Q202 104 207 81Q212 59 196 44Q173 30 151 49Z" fill="#FFFFFF"/>
-    <path d="M149 55q8-12 17-9 12-13 22-3 10-8 18 4" fill="none"/>
-    <path d="M160 62q6-6 12 0m13 0q6-5 12 1m-19 7-2 8 6 2m-14 8q12 10 24-2"/>
-    <path d="M164 105l-1 10m22-10 2 10m-47 42q4-28 29-35 24-6 43 12l7 23" />
-    <path d="M146 133q26 10 62 1" stroke="#003893" stroke-width="3.8"/>
-    <path d="M93 117Q108 105 124 116L139 129" />
-    <path d="M86 117Q93 107 101 113L118 131Q122 137 116 142L105 136Z" fill="#FFFFFF"/>
-    <path d="M89 120l18 17m-12-21 17 17" stroke="#003893" stroke-width="2.8"/>
-    <path d="M91 145Q110 137 130 146" />
-    <path d="M113 125q10-14 19-4 6 10-6 16-12-1-13-12Z" fill="#FCD116"/>
-    <path d="M118 124q6-7 11 0m-9 5q5 4 10-1" stroke-width="2.5"/>
-    <path d="M139 130q10-12 20-5 8 9-4 17-13 2-16-12Z" fill="#FFFFFF"/>
-    <path d="M144 131q6-7 12 0" stroke="#CE1126" stroke-width="3.5"/>
-  </g>
-  <path d="M81 14q12-8 23-4m49 4q12-8 22-2" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/>
-  <path d="M16 18l-7-7m9 24-10 2m203-15 8-7m-3 20 10 2" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
-  <path d="M125 20l5-8m-1 18 9-2m-24 1-5-7" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
-</symbol>
+<main class="wrap">
+  <div class="meta"><span id="screenName">INTRODUCCIÓN</span><span id="counter" aria-live="polite">0 / 9</span></div>
+  <nav class="nav" id="nav" aria-label="Introducción y nueve ejercicios"></nav>
+  <div id="deck">
 
-<symbol id="doodle-dessert" viewBox="0 0 240 160">
-  <g fill="none" stroke="#000000" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M24 111Q34 137 119 139 202 138 216 111" />
-    <path d="M28 108Q48 91 118 92 191 91 213 108 202 126 120 128 43 127 28 108Z" fill="#FFFFFF"/>
-    <path d="M57 85L89 46Q94 39 101 47L132 85Q130 94 119 95H70Q57 95 57 85Z" fill="#FFFFFF"/>
-    <path d="M60 83l66 0m-54-14 45 1m-32-15 18 0" stroke="#003893" stroke-width="3.4"/>
-    <path d="M87 47q7-10 15-1 6 7 13-1" stroke="#CE1126" stroke-width="4"/>
-    <path d="M98 38q-7-10 3-14 10-2 11 9" stroke="#CE1126" stroke-width="3.5"/>
-    <path d="M146 85q-3-19 15-24 15-4 24 8 10 16-3 29h-24q-12-3-12-13Z" fill="#FFFFFF"/>
-    <path d="M149 76q8-15 17-5 7-14 17-4" stroke="#000000" stroke-width="4"/>
-    <path d="M150 94q16 6 33 0" stroke="#003893" stroke-width="3.2"/>
-    <path d="M164 54q-7-8 1-13 8-4 11 5" stroke="#CE1126" stroke-width="3.5"/>
-    <path d="M37 59q-2 15-1 26m-8-16 9 0" />
-    <path d="M188 39l-4-8m16 13 8-7m-6 20 10 1" />
-    <path d="M76 111q11 6 22 0m38 3q10 6 21 0" stroke="#003893" stroke-width="3"/>
-  </g>
-  <path d="M35 32l-6-8m17 3 2-10m139 12 8-8m-2 18 10-1" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
-  <path d="M117 34l7-7m-1 16 9-2" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
-</symbol>
-
-<symbol id="doodle-path" viewBox="0 0 240 160">
-  <g fill="none" stroke="#000000" stroke-width="4.1" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M112 151Q91 125 100 102 109 81 79 64 49 48 22 62M113 151Q138 123 132 99 127 78 158 63 187 48 216 62"/>
-    <path d="M112 151Q109 133 119 115" stroke="#003893" stroke-width="3.4"/>
-    <path d="M22 62Q12 53 20 42m196 20q12-9 4-20" stroke="#000000"/>
-    <path d="M83 67q-7-16 2-31 9-11 20-3 9 8 2 20l-10 12Z" fill="#FFFFFF"/>
-    <path d="M86 45l15-1m-13 9 10-1" stroke="#003893" stroke-width="3"/>
-    <path d="M135 68q-5-16 4-29 10-10 20-2 8 9 0 21l-10 10Z" fill="#FFFFFF"/>
-    <path d="M140 45l14-1m-12 10 10-1" stroke="#CE1126" stroke-width="3"/>
-    <path d="M103 100q-10 3-13 13m48-14q10 5 12 15" />
-    <path d="M28 104q10-16 22-5 7 8-3 17-12 3-19-12Zm167-2q11-15 22-3 5 9-5 17-12 1-17-14Z" fill="#FFFFFF"/>
-    <path d="M35 111l9-5m151 6 10-5" stroke="#003893" stroke-width="3"/>
-  </g>
-  <path d="M18 30l-7-8m18 5 3-10m174 8 8-8m-4 19 10 2" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
-  <path d="M73 20l7-7m-1 16 9-2m70-7 6-8" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
-</symbol>
-
-<symbol id="doodle-music" viewBox="0 0 240 160">
-  <g fill="none" stroke="#000000" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M58 112Q35 100 34 73 32 31 78 19 123 7 159 29 185 46 184 80"/>
-    <path d="M57 105Q40 96 42 75 44 42 79 33 116 22 146 39 165 51 167 78"/>
-    <path d="M49 80Q27 73 20 91 17 110 33 120 48 128 61 117Z" fill="#FFFFFF"/>
-    <path d="M158 79Q181 69 193 86 201 105 185 118 169 127 154 115Z" fill="#FFFFFF"/>
-    <path d="M34 91q10-9 19-1m-17 14q10-8 18 0m114-12q10-9 19 0m-18 13q10-7 18 1" stroke="#003893" stroke-width="3.2"/>
-    <path d="M96 16v30m0-30 31-8v31" stroke="#000000"/>
-    <path d="M96 46q-8-9-16-3-7 8 0 14 9 5 16-3Z" fill="#CE1126"/>
-    <path d="M127 39q-8-9-16-3-7 8 0 14 9 5 16-3Z" fill="#FCD116"/>
-    <path d="M75 132q25 8 49 0" stroke="#003893" stroke-width="3.4"/>
-  </g>
-  <path d="M206 31q-8 8 0 14 8 7 15-2 7-10-1-17" fill="none" stroke="#CE1126" stroke-width="4.2" stroke-linecap="round"/>
-  <path d="M210 24l5-9m4 17 10-1m-9 13 7 6" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
-  <path d="M20 43l-8-7m12 23-10 1" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/>
-</symbol>
-
-<symbol id="doodle-traffic" viewBox="0 0 240 160">
-  <g fill="none" stroke="#000000" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M71 21Q73 10 86 10H142Q155 11 157 23V116Q155 130 142 131H86Q72 130 71 116Z" fill="#FFFFFF"/>
-    <path d="M83 25q7-7 13 0m-13 88q7 7 13 0" stroke="#003893" stroke-width="3"/>
-    <circle cx="114" cy="42" r="17" fill="#CE1126"/>
-    <circle cx="114" cy="80" r="17" fill="#FCD116"/>
-    <circle cx="114" cy="117" r="17" fill="#003893"/>
-    <path d="M114 132v16m-13 0h27" />
-    <path d="M15 150Q48 131 72 142m85-1q27-17 67 2" />
-    <path d="M26 142q10-13 18-1m145 0q10-14 19-2" />
-  </g>
-  <path d="M23 33l-7-8m17 3 2-10m172 8 8-7m-3 18 10 2" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
-  <path d="M49 75l-7 8m14-1 5 7m117-24 8 7" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
-</symbol>
-
-<symbol id="doodle-tokens" viewBox="0 0 240 160">
-  <g fill="none" stroke="#000000" stroke-width="4.1" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M42 51Q33 34 47 20 60 5 78 18 92 4 105 19 120 31 109 49" fill="#000000"/>
-    <path d="M46 47Q37 59 42 80 47 103 69 106 92 107 101 84 109 62 95 44 72 29 46 47Z" fill="#FFFFFF"/>
-    <path d="M50 60q6-6 12 0m17 0q6-6 12 1m-23 7-3 8 7 2m-12 10q13 10 24-1" />
-    <path d="M56 105l-1 11m27-10 3 10M25 157q6-32 37-38 28-5 49 15l5 23" />
-    <path d="M31 137q27 9 81 1m-80 11q31 8 78 0" stroke="#003893" stroke-width="4.4"/>
-    <ellipse cx="44" cy="87" rx="6" ry="8" stroke="#FCD116" stroke-width="4"/>
-    <path d="M111 130q14-18 29-16 14 2 23 17l-5 10-26 0Z" fill="#FFFFFF"/>
-    <path d="M126 132q-9-15 2-21 10-7 17 4" />
-    <path d="M148 115q12-10 22-4 8 5 2 13-7 7-24 5" />
-    <circle cx="165" cy="44" r="17" fill="#003893"/>
-    <circle cx="198" cy="44" r="17" fill="#FCD116"/>
-    <circle cx="181" cy="82" r="17" fill="#CE1126"/>
-    <path d="M156 44h18m-9-9v18m24-9h18m-9-9v18m-9 29h18m-9-9v18" stroke="#FFFFFF" stroke-width="2.6"/>
-  </g>
-  <path d="M130 95l-6-8m17 2 2-10m49-22 8-8m-4 18 10 1" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
-  <path d="M20 31l-7-8m18 5 3-9m184 9 8-7" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
-</symbol>
-
-<symbol id="doodle-movie" viewBox="0 0 240 160">
-  <g fill="none" stroke="#000000" stroke-width="4.1" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M24 34Q24 23 36 22L113 17Q124 18 126 30L131 73Q131 85 119 86L42 91Q29 91 28 79Z" fill="#FFFFFF"/>
-    <path d="M36 32l80-6m-74 18 79-5" stroke="#003893" stroke-width="3.3"/>
-    <path d="M45 23l9 12m16-14 9 12m17-13 9 12" stroke="#CE1126" stroke-width="3.2"/>
-    <path d="M141 45Q141 35 153 34L213 30Q225 31 226 43L229 87Q229 99 217 100L156 104Q144 103 143 91Z" fill="#FFFFFF"/>
-    <path d="M153 47l64-5m-62 18 66-4" stroke="#003893" stroke-width="3.2"/>
-    <path d="M160 35l9 12m17-13 8 12m16-13 8 12" stroke="#FCD116" stroke-width="3.2"/>
-    <path d="M68 113Q75 96 97 98L119 102 137 96Q157 94 168 109L161 148H75Z" fill="#FFFFFF"/>
-    <path d="M75 111q17 9 38 1m-33 11q25 8 53 0m-49 13q22 7 46 0" stroke="#CE1126" stroke-width="3.2"/>
-    <path d="M82 102q-8-12 2-17 9-4 13 7m8-4q-3-12 8-14 10 0 10 12m4 2q2-12 12-10 11 3 7 14" fill="#FCD116"/>
-    <path d="M93 97q-5-10 4-15m17 8q-3-10 7-15m11 19q0-10 10-12" />
-  </g>
-  <path d="M17 111l-8-8m13 24-10 3m197-96 8-8m-3 19 10 1" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
-  <path d="M130 18l7-8m0 18 9-2" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
-</symbol>
-
-<symbol id="doodle-debate" viewBox="0 0 240 160">
-  <g fill="none" stroke="#000000" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M18 30Q19 14 37 13H128Q148 15 149 33V79Q148 96 130 97H77L55 119 58 97H38Q19 96 18 78Z" fill="#FFFFFF" stroke="#003893" stroke-width="4.5"/>
-    <path d="M106 70Q108 57 123 56H205Q222 57 222 73V111Q221 127 204 128H177L159 145 161 128H124Q107 127 106 111Z" fill="#FFFFFF" stroke="#CE1126" stroke-width="4.5"/>
-    <path d="M49 54q8-9 16 0m16 0q8-9 16 0m16 0q8-9 16 0" stroke="#003893" stroke-width="4"/>
-    <path d="M136 91q7-8 14 0m15 0q7-8 14 0m15 0q7-8 14 0" stroke="#CE1126" stroke-width="4"/>
-    <path d="M42 132q13-9 25-2l14 11m107-4q11-11 23-6" />
-  </g>
-  <path d="M23 12l-7-7m21 7 3-9m156 8 7-8m11 19 9 2" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
-  <path d="M90 124l6-9m1 18 10-3m85-15 7-7" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/>
-</symbol>
-
-<symbol id="doodle-jars" viewBox="0 0 240 160">
-  <g fill="none" stroke="#000000" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M36 42Q35 31 48 31H102Q115 32 114 44L109 126Q108 140 94 141H56Q42 140 41 126Z" fill="#FFFFFF"/>
-    <path d="M34 30q2-11 14-12h56q12 1 13 12l-5 9H39Z" fill="#FCD116"/>
-    <path d="M45 60q29 11 62 0m-60 11q28 10 58 0" stroke="#CE1126" stroke-width="3.2"/>
-    <path d="M137 48Q136 36 149 35H197Q210 36 209 49L204 126Q203 139 190 140H157Q143 139 142 126Z" fill="#FFFFFF"/>
-    <path d="M135 35q2-10 14-11h50q12 1 13 12l-5 9h-67Z" fill="#003893"/>
-    <path d="M146 69q29 11 54 0m-53 12q25 9 51 0" stroke="#CE1126" stroke-width="3.2"/>
-    <path d="M61 27q-2-11 8-13 9-1 10 10m74 10q-2-11 8-13 9-1 10 10" />
-    <path d="M81 79q-9-9-17 0-8 10 3 20 12 10 23 0 10-11-1-20Z" fill="#CE1126"/>
-    <path d="M171 84q-8-8-15 0-6 9 3 17 10 8 18 0 8-9-2-17Z" fill="#FCD116"/>
-    <path d="M89 77q5-9 12-7m70 7q4-9 12-7" stroke="#003893" stroke-width="3.2"/>
-    <path d="M116 19l18-10m-6 17 17-4" />
-  </g>
-  <path d="M24 92l-8-6m12 20-10 4m192-89 8-7m-4 17 10 1" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
-  <path d="M124 134l8 8m-1-18 9-3" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
-</symbol>
-
-<symbol id="doodle-notebook" viewBox="0 0 240 160">
-  <g fill="none" stroke="#000000" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M23 41Q24 27 39 28L111 34 117 139Q91 126 68 130L34 137Q21 135 22 122Z" fill="#FFFFFF"/>
-    <path d="M117 34l77-7q14 1 14 15l-1 81q0 14-15 13-31-5-75 3Z" fill="#FFFFFF"/>
-    <path d="M117 34l-1 105m-1-93q-14-7-28-6m28 22q-15-8-30-5m31 27q-16-7-31-4" stroke="#003893" stroke-width="3.1"/>
-    <path d="M139 54l8 8 14-18m-22 40 8 8 14-18" stroke="#CE1126" stroke-width="4.1"/>
-    <path d="M34 75q26-7 53 1m-52 16q25-7 48 1m-48 16q19-6 38 0" stroke="#003893" stroke-width="3.1"/>
-    <path d="M78 22q0-12 8-12 9 0 9 13m13 0q0-12 9-12 8 0 8 13m12-1q0-12 9-12 8 0 8 12" />
-    <path d="M185 68l22-39q4-7 10-3 6 4 2 11l-23 39-14 9Z" fill="#FCD116"/>
-    <path d="M184 83l-5 15 14-8" fill="#FFFFFF"/>
-  </g>
-  <path d="M24 18l-8-7m18 3 2-10m162 117 9 3m-2 10 10 2" fill="none" stroke="#FCD116" stroke-width="4.5" stroke-linecap="round"/>
-  <path d="M62 18l7-8m-1 17 10-2" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/>
-</symbol>
-</defs>
-</svg>
-  <header class="topbar">
-    <div class="shell topbar-inner">
-      <div class="brand">
-        <img src="/MARCA/logotipo-original.png" alt="Logotipo de Habla Español Club">
-        <div><div class="brand-name">HABLA ESPAÑOL CLUB</div><div class="brand-sub">Unidos por el español</div></div>
-      </div>
-      <div class="top-actions">
-        <span class="top-label">Presentación de clase · Tema 010</span>
-        <button class="icon-btn" id="fullscreenBtn" type="button" aria-label="Activar pantalla completa" title="Pantalla completa">⛶</button>
+<!-- ============ 0 · INTRODUCCIÓN ============ -->
+<section class="module-slide module-panel" data-module="0" data-title="Introducción" aria-labelledby="t0">
+  <div class="mhead"><div>
+    <p class="kicker">TEMA 010 · OPINIONES Y DEBATES</p>
+    <h1 id="t0">¿Tener más <span class="wave">opciones</span> nos hace más felices?</h1>
+    <p class="sub">Elegir, comparar, renunciar… y decidir con calma.</p>
+  </div><div class="intro-art" id="introArt" aria-hidden="true"></div></div>
+  <div class="content">
+    <div class="chunk">
+      <p class="lead">Hoy vamos a conversar sobre algo que hacemos todos los días: <strong>elegir</strong>. Compararemos lo que ganamos y lo que perdemos cuando hay muchas alternativas, y defenderemos nuestra postura con matices.</p>
+      <div class="tags"><span class="tag">9 ejercicios</span><span class="tag">2 Shorts de YouTube</span><span class="tag">un juego</span><span class="tag">una lectura</span><span class="tag">un debate</span><span class="tag">una escritura breve</span></div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Para conversar hoy</p>
+      <div class="grid g2">
+        <div class="card"><h3>Frases del tema</h3><p>Cuantas más opciones… · Por una parte… · Sin embargo… · Me inclino por…</p></div>
+        <div class="card"><h3>Para matizar</h3><p>Depende de… · No necesariamente… · Salvo que… · Aunque…</p></div>
       </div>
     </div>
-    <div class="progress-wrap" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
-  </header>
-
-  <main class="shell">
-    <div class="deck-head">
-      <div class="deck-kicker">Una clase para conversar, elegir y argumentar</div>
-      <div class="deck-count" id="slideCount" aria-live="polite">00 / 09</div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Para empezar</p>
+      <div class="prompt">¿Qué fue lo último que elegiste hoy entre varias opciones? ¿Fue fácil o difícil?</div>
+      <div class="support"><div><b>B1 · apoyo</b>Hoy elegí… · Fue fácil/difícil porque…</div><div><b>B2 · reto</b>Elegí…, aunque dudé entre… porque…</div></div>
+      <details class="teacher"><summary>Apoyo para la profesora</summary><p>Todos pueden pasar o hablar de una situación imaginada. Con 1 estudiante, conversa tú también; con grupos grandes, usa subgrupos de 4 a 6 personas. Método ROL: ejercicios 1–3 Relaciónate, 4–6 Observa, 7–9 Lánzate.</p></details>
     </div>
-    <nav class="slide-nav" id="slideNav" aria-label="Navegación de diapositivas"></nav>
+  </div>
+  <div class="module-reveal-bar"></div>
+</section>
 
-    <!-- PORTADA -->
-    <section class="slide active" data-label="Inicio" aria-label="Portada de la clase">
-      <div class="slide-inner">
-        <div class="cover-grid">
-          <div>
-            <p class="eyebrow">TEMA 010 · CONVERSACIÓN B1–B2</p>
-            <h1>¿Tener más opciones <span class="wave">nos hace más felices?</span></h1>
-            <p class="subtitle">Elegir, comparar y decidir sin quedarnos atrapados.</p>
-            <div class="resource-line">
-              <span class="resource-pill">9 actividades</span>
-              <span class="resource-pill">Juegos y debates</span>
-              <span class="resource-pill">Vídeos y música</span>
-            </div>
-          </div>
-          <div class="cover-side">
-            <svg class="doodle-art doodle-hero" viewBox="0 0 240 160" role="img" aria-label="Marysol y Fernando conversan mientras comparan un menú"><use href="#doodle-cover"></use></svg>
-            <div class="cover-summary"><strong>Hoy practicamos</strong><p>Comparar alternativas, justificar preferencias y reconocer que una misma decisión puede verse de distintas maneras.</p></div>
-            <div class="cover-summary"><strong>Recursos para conversar</strong><p>Cuantas más opciones… · Por una parte… · Sin embargo… · Me inclino por… · No necesariamente… · Depende de…</p></div>
-          </div>
-        </div>
-        <div class="button-row"><button class="btn" type="button" data-go="1">Comenzar la clase</button></div>
-        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Presenta el tema y pide al grupo que recuerde una decisión reciente en la que comparar muchas opciones haya sido fácil o difícil.</p></details>
+<!-- ============ 1 · TERMÓMETRO ============ -->
+<section class="module-slide module-panel" data-module="1" data-title="El termómetro de las opciones" hidden aria-labelledby="t1">
+  <div class="mhead"><div>
+    <p class="kicker">EJERCICIO 1 <span class="rol">Relaciónate</span></p>
+    <h2 id="t1">El <span class="wave">termómetro</span> de las opciones</h2>
+    <p class="sub">¿Para qué decisiones queremos muchas alternativas, y para cuáles preferimos pocas?</p>
+  </div><div class="doodle" aria-hidden="true"><svg viewBox="0 0 160 120"><g class="ink"><path d="M70 16Q70 8 78 8T86 16V68Q101 76 99 92 96 110 78 110 60 110 57 92 55 76 70 68Z"/><path d="M78 36V88"/><path d="M92 22h10M92 36h7M92 50h10M92 64h7"/></g><path class="bl" d="M40 28q-11 16 0 32"/><path class="ye" d="M112 18l8-8m2 20l11-2"/><path class="re" d="M64 94q4 5 10 4"/></svg></div></div>
+  <div class="content">
+    <div class="chunk">
+      <div class="prompt">Van a ubicar ocho situaciones cotidianas en una escala del 1 al 5.</div>
+      <div class="grid g2">
+        <div class="card"><h3>Escala</h3><p><strong>1</strong> = mejor con pocas opciones<br><strong>5</strong> = mejor con muchas opciones</p></div>
+        <div class="card"><h3>Reglas</h3><p>Primero decidan en grupo (o piensa tú solo/a). Después marquen con ★ la situación que más los dividió.</p></div>
       </div>
-    </section>
-
-    <!-- ACTIVIDAD 01 -->
-    <section class="slide" data-label="Menús" aria-label="Actividad 1: El menú que no se acaba">
-      <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 01</p><h2>El menú que no se acaba</h2><p class="subtitle">Compara los menús. Elige un postre y explica qué criterio has utilizado.</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Dos postres sobre un plato"><use href="#doodle-dessert"></use></svg></div>
-        <div class="grid two">
-          <article class="card"><div class="card-label">Menú A · 4 opciones</div><div class="dessert-grid" id="menuA">
-            <button class="choice-chip" type="button" data-dessert="Flan de caramelo" aria-pressed="false">Flan de caramelo</button><button class="choice-chip" type="button" data-dessert="Tarta de limón" aria-pressed="false">Tarta de limón</button><button class="choice-chip" type="button" data-dessert="Helado de vainilla" aria-pressed="false">Helado de vainilla</button><button class="choice-chip" type="button" data-dessert="Brownie" aria-pressed="false">Brownie</button>
-          </div></article>
-          <article class="card"><div class="card-label">Menú B · 12 opciones</div><div class="dessert-grid" id="menuB">
-            <button class="choice-chip" type="button" data-dessert="Tiramisú" aria-pressed="false">Tiramisú</button><button class="choice-chip" type="button" data-dessert="Cheesecake" aria-pressed="false">Cheesecake</button><button class="choice-chip" type="button" data-dessert="Mousse de chocolate" aria-pressed="false">Mousse de chocolate</button><button class="choice-chip" type="button" data-dessert="Helado de mango" aria-pressed="false">Helado de mango</button><button class="choice-chip" type="button" data-dessert="Sorbete de maracuyá" aria-pressed="false">Sorbete de maracuyá</button><button class="choice-chip" type="button" data-dessert="Milhojas" aria-pressed="false">Milhojas</button><button class="choice-chip" type="button" data-dessert="Panna cotta" aria-pressed="false">Panna cotta</button><button class="choice-chip" type="button" data-dessert="Tarta de manzana" aria-pressed="false">Tarta de manzana</button><button class="choice-chip" type="button" data-dessert="Helado de pistacho" aria-pressed="false">Helado de pistacho</button><button class="choice-chip" type="button" data-dessert="Brownie con sal marina" aria-pressed="false">Brownie con sal marina</button><button class="choice-chip" type="button" data-dessert="Helado de ajo" aria-pressed="false">Helado de ajo</button><button class="choice-chip" type="button" data-dessert="Tarta de aceitunas" aria-pressed="false">Tarta de aceitunas</button>
-          </div></article>
-        </div>
-        <div class="choice-result" id="dessertResult" aria-live="polite">Selecciona un postre. Después, explica por qué lo has elegido.</div>
-        <div class="prompt"><strong>Pistas para conversar</strong><p>¿Te ayuda ver más opciones? ¿Qué pasa si ninguna te convence? ¿Te cuesta renunciar a las que no eliges?</p></div>
-        <div class="phrases"><div class="phrase"><strong>Frases para empezar · B1</strong>Me quedo con… porque… · El menú A/B me parece…</div><div class="phrase"><strong>Para ir más lejos · B2</strong>Aunque hay más variedad, me inclino por… · Tener más posibilidades no significa…</div></div>
-        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Pide primero una elección rápida. Después, compara cuánto tardan en decidir entre los dos menús y qué criterios utilizan para descartar opciones.</p></details>
-      </div>
-    </section>
-
-    <!-- ACTIVIDAD 02 SHORT -->
-    <section class="slide" data-label="Short" aria-label="Actividad 2: ¿Te cuesta tomar decisiones?">
-      <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 02 · SHORT</p><h2>¿Te cuesta tomar decisiones?</h2><p class="subtitle">Mira el Short e identifica la metáfora utilizada para hablar de decisiones.</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Dos caminos posibles y señales"><use href="#doodle-path"></use></svg></div>
-        <div class="video-layout">
-          <div><div class="video-frame vertical"><iframe title="Short: ¿Te cuesta tomar decisiones? — Píldoras de Psicología" data-src="https://www.youtube-nocookie.com/embed/01QEkvw_MrI?rel=0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="video-caption">Short de YouTube · Píldoras de Psicología</div><a class="video-link" href="https://www.youtube.com/shorts/01QEkvw_MrI" target="_blank" rel="noopener">Abrir Short en YouTube ↗</a></div>
-          <div class="grid" style="gap:13px">
-            <article class="card"><div class="card-label">Antes y durante</div><p><strong>Antes:</strong> piensa en una decisión cotidiana que sueles aplazar.</p><p><strong>Mientras lo ves:</strong> identifica la metáfora y la idea principal.</p></article>
-            <article class="card"><div class="card-label">Después del Short</div><p>¿Qué representa la metáfora? ¿Qué relación tiene con elegir entre alternativas? ¿Te parece útil?</p></article>
-            <div class="phrases" style="grid-template-columns:1fr"><div class="phrase"><strong>Frases B1</strong>La idea principal es… · La metáfora representa…</div><div class="phrase"><strong>Reto B2</strong>La comparación funciona porque… · No la aplicaría siempre, ya que…</div></div>
-          </div>
-        </div>
-        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Antes de reproducir el Short, recoge una decisión aplazada por el grupo. Después, pide que expliquen la metáfora con sus propias palabras, sin limitarse a repetirla.</p></details>
-      </div>
-    </section>
-
-    <!-- ACTIVIDAD 03 CANCIÓN -->
-    <section class="slide" data-label="Canción" aria-label="Actividad 3: Color esperanza">
-      <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 03 · CANCIÓN</p><h2>¿La felicidad depende de cómo miramos las cosas?</h2><p class="subtitle">Escucha la canción y conecta su mensaje con nuestras decisiones.</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Auriculares y notas musicales"><use href="#doodle-music"></use></svg></div>
-        <div class="video-layout">
-          <div><div class="video-frame wide"><iframe title="Diego Torres — Color Esperanza (vídeo oficial)" data-src="https://www.youtube-nocookie.com/embed/SJLgBChvkzs?rel=0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="video-caption">Color Esperanza · Diego Torres · Vídeo oficial</div><a class="video-link" href="https://www.youtube.com/watch?v=SJLgBChvkzs" target="_blank" rel="noopener">Abrir canción en YouTube ↗</a></div>
-          <div class="grid" style="gap:13px">
-            <article class="card"><div class="card-label">Escucha con un propósito</div><p>¿Qué idea resume mejor su mensaje?</p><div class="quiz-list" id="songQuiz">
-              <button class="answer-button" type="button" data-song-answer="A" aria-pressed="false">A. Todo depende de tener muchas opciones.</button>
-              <button class="answer-button" type="button" data-song-answer="B" aria-pressed="false">B. La esperanza ayuda a mirar el futuro de otra manera.</button>
-              <button class="answer-button" type="button" data-song-answer="C" aria-pressed="false">C. Nunca debemos cambiar de opinión.</button>
-            </div><div class="feedback" id="songFeedback" aria-live="polite">Selecciona la idea que mejor resume el mensaje.</div></article>
-            <article class="card"><div class="card-label">Preguntas para conversar</div><p>¿La felicidad depende de lo que elegimos, de nuestras circunstancias o de ambas? ¿Más opciones garantizan satisfacción?</p></article>
-            <div class="phrases" style="grid-template-columns:1fr"><div class="phrase"><strong>Frases B1</strong>La canción transmite… · Me hace pensar en…</div><div class="phrase"><strong>Reto B2</strong>Aunque la actitud influye, también hay factores externos que…</div></div>
-          </div>
-        </div>
-        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>La respuesta más adecuada es B. No se trata de concluir que la actitud lo resuelve todo, sino de relacionar esperanza, circunstancias y decisiones personales. El enlace al Short musical que aparecía en el material base no pudo verificarse; se utiliza el vídeo oficial de Diego Torres para conservar la canción propuesta.</p></details>
-      </div>
-    </section>
-
-    <!-- ACTIVIDAD 04 -->
-    <section class="slide" data-label="Semáforo" aria-label="Actividad 4: Antes de elegir, enciende el semáforo">
-      <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 04 · SHORT + JUEGO</p><h2>Antes de elegir, enciende el semáforo</h2><p class="subtitle">Mira el Short y aplica la secuencia a una decisión cotidiana.</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Semáforo con un camino"><use href="#doodle-traffic"></use></svg></div>
-        <div class="video-layout">
-          <div><div class="video-frame vertical"><iframe title="Técnica del Semáforo — Mayores@Resilientes" data-src="https://www.youtube-nocookie.com/embed/rrW5gejXCUs?rel=0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="video-caption">Técnica del Semáforo · Mayores@Resilientes</div><a class="video-link" href="https://www.youtube.com/shorts/rrW5gejXCUs" target="_blank" rel="noopener">Abrir Short en YouTube ↗</a></div>
-          <div class="grid" style="gap:14px">
-            <article class="card"><div class="card-label">Elige un plan para el sábado</div><div class="quiz-list" id="saturdayChoices">
-              <button class="option-button" type="button" data-plan="Parque" aria-pressed="false">A. Parque: gratis y tranquilo.</button>
-              <button class="option-button" type="button" data-plan="Cine" aria-pressed="false">B. Cine: coste medio, horario fijo.</button>
-              <button class="option-button" type="button" data-plan="Festival" aria-pressed="false">C. Festival: caro, muchas actividades.</button>
-            </div><div class="feedback" id="planFeedback" aria-live="polite">Selecciona una opción para analizarla.</div></article>
-            <div class="button-row"><button class="btn small" id="nextLight" type="button">Empezar con rojo</button><span class="score-pill" id="lightStatus">Paso 0 / 3</span></div>
-          </div>
-        </div>
-        <div class="traffic-stage">
-          <article class="traffic-card" id="lightRed"><div class="traffic-title"><span class="light red"></span>Rojo · Detente</div><p>¿Qué decisión necesitas tomar? Define el problema antes de actuar.</p></article>
-          <article class="traffic-card" id="lightYellow"><div class="traffic-title"><span class="light yellow"></span>Amarillo · Piensa</div><p>¿Qué criterios importan: presupuesto, tiempo, compañía o ganas?</p></article>
-          <article class="traffic-card" id="lightGreen"><div class="traffic-title"><span class="light green"></span>Verde · Actúa</div><p>Elige y explica por qué esa opción encaja con tus prioridades.</p></article>
-        </div>
-        <div class="prompt"><strong>Recursos para conversar</strong><p>Primero… · Después… · Finalmente… · El criterio decisivo para mí sería…</p></div>
-        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Reproduce el Short y después avanza por las tres luces. Pide que el grupo aplique cada fase a la opción elegida y explique qué información necesita antes de decidir.</p></details>
-      </div>
-    </section>
-
-    <!-- ACTIVIDAD 05 -->
-    <section class="slide" data-label="Juego" aria-label="Actividad 5: Seis fichas para el sábado">
-      <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 05 · JUEGO</p><h2>Seis fichas para el sábado</h2><p class="subtitle">Diseñen un plan compartido sin superar el presupuesto.</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Marysol presenta tres fichas de colores"><use href="#doodle-tokens"></use></svg></div>
-        <div class="grid two">
-          <article class="card">
-            <div class="card-label">Opciones disponibles</div>
-            <div class="activity-options" id="activityOptions">
-              <button class="activity-option" type="button" data-activity="Brunch" data-cost="2" aria-pressed="false"><span><strong>Brunch</strong><small>Comida y conversación</small></span><span class="cost">2 fichas</span></button>
-              <button class="activity-option" type="button" data-activity="Museo" data-cost="2" aria-pressed="false"><span><strong>Museo</strong><small>Visita cultural</small></span><span class="cost">2 fichas</span></button>
-              <button class="activity-option" type="button" data-activity="Concierto" data-cost="4" aria-pressed="false"><span><strong>Concierto</strong><small>Música en directo</small></span><span class="cost">4 fichas</span></button>
-              <button class="activity-option" type="button" data-activity="Parque" data-cost="1" aria-pressed="false"><span><strong>Parque</strong><small>Aire libre</small></span><span class="cost">1 ficha</span></button>
-              <button class="activity-option" type="button" data-activity="Spa" data-cost="3" aria-pressed="false"><span><strong>Spa</strong><small>Descanso</small></span><span class="cost">3 fichas</span></button>
-              <button class="activity-option" type="button" data-activity="Cocina" data-cost="3" aria-pressed="false"><span><strong>Cocina</strong><small>Actividad compartida</small></span><span class="cost">3 fichas</span></button>
-              <button class="activity-option" type="button" data-activity="Cine" data-cost="2" aria-pressed="false"><span><strong>Cine</strong><small>Plan cultural</small></span><span class="cost">2 fichas</span></button>
-              <button class="activity-option" type="button" data-activity="Bicicleta" data-cost="2" aria-pressed="false"><span><strong>Bicicleta</strong><small>Actividad al aire libre</small></span><span class="cost">2 fichas</span></button>
-            </div>
-          </article>
-          <article class="card">
-            <div class="game-top"><div class="card-label">Reglas del juego</div><span class="score-pill" id="budgetStatus">0 / 6 fichas</span></div>
-            <p>Tienen <strong>6 fichas</strong>. Elijan exactamente <strong>tres actividades</strong> sin superar el presupuesto.</p>
-            <div class="score-pill" id="selectionStatus">0 / 3 actividades</div>
-            <div class="feedback" id="budgetFeedback" aria-live="polite">Selecciona tres actividades para construir el plan.</div>
-            <div class="card-label" style="margin-top:20px">Criterios para valorar el plan</div>
-            <p style="font-size:13px;color:var(--muted)">Marca los criterios que el equipo logra justificar. Cada criterio marcado suma un punto.</p>
-            <div class="criteria">
-              <label class="criterion"><input type="checkbox" id="criterionBudget" disabled> Presupuesto respetado</label>
-              <label class="criterion"><input type="checkbox" class="manual-criterion"> Aire libre</label>
-              <label class="criterion"><input type="checkbox" class="manual-criterion"> Descanso</label>
-              <label class="criterion"><input type="checkbox" class="manual-criterion"> Plan social</label>
-              <label class="criterion"><input type="checkbox" class="manual-criterion"> Renuncia justificada</label>
-            </div>
-            <div class="game-top" style="margin-top:15px"><span class="score-pill" id="pointsStatus">0 / 5 puntos</span><button class="btn secondary small" id="resetBudget" type="button">Reiniciar juego</button></div>
-          </article>
-        </div>
-        <div class="phrases"><div class="phrase"><strong>Frases para empezar · B1</strong>Propongo… · Nos alcanza para… · Yo elegiría…</div><div class="phrase"><strong>Para ir más lejos · B2</strong>Si priorizamos…, tendremos que renunciar a…</div></div>
-        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Divide al grupo en equipos. Cada equipo elige tres actividades, justifica sus renuncias y defiende el plan. El criterio de puntuación visible permite comparar las propuestas.</p></details>
-      </div>
-    </section>
-
-    <!-- ACTIVIDAD 06 -->
-    <section class="slide" data-label="Decisión" aria-label="Actividad 6: La película que nunca empieza">
-      <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 06 · DECISIÓN</p><h2>La película que nunca empieza</h2><p class="subtitle">Elige con la información disponible y reacciona a una nueva condición.</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Entradas de cine y palomitas"><use href="#doodle-movie"></use></svg></div>
-        <div class="card">
-          <div class="card-label">Primera decisión · Elige una película</div>
-          <div class="movie-choice" id="movieChoices">
-            <button class="option-button" type="button" data-movie="A" aria-pressed="false"><strong>A. Risas en el ascensor</strong><span>Comedia · 95 min · Ligera.</span></button>
-            <button class="option-button" type="button" data-movie="B" aria-pressed="false"><strong>B. La última pista</strong><span>Misterio · 110 min · Final inesperado.</span></button>
-            <button class="option-button" type="button" data-movie="C" aria-pressed="false"><strong>C. El mapa perdido</strong><span>Aventura · 85 min · Ritmo tranquilo.</span></button>
-          </div>
-          <p style="font-size:13px;color:var(--muted);margin:13px 0 0">Todas con audio en español.</p>
-          <div class="feedback" id="movieInitialFeedback" aria-live="polite">Elige una opción y explica qué criterio has utilizado. ¿Qué información te falta?</div>
-          <div class="button-row"><button class="btn" id="revealMovie" type="button" aria-describedby="movieRevealHint">Mostrar nueva información</button><p id="movieRevealHint" class="small-note">Primero selecciona una película (A, B o C). Después pulsa este botón para conocer la nueva condición.</p></div>
-          <div class="reveal-box" id="movieReveal" hidden tabindex="-1"><div class="card-label">Nueva información</div><p>El último transporte sale en <strong>90 minutos</strong>. A y B ya no caben. C sí, pero alguien ya la vio y desea una historia nueva. ¿Qué hacen?</p><div class="button-row" id="movieFinalChoices"><button class="option-button" type="button" data-final="Ver C aunque alguien ya la vio" aria-pressed="false">Ver C aunque alguien ya la vio</button><button class="option-button" type="button" data-final="Buscar otra película o cambiar el plan" aria-pressed="false">Buscar otra película o cambiar el plan</button><button class="option-button" type="button" data-final="Negociar una alternativa con el grupo" aria-pressed="false">Negociar una alternativa con el grupo</button></div><div class="feedback" id="movieFinalFeedback" aria-live="polite">Selecciona una respuesta y justifica el cambio.</div></div>
-        </div>
-        <div class="phrases"><div class="phrase"><strong>Frases B1</strong>Al principio elegí…, pero ahora…</div><div class="phrase"><strong>Reto B2</strong>El criterio que ahora pesa más es…</div></div>
-        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Haz que el grupo defienda la elección inicial. Revela la limitación de tiempo y pregunta qué criterio ha pasado a ser prioritario y cómo resolverían el desacuerdo.</p></details>
-      </div>
-    </section>
-
-    <!-- ACTIVIDAD 07 -->
-    <section class="slide" data-label="Debate" aria-label="Actividad 7: Más opciones, más libertad">
-      <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 07 · DEBATE</p><h2>¿Más opciones, más libertad?</h2><p class="subtitle">Toma posición, argumenta y escucha una perspectiva diferente.</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Globos de diálogo para el debate"><use href="#doodle-debate"></use></svg></div>
-        <div class="statement-list">
-          <article class="statement" data-statement="1"><p>1. Cuantas más opciones tengo, más libre me siento.</p><div class="statement-controls"><button class="vote-button" type="button" data-vote="De acuerdo" aria-pressed="false">De acuerdo</button><button class="vote-button" type="button" data-vote="Depende" aria-pressed="false">Depende</button><button class="vote-button" type="button" data-vote="En desacuerdo" aria-pressed="false">En desacuerdo</button></div><div class="vote-count" aria-live="polite">Aún no se ha registrado una postura.</div></article>
-          <article class="statement" data-statement="2"><p>2. Comparar alternativas siempre mejora mis decisiones.</p><div class="statement-controls"><button class="vote-button" type="button" data-vote="De acuerdo" aria-pressed="false">De acuerdo</button><button class="vote-button" type="button" data-vote="Depende" aria-pressed="false">Depende</button><button class="vote-button" type="button" data-vote="En desacuerdo" aria-pressed="false">En desacuerdo</button></div><div class="vote-count" aria-live="polite">Aún no se ha registrado una postura.</div></article>
-          <article class="statement" data-statement="3"><p>3. Prefiero que alguien reduzca las opciones por mí.</p><div class="statement-controls"><button class="vote-button" type="button" data-vote="De acuerdo" aria-pressed="false">De acuerdo</button><button class="vote-button" type="button" data-vote="Depende" aria-pressed="false">Depende</button><button class="vote-button" type="button" data-vote="En desacuerdo" aria-pressed="false">En desacuerdo</button></div><div class="vote-count" aria-live="polite">Aún no se ha registrado una postura.</div></article>
-          <article class="statement" data-statement="4"><p>4. A veces elegir rápido me hace más feliz.</p><div class="statement-controls"><button class="vote-button" type="button" data-vote="De acuerdo" aria-pressed="false">De acuerdo</button><button class="vote-button" type="button" data-vote="Depende" aria-pressed="false">Depende</button><button class="vote-button" type="button" data-vote="En desacuerdo" aria-pressed="false">En desacuerdo</button></div><div class="vote-count" aria-live="polite">Aún no se ha registrado una postura.</div></article>
-        </div>
-        <div class="prompt"><strong>Reto</strong><p>Escucha una objeción. ¿Mantienes tu postura? ¿Qué argumento te haría cambiar?</p></div>
-        <div class="phrases"><div class="phrase"><strong>Frases para empezar · B1</strong>Estoy de acuerdo porque… · En mi caso… · Depende de…</div><div class="phrase"><strong>Para ir más lejos · B2</strong>No necesariamente… · Cambiaría de opinión si…</div></div>
-        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Registra la postura inicial de cada participante. Después de escuchar argumentos contrarios, permite que cambien su respuesta y expliquen qué les hizo reconsiderarla.</p></details>
-      </div>
-    </section>
-
-    <!-- ACTIVIDAD 08 LECTURA -->
-    <section class="slide" data-label="Lectura" aria-label="Actividad 8: El experimento de las mermeladas">
-      <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 08 · LECTURA</p><h2>El experimento de las mermeladas</h2><p class="subtitle">¿Tener muchas alternativas puede dificultar la elección?</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Dos frascos de mermelada"><use href="#doodle-jars"></use></svg></div>
-        <div class="card reading">
-          <div class="card-label">Lectura</div>
-          <p>En un supermercado, unos investigadores organizaron una degustación de mermeladas. En una ocasión ofrecieron <strong>24 variedades</strong> y, en otra, <strong>6</strong>. La mesa con más opciones atrajo a más personas. Sin embargo, quienes encontraron la selección pequeña tuvieron más probabilidades de comprar.</p>
-          <p>El experimento no demuestra que pocas opciones sean siempre mejores. La dificultad puede depender de cuánto se parecen las alternativas, de la importancia de la decisión y de si sabemos qué buscamos.</p>
-        </div>
-        <div class="grid two" style="margin-top:18px">
-          <div class="prompt" style="margin-top:0"><strong>Pregunta clave</strong><p>¿Por qué una mesa con más variedades puede atraer a más personas y generar menos compras?</p></div>
-          <div class="card"><div class="card-label">Fuente</div><p style="margin:0">Iyengar y Lepper (2000)<br><em>When Choice Is Demotivating</em></p></div>
-        </div>
-        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Invita a distinguir entre atraer visitantes y conseguir compras. Recalca que el propio texto limita la conclusión: el experimento no demuestra que menos opciones sean siempre mejores.</p></details>
-      </div>
-    </section>
-
-    <!-- ACTIVIDAD 08 COMPRENSIÓN -->
-    <section class="slide" data-label="Comprensión" aria-label="Actividad 8: Comprueba lo que dice el texto">
-      <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 08 · COMPRENSIÓN</p><h2>Comprueba lo que dice el texto</h2><p class="subtitle">Distingue entre resultados y conclusiones que el experimento no permite afirmar.</p></div></div>
-        <div class="quiz-list" id="readingQuiz">
-          <article class="quiz-item" data-answer="supported"><div class="quiz-statement">A. La mesa con 24 variedades atrajo más visitantes.</div><div class="quiz-controls"><button class="answer-button" type="button" data-answer-choice="supported" aria-pressed="false">El texto lo respalda</button><button class="answer-button" type="button" data-answer-choice="unsupported" aria-pressed="false">No se puede concluir</button></div></article>
-          <article class="quiz-item" data-answer="supported"><div class="quiz-statement">B. La selección de 6 tuvo más compras por visitante que probó.</div><div class="quiz-controls"><button class="answer-button" type="button" data-answer-choice="supported" aria-pressed="false">El texto lo respalda</button><button class="answer-button" type="button" data-answer-choice="unsupported" aria-pressed="false">No se puede concluir</button></div></article>
-          <article class="quiz-item" data-answer="unsupported"><div class="quiz-statement">C. Todas las personas son más felices con menos opciones.</div><div class="quiz-controls"><button class="answer-button" type="button" data-answer-choice="supported" aria-pressed="false">El texto lo respalda</button><button class="answer-button" type="button" data-answer-choice="unsupported" aria-pressed="false">No se puede concluir</button></div></article>
-          <article class="quiz-item" data-answer="supported"><div class="quiz-statement">D. No se puede afirmar que pocas opciones sean siempre mejores.</div><div class="quiz-controls"><button class="answer-button" type="button" data-answer-choice="supported" aria-pressed="false">El texto lo respalda</button><button class="answer-button" type="button" data-answer-choice="unsupported" aria-pressed="false">No se puede concluir</button></div></article>
-        </div>
-        <div class="button-row"><button class="btn" id="checkQuiz" type="button">Comprobar respuestas</button><button class="btn secondary" id="resetQuiz" type="button">Reiniciar</button><span class="score-pill" id="quizScore" aria-live="polite">0 / 4 correctas</span></div>
-        <div class="prompt"><strong>Preguntas para conversar</strong><p>¿Qué diferencia hay entre atraer visitantes y conseguir compras? ¿Dónde sucede algo parecido?</p></div>
-        <div class="phrases"><div class="phrase"><strong>B1</strong>El texto muestra que… · Me llamó la atención…</div><div class="phrase"><strong>B2</strong>El resultado no demuestra… · Necesitaríamos saber si…</div></div>
-        <div class="prompt"><strong>Idea para recordar</strong><p>Un resultado interesante no autoriza a generalizarlo a todas las personas ni decisiones.</p></div>
-        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>La clave es A, B y D: el texto respalda esas afirmaciones. C generaliza indebidamente y contradice la cautela del segundo párrafo.</p></details>
-      </div>
-    </section>
-
-    <!-- ACTIVIDAD 09 -->
-    <section class="slide" data-label="Escritura" aria-label="Actividad 9: Tu regla para elegir">
-      <div class="slide-inner">
-        <div class="slide-heading"><div><p class="eyebrow">ACTIVIDAD 09 · PRODUCCIÓN</p><h2>Tu regla para elegir</h2><p class="subtitle">Cierra la conversación con una recomendación breve y argumentada.</p></div><svg class="doodle-art " viewBox="0 0 240 160" role="img" aria-label="Cuaderno abierto y lápiz"><use href="#doodle-notebook"></use></svg></div>
-        <div class="grid two">
-          <article class="card"><div class="card-label">Producción escrita</div><p>Un amigo lleva días comparando doce destinos para sus vacaciones y no consigue reservar.</p><p>Escríbele un mensaje de <strong>4–6 frases</strong> con una recomendación. Incluye dos criterios, una ventaja, una renuncia y una conclusión.</p></article>
-          <article class="card"><div class="card-label">Después de escribir</div><p>Lee tu mensaje y explica por qué tu consejo puede ayudar. Escucha otras recomendaciones y decide cuál es más útil.</p><div class="phrases" style="grid-template-columns:1fr"><div class="phrase"><strong>Frases B1</strong>Te recomiendo… · Yo elegiría… · La ventaja es…</div><div class="phrase"><strong>Reto B2</strong>Aunque…, me inclino por… · Si priorizas…, entonces…</div></div></article>
-        </div>
-        <div class="card" style="margin-top:18px">
-          <label class="card-label" for="writingText">Escribe aquí el mensaje</label>
-          <textarea class="writing-area" id="writingText" placeholder="Hola… Te recomiendo que…"></textarea>
-          <div class="writing-metrics"><span class="metric" id="wordCount">0 palabras</span><span class="metric" id="sentenceCount">0 frases</span><span class="metric" id="checkCount">0 / 5 criterios</span></div>
-          <div class="checklist" id="writingChecklist">
-            <label><input type="checkbox"> Tiene entre 4 y 6 frases.</label>
-            <label><input type="checkbox"> Incluye dos criterios de elección.</label>
-            <label><input type="checkbox"> Explica una ventaja.</label>
-            <label><input type="checkbox"> Menciona una renuncia.</label>
-            <label><input type="checkbox"> Cierra con una conclusión.</label>
-          </div>
-          <div class="button-row"><button class="btn" id="copyWriting" type="button">Copiar texto</button><button class="btn secondary" id="clearWriting" type="button">Limpiar</button><span class="feedback" id="copyFeedback" aria-live="polite" style="margin:0;flex:1">El texto permanece en esta página mientras la tengas abierta.</span></div>
-        </div>
-        <div class="prompt"><strong>Extensión opcional · Reto Reel / Short</strong><p>En parejas, conviertan su recomendación en un vídeo vertical de 20–30 segundos: presenten la situación, expliquen el criterio principal y terminen con un consejo. También pueden representarlo oralmente sin grabar.</p></div>
-        <div class="prompt"><strong>Cierre</strong><p>¿Qué te llevas: comparar más, definir criterios o aprender a renunciar a una opción?</p></div>
-        <details class="teacher-note"><summary>Apoyo para la profesora</summary><p>Invita a leer los mensajes y comparar las recomendaciones. Pide que identifiquen qué criterio fue decisivo y qué alternativa tuvieron que descartar.</p></details>
-      </div>
-    </section>
-
-    <div class="deck-controls" aria-label="Controles de navegación">
-      <button class="btn secondary" id="prevBtn" type="button" disabled>← Anterior</button>
-      <button class="btn" id="nextBtn" type="button">Siguiente ejercicio →</button>
     </div>
-    <footer class="footer"><span><a class="footer-link" href="https://hablaespanol.club/" target="_top" rel="noopener noreferrer">hablaespanol.club</a> · <a class="footer-link" href="https://www.instagram.com/hablaespanolclub/" target="_top" rel="noopener noreferrer" aria-label="Abrir Instagram de Habla Español Club">@hablaespanolclub</a></span><span>Tema 010 · ¿Tener más opciones nos hace más felices?</span></footer>
-  </main>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Ocho situaciones</p>
+      <div id="thermo"></div>
+      <div class="fb" id="thermoSum" aria-live="polite" hidden></div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Conversemos</p>
+      <div class="prompt">¿Dónde pusieron el número más alto y el más bajo? ¿Qué tienen en común esas situaciones?</div>
+      <div class="prompt">¿Cuál es la decisión más pequeña que te ha tomado más tiempo?</div>
+      <div class="support"><div><b>B1 · apoyo</b>Cuantas más opciones, más… · Prefiero pocas opciones cuando…</div><div><b>B2 · reto</b>Por una parte…, sin embargo… · Depende de cuánto me importe…</div></div>
+      <details class="teacher"><summary>Apoyo para la profesora</summary><p>Momento de humor: lee en voz alta la situación del café y pregunta quién se ha sentido así. Con 1 estudiante, tú también ubicas las situaciones y comparan. Con 40, cada subgrupo trabaja con la misma pantalla compartida y luego un portavoz distinto cuenta una discrepancia.</p></details>
+    </div>
+  </div>
+  <div class="module-reveal-bar"></div>
+</section>
 
-  <script>
-/* Estructura 0–9: cada actividad es un módulo; sus pasos se descubren con botones. */
-(function(){
-  'use strict';
-  if(window.__lessonModuleSchema)return;
-  const originals=Array.from(document.querySelectorAll('section.slide'));
-  if(originals.length<10)return;
-  const groups=Array.from({length:10},()=>[]);
-  const formerIndexToModule=[];
-  let previous=0;
-  originals.forEach((s,i)=>{
-    const label=(s.dataset.label||'')+' '+(s.getAttribute('aria-label')||'')+' '+(s.querySelector('.eyebrow,.hand')?.textContent||'');
-    const match=label.match(/actividad\s*0?([1-9])\b/i);
-    let n=i===0?0:match?Number(match[1]):(/cierre|conclusi[oó]n/i.test(label)||i===originals.length-1?9:previous);
-    if(i>0&&n===0)n=previous||9;
-    previous=n;
-    groups[n].push(s);formerIndexToModule[i]=n;
-  });
-  if(groups.some(g=>!g.length)){console.error('El tema no tiene nueve actividades identificables; se conserva la navegación previa.');return;}
-  const parent=originals[0].parentElement;
-  const anchor=document.createComment('Índice único de actividades 0–9');
-  parent.insertBefore(anchor,originals[0]);
-  const modules=[];
-  const states=[];
-  function visibleMedia(module){
-    module.querySelectorAll('iframe[data-src]').forEach(frame=>{
-      const visible=module.classList.contains('active')&&!module.hidden&&!frame.closest('[hidden]');
-      if(visible&&(!frame.getAttribute('src')||frame.getAttribute('src')==='about:blank'))frame.setAttribute('src',frame.dataset.src);
-      if(!visible&&frame.getAttribute('src')&&frame.getAttribute('src')!=='about:blank')frame.setAttribute('src','about:blank');
-    });
-  }
-  function jumpToModule(target){
-    const n=Math.max(0,Math.min(9,target));
-    if(typeof window.__lessonGoModule==='function'){window.__lessonGoModule(n);return;}
-    const buttons=Array.from(document.querySelectorAll('#slideNav button,#track button,#moduleIndex button'));
-    if(buttons[n])buttons[n].click();
-  }
-  function revealAt(module,n){
-    const st=states[Number(module.dataset.module)];
-    if(!st)return;
-    const oldPosition=st.position;
-    st.position=Math.max(0,Math.min(st.total-1,n));
-    // La revelación es acumulativa: cada paso nuevo se añade debajo y nunca oculta lo ya mostrado.
-    st.maxRevealed=Math.max(st.maxRevealed,st.position);
-    if(st.panels.length>1){
-      st.panels.forEach((panel,i)=>{
-        const shown=i<=st.maxRevealed;
-        panel.hidden=!shown;
-        panel.classList.toggle('is-visible',shown);
-      });
-    }else{
-      st.panels[0].hidden=false;
-      st.chunks.forEach((child,i)=>{child.hidden=i>=st.maxRevealed;});
-    }
-    st.previous.disabled=st.position===0;
-    st.previous.hidden=st.position===0;
-    st.counter.textContent=st.total===1?'Actividad completa':'Paso '+(st.position+1)+' de '+st.total;
-    st.next.textContent=st.position===st.total-1?(Number(module.dataset.module)===9?'Volver a la bienvenida ↺':'Ir al siguiente ejercicio →'):'Siguiente ↓';
-    visibleMedia(module);
-    // Desplaza hasta la parte recién descubierta; el contenido anterior permanece visible arriba.
-    if(module.classList.contains('active')&&st.position!==oldPosition){
-      const target=st.panels.length>1
-        ? st.panels[Math.min(st.position,st.panels.length-1)]
-        : (st.position===0?st.panels[0]:st.chunks[st.position-1]);
-      if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
-    }
-  }
-  for(let n=0;n<=9;n++){
-    const section=document.createElement('section');
-    section.className='slide module-slide'+(n===0?' active':'');
-    section.dataset.label=n===0?'Bienvenida · portada':'Actividad '+n;
-    section.dataset.module=String(n);
-    section.setAttribute('aria-label',n===0?'Módulo 0: bienvenida e introducción':'Módulo '+n+': actividad '+n);
-    section.hidden=n!==0&&!!document.getElementById('track');
-    const content=document.createElement('div');content.className='module-content';
-    const panels=groups[n];
-    panels.forEach((panel,i)=>{
-      panel.classList.remove('slide','active');
-      panel.classList.add('module-panel');
-      panel.hidden=i!==0;
-      panel.dataset.phase=String(i);
-      const oldCounter=panel.querySelector('.slide-head .n');
-      if(oldCounter)oldCounter.textContent='Paso '+(i+1)+' / '+panels.length;
-      content.appendChild(panel);
-    });
-    section.appendChild(content);
-    const chunks=[];
-    if(n>0&&panels.length===1){
-      const root=panels[0].querySelector('.slide-inner')||panels[0];
-      const children=Array.from(root.children);
-      const meaningful=children.filter(el=>!el.matches('details.teacher-note,.slide-heading,.heading,.slide-head,.under,h1,h2,h3,.eyebrow,.n'));
-      if(meaningful.length){
-        const firstVisible=meaningful.length>1?1:0;
-        meaningful.slice(firstVisible).forEach(el=>{el.classList.add('module-chunk');el.hidden=true;chunks.push(el);});
-      }
-    }
-    const total=panels.length>1?panels.length:1+chunks.length;
-    let control=null;
-    let previousButton=null,nextButton=null,counter=null;
-    if(n>0){
-      control=document.createElement('div');control.className='module-reveal-bar';control.setAttribute('aria-label','Revelaciones de la actividad '+n);
-      previousButton=document.createElement('button');previousButton.type='button';previousButton.className='module-back';previousButton.textContent='↑ Ver parte anterior';
-      counter=document.createElement('span');counter.className='module-step-count';counter.setAttribute('aria-live','polite');
-      nextButton=document.createElement('button');nextButton.type='button';nextButton.className='module-advance';
-      previousButton.addEventListener('click',()=>revealAt(section,states[n].position-1));
-      nextButton.addEventListener('click',()=>{const st=states[n];if(st.maxRevealed>=st.total-1){jumpToModule(n===9?0:n+1);return;}revealAt(section,st.maxRevealed+1);});
-      control.append(previousButton,counter,nextButton);section.appendChild(control);
-    }
-    states[n]={panels,chunks,total,position:0,maxRevealed:0,previous:previousButton,next:nextButton,counter};
-    parent.insertBefore(section,anchor);
-    modules.push(section);
-    if(n>0)revealAt(section,0);
-  }
-  anchor.remove();
-  document.querySelectorAll('[data-go]').forEach(button=>{
-    const oldNumber=Number(button.dataset.go);
-    if(Number.isInteger(oldNumber)&&formerIndexToModule[oldNumber]!=null)button.dataset.go=String(formerIndexToModule[oldNumber]);
-  });
-  if(!document.getElementById('slideNav')&&!document.getElementById('track')){
-    const main=document.querySelector('main');
-    const index=document.createElement('nav');index.id='moduleIndex';index.className='module-index';index.setAttribute('aria-label','Índice de bienvenida y nueve actividades');
-    for(let n=0;n<=9;n++){
-      const btn=document.createElement('button');btn.type='button';btn.textContent=String(n);btn.title=n===0?'Portada y bienvenida':'Actividad '+n;
-      btn.setAttribute('aria-label',btn.title);btn.addEventListener('click',()=>jumpToModule(n));index.appendChild(btn);
-    }
-    main.prepend(index);
-    const highlight=()=>{
-      const active=modules.findIndex(m=>m.classList.contains('active'));
-      index.querySelectorAll('button').forEach((b,i)=>{if(i===active)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
-    };
-    const obs=new MutationObserver(highlight);modules.forEach(m=>obs.observe(m,{attributes:true,attributeFilter:['class']}));
-    highlight();
-  }
-  const sync=new MutationObserver(()=>{modules.forEach(visibleMedia);});
-  modules.forEach(m=>sync.observe(m,{attributes:true,attributeFilter:['class','hidden']}));
-  window.__lessonModuleSchema={count:10,groups:groups.map(g=>g.length),jump:jumpToModule};
-})();</script>
+<!-- ============ 2 · SHORT AUDIOVISUAL ============ -->
+<section class="module-slide module-panel" data-module="2" data-title="¿Lo dice o lo suponemos?" hidden aria-labelledby="t2">
+  <div class="mhead"><div>
+    <p class="kicker">EJERCICIO 2 · SHORT <span class="rol">Relaciónate</span></p>
+    <h2 id="t2">¿Lo <span class="wave">dice</span> o lo suponemos?</h2>
+    <p class="sub">Escucha con atención y separa lo que el Short afirma de lo que nosotros añadimos.</p>
+  </div><div class="doodle" aria-hidden="true"><svg viewBox="0 0 160 120"><g class="ink"><path d="M54 8H96Q104 8 104 16V104Q104 112 96 112H54Q46 112 46 104V16Q46 8 54 8Z"/><path d="M68 44L88 58 68 72Z"/><circle cx="130" cy="82" r="14"/><path d="M140 92l12 13"/></g><path class="bl" d="M30 24q-8 12-2 26"/><path class="ye" d="M112 24l9-8m1 18l10-3"/><path class="re" d="M60 92h28"/></svg></div></div>
+  <div class="content">
+    <div class="chunk">
+      <p class="chunk-label">Antes de ver</p>
+      <div class="prompt">¿Qué problema crees que puede causar tener demasiadas opciones?</div>
+      <div class="pillrow" id="predict">
+        <button class="opt" type="button" aria-pressed="false">Estrés</button>
+        <button class="opt" type="button" aria-pressed="false">Dudas después de elegir</button>
+        <button class="opt" type="button" aria-pressed="false">No poder decidir</button>
+        <button class="opt" type="button" aria-pressed="false">Perder tiempo</button>
+        <button class="opt" type="button" aria-pressed="false">Ningún problema</button>
+      </div>
+      <div class="fb" id="predictFb" aria-live="polite" hidden></div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">El Short</p>
+      <div class="short">
+        <div class="frame-wrap"><div class="frame" id="frame-ouL9HiJW2WQ"><button class="btn go" type="button" data-short="ouL9HiJW2WQ" data-frame="frame-ouL9HiJW2WQ">▶ Reproducir aquí</button></div></div>
+        <div>
+          <h3>La paradoja de la elección en menos de 1 minuto</h3>
+          <p class="src">Short de YouTube. Si no se reproduce aquí, ábrelo en YouTube y comparte el audio.</p>
+          <p><a href="https://www.youtube.com/shorts/ouL9HiJW2WQ" target="_blank" rel="noopener">Abrir Short en YouTube ↗</a></p>
+          <div class="card"><h4>Mientras lo ves</h4><p>Fíjate en qué problema menciona, si nombra a una persona o un estudio y qué ejemplo da.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">¿Lo dice, no lo dice o es una suposición?</p>
+      <div class="prompt">Decidan en grupo. Si no se ponen de acuerdo, vuelvan a ver el Short.</div>
+      <div id="claims"></div>
+      <div class="fb" id="claimsFb" aria-live="polite" hidden></div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Conversemos</p>
+      <div class="prompt">¿Dónde has vivido tú esa situación? Cuéntale a tu grupo un ejemplo.</div>
+      <div class="support"><div><b>B1 · apoyo</b>El Short dice que… · Yo lo he vivido cuando…</div><div><b>B2 · reto</b>Eso no lo dice el Short, pero se puede suponer porque… · No necesariamente…</div></div>
+      <details class="teacher"><summary>Apoyo para la profesora</summary><p>Antes de la clase, mira el Short una vez y, si alguna frase no encaja con lo que se dice, cámbiala o dilo en voz alta. Con 1 estudiante, tú también votas. Con 40, cada subgrupo decide y compara con otro.</p></details>
+    </div>
+  </div>
+  <div class="module-reveal-bar"></div>
+</section>
+
+<!-- ============ 3 · SHORT MUSICAL ============ -->
+<section class="module-slide module-panel" data-module="3" data-title="La banda sonora de una decisión" hidden aria-labelledby="t3">
+  <div class="mhead"><div>
+    <p class="kicker">EJERCICIO 3 · SHORT MUSICAL <span class="rol">Relaciónate</span></p>
+    <h2 id="t3">La <span class="wave">banda sonora</span> de una decisión</h2>
+    <p class="sub">Escucha un fragmento y decide a qué momento de la vida le queda mejor.</p>
+  </div><div class="doodle" aria-hidden="true"><svg viewBox="0 0 160 120"><g class="ink"><path d="M38 76V62Q38 22 80 22T122 62V76"/><path d="M30 72Q30 66 37 66H46V102H37Q30 102 30 96Z"/><path d="M130 66H122V102H130Q137 102 137 96V72Q137 66 130 66Z"/><path d="M62 98V80l22-5v22"/><circle cx="58" cy="100" r="5"/><circle cx="80" cy="96" r="5"/></g><path class="bl" d="M50 38q8-12 22-14"/><path class="ye" d="M120 20l8-9m4 16l11-2"/><path class="re" d="M96 108q6 5 14 0"/></svg></div></div>
+  <div class="content">
+    <div class="chunk">
+      <p class="chunk-label">Antes de escuchar</p>
+      <div class="prompt">No importa entender cada palabra. Escucha la voz, el ritmo y la emoción.</div>
+      <p>¿Qué emoción te transmite? Elige una después de escuchar:</p>
+      <div class="pillrow" id="emo">
+        <button class="opt" type="button" aria-pressed="false">Duda</button>
+        <button class="opt" type="button" aria-pressed="false">Valentía</button>
+        <button class="opt" type="button" aria-pressed="false">Nostalgia</button>
+        <button class="opt" type="button" aria-pressed="false">Alivio</button>
+        <button class="opt" type="button" aria-pressed="false">Entusiasmo</button>
+      </div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">El Short musical</p>
+      <div class="short">
+        <div class="frame-wrap"><div class="frame" id="frame-HJcvWhdiG3M"><button class="btn go" type="button" data-short="HJcvWhdiG3M" data-frame="frame-HJcvWhdiG3M">▶ Reproducir aquí</button></div></div>
+        <div>
+          <h3>«Elegirte»</h3>
+          <p class="src">Short de YouTube con un fragmento de una canción en español. Si no se reproduce aquí, ábrelo en YouTube y comparte el audio.</p>
+          <p><a href="https://www.youtube.com/shorts/HJcvWhdiG3M" target="_blank" rel="noopener">Abrir Short en YouTube ↗</a></p>
+          <div class="card"><h4>Escucha con un propósito</h4><p>¿La canción habla de dudar, de decidir o de quedarse con algo? Después elegirás una decisión de vida que combine con su sonido.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">¿A qué decisión le pondrías esta música?</p>
+      <div class="grid g3" id="cards"></div>
+      <div class="fb" id="cardsFb" aria-live="polite" hidden></div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Conversemos</p>
+      <div class="prompt">¿Qué ganas con esa decisión y a qué renuncias? ¿Elegimos la misma tarjeta? ¿Por qué no?</div>
+      <div class="support"><div><b>B1 · apoyo</b>La música me recuerda… · Ganas… pero dejas…</div><div><b>B2 · reto</b>Aunque suena…, creo que combina con… porque… · La emoción cambia si…</div></div>
+      <details class="teacher"><summary>Apoyo para la profesora</summary><p>Antes de la clase, escucha el Short una vez; si prefieres otro fragmento musical en español sobre elegir, el resto del ejercicio funciona igual. No se pide transcribir la letra. Con 1 estudiante, elige también una tarjeta tú. Con 40, cada subgrupo defiende una tarjeta distinta.</p></details>
+    </div>
+  </div>
+  <div class="module-reveal-bar"></div>
+</section>
+
+<!-- ============ 4 · MAXIMIZADOR ============ -->
+<section class="module-slide module-panel" data-module="4" data-title="¿Mejor posible o suficientemente bueno?" hidden aria-labelledby="t4">
+  <div class="mhead"><div>
+    <p class="kicker">EJERCICIO 4 <span class="rol">Observa</span></p>
+    <h2 id="t4">¿Lo <span class="wave">mejor</span> posible o lo suficientemente bueno?</h2>
+    <p class="sub">Seis preguntas para conocer tu estilo al elegir. No es una prueba científica: es una excusa para conversar.</p>
+  </div><div class="doodle" aria-hidden="true"><svg viewBox="0 0 160 120"><g class="ink"><path d="M34 10H92Q100 10 100 18V102Q100 110 92 110H42Q34 110 34 102Z"/><path d="M48 34l5 5 9-11M48 58l5 5 9-11"/><path d="M68 36h20M68 60h20M48 86h40"/><path d="M110 38l22 52-8 12-10-6-14-52Z"/></g><path class="bl" d="M110 38l-8 20"/><path class="ye" d="M122 18l7-8m3 18l10-2"/><path class="re" d="M44 98q16 6 32 0"/></svg></div></div>
+  <div class="content">
+    <div class="chunk">
+      <div class="prompt">Elige en cada pregunta la frase que más se parece a ti.</div>
+      <div id="quiz"></div>
+      <div class="fb" id="quizFb" aria-live="polite" hidden></div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Dos estilos</p>
+      <div class="grid g2">
+        <div class="card"><h3>Busca lo mejor</h3><p>Compara mucho, revisa varias opciones y quiere estar segura de haber elegido la mejor.</p></div>
+        <div class="card"><h3>Se queda con lo suficientemente bueno</h3><p>Define lo que necesita, elige la primera opción que lo cumple y sigue adelante.</p></div>
+      </div>
+      <p class="small" style="margin-top:12px">Ninguno es mejor en general: cada estilo tiene ventajas y costos según la decisión.</p>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Conversemos</p>
+      <div class="prompt">Busca a alguien con un resultado distinto al tuyo. ¿Qué ventaja y qué costo tiene cada estilo?</div>
+      <div class="prompt">¿Para qué decisiones te conviene buscar lo mejor y para cuáles basta con algo bueno?</div>
+      <div class="support"><div><b>B1 · apoyo</b>Yo soy de los que… · Una ventaja es… · Un costo es…</div><div><b>B2 · reto</b>Depende de cuánto me importe… · Aunque me tarde más, me inclino por…</div></div>
+      <details class="teacher"><summary>Apoyo para la profesora</summary><p>Si nadie quiere compartir su resultado, pueden hablar de un amigo o de un personaje. Con 1 estudiante, tú también respondes el test y comparan. Con 40, los subgrupos se forman con perfiles mezclados.</p></details>
+    </div>
+  </div>
+  <div class="module-reveal-bar"></div>
+</section>
+
+<!-- ============ 5 · APARTAMENTOS ============ -->
+<section class="module-slide module-panel" data-module="5" data-title="Doce apartamentos, un solo hogar" hidden aria-labelledby="t5">
+  <div class="mhead"><div>
+    <p class="kicker">EJERCICIO 5 · JUEGO <span class="rol">Observa</span></p>
+    <h2 id="t5">Doce apartamentos, <span class="wave">un solo hogar</span></h2>
+    <p class="sub">Descarten apartamentos con la menor cantidad posible de preguntas.</p>
+  </div><div class="doodle" aria-hidden="true"><svg viewBox="0 0 160 120"><g class="ink"><path d="M20 108V40H58V108"/><path d="M58 108V20H100V108"/><path d="M100 108V54H136V108"/><path d="M30 54h8M30 72h8M30 90h8M70 36h8M82 36h8M70 56h8M82 56h8M70 76h8M82 76h8M110 70h8M122 70h8M110 90h8M122 90h8"/><path d="M12 108H146"/></g><path class="bl" d="M66 14q10-8 24 0"/><path class="ye" d="M110 28l9-8m2 18l11-1"/><path class="re" d="M24 116h30"/></svg></div></div>
+  <div class="content">
+    <div class="chunk">
+      <div class="grid g2">
+        <div class="card"><h3>Objetivo</h3><p>Quedarse con <strong>un solo</strong> apartamento haciendo las menos preguntas posibles.</p></div>
+        <div class="card"><h3>Reglas</h3><p>Cada pregunta que activen elimina los apartamentos que no la cumplen. Pueden quitar una pregunta si se arrepienten. Antes de activar una, el grupo debe estar de acuerdo.</p></div>
+      </div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Hagan sus preguntas</p>
+      <div class="pillrow" id="crit"></div>
+      <div class="scoreline"><span id="qCount">Preguntas: 0</span><span id="leftCount">Quedan: 12</span><button class="btn sm" type="button" id="aptReset">Reiniciar juego</button></div>
+      <div class="apts" id="apts"></div>
+      <div class="fb" id="aptFb" aria-live="polite" hidden></div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Conversemos</p>
+      <div class="prompt">¿Qué apartamento descartado les dolió dejar? ¿Qué criterio resultó más importante?</div>
+      <div class="prompt">Si pidieran todo, ¿era posible encontrar el apartamento perfecto?</div>
+      <div class="support"><div><b>B1 · apoyo</b>Para nosotros era importante… · Renunciamos a…</div><div><b>B2 · reto</b>Cuantas más condiciones poníamos, menos opciones… · Si cedemos en…, ganamos…</div></div>
+      <details class="teacher"><summary>Apoyo para la profesora</summary><p>Con 1 estudiante, tú sugieres preguntas pero la persona decide. Con 40, cada subgrupo juega el mismo tablero y comparan cuántas preguntas usaron. Pista: con cinco preguntas siempre se queda sin apartamentos; ahí aparece la renuncia.</p></details>
+    </div>
+  </div>
+  <div class="module-reveal-bar"></div>
+</section>
+
+<!-- ============ 6 · LECTURA ============ -->
+<section class="module-slide module-panel" data-module="6" data-title="El consultorio de Doña Elena" hidden aria-labelledby="t6">
+  <div class="mhead"><div>
+    <p class="kicker">EJERCICIO 6 · LECTURA <span class="rol">Observa</span></p>
+    <h2 id="t6">El consultorio de <span class="wave">Doña Elena</span></h2>
+    <p class="sub">Dos lectores escriben a una columna de consejos. ¿Responde bien la columnista?</p>
+  </div><div class="doodle" aria-hidden="true"><svg viewBox="0 0 160 120"><g class="ink"><path d="M26 34H112V94H26Z"/><path d="M26 34L69 68 112 34"/><path d="M118 52l20 40-8 6-10-4-8-42Z"/></g><path class="bl" d="M34 98q30 10 60 0"/><path class="ye" d="M100 14l7-9m3 18l10-2"/><path class="re" d="M60 80q9 8 18 0"/></svg></div></div>
+  <div class="content">
+    <div class="chunk">
+      <p class="chunk-label">Dos cartas</p>
+      <div class="grid g2">
+        <div class="letter"><h4>Camila, 34 años</h4><p>Querida Doña Elena: mi pareja y yo llevamos tres semanas buscando qué serie ver. Cada noche abrimos tres plataformas, miramos tráileres y terminamos durmiéndonos sin ver nada. ¿Es normal sentirse agotada por tener tantas opciones?</p></div>
+        <div class="letter"><h4>Andrés, 41 años</h4><p>Doña Elena: yo pienso lo contrario. Cuando era niño, en mi pueblo solo había un cine y tres canales. Hoy puedo elegir casi todo: qué estudiar, dónde vivir, a qué dedicarme. Para mí, más opciones siempre significan más libertad.</p></div>
+      </div>
+      <p class="small" style="margin-top:10px">Texto original escrito para esta clase.</p>
+      <details class="teacher"><summary>Vocabulario de apoyo (B1)</summary><p><strong>agotada</strong> = muy cansada · <strong>arrepentirse</strong> = sentir que habría sido mejor elegir otra cosa · <strong>quejarse</strong> = decir que algo no nos gusta.</p></details>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">La respuesta de la columnista</p>
+      <div class="prompt">Marquen con ? las frases que les parezcan discutibles, exageradas o injustas.</div>
+      <div id="sents"></div>
+      <div class="scoreline"><button class="btn go" type="button" id="checkSents">Revisar frases</button><button class="btn sm" type="button" id="resetSents">Reiniciar</button></div>
+      <div class="fb" id="sentsFb" aria-live="polite" hidden></div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Conversemos</p>
+      <div class="prompt">Reescriban oralmente la frase 2 para que sea más matizada.</div>
+      <div class="prompt">¿Con quién estás más de acuerdo, con Camila o con Andrés? ¿Por qué?</div>
+      <div class="support"><div><b>B1 · apoyo</b>Yo diría… · Estoy de acuerdo con… porque…</div><div><b>B2 · reto</b>Depende de… · No siempre…, salvo que… · Sin embargo…</div></div>
+      <details class="teacher"><summary>Apoyo para la profesora</summary><p>Las frases 1 y 4 son razonables; las 2, 3, 5 y 6 son discutibles (generaliza, exagera, juzga o equipara decisiones de distinto peso). Con 1 estudiante, léela en voz alta y discutan. Con 40, cada subgrupo reescribe una frase distinta.</p></details>
+    </div>
+  </div>
+  <div class="module-reveal-bar"></div>
+</section>
+
+<!-- ============ 7 · TRIBUNAL ============ -->
+<section class="module-slide module-panel" data-module="7" data-title="El tribunal de las opciones" hidden aria-labelledby="t7">
+  <div class="mhead"><div>
+    <p class="kicker">EJERCICIO 7 · DEBATE <span class="rol">Lánzate</span></p>
+    <h2 id="t7">El <span class="wave">tribunal</span> de las opciones</h2>
+    <p class="sub">Se juzga una pregunta: ¿tener más opciones nos hace más felices?</p>
+  </div><div class="doodle" aria-hidden="true"><svg viewBox="0 0 160 120"><g class="ink"><path d="M80 14V100M56 104H104"/><path d="M34 34H126"/><path d="M34 34L20 66M34 34L48 66M20 66Q34 80 48 66Z"/><path d="M126 34L112 62M126 34L140 62M112 62Q126 76 140 62Z"/></g><path class="bl" d="M70 10q10-6 20 0"/><path class="ye" d="M138 14l7-8m2 17l9-3"/><path class="re" d="M24 90q10 6 20 0"/></svg></div></div>
+  <div class="content">
+    <div class="chunk">
+      <p class="chunk-label">Los roles</p>
+      <div class="roles">
+        <div><b>Fiscalía</b>Defiende que más opciones pueden hacernos menos felices.</div>
+        <div><b>Defensa</b>Defiende que más opciones nos dan libertad y bienestar.</div>
+        <div><b>Jurado</b>Escucha, hace preguntas y decide. Si hay una sola persona, el jurado es quien conversa con la profesora.</div>
+      </div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Primer voto</p>
+      <div class="prompt">Antes de escuchar las pruebas: ¿tener más opciones nos hace más felices?</div>
+      <div class="votes" id="vote1"></div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Las pruebas</p>
+      <p class="small">Cada lado elige una prueba, la presenta y explica por qué es importante.</p>
+      <div class="evid">
+        <div><h3>Fiscalía</h3>
+          <button class="opt" type="button" aria-pressed="false">Una persona pasa 40 minutos eligiendo qué ver y apaga el televisor sin ver nada.</button>
+          <button class="opt" type="button" aria-pressed="false">Alguien compra el celular «perfecto» y a la semana se arrepiente porque salió otro modelo.</button>
+          <button class="opt" type="button" aria-pressed="false">Un menú de treinta platos retrasa la comida de toda la mesa.</button>
+        </div>
+        <div><h3>Defensa</h3>
+          <button class="opt" type="button" aria-pressed="false">Una persona descubre una carrera que no existía hace veinte años y encuentra un trabajo que le encanta.</button>
+          <button class="opt" type="button" aria-pressed="false">Una familia con una dieta especial por fin encuentra restaurantes que cubren sus necesidades.</button>
+          <button class="opt" type="button" aria-pressed="false">Alguien deja un plan malo porque tiene alternativas.</button>
+        </div>
+      </div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Preguntas del jurado</p>
+      <div class="prompt">¿Esa prueba vale para todas las personas? ¿Qué cambiaría si la decisión fuera más importante?</div>
+      <div class="support"><div><b>B1 · apoyo</b>Mi prueba muestra que… · Para mí es importante porque…</div><div><b>B2 · reto</b>Eso depende de… · Admito que…, sin embargo…</div></div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Segundo voto</p>
+      <div class="prompt">Después de las pruebas: ¿cambiaste de opinión? ¿Qué prueba te movió más?</div>
+      <div class="votes" id="vote2"></div>
+      <div class="bars" id="voteBars" aria-live="polite"></div>
+      <details class="teacher"><summary>Apoyo para la profesora</summary><p>Cuenta los votos de viva voz o por reacciones de Zoom y pulsa + para cada uno; no es obligatorio usar el chat. Aprueba el «depende»: es una postura válida. Con 1 estudiante, tú defiendes el lado contrario. Con 40, forma ocho jurados de cinco personas.</p></details>
+    </div>
+  </div>
+  <div class="module-reveal-bar"></div>
+</section>
+
+<!-- ============ 8 · CONSULTORÍA ============ -->
+<section class="module-slide module-panel" data-module="8" data-title="Consultoría exprés" hidden aria-labelledby="t8">
+  <div class="mhead"><div>
+    <p class="kicker">EJERCICIO 8 · IMPROVISACIÓN <span class="rol">Lánzate</span></p>
+    <h2 id="t8">Consultoría <span class="wave">exprés</span></h2>
+    <p class="sub">Un cliente llega con demasiadas opciones. En tres minutos, ayúdalo a decidir.</p>
+  </div><div class="doodle" aria-hidden="true"><svg viewBox="0 0 160 120"><g class="ink"><path d="M18 20Q18 12 26 12H88Q96 12 96 20V52Q96 60 88 60H52L36 74V60H26Q18 60 18 52Z"/><path d="M78 74Q78 68 86 68H134Q142 68 142 76V100Q142 108 134 108H116L104 118V108H86Q78 108 78 100Z"/><path d="M36 30h40M36 44h26"/><path d="M96 86h30"/></g><path class="bl" d="M20 14q8-8 20-4"/><path class="ye" d="M116 20l8-9m1 21l12-3"/><path class="re" d="M96 96q10 6 22 0"/></svg></div></div>
+  <div class="content">
+    <div class="chunk">
+      <p class="chunk-label">Los roles</p>
+      <div class="roles">
+        <div><b>Cliente</b>Cuenta su problema y responde con sinceridad.</div>
+        <div><b>Asesor</b>Hace tres preguntas, reduce las opciones a dos y recomienda una.</div>
+        <div><b>Observadora</b>Anota una pregunta útil. Si son solo dos personas, no hay observadora.</div>
+      </div>
+      <p class="small" style="margin-top:10px">Si hay una sola persona, la profesora asume el otro rol.</p>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">El dilema</p>
+      <div class="dilemma" id="dilemma" aria-live="polite">Pulsa «Sacar dilema» para empezar.</div>
+      <div class="scoreline" style="gap:12px">
+        <button class="btn go" type="button" id="draw">Sacar dilema</button>
+        <span class="timer" id="timer" aria-label="Cronómetro">3:00</span>
+        <button class="btn sm" type="button" id="tStart">Iniciar</button>
+        <button class="btn sm" type="button" id="tReset">Reiniciar</button>
+      </div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Frases útiles</p>
+      <div class="support"><div><b>B1 · apoyo</b>¿Qué es lo más importante para ti? · Entre estas dos… · Te recomiendo…</div><div><b>B2 · reto</b>Si tuvieras que renunciar a una, ¿a cuál? · Aunque la A parece mejor, me inclino por la B porque…</div></div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">¿Cómo salió el cliente?</p>
+      <div class="prompt">¿Cuán tranquilo te sientes ahora con tu decisión?</div>
+      <div class="pillrow" id="calm">
+        <button class="opt" type="button" aria-pressed="false">1 · Sigo igual de confundido</button>
+        <button class="opt" type="button" aria-pressed="false">2</button>
+        <button class="opt" type="button" aria-pressed="false">3 · Más o menos</button>
+        <button class="opt" type="button" aria-pressed="false">4</button>
+        <button class="opt" type="button" aria-pressed="false">5 · Tranquilo</button>
+      </div>
+      <div class="fb" id="calmFb" aria-live="polite" hidden></div>
+      <details class="teacher"><summary>Apoyo para la profesora</summary><p>Momento de humor: el dilema de la boda con catorce menús casi siempre arranca risas. Si el cliente no quiere hablar de algo propio, puede inventarse el caso. Con grupos grandes, rotan los roles en cada ronda de tres minutos.</p></details>
+    </div>
+  </div>
+  <div class="module-reveal-bar"></div>
+</section>
+
+<!-- ============ 9 · CAJA DE SUGERENCIAS + CIERRE ============ -->
+<section class="module-slide module-panel" data-module="9" data-title="La caja de sugerencias" hidden aria-labelledby="t9">
+  <div class="mhead"><div>
+    <p class="kicker">EJERCICIO 9 · ESCRITURA Y CIERRE <span class="rol">Lánzate</span></p>
+    <h2 id="t9">La caja de <span class="wave">sugerencias</span></h2>
+    <p class="sub">Escribe una sugerencia real para un lugar que tiene demasiadas opciones… o muy pocas.</p>
+  </div><div class="doodle" aria-hidden="true"><svg viewBox="0 0 160 120"><g class="ink"><path d="M32 52H128V108H32Z"/><path d="M50 62H110"/><path d="M62 10H98V46H62Z"/><path d="M70 22h20M70 32h14"/><path d="M32 52L44 40H116L128 52"/></g><path class="bl" d="M40 98q40 8 80 0"/><path class="ye" d="M120 14l8-9m2 18l11-2"/><path class="re" d="M22 28l8 8m0-8l-8 8"/></svg></div></div>
+  <div class="content">
+    <div class="chunk">
+      <p class="chunk-label">Elige un lugar</p>
+      <div class="grid g2" id="places">
+        <button class="opt" type="button" aria-pressed="false">Una cafetería con 58 combinaciones posibles.</button>
+        <button class="opt" type="button" aria-pressed="false">Una plataforma de streaming con diez mil títulos.</button>
+        <button class="opt" type="button" aria-pressed="false">Una tienda de ropa que tiene una sola talla.</button>
+        <button class="opt" type="button" aria-pressed="false">Un restaurante que ofrece un único plato del día.</button>
+      </div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Escribe tu sugerencia</p>
+      <p>Entre <strong>40 y 80 palabras</strong>. Dirígete a la persona encargada.</p>
+      <textarea id="msg" aria-label="Escribe aquí tu sugerencia" placeholder="Estimado equipo: …"></textarea>
+      <div class="scoreline"><span class="count" id="wc">0 palabras</span><button class="btn sm" type="button" id="copyMsg">Copiar texto</button><button class="btn sm" type="button" id="clearMsg">Limpiar</button></div>
+      <div class="checks" id="checks">
+        <label><input type="checkbox" data-auto="1"> Tiene entre 40 y 80 palabras.</label>
+        <label><input type="checkbox"> Explica el problema que ves.</label>
+        <label><input type="checkbox"> Propone un cambio concreto.</label>
+        <label><input type="checkbox"> Explica por qué ayudaría.</label>
+        <label><input type="checkbox"> Menciona una desventaja o una renuncia.</label>
+      </div>
+      <p class="small" id="checkSum" aria-live="polite">0 / 5 criterios.</p>
+      <div class="support"><div><b>B1 · apoyo</b>Les sugiero… · El problema es… · Así sería más fácil…</div><div><b>B2 · reto</b>Aunque entiendo que…, me inclino por… · Una alternativa sería…</div></div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Léela en voz alta</p>
+      <div class="prompt">Los demás deciden: ¿aplicarían esta sugerencia?</div>
+      <div class="votes" id="vote3"></div>
+    </div>
+    <div class="chunk" hidden>
+      <p class="chunk-label">Cierre</p>
+      <div class="prompt">¿Con qué frase, idea o historia de hoy te quedas?</div>
+      <div class="prompt">¿Qué decisión vas a simplificar esta semana? Completa: «Esta semana voy a simplificar…»</div>
+      <div class="grid g3" style="margin-top:14px">
+        <div class="card"><p>Más opciones pueden darnos libertad, pero también cuestan tiempo y renuncias.</p></div>
+        <div class="card"><p>Definir criterios antes de mirar las opciones hace más fácil decidir.</p></div>
+        <div class="card"><p>Elegir algo suficientemente bueno también es una buena decisión.</p></div>
+      </div>
+      <p class="lead" style="margin-top:18px">Gracias por conversar hoy. <span class="wave">¡Nos vemos en la próxima!</span></p>
+      <details class="teacher"><summary>Apoyo para la profesora</summary><p>Retoma en tu cierre una frase o una historia que realmente haya surgido en la sesión; no hace falta que nadie hable de sentimientos. Con 1 estudiante, ella lee su mensaje y tú le respondes como encargada del lugar. Con 40, cada subgrupo elige la sugerencia más útil para leer.</p></details>
+    </div>
+  </div>
+  <div class="module-reveal-bar"></div>
+</section>
+
+  </div>
+</main>
+<footer class="site-footer"><a href="https://hablaespanol.club/" target="_top">hablaespanol.club</a><span class="sep">·</span><a href="https://www.instagram.com/hablaespanolclub/" target="_top">@hablaespanolclub</a></footer>
 <script>
-(()=>{
-      const slides=[...document.querySelectorAll('.slide')];
-      const nav=document.getElementById('slideNav');
-      const prev=document.getElementById('prevBtn');
-      const next=document.getElementById('nextBtn');
-      const count=document.getElementById('slideCount');
-      const progress=document.getElementById('progressBar');
-      let current=0;
-      const navButtons=slides.map((slide,index)=>{
-        const b=document.createElement('button');b.type='button';b.className='slide-dot';b.textContent=String(index);b.title=slide.dataset.label||`Diapositiva ${index+1}`;b.setAttribute('aria-label',`Ir a ${slide.dataset.label||`diapositiva ${index+1}`}`);b.addEventListener('click',()=>showSlide(index));nav.appendChild(b);return b;
-      });
-      function activateEmbeds(slide,active){
-        slide.querySelectorAll('iframe[data-src]').forEach(frame=>{
-          if(active&&!frame.closest('[hidden]')){if(!frame.src||frame.src==='about:blank')frame.src=frame.dataset.src;}
-          else if(frame.src&&frame.src!=='about:blank')frame.src='about:blank';
-        });
-      }
-      function showSlide(index){
-        const target=Math.max(0,Math.min(slides.length-1,index));
-        if(target===current&&slides[target].classList.contains('active'))return;
-        activateEmbeds(slides[current],false);
-        slides[current].classList.remove('active');
-        current=target;slides[current].classList.add('active');activateEmbeds(slides[current],true);
-        navButtons.forEach((b,i)=>{if(i===current)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
-        count.textContent=String(current).padStart(2,'0')+' / 09';
-        progress.style.width=`${((current+1)/slides.length)*100}%`;
-        prev.disabled=current===0;next.textContent=current===slides.length-1?'Volver al inicio ↺':'Siguiente ejercicio →';
-        document.querySelector('.deck-head').scrollIntoView({behavior:'smooth',block:'start'});
-      }
-      prev.addEventListener('click',()=>showSlide(current-1));
-      next.addEventListener('click',()=>showSlide(current===slides.length-1?0:current+1));
-      document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>showSlide(Number(b.dataset.go))));
-      document.addEventListener('keydown',e=>{
-        const tag=(e.target?.tagName||'').toLowerCase();if(['input','textarea','select'].includes(tag)||e.target?.isContentEditable)return;
-        if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();showSlide(current+1)}
-        if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();showSlide(current-1)}
-        if(e.key==='Home'){e.preventDefault();showSlide(0)}
-        if(e.key==='End'){e.preventDefault();showSlide(slides.length-1)}
-      });
-      document.getElementById('fullscreenBtn').addEventListener('click',async()=>{
-        try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen();else await document.exitFullscreen();}catch(err){document.getElementById('slideCount').textContent='Pantalla completa no disponible';}
-      });
-      navButtons[0].setAttribute('aria-current','step');progress.style.width=`${100/slides.length}%`;
+(function(){
+'use strict';
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  function legacyFigure(kind,mood,scene){
+    const baseStart='<svg viewBox="0 0 180 154" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración artesanal">';
+    const start='<g fill="none" stroke="#000" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round">';
+    let base="",detail="";
+    if(kind==="marysol"){
+      base='<path d="M48 51q-11-23 8-33 6-14 24-12 18 3 21 17 17 7 15 32"/><path d="M49 32Q27 21 25 37q2 16 20 14"/><path d="M56 31q-18-3-18-15 7-13 19-7 14 8 9 19"/><path d="M47 56q-3 28 14 43 13 10 29 3 20-8 22-36"/><path d="M63 62q7-5 12 0m17 0q7-4 12 2"/><path d="M86 68l3 10"/><path d="M50 107q-25 9-28 41m85-39q27 8 29 40m-96-17q31 9 77 1"/>';
+      detail='<ellipse cx="49" cy="87" rx="5.6" ry="7.5" fill="none" stroke="#FCD116" stroke-width="3"/>';
+      if(mood==="curiosa")base+='<path d="M82 87q8-5 14 0"/><path d="M113 116q15-18 24-13 9 6-4 16l-13 15"/>';
+      else base+='<path d="M74 85q8 19 24 1-3 17-12 17-9-1-12-18z"/>';
+    }else{
+      base='<path d="M43 47q-7-10 3-19 3-14 17-12 10-12 22-6 13-7 19 7 17-2 19 14 11 5 4 17"/><path d="M46 50q4-10 15-9 11-15 24-9 11-12 21 0 10-4 15 7"/><path d="M45 56q-3 25 11 41 15 17 34 10 24-8 28-43"/><path d="M61 66q6-6 13-1m19 0q7-5 13 2"/><path d="M83 73l2 8"/><path d="M52 109q-22 11-26 38m83-36q20 8 25 36m-86-16q31 10 63 0"/>';
+      if(mood==="pensativo")base+='<path d="M74 91q11 5 20-1"/>';
+      else base+='<path d="M72 87q13 22 27 0-4 17-14 17-10-1-13-17z"/>';
+      detail='<path d="M13 96l11 5m-9 6 9 0" fill="none" stroke="#CE1126" stroke-width="3"/>';
+    }
+    const prop=scene==="010-bienvenida"?'<path d="M141 79q11-7 24 0v33q-10-6-24 0m10-27v16" fill="none" stroke="#003893" stroke-width="2.8"/>':scene==="013-bienvenida"?'<path d="M139 42q7-17 13-13m2 11q6-17 13-9m-19 23q13-1 20 11" fill="none" stroke="#CE1126" stroke-width="3.3"/>':scene==="057-bienvenida"?'<circle cx="151" cy="69" r="19" fill="none" stroke="#003893" stroke-width="3"/><path d="M151 53v17l9 6" fill="none" stroke="#000" stroke-width="2.6"/>':"";
+    return baseStart+start+base+prop+'</g>'+detail+'<path d="M141 25l9-11m-6 25 15-1" fill="none" stroke="#FCD116" stroke-width="3.4" stroke-linecap="round"/></svg>';
+  }
 
-      // Actividad 01: elección de postre.
-      document.querySelectorAll('[data-dessert]').forEach(button=>button.addEventListener('click',()=>{
-        document.querySelectorAll('[data-dessert]').forEach(b=>b.setAttribute('aria-pressed','false'));
-        button.setAttribute('aria-pressed','true');
-        document.getElementById('dessertResult').textContent=`Has elegido ${button.dataset.dessert}. Explica qué criterio has utilizado y qué opciones has descartado.`;
-      }));
+/* ---------- Navegación 0–9 con revelación vertical acumulativa ---------- */
+const mods=$$('.module-slide');
+const TOTAL=mods.length;
+const titles=mods.map(m=>m.dataset.title);
+const chunks=mods.map(m=>$$('.content > .chunk',m));
+const shown=mods.map(()=>1);
+const visited=new Set([0]);
+let cur=0;
+const nav=$('#nav');
+mods.forEach((m,i)=>{
+  const b=document.createElement('button');
+  b.type='button';b.textContent=i;
+  b.setAttribute('aria-label',i===0?'Introducción':'Ejercicio '+i+': '+titles[i]);
+  b.title=i===0?'Introducción':'Ejercicio '+i+': '+titles[i];
+  b.addEventListener('click',()=>go(i));
+  nav.appendChild(b);
+  const bar=$('.module-reveal-bar',m);
+  bar.innerHTML='<div class="left"><button class="btn sm prev" type="button">← Ejercicio anterior</button><button class="btn sm top" type="button">↑ Inicio del ejercicio</button></div><div class="right"><span class="step" aria-live="polite"></span><button class="btn go next" type="button"></button></div>';
+  $('.prev',bar).addEventListener('click',()=>go(i-1));
+  $('.top',bar).addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+  $('.next',bar).addEventListener('click',advance);
+  if(i===0){$('.prev',bar).textContent='← Anterior';$('.top',bar).textContent='↑ Inicio';}
+  chunks[i].forEach((c,k)=>{c.hidden=k>=1;});
+});
+function paintBar(i){
+  const m=mods[i],bar=$('.module-reveal-bar',m),total=chunks[i].length;
+  $('.step',bar).textContent='Paso '+shown[i]+' de '+total;
+  $('.prev',bar).disabled=i===0;
+  const nx=$('.next',bar);
+  if(shown[i]<total){nx.textContent='Siguiente ▸';nx.setAttribute('aria-label','Mostrar el siguiente bloque');}
+  else if(i<TOTAL-1){nx.textContent='Ir al ejercicio siguiente ▸';nx.setAttribute('aria-label','Ir al ejercicio '+(i+1));}
+  else{nx.textContent='Volver al inicio ↺';nx.setAttribute('aria-label','Volver a la introducción');}
+}
+function go(i,noScroll){
+  if(i<0||i>=TOTAL)return;
+  cur=i;visited.add(i);
+  mods.forEach((m,k)=>{m.hidden=k!==i;});
+  $$('button',nav).forEach((b,k)=>{
+    if(k===i)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');
+    b.classList.toggle('seen',visited.has(k));
+  });
+  $('#screenName').textContent=i===0?'INTRODUCCIÓN':'EJERCICIO '+i+' · '+titles[i].toUpperCase();
+  $('#counter').textContent=i+' / 9';
+  paintBar(i);
+  try{history.replaceState(null,'','#'+i);}catch(e){}
+  if(!noScroll)window.scrollTo({top:0,behavior:'smooth'});
+}
+function reveal(){
+  const i=cur;
+  if(shown[i]>=chunks[i].length)return false;
+  const c=chunks[i][shown[i]];
+  c.hidden=false;shown[i]++;paintBar(i);
+  c.scrollIntoView({behavior:'smooth',block:'start'});
+  return true;
+}
+function advance(){
+  if(reveal())return;
+  if(cur<TOTAL-1)go(cur+1);else go(0);
+}
+document.addEventListener('keydown',e=>{
+  const t=e.target,tag=t&&t.tagName;
+  if(tag==='TEXTAREA'||tag==='INPUT'||tag==='SELECT')return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();advance();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1);}
+});
+$('#fs').addEventListener('click',()=>{
+  try{
+    if(document.fullscreenElement)document.exitFullscreen();
+    else document.documentElement.requestFullscreen();
+  }catch(e){}
+});
 
-      // Actividad 02: presupuesto de seis fichas y tres actividades.
-      const selectedActivities=new Map();
-      const optionButtons=[...document.querySelectorAll('[data-activity]')];
-      const budgetStatus=document.getElementById('budgetStatus'),selectionStatus=document.getElementById('selectionStatus'),budgetFeedback=document.getElementById('budgetFeedback');
-      const budgetCheck=document.getElementById('criterionBudget'),manualCriteria=[...document.querySelectorAll('.manual-criterion')];
-      function updateBudget(){
-        const total=[...selectedActivities.values()].reduce((sum,v)=>sum+v.cost,0),n=selectedActivities.size,valid=n===3&&total<=6;
-        budgetStatus.textContent=`${total} / 6 fichas`;selectionStatus.textContent=`${n} / 3 actividades`;
-        budgetCheck.checked=valid;
-        if(n>3)budgetFeedback.textContent='El plan debe tener exactamente tres actividades. Quita una opción.';
-        else if(total>6)budgetFeedback.textContent='El plan supera las seis fichas. Cambia alguna actividad.';
-        else if(valid)budgetFeedback.textContent=`Plan válido: ${[...selectedActivities.keys()].join(', ')}. Justifiquen por qué estas opciones tienen prioridad.`;
-        else budgetFeedback.textContent='Selecciona exactamente tres actividades sin superar seis fichas.';
-        const points=(budgetCheck.checked?1:0)+manualCriteria.filter(c=>c.checked).length;
-        document.getElementById('pointsStatus').textContent=`${points} / 5 puntos`;
-      }
-      optionButtons.forEach(b=>b.addEventListener('click',()=>{
-        const name=b.dataset.activity,cost=Number(b.dataset.cost);
-        if(selectedActivities.has(name)){selectedActivities.delete(name);b.classList.remove('selected');b.setAttribute('aria-pressed','false');}
-        else if(selectedActivities.size<3){selectedActivities.set(name,{cost});b.classList.add('selected');b.setAttribute('aria-pressed','true');}
-        else{budgetFeedback.textContent='Ya has seleccionado tres actividades. Quita una antes de elegir otra.';return;}
-        updateBudget();
-      }));
-      manualCriteria.forEach(c=>c.addEventListener('change',updateBudget));
-      document.getElementById('resetBudget').addEventListener('click',()=>{selectedActivities.clear();optionButtons.forEach(b=>{b.classList.remove('selected');b.setAttribute('aria-pressed','false')});manualCriteria.forEach(c=>c.checked=false);updateBudget();});
-      updateBudget();
+/* ---------- Introducción: elenco ilustrado ---------- */
+(function(){
+  const art=$('#introArt');
+  const m=legacyFigure('marysol','curiosa','010-bienvenida');
+  let f=legacyFigure('fernando','pensativo','010-juego');
+  f=f.replace('</svg>','<path d="M153 36v76M153 48h20l6 6-6 6h-20M153 76h-18l-6 6 6 6h18" fill="none" stroke="#003893" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+  art.innerHTML=m+f;
+})();
 
-      // Actividad 03: registrar postura individual/grupal por afirmación.
-      document.querySelectorAll('[data-statement]').forEach(statement=>{
-        statement.querySelectorAll('[data-vote]').forEach(button=>button.addEventListener('click',()=>{
-          statement.querySelectorAll('[data-vote]').forEach(b=>b.setAttribute('aria-pressed','false'));button.setAttribute('aria-pressed','true');
-          statement.querySelector('.vote-count').textContent=`Postura registrada: ${button.dataset.vote}. Pide a alguien que justifique la elección.`;
-        }));
-      });
+/* ---------- Utilidades de selección ---------- */
+function single(group,onChange){
+  group.addEventListener('click',e=>{
+    const b=e.target.closest('.opt');if(!b||!group.contains(b))return;
+    $$('.opt',group).forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+    onChange&&onChange(b);
+  });
+}
+function multi(group,onChange){
+  group.addEventListener('click',e=>{
+    const b=e.target.closest('.opt');if(!b||!group.contains(b))return;
+    b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true');
+    onChange&&onChange(b);
+  });
+}
+function show(el,html){el.hidden=false;el.innerHTML=html;}
 
-      // Actividad 04: comprensión lectora.
-      document.querySelectorAll('#readingQuiz .quiz-item').forEach(item=>{
-        item.querySelectorAll('[data-answer-choice]').forEach(button=>button.addEventListener('click',()=>{
-          item.querySelectorAll('[data-answer-choice]').forEach(b=>b.setAttribute('aria-pressed','false'));button.setAttribute('aria-pressed','true');item.dataset.selected=button.dataset.answerChoice;item.classList.remove('correct','incorrect');
-        }));
-      });
-      document.getElementById('checkQuiz').addEventListener('click',()=>{
-        let score=0;const items=[...document.querySelectorAll('#readingQuiz .quiz-item')];
-        items.forEach(item=>{const ok=item.dataset.selected===item.dataset.answer;item.classList.toggle('correct',ok);item.classList.toggle('incorrect',!ok);if(ok)score++;});
-        document.getElementById('quizScore').textContent=`${score} / 4 correctas`;
-      });
-      document.getElementById('resetQuiz').addEventListener('click',()=>{
-        document.querySelectorAll('#readingQuiz .quiz-item').forEach(item=>{delete item.dataset.selected;item.classList.remove('correct','incorrect');item.querySelectorAll('[data-answer-choice]').forEach(b=>b.setAttribute('aria-pressed','false'));});document.getElementById('quizScore').textContent='0 / 4 correctas';
-      });
+/* ---------- Shorts: carga solo al pulsar ---------- */
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-short]');if(!b)return;
+  const frame=document.getElementById(b.dataset.frame);
+  frame.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(b.dataset.short)+'?rel=0&playsinline=1" title="Short de YouTube" allow="accelerometer; autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+});
 
-      // Actividad 06: decisión con información progresiva.
-      let initialMovie='';
-      document.querySelectorAll('[data-movie]').forEach(b=>b.addEventListener('click',()=>{
-        initialMovie=b.dataset.movie;document.querySelectorAll('[data-movie]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
-        document.getElementById('movieInitialFeedback').textContent=`Has elegido ${initialMovie}. Explica qué criterio has utilizado y qué información te falta.`;document.getElementById('revealMovie').disabled=false;
-      }));
-      document.getElementById('revealMovie').addEventListener('click',()=>{
-        const reveal=document.getElementById('movieReveal');
-        reveal.hidden=false;
-        document.getElementById('revealMovie').setAttribute('aria-expanded','true');
-        document.getElementById('movieInitialFeedback').textContent=initialMovie
-          ? 'Nueva condición revelada. Reconsidera tu elección inicial.'
-          : 'Aún no habías elegido. Lee la nueva condición y después decide qué película o plan escogerías.';
-        reveal.scrollIntoView({behavior:'smooth',block:'center'});
-      });
-      document.querySelectorAll('[data-final]').forEach(b=>b.addEventListener('click',()=>{
-        document.querySelectorAll('[data-final]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.getElementById('movieFinalFeedback').textContent=`El grupo propone: ${b.dataset.final}. ¿Qué criterio ha pesado más en la decisión final?`;
-      }));
+/* ---------- 1 · Termómetro ---------- */
+(function(){
+  const S=[
+    'Pedir un café en una cafetería con 58 combinaciones posibles… y el barista te pregunta cinco veces: ¿con qué leche, qué tamaño, qué temperatura, qué sirope y qué nombre para el vaso?',
+    'Elegir qué serie ver entre miles de títulos de streaming.',
+    'Elegir qué carrera estudiar.',
+    'Elegir un champú en un pasillo con cuarenta marcas.',
+    'Elegir con quién salir en una aplicación de citas.',
+    'Elegir un plan de datos móviles entre nueve planes casi iguales.',
+    'Elegir qué ponerte hoy con un armario de doscientas prendas.',
+    'Elegir en qué ciudad vivir.'
+  ];
+  const val=S.map(()=>0),star=S.map(()=>false);
+  const root=$('#thermo');
+  root.innerHTML=S.map((t,i)=>'<div class="th-row" data-i="'+i+'"><div class="th-text"><strong>'+(i+1)+'.</strong> '+esc(t)+'</div><div class="th-scale" role="radiogroup" aria-label="Situación '+(i+1)+': de 1, mejor con pocas, a 5, mejor con muchas"><span class="th-end">Mejor con pocas</span>'+[1,2,3,4,5].map(v=>'<button type="button" class="th-dot" role="radio" aria-checked="false" data-v="'+v+'" aria-label="'+v+'">'+v+'</button>').join('')+'<span class="th-end">Mejor con muchas</span></div><button type="button" class="th-star" aria-pressed="false">Nos dividió</button></div>').join('');
+  function sum(){
+    const rated=val.filter(v=>v>0).length;
+    const el=$('#thermoSum');
+    if(!rated){el.hidden=true;return;}
+    const many=val.filter(v=>v>=4).length,few=val.filter(v=>v>0&&v<=2).length,mid=val.filter(v=>v===3).length;
+    const sp=S.map((t,i)=>star[i]?(i+1):null).filter(Boolean);
+    show(el,'<strong>Resumen:</strong> '+rated+' de 8 situaciones ubicadas. Prefieren muchas opciones en '+many+', pocas en '+few+' y «depende» en '+mid+'.'+(sp.length?' Las que más los dividieron: '+sp.join(', ')+'.':' Marquen con ★ la que más los dividió.'));
+  }
+  root.addEventListener('click',e=>{
+    const row=e.target.closest('.th-row');if(!row)return;
+    const i=+row.dataset.i;
+    const d=e.target.closest('.th-dot');
+    if(d){val[i]=+d.dataset.v;$$('.th-dot',row).forEach(x=>x.setAttribute('aria-checked',x===d?'true':'false'));sum();return;}
+    const s=e.target.closest('.th-star');
+    if(s){star[i]=!star[i];s.setAttribute('aria-pressed',star[i]);sum();}
+  });
+})();
 
-      // Actividad 07: comprensión del mensaje musical.
-      document.querySelectorAll('[data-song-answer]').forEach(b=>b.addEventListener('click',()=>{
-        document.querySelectorAll('[data-song-answer]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
-        document.getElementById('songFeedback').textContent=b.dataset.songAnswer==='B'?'Correcto. La canción transmite un mensaje de esperanza y una mirada hacia el futuro.':'No es la opción que mejor resume el mensaje. Vuelve a escuchar y piensa en la idea de esperanza.';
-      }));
+/* ---------- 2 · Predicciones y afirmaciones ---------- */
+(function(){
+  const g=$('#predict');
+  multi(g,()=>{
+    const sel=$$('.opt[aria-pressed="true"]',g).map(b=>b.textContent.trim());
+    const fb=$('#predictFb');
+    if(!sel.length){fb.hidden=true;return;}
+    show(fb,'<strong>Sus predicciones:</strong> '+esc(sel.join(' · '))+'. Mientras ven el Short, comprueben si alguna aparece.');
+  });
+  const C=[
+    'Tener demasiadas opciones puede generar estrés o dificultad para decidir.',
+    'Cuantas más opciones descartamos, más contentos quedamos con lo que elegimos.',
+    'Para ser felices tenemos que decidir siempre lo más rápido posible.',
+    'Nuestros abuelos tenían menos opciones que nosotros.'
+  ];
+  const L=['Lo dice','No lo dice','Es una suposición'];
+  const ans=C.map(()=>null);
+  const root=$('#claims');
+  root.innerHTML=C.map((t,i)=>'<div class="q-item" data-i="'+i+'"><h4>'+(i+1)+'. '+esc(t)+'</h4><div class="pillrow" role="radiogroup" aria-label="Afirmación '+(i+1)+'">'+L.map((l,k)=>'<button class="opt" type="button" role="radio" aria-checked="false" data-k="'+k+'">'+l+'</button>').join('')+'</div></div>').join('');
+  root.addEventListener('click',e=>{
+    const b=e.target.closest('.opt');if(!b)return;
+    const item=b.closest('.q-item'),i=+item.dataset.i;
+    ans[i]=+b.dataset.k;
+    $$('.opt',item).forEach(x=>x.setAttribute('aria-checked',x===b?'true':'false'));
+    const done=ans.filter(a=>a!==null).length;
+    const fb=$('#claimsFb');
+    if(done<C.length){show(fb,'Clasificadas: '+done+' de '+C.length+'.');return;}
+    const c=L.map((l,k)=>l+': '+ans.filter(a=>a===k).length).join(' · ');
+    show(fb,'<strong>Ya clasificaron las cuatro.</strong> '+c+'. Para cada una, digan en qué parte del Short la escucharon o por qué la suponen.');
+  });
+})();
 
-      // Actividad 08: elección y semáforo progresivo.
-      let selectedPlan='';let lightStep=0;
-      document.querySelectorAll('[data-plan]').forEach(b=>b.addEventListener('click',()=>{
-        selectedPlan=b.dataset.plan;document.querySelectorAll('[data-plan]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.getElementById('planFeedback').textContent=`Has elegido ${selectedPlan}. Analiza el plan con el semáforo: problema, criterios y decisión.`;
-      }));
-      const lightCards=[document.getElementById('lightRed'),document.getElementById('lightYellow'),document.getElementById('lightGreen')];
-      document.getElementById('nextLight').addEventListener('click',()=>{
-        if(!selectedPlan){document.getElementById('planFeedback').textContent='Primero selecciona un plan para el sábado.';return;}
-        lightStep=Math.min(3,lightStep+1);lightCards.forEach((c,i)=>c.classList.toggle('active',i===lightStep-1));
-        document.getElementById('lightStatus').textContent=`Paso ${lightStep} / 3`;
-        const labels=['Empezar con rojo','Pasar a amarillo','Pasar a verde','Semáforo completado'];document.getElementById('nextLight').textContent=labels[lightStep];
-        if(lightStep===3)document.getElementById('planFeedback').textContent=`Plan analizado: ${selectedPlan}. Explica por qué encaja con las prioridades del grupo.`;
-      });
+/* ---------- 3 · Emoción y tarjetas de decisión ---------- */
+(function(){
+  single($('#emo'));
+  const D=['Mudarte a otra ciudad','Cambiar de trabajo','Volver a estudiar','Comprar tu primera casa','Aceptar una oferta inesperada','Quedarte donde estás','Decidir si te quedas en una fiesta o te vas a dormir','Empezar un proyecto propio'];
+  const g=$('#cards');
+  g.innerHTML=D.map(t=>'<button class="opt" type="button" aria-pressed="false">'+esc(t)+'</button>').join('');
+  single(g,b=>{
+    const emo=$('#emo .opt[aria-pressed="true"]');
+    show($('#cardsFb'),'<strong>Eligieron:</strong> '+esc(b.textContent.replace(/^✓\s*/,''))+(emo?' · emoción: '+esc(emo.textContent.trim()):'')+'. Ahora expliquen qué ganan y a qué renuncian.');
+  });
+})();
 
-      // Actividad 09: escritura, métricas y copia.
-      const writing=document.getElementById('writingText');
-      function updateWriting(){
-        const value=writing.value.trim();const words=value?value.split(/\s+/).filter(Boolean).length:0;const sentences=value?value.split(/[.!?]+/).filter(s=>s.trim().length>0).length:0;
-        document.getElementById('wordCount').textContent=`${words} palabras`;document.getElementById('sentenceCount').textContent=`${sentences} frases`;
-        const checked=document.querySelectorAll('#writingChecklist input:checked').length;document.getElementById('checkCount').textContent=`${checked} / 5 criterios`;
-      }
-      writing.addEventListener('input',updateWriting);document.querySelectorAll('#writingChecklist input').forEach(c=>c.addEventListener('change',updateWriting));
-      document.getElementById('clearWriting').addEventListener('click',()=>{writing.value='';document.querySelectorAll('#writingChecklist input').forEach(c=>c.checked=false);updateWriting();document.getElementById('copyFeedback').textContent='Texto eliminado.';});
-      document.getElementById('copyWriting').addEventListener('click',async()=>{
-        if(!writing.value.trim()){document.getElementById('copyFeedback').textContent='Escribe primero tu mensaje.';return;}
-        try{await navigator.clipboard.writeText(writing.value);document.getElementById('copyFeedback').textContent='Texto copiado.';}
-        catch(e){writing.focus();writing.select();document.getElementById('copyFeedback').textContent='Selecciona el texto y cópialo con Ctrl/Cmd + C.';}
-      });
-      updateWriting();
-    })();
-  </script>
-<script src="/MARCA/clases-ilustraciones.js"></script>
+/* ---------- 4 · Test ---------- */
+(function(){
+  const Q=[
+    ['Cuando compro algo importante…','Reviso muchas reseñas y comparo hasta estar seguro/a.','Reviso unas pocas y compro lo que cumple lo que necesito.'],
+    ['Después de elegir…','Pienso a menudo en lo que habría pasado con otra opción.','Rara vez vuelvo a pensar en lo que descarté.'],
+    ['Si encuentro algo bueno enseguida…','Sigo buscando por si hay algo mejor.','Me quedo con eso y sigo con mi día.'],
+    ['Para elegir un restaurante…','Miro varios hasta encontrar el ideal.','Voy a uno que cumple lo que busco.'],
+    ['Cuando alguien elige algo mejor que lo mío…','Me quedo dudando si elegí bien.','Me alegro por esa persona y sigo tranquilo/a.'],
+    ['Prefiero que mis decisiones sean…','Las mejores posibles, aunque cuesten tiempo.','Suficientemente buenas, y rápidas.']
+  ];
+  const a=Q.map(()=>null);
+  const root=$('#quiz');
+  root.innerHTML=Q.map((q,i)=>'<div class="q-item" data-i="'+i+'"><h4>'+(i+1)+'. '+esc(q[0])+'</h4><div class="grid g2" role="radiogroup" aria-label="Pregunta '+(i+1)+'"><button class="opt" type="button" role="radio" aria-checked="false" data-v="A">'+esc(q[1])+'</button><button class="opt" type="button" role="radio" aria-checked="false" data-v="B">'+esc(q[2])+'</button></div></div>').join('')+'<button class="btn sm" type="button" id="quizReset">Reiniciar test</button>';
+  root.addEventListener('click',e=>{
+    if(e.target.id==='quizReset'){a.fill(null);$$('.opt',root).forEach(x=>x.setAttribute('aria-checked','false'));$('#quizFb').hidden=true;return;}
+    const b=e.target.closest('.opt');if(!b)return;
+    const item=b.closest('.q-item'),i=+item.dataset.i;
+    a[i]=b.dataset.v;
+    $$('.opt',item).forEach(x=>x.setAttribute('aria-checked',x===b?'true':'false'));
+    const done=a.filter(Boolean).length,fb=$('#quizFb');
+    if(done<Q.length){show(fb,'Respondidas: '+done+' de '+Q.length+'.');return;}
+    const n=a.filter(x=>x==='A').length;
+    let r;
+    if(n<=1)r='Tiendes a quedarte con lo <strong>suficientemente bueno</strong>.';
+    else if(n>=5)r='Tiendes a <strong>buscar lo mejor</strong>.';
+    else r='Combinas los dos estilos: <strong>depende de la decisión</strong>.';
+    show(fb,'<strong>Resultado:</strong> '+r+' ('+n+' de 6 respuestas del lado «busco lo mejor»). Es solo una pista para conversar.');
+  });
+})();
+
+/* ---------- 5 · Doce apartamentos ---------- */
+(function(){
+  const CR=['Precio razonable','Con balcón','Cerca del metro','Acepta mascotas','Muy luminoso','Piso alto'];
+  const bits=['101100','110110','011011','111001','001110','100011','010101','111100','000111','101011','011110','110001'].map(s=>s.split('').map(Number));
+  const applied=new Set();
+  const cr=$('#crit'),box=$('#apts');
+  cr.innerHTML=CR.map((c,i)=>'<button class="opt" type="button" aria-pressed="false" data-i="'+i+'">'+esc(c)+'</button>').join('');
+  function paint(){
+    const left=[];
+    box.innerHTML=bits.map((b,n)=>{
+      const pass=[...applied].every(i=>b[i]);
+      if(pass)left.push(n);
+      const li=[...applied].sort().map(i=>'<li class="'+(b[i]?'ok':'no')+'">'+esc(CR[i])+'</li>').join('');
+      return '<div class="apt'+(pass?'':' out')+'" data-n="'+n+'"><h4>Apto '+(n+1)+'</h4><ul>'+li+'</ul></div>';
+    }).join('');
+    $('#qCount').textContent='Preguntas: '+applied.size;
+    $('#leftCount').textContent='Quedan: '+left.length;
+    const fb=$('#aptFb');
+    if(!applied.size){fb.hidden=true;return;}
+    if(left.length===1){
+      const n=left[0];$$('.apt',box)[n].classList.add('win');
+      const ren=CR.filter((c,i)=>!applied.has(i)&&!bits[n][i]);
+      const rate=applied.size<=3?'¡Muy rápido!':applied.size===4?'Buen equilibrio.':'';
+      show(fb,'<strong>¡Llegaron al apartamento '+(n+1)+' con '+applied.size+' preguntas!</strong> '+rate+(ren.length?' Renuncian a: '+esc(ren.join(', '))+'.':''));
+    }else if(left.length===0){
+      show(fb,'<strong>Ningún apartamento cumple todo.</strong> Quiten una pregunta y decidan a qué renuncian.');
+    }else{
+      show(fb,'Quedan '+left.length+' apartamentos. Elijan la siguiente pregunta o quiten una.');
+    }
+  }
+  cr.addEventListener('click',e=>{
+    const b=e.target.closest('.opt');if(!b)return;
+    const i=+b.dataset.i;
+    if(applied.has(i)){applied.delete(i);b.setAttribute('aria-pressed','false');}else{applied.add(i);b.setAttribute('aria-pressed','true');}
+    paint();
+  });
+  $('#aptReset').addEventListener('click',()=>{applied.clear();$$('.opt',cr).forEach(x=>x.setAttribute('aria-pressed','false'));paint();});
+  paint();
+})();
+
+/* ---------- 6 · Lectura ---------- */
+(function(){
+  const S=[
+    ['Querida Camila, no está sola: muchas personas se agotan cuando comparan demasiado.',false,'Es razonable: reconoce que a varias personas les pasa.'],
+    ['La solución es sencilla: elija siempre la primera opción que le guste.',true,'Generaliza: «siempre» no sirve para decisiones importantes.'],
+    ['Así nadie se arrepiente de nada.',true,'Exagera: elegir rápido tampoco elimina el arrepentimiento.'],
+    ['Andrés, usted tiene razón en algo: tener opciones también da libertad.',false,'Es razonable: reconoce un punto válido de la otra carta.'],
+    ['Pero quien se queja de tener muchas opciones simplemente no sabe lo que quiere.',true,'Juzga a las personas sin conocer sus razones.'],
+    ['En la vida, elegir una serie es lo mismo que elegir una carrera.',true,'Equipara decisiones de peso muy distinto.']
+  ];
+  const root=$('#sents');
+  const mark=S.map(()=>false);
+  function draw(){
+    root.innerHTML=S.map((s,i)=>'<button class="sent" type="button" aria-pressed="'+mark[i]+'" data-i="'+i+'">'+(i+1)+'. '+esc(s[0])+'</button>').join('');
+  }
+  draw();
+  root.addEventListener('click',e=>{
+    const b=e.target.closest('.sent');if(!b||b.dataset.done)return;
+    const i=+b.dataset.i;mark[i]=!mark[i];b.setAttribute('aria-pressed',mark[i]);
+  });
+  $('#checkSents').addEventListener('click',()=>{
+    let ok=0;
+    $$('.sent',root).forEach((b,i)=>{
+      const good=mark[i]===S[i][1];if(good)ok++;
+      b.dataset.done='1';
+      b.classList.add(good?'res-ok':'res-no');
+      b.insertAdjacentHTML('beforeend','<small>'+(good?'✓ ':'✗ ')+esc(S[i][2])+'</small>');
+    });
+    show($('#sentsFb'),'<strong>Acertaron '+ok+' de '+S.length+'.</strong> Comparen: ¿qué frase les costó más clasificar?');
+  });
+  $('#resetSents').addEventListener('click',()=>{mark.fill(false);draw();$('#sentsFb').hidden=true;});
+})();
+
+/* ---------- 7 · Tribunal ---------- */
+(function(){
+  multi($('.evid'));
+  const L1=['Sí','Depende','No'];
+  const v1=[0,0,0],v2=[0,0,0];
+  function box(el,arr,labels,after){
+    el.innerHTML=labels.map((l,i)=>'<div class="vote"><h4>'+esc(l)+'</h4><b aria-live="polite">0</b><div class="row"><button class="btn sm" type="button" data-i="'+i+'" data-d="-1" aria-label="Quitar un voto: '+esc(l)+'">−</button><button class="btn sm go" type="button" data-i="'+i+'" data-d="1" aria-label="Sumar un voto: '+esc(l)+'">+1</button></div></div>').join('');
+    el.addEventListener('click',e=>{
+      const b=e.target.closest('button[data-d]');if(!b)return;
+      const i=+b.dataset.i;arr[i]=Math.max(0,arr[i]+(+b.dataset.d));
+      $$('.vote b',el)[i].textContent=arr[i];after&&after();
+    });
+  }
+  function bars(){
+    const mx=Math.max(1,...v1,...v2);
+    $('#voteBars').innerHTML=L1.map((l,i)=>'<div class="bar"><span>'+l+'</span><div><i style="width:'+Math.round(v1[i]/mx*100)+'%;background:var(--y)"></i><i style="width:'+Math.round(v2[i]/mx*100)+'%"></i></div><span>'+v1[i]+' → '+v2[i]+'</span></div>').join('')+'<p class="small">Amarillo = antes · Azul = después</p>';
+  }
+  box($('#vote1'),v1,L1,bars);
+  box($('#vote2'),v2,L1,bars);
+  bars();
+  box($('#vote3'),[0,0,0],['Sí, la aplicaría','Con ajustes','No']);
+})();
+
+/* ---------- 8 · Consultoría ---------- */
+(function(){
+  const D=[
+    'Una boda con 14 menús para 20 invitados. Quieren que todos coman lo que más les gusta.',
+    'Un plan de celular: hay nueve planes casi iguales y todos prometen «el mejor precio».',
+    'Elegir un colegio para tu hijo: hay once que te gustan y ninguno cumple todo.',
+    'Un regalo de cumpleaños para tu jefe: tienes una lista de veinticinco ideas.',
+    'Una oferta de trabajo: tienes tres empleos aceptables y ninguno es perfecto.',
+    'Un gimnasio nuevo: ocho gimnasios, cinco planes y tres horarios posibles.',
+    'Un portátil para estudiar y trabajar: la tienda tiene treinta modelos.'
+  ];
+  let order=[],pos=0;
+  function shuffle(){order=D.map((_,i)=>i);for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]];}pos=0;}
+  shuffle();
+  $('#draw').addEventListener('click',()=>{
+    if(pos>=order.length)shuffle();
+    $('#dilemma').textContent=D[order[pos++]];
+    $('#draw').textContent='Otro dilema';
+    resetTimer();
+  });
+  let sec=180,t=null;
+  const fmt=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+  function paint(){$('#timer').textContent=sec===0?'¡Tiempo!':fmt(sec);}
+  function stop(){if(t){clearInterval(t);t=null;}$('#tStart').textContent='Iniciar';}
+  function resetTimer(){stop();sec=180;paint();}
+  $('#tStart').addEventListener('click',()=>{
+    if(t){stop();return;}
+    if(sec===0)sec=180;
+    $('#tStart').textContent='Pausar';
+    t=setInterval(()=>{sec--;paint();if(sec<=0){sec=0;paint();stop();}},1000);
+  });
+  $('#tReset').addEventListener('click',resetTimer);
+  const calm=$('#calm');
+  single(calm,b=>{show($('#calmFb'),'<strong>Tranquilidad del cliente:</strong> '+esc(b.textContent.replace(/^✓\s*/,'').trim())+'. ¿Qué pregunta del asesor ayudó más?');});
+})();
+
+/* ---------- 9 · Escritura ---------- */
+(function(){
+  single($('#places'));
+  const ta=$('#msg'),wc=$('#wc');
+  const boxes=$$('#checks input');
+  function sum(){
+    const n=(ta.value.trim().match(/\S+/g)||[]).length;
+    wc.textContent=n+(n===1?' palabra':' palabras');
+    const auto=boxes[0];auto.checked=n>=40&&n<=80;auto.disabled=true;
+    $('#checkSum').textContent=boxes.filter(b=>b.checked).length+' / 5 criterios.';
+  }
+  ta.addEventListener('input',sum);
+  boxes.forEach(b=>b.addEventListener('change',sum));
+  boxes[0].disabled=true;
+  $('#clearMsg').addEventListener('click',()=>{ta.value='';boxes.slice(1).forEach(b=>b.checked=false);sum();});
+  $('#copyMsg').addEventListener('click',async()=>{
+    const btn=$('#copyMsg');
+    try{await navigator.clipboard.writeText(ta.value);btn.textContent='Copiado ✓';}
+    catch(e){ta.select();try{document.execCommand('copy');btn.textContent='Copiado ✓';}catch(_){btn.textContent='Selecciona y copia';}}
+    setTimeout(()=>{btn.textContent='Copiar texto';},1600);
+  });
+  sum();
+})();
+
+/* ---------- Arranque ---------- */
+const h=parseInt((location.hash||'').replace('#',''),10);
+go(Number.isInteger(h)&&h>=0&&h<TOTAL?h:0,true);
+})();
+</script>
 </body>
 </html>
