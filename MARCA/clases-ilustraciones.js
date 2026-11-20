@@ -24,11 +24,18 @@
     '<svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g '+stroke+'><path d="M39 53Q42 47 51 49H119Q128 49 130 57L123 96Q121 108 108 109H62Q49 108 46 96Z"/><path d="M129 61Q153 53 155 72 157 91 126 91"/><path d="M60 45Q47 32 59 20 69 10 61 2m31 43Q81 30 95 17 108 5 99 0m28 45q-9-13 2-23"/><path d="M31 113Q82 122 138 113"/><path d="M25 120Q82 129 145 120"/></g><path d="M41 55q31 6 77 0" fill="none" stroke="'+BLUE+'" stroke-width="4" stroke-linecap="round"/><path d="M91 16q8-10 5-16" fill="none" stroke="'+RED+'" stroke-width="4" stroke-linecap="round"/><path d="M24 108l-8-6m142 2 8-6" fill="none" stroke="'+YELLOW+'" stroke-width="4" stroke-linecap="round"/></svg>',
     /* 8 · chispa y lápiz */
     '<svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g '+stroke+'><path d="M38 99L117 21Q123 15 130 22L140 32Q146 39 139 46L60 124 35 128Z"/><path d="M38 99l22 25m57-103 24 25"/><path d="M35 128l5-22 17 17Z"/><path d="M82 21l7-14 7 14 15 6-15 7-7 15-7-15-14-7Z"/><path d="M139 78l6-12 6 12 12 6-12 5-6 12-6-12-12-5Z"/></g><path d="M116 24l20 20" fill="none" stroke="'+RED+'" stroke-width="4.2" stroke-linecap="round"/><path d="M80 21l8-13m7 23 12-5" fill="none" stroke="'+YELLOW+'" stroke-width="4" stroke-linecap="round"/><path d="M27 72l-10-4m13 17-12 3" fill="none" stroke="'+BLUE+'" stroke-width="4" stroke-linecap="round"/></svg>'
+    /* 9 · circuito y decisión */
+    '<svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g '+stroke+'><rect x="57" y="29" width="66" height="68" rx="10"/><path d="M90 13v16m0 68v17M57 62H34m89 0h23M75 49h30m-30 13h30m-30 13h20"/><circle cx="90" cy="62" r="7"/><circle cx="34" cy="62" r="4"/><circle cx="146" cy="62" r="4"/></g><path d="M61 35q12-10 25-5m30 62q10 7 19 1" fill="none" stroke="'+BLUE+'" stroke-width="4" stroke-linecap="round"/><path d="M90 13l-5 6m5-6 5 6M34 62l6-5m-6 5 6 5" fill="none" stroke="'+YELLOW+'" stroke-width="4" stroke-linecap="round"/><path d="M146 62l-6-5m6 5-6 5" fill="none" stroke="'+RED+'" stroke-width="4" stroke-linecap="round"/></svg>',
+    /* 10 · caminos posibles */
+    '<svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g '+stroke+'><path d="M90 115V75Q90 65 78 58L49 38m41 37q0-10 12-17l29-20"/><path d="M40 46l9-8 8 9m65-1 9-9 8 9"/><circle cx="90" cy="75" r="7"/><circle cx="49" cy="38" r="5"/><circle cx="139" cy="38" r="5"/><path d="M76 115h28"/></g><path d="M90 75q-19-3-31-17" fill="none" stroke="'+BLUE+'" stroke-width="4" stroke-linecap="round"/><path d="M90 75q18-3 31-17" fill="none" stroke="'+RED+'" stroke-width="4" stroke-linecap="round"/><path d="M42 25l4-8m9 11 8-4m59 0 8-6m7 15 8-2" fill="none" stroke="'+YELLOW+'" stroke-width="4" stroke-linecap="round"/></svg>',
+    /* 11 · equilibrio y criterio */
+    '<svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g '+stroke+'><path d="M90 17v91m-27 0h54M62 37h56M90 17l-28 20m28-20 28 20"/><path d="M62 37 43 69h38L62 37Zm56 0-19 32h38l-19-32Z"/><path d="M43 69q19 13 38 0m18 0q19 13 38 0"/></g><path d="M78 22q12-8 24 0" fill="none" stroke="'+BLUE+'" stroke-width="4" stroke-linecap="round"/><path d="M43 69q17 8 34 1m34-1q17 8 34 1" fill="none" stroke="'+YELLOW+'" stroke-width="4" stroke-linecap="round"/><path d="M86 108l4 7 4-7" fill="none" stroke="'+RED+'" stroke-width="4" stroke-linecap="round"/></svg>',
   ];
   const orders={
     "010":[8,0,6,5,4,3,2,1,7],
     "013":[2,8,7,4,6,0,5,1,3],
     "020":[0,1,2,3,4,5,6,7,8],
+    "036":[9,10,11,2,7,0,5,1,8],
     "057":[7,6,8,1,3,0,4,5,2]
   };
   function accentFor(theme,n){
@@ -56,19 +63,19 @@
       else base+='<path d="M72 87q13 22 27 0-4 17-14 17-10-1-13-17z"/>';
       detail='<path d="M13 96l11 5m-9 6 9 0" fill="none" stroke="#CE1126" stroke-width="3"/>';
     }
-    const prop=scene==="010-bienvenida"?'<path d="M141 79q11-7 24 0v33q-10-6-24 0m10-27v16" fill="none" stroke="#003893" stroke-width="2.8"/>':scene==="013-bienvenida"?'<path d="M139 42q7-17 13-13m2 11q6-17 13-9m-19 23q13-1 20 11" fill="none" stroke="#CE1126" stroke-width="3.3"/>':scene==="057-bienvenida"?'<circle cx="151" cy="69" r="19" fill="none" stroke="#003893" stroke-width="3"/><path d="M151 53v17l9 6" fill="none" stroke="#000" stroke-width="2.6"/>':"";
+    const prop=scene==="010-bienvenida"?'<path d="M141 79q11-7 24 0v33q-10-6-24 0m10-27v16" fill="none" stroke="#003893" stroke-width="2.8"/>':scene==="013-bienvenida"?'<path d="M139 42q7-17 13-13m2 11q6-17 13-9m-19 23q13-1 20 11" fill="none" stroke="#CE1126" stroke-width="3.3"/>':scene==="036-bienvenida"?'<rect x="137" y="72" width="32" height="25" rx="4" fill="none" stroke="#003893" stroke-width="2.8"/><path d="M143 80h19m-19 6h13m-6 11v6m-8 0h16" fill="none" stroke="#000" stroke-width="2.6"/>':scene==="036-debate"?'<path d="M139 76h30m-15-19v44m-12 0h24m-21-25-7 13h14l-7-13Zm21 0-7 13h14l-7-13Z" fill="none" stroke="#000" stroke-width="2.8"/><path d="M142 62q8-6 15-2" fill="none" stroke="#FCD116" stroke-width="3.5" stroke-linecap="round"/>':scene==="057-bienvenida"?'<circle cx="151" cy="69" r="19" fill="none" stroke="#003893" stroke-width="3"/><path d="M151 53v17l9 6" fill="none" stroke="#000" stroke-width="2.6"/>':"";
     return baseStart+start+base+prop+'</g>'+detail+'<path d="M141 25l9-11m-6 25 15-1" fill="none" stroke="#FCD116" stroke-width="3.4" stroke-linecap="round"/></svg>';
   }
-  const slug=location.pathname.match(/tema-(010|013|020|057)/);
-  const theme=slug?slug[1]:(document.title.match(/\b(010|013|020|057)\b/)||[])[1]||"010";
-  const lead={"010":["marysol","curiosa","010-bienvenida"],"013":["fernando","alegre","013-bienvenida"],"020":["marysol","alegre","020-bienvenida"],"057":["fernando","pensativo","057-bienvenida"]}[theme]||["marysol","curiosa","010-bienvenida"];
-  const side={"010":["fernando","pensativo","010-juego"],"013":["marysol","sorpresa","013-comparar"],"020":["fernando","alegre","020-conversar"],"057":["marysol","curiosa","057-decidir"]}[theme]||["fernando","pensativo","010-juego"];
+  const slug=location.pathname.match(/tema-(010|013|020|036|057)/);
+  const theme=slug?slug[1]:(document.title.match(/\\b(010|013|020|036|057)\\b/)||[])[1]||"010";
+  const lead={"010":["marysol","curiosa","010-bienvenida"],"013":["fernando","alegre","013-bienvenida"],"020":["marysol","alegre","020-bienvenida"],"036":["marysol","curiosa","036-bienvenida"],"057":["fernando","pensativo","057-bienvenida"]}[theme]||["marysol","curiosa","010-bienvenida"];
+  const side={"010":["fernando","pensativo","010-juego"],"013":["marysol","sorpresa","013-comparar"],"020":["fernando","alegre","020-conversar"],"036":["fernando","pensativo","036-debate"],"057":["marysol","curiosa","057-decidir"]}[theme]||["fernando","pensativo","010-juego"];
   function apply(){
     const modules=Array.from(document.querySelectorAll("section.module-slide[data-module]"));
     if(modules.length!==10)return;
     modules.forEach((m,i)=>{
       if(m.querySelector(".brand-doodle-accent,.brand-illustration"))return;
-      if(i>0&&theme!=="010"){
+      if((i>0||theme==="036")&&theme!=="010"){
         const accent=document.createElement("div");
         accent.className="brand-doodle-accent";
         accent.setAttribute("aria-hidden","true");
