@@ -23,7 +23,7 @@
     /* 7 · taza */
     '<svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g '+stroke+'><path d="M39 53Q42 47 51 49H119Q128 49 130 57L123 96Q121 108 108 109H62Q49 108 46 96Z"/><path d="M129 61Q153 53 155 72 157 91 126 91"/><path d="M60 45Q47 32 59 20 69 10 61 2m31 43Q81 30 95 17 108 5 99 0m28 45q-9-13 2-23"/><path d="M31 113Q82 122 138 113"/><path d="M25 120Q82 129 145 120"/></g><path d="M41 55q31 6 77 0" fill="none" stroke="'+BLUE+'" stroke-width="4" stroke-linecap="round"/><path d="M91 16q8-10 5-16" fill="none" stroke="'+RED+'" stroke-width="4" stroke-linecap="round"/><path d="M24 108l-8-6m142 2 8-6" fill="none" stroke="'+YELLOW+'" stroke-width="4" stroke-linecap="round"/></svg>',
     /* 8 · chispa y lápiz */
-    '<svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g '+stroke+'><path d="M38 99L117 21Q123 15 130 22L140 32Q146 39 139 46L60 124 35 128Z"/><path d="M38 99l22 25m57-103 24 25"/><path d="M35 128l5-22 17 17Z"/><path d="M82 21l7-14 7 14 15 6-15 7-7 15-7-15-14-7Z"/><path d="M139 78l6-12 6 12 12 6-12 5-6 12-6-12-12-5Z"/></g><path d="M116 24l20 20" fill="none" stroke="'+RED+'" stroke-width="4.2" stroke-linecap="round"/><path d="M80 21l8-13m7 23 12-5" fill="none" stroke="'+YELLOW+'" stroke-width="4" stroke-linecap="round"/><path d="M27 72l-10-4m13 17-12 3" fill="none" stroke="'+BLUE+'" stroke-width="4" stroke-linecap="round"/></svg>'
+    '<svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g '+stroke+'><path d="M38 99L117 21Q123 15 130 22L140 32Q146 39 139 46L60 124 35 128Z"/><path d="M38 99l22 25m57-103 24 25"/><path d="M35 128l5-22 17 17Z"/><path d="M82 21l7-14 7 14 15 6-15 7-7 15-7-15-14-7Z"/><path d="M139 78l6-12 6 12 12 6-12 5-6 12-6-12-12-5Z"/></g><path d="M116 24l20 20" fill="none" stroke="'+RED+'" stroke-width="4.2" stroke-linecap="round"/><path d="M80 21l8-13m7 23 12-5" fill="none" stroke="'+YELLOW+'" stroke-width="4" stroke-linecap="round"/><path d="M27 72l-10-4m13 17-12 3" fill="none" stroke="'+BLUE+'" stroke-width="4" stroke-linecap="round"/></svg>',
     /* 9 · circuito y decisión */
     '<svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g '+stroke+'><rect x="57" y="29" width="66" height="68" rx="10"/><path d="M90 13v16m0 68v17M57 62H34m89 0h23M75 49h30m-30 13h30m-30 13h20"/><circle cx="90" cy="62" r="7"/><circle cx="34" cy="62" r="4"/><circle cx="146" cy="62" r="4"/></g><path d="M61 35q12-10 25-5m30 62q10 7 19 1" fill="none" stroke="'+BLUE+'" stroke-width="4" stroke-linecap="round"/><path d="M90 13l-5 6m5-6 5 6M34 62l6-5m-6 5 6 5" fill="none" stroke="'+YELLOW+'" stroke-width="4" stroke-linecap="round"/><path d="M146 62l-6-5m6 5-6 5" fill="none" stroke="'+RED+'" stroke-width="4" stroke-linecap="round"/></svg>',
     /* 10 · caminos posibles */
@@ -73,6 +73,8 @@
   function apply(){
     const modules=Array.from(document.querySelectorAll("section.module-slide[data-module]"));
     if(modules.length!==10)return;
+    const heroIndex=theme==="036"?1:0;
+    const secondaryIndex=theme==="036"?6:5;
     modules.forEach((m,i)=>{
       if(m.querySelector(".brand-doodle-accent,.brand-illustration"))return;
       if(i>0&&theme!=="010"){
@@ -83,11 +85,11 @@
         const content=m.querySelector(".module-content");
         if(content)m.insertBefore(accent,content);
       }
-      if((i===0||i===5)&&theme!=="010"){
+      if((i===heroIndex||i===secondaryIndex)&&theme!=="010"){
         const art=document.createElement("div");
-        art.className="brand-illustration"+(i===5?" secondary":"");
+        art.className="brand-illustration"+(i===secondaryIndex?" secondary":"");
         art.setAttribute("aria-hidden","true");
-        art.innerHTML=theme==="020"?hero020(i===5?1:0):legacyFigure.apply(null,i===0?lead:side);
+        art.innerHTML=theme==="020"?hero020(i===secondaryIndex?1:0):legacyFigure.apply(null,i===heroIndex?lead:side);
         m.appendChild(art);
       }
     });
