@@ -562,6 +562,7 @@
               <div class="score">Equipo B<br><strong id="scoreB">0</strong> puntos</div>
               <div class="score">Ronda<br><strong id="roundLabel">1 / 3</strong></div>
             </div>
+            <p class="small" id="gameFeedback" aria-live="polite">Cada equipo puede sumar hasta tres puntos por ronda: beneficio, riesgo y condición, siempre con una razón.</p>
             <div class="game-round" data-round="0">
               <p class="round-label">RONDA 1 · UNA COMPRA INESPERADA</p>
               <h3>La IA organiza una cena para cuatro personas y añade cuarenta kilos de cilantro a la lista de la compra.</h3>
@@ -849,9 +850,16 @@
         const point=event.target.closest("[data-game-point]");
         if(point){
           const team=point.getAttribute("data-game-point");
-          if(team==="A"||team==="B"){
-            scores[team]+=1;
-            updateScores();
+          if((team==="A"||team==="B")&&!gameFinished){
+            if(roundPoints[team]<3){
+              roundPoints[team]+=1;
+              scores[team]+=1;
+              updateScores();
+              updateRoundPoints();
+              document.getElementById("gameFeedback").textContent="Punto para el Equipo "+team+". Explica qué razón lo justifica.";
+            }else{
+              document.getElementById("gameFeedback").textContent="El Equipo "+team+" ya alcanzó los tres puntos de esta ronda.";
+            }
           }
           return;
         }
@@ -877,11 +885,16 @@
       });
 
       let scores={A:0,B:0};
+      let roundPoints={A:0,B:0};
+      let gameFinished=false;
       const rounds=Array.from(document.querySelectorAll(".game-round"));
       let round=0;
       function updateScores(){
         document.getElementById("scoreA").textContent=String(scores.A);
         document.getElementById("scoreB").textContent=String(scores.B);
+      }
+      function updateRoundPoints(){
+        document.getElementById("gameFeedback").textContent="Puntos de esta ronda: Equipo A "+roundPoints.A+"/3 · Equipo B "+roundPoints.B+"/3.";
       }
       function renderRound(){
         rounds.forEach(function(item,index){item.hidden=index!==round;});
@@ -891,18 +904,34 @@
         button.textContent=round===2?"Ver resultado →":"Siguiente reto →";
       }
       function nextRound(){
-        if(round<2){round+=1;renderRound();return;}
+        if(gameFinished)return;
+        if(round<2){
+          round+=1;
+          roundPoints={A:0,B:0};
+          renderRound();
+          updateRoundPoints();
+          return;
+        }
         const result=document.getElementById("game-result");
         if(scores.A>scores.B)result.textContent="Gana el Equipo A · "+scores.A+" a "+scores.B;
         else if(scores.B>scores.A)result.textContent="Gana el Equipo B · "+scores.B+" a "+scores.A;
         else result.textContent="Empate · "+scores.A+" a "+scores.B;
         document.getElementById("game-final").hidden=false;
+        document.getElementById("gameFeedback").textContent="Partida terminada. Reinicia si quieres jugar otra vez.";
+        gameFinished=true;
+        document.querySelectorAll("[data-game-point]").forEach(function(button){button.disabled=true;});
+        document.querySelector("[data-game-next]").disabled=true;
       }
       function resetGame(){
         scores={A:0,B:0};
+        roundPoints={A:0,B:0};
+        gameFinished=false;
         round=0;
+        document.querySelectorAll("[data-game-point]").forEach(function(button){button.disabled=false;});
+        document.querySelector("[data-game-next]").disabled=false;
         updateScores();
         renderRound();
+        updateRoundPoints();
       }
 
       showSlide(0);
