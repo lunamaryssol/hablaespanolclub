@@ -61,16 +61,31 @@ li{margin-bottom:6px}
  .tabla td:first-child{font-weight:800;color:var(--azul)}
 }
 @media print{.doodle-grande,.mini svg{display:none}.card{box-shadow:none}}
+
+.langbar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid rgba(0,56,147,.2);margin:0 -22px;padding:10px 22px}
+.langbar .sel{display:flex;gap:8px;flex-wrap:wrap;max-width:776px;margin:0 auto}
+.langbar button{font:inherit;font-weight:600;font-size:.98rem;cursor:pointer;background:#fff;color:#000;border:1.5px solid rgba(0,56,147,.35);border-radius:999px;padding:6px 14px;min-height:40px}
+.langbar button[aria-pressed="true"]{border:2.5px solid var(--azul);color:var(--azul);font-weight:800;box-shadow:0 3px 0 var(--amarillo)}
+.langbar button:focus-visible{outline:3px solid var(--azul);outline-offset:3px}
+.doc[hidden]{display:none}
+@media print{.langbar{display:none}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<div class="top">
- <img src="/MARCA/logotipo-original.png" alt="Logotipo de Habla Español Club">
+<div class="langbar"><div class="sel" role="group" aria-label="Idioma / Language / Langue" translate="no">
+ <button type="button" data-language="en" lang="en" aria-pressed="false"><span aria-hidden="true">🇬🇧</span> English</button>
+ <button type="button" data-language="fr" lang="fr" aria-pressed="false"><span aria-hidden="true">🇫🇷</span> Français</button>
+ <button type="button" data-language="es" lang="es" aria-pressed="true"><span aria-hidden="true">🇪🇸</span> Español</button>
+</div></div>
+
+<div class="top" style="margin-top:22px">
+ <img src="/MARCA/logotipo-original.png" alt="Habla Español Club">
  <a href="https://hablaespanol.club/" target="_top">Habla Español Club</a>
 </div>
 
+<div class="doc" lang="es" data-lang="es">
 <header class="hero">
  <div class="txt">
   <p class="kicker">Tus datos, con claridad</p>
@@ -93,12 +108,12 @@ li{margin-bottom:6px}
  </div>
 </header>
 
-<section class="card" aria-labelledby="aviso">
- <h2 id="aviso" style="color:#000"><span class="n">★</span>Aviso de privacidad (resumen)</h2>
+<section class="card" aria-labelledby="es-aviso">
+ <h2 id="es-aviso" style="color:#000"><span class="n">★</span>Aviso de privacidad (resumen)</h2>
  <ul>
   <li><strong>Responsable:</strong> Luna Marysol Rodríguez Vanegas (Habla Español Club). Contacto: <a href="mailto:hablaespanol@gmail.com">hablaespanol@gmail.com</a>.</li>
-  <li><strong>Qué trato:</strong> tu nombre, tu correo electrónico y tu nivel de español, más datos técnicos de navegación.</li>
-  <li><strong>Para qué:</strong> entregarte el material que pides (ebook, reto, otros recursos) y escribirte por correo con información educativa y comercial de Habla Español Club.</li>
+  <li><strong>Qué trato:</strong> tu nombre, tu correo electrónico y tu nivel de español, más datos técnicos de navegación y, si participas en una clase en vivo, tu voz, tu imagen y tus mensajes en la grabación.</li>
+  <li><strong>Para qué:</strong> entregarte el material que pides (ebook, reto, otros recursos), escribirte por correo con información educativa y comercial de Habla Español Club y, en las clases en vivo, grabarlas y compartirlas con la comunidad.</li>
   <li><strong>Tus derechos:</strong> conocer, actualizar, rectificar y suprimir tus datos, pedir prueba de tu autorización, revocarla en cualquier momento y presentar quejas ante la Superintendencia de Industria y Comercio.</li>
   <li><strong>No pido datos sensibles.</strong> Responder cualquier pregunta sobre ellos, si algún día apareciera, sería siempre opcional.</li>
   <li><strong>Dónde leer todo:</strong> esta página, <a href="https://hablaespanol.club/politicaprivacidadytratamientodedatos" target="_top">hablaespanol.club/politicaprivacidadytratamientodedatos</a>.</li>
@@ -108,28 +123,29 @@ li{margin-bottom:6px}
 <nav aria-label="Índice">
  <h2 style="margin-top:34px">Índice</h2>
  <ol class="toc">
-  <li><a href="#responsable">Quién es la responsable</a></li>
-  <li><a href="#marco">Marco legal y principios</a></li>
-  <li><a href="#datos">Qué datos recojo</a></li>
-  <li><a href="#finalidades">Para qué los uso</a></li>
-  <li><a href="#autorizacion">Tu autorización</a></li>
-  <li><a href="#comunicaciones">Comunicaciones y horarios</a></li>
-  <li><a href="#terceros">Con quién los comparto</a></li>
-  <li><a href="#internacional">Transferencias internacionales</a></li>
-  <li><a href="#ia">Inteligencia artificial</a></li>
-  <li><a href="#cookies">Cookies y píxeles</a></li>
-  <li><a href="#conservacion">Cuánto tiempo los conservo</a></li>
-  <li><a href="#derechos">Tus derechos</a></li>
-  <li><a href="#ejercer">Cómo ejercerlos</a></li>
-  <li><a href="#sic">Quejas ante la SIC</a></li>
-  <li><a href="#europa">Si vives fuera de Colombia</a></li>
-  <li><a href="#menores">Menores de edad</a></li>
-  <li><a href="#seguridad">Seguridad</a></li>
-  <li><a href="#cambios">Cambios y vigencia</a></li>
+  <li><a href="#es-responsable">Quién es la responsable</a></li>
+  <li><a href="#es-marco">Marco legal y principios</a></li>
+  <li><a href="#es-datos">Qué datos recojo</a></li>
+  <li><a href="#es-finalidades">Para qué los uso</a></li>
+  <li><a href="#es-grabaciones">Grabaciones de las clases</a></li>
+  <li><a href="#es-autorizacion">Tu autorización</a></li>
+  <li><a href="#es-comunicaciones">Comunicaciones y horarios</a></li>
+  <li><a href="#es-terceros">Con quién los comparto</a></li>
+  <li><a href="#es-internacional">Transferencias internacionales</a></li>
+  <li><a href="#es-ia">Inteligencia artificial</a></li>
+  <li><a href="#es-cookies">Cookies y píxeles</a></li>
+  <li><a href="#es-conservacion">Cuánto tiempo los conservo</a></li>
+  <li><a href="#es-derechos">Tus derechos</a></li>
+  <li><a href="#es-ejercer">Cómo ejercerlos</a></li>
+  <li><a href="#es-sic">Quejas ante la SIC</a></li>
+  <li><a href="#es-europa">Si vives fuera de Colombia</a></li>
+  <li><a href="#es-menores">Menores de edad</a></li>
+  <li><a href="#es-seguridad">Seguridad</a></li>
+  <li><a href="#es-cambios">Cambios y vigencia</a></li>
  </ol>
 </nav>
 
-<h2 id="responsable"><span class="n">1.</span>Quién es la responsable</h2>
+<h2 id="es-responsable"><span class="n">1.</span>Quién es la responsable</h2>
 <p>La responsable del tratamiento de tus datos personales es:</p>
 <ul>
  <li><strong>Nombre:</strong> Luna Marysol Rodríguez Vanegas (persona natural), cédula de ciudadanía n.º 49.795.943.</li>
@@ -141,7 +157,7 @@ li{margin-bottom:6px}
 </ul>
 <p>Yo misma atiendo las consultas y los reclamos sobre protección de datos personales, por el correo, el WhatsApp o la dirección de arriba.</p>
 
-<h2 id="marco"><span class="n">2.</span>Marco legal y principios</h2>
+<h2 id="es-marco"><span class="n">2.</span>Marco legal y principios</h2>
 <p>Esta política se rige por el artículo 15 de la Constitución Política de Colombia, la Ley Estatutaria 1581 de 2012, el Decreto 1074 de 2015 (que compila el Decreto 1377 de 2013), la Circular Única de la Superintendencia de Industria y Comercio y la Ley 2300 de 2023 sobre comunicaciones comerciales con los consumidores.</p>
 <p>Trato tus datos respetando los principios del artículo 4 de la Ley 1581:</p>
 <ul>
@@ -151,7 +167,7 @@ li{margin-bottom:6px}
  <li><strong>Seguridad y confidencialidad:</strong> los protejo con medidas razonables y no los divulgo sin tu autorización o sin una obligación legal.</li>
 </ul>
 
-<h2 id="datos"><span class="n">3.</span>Qué datos recojo</h2>
+<h2 id="es-datos"><span class="n">3.</span>Qué datos recojo</h2>
 <h3>Los que me das tú</h3>
 <ul>
  <li>Tu <strong>nombre</strong>.</li>
@@ -159,75 +175,92 @@ li{margin-bottom:6px}
  <li>Tu <strong>nivel de español</strong> (por ejemplo, B1 o B2), para enviarte materiales y mensajes adecuados.</li>
 </ul>
 <p>Si más adelante te pido otro dato, te lo diré en el formulario antes de que lo envíes y, si hace falta, actualizaré esta política.</p>
+<h3>Los que quedan en las grabaciones de las clases</h3>
+<ul>
+ <li>Si participas en una clase en vivo: tu voz, tu imagen si enciendes la cámara, el nombre que aparece en pantalla y lo que escribas en el chat (ver la sección <a href="#es-grabaciones">Grabaciones de las clases</a>).</li>
+</ul>
 <h3>Los que se recogen al usar el sitio</h3>
 <ul>
  <li>Datos técnicos de navegación: dirección IP, tipo de dispositivo y navegador, páginas que visitas, enlace por el que llegaste y acciones que haces (por ejemplo, abrir o enviar un formulario).</li>
- <li>Esos datos los recogen herramientas de medición y publicidad descritas en la sección <a href="#cookies">Cookies y píxeles</a>.</li>
+ <li>Esos datos los recogen herramientas de medición y publicidad descritas en la sección <a href="#es-cookies">Cookies y píxeles</a>.</li>
 </ul>
 <h3>Lo que no recojo</h3>
 <ul>
  <li><strong>Datos de pago:</strong> las compras se hacen en Skool y no veo ni guardo tu tarjeta ni tus datos bancarios.</li>
- <li><strong>Datos sensibles</strong> (los que afectan tu intimidad o pueden generar discriminación, como salud, origen racial o étnico, orientación sexual, creencias religiosas o ideología política) ni datos biométricos. No los pido. Si algún día un formulario incluyera una pregunta sobre ellos, responderla sería opcional.</li>
- <li><strong>Datos de menores de edad</strong> (ver la sección <a href="#menores">Menores de edad</a>).</li>
+ <li><strong>Datos sensibles</strong> (los que afectan tu intimidad o pueden generar discriminación, como salud, origen racial o étnico, orientación sexual, creencias religiosas o ideología política) ni datos biométricos (no uso tu voz ni tu imagen para identificarte). No los pido. Si algún día un formulario incluyera una pregunta sobre ellos, responderla sería opcional.</li>
+ <li><strong>Datos de menores de edad</strong> (ver la sección <a href="#es-menores">Menores de edad</a>).</li>
 </ul>
 
-<h2 id="finalidades"><span class="n">4.</span>Para qué los uso</h2>
+<h2 id="es-finalidades"><span class="n">4.</span>Para qué los uso</h2>
 <p>Uso tus datos únicamente para estas finalidades:</p>
 <ol>
  <li><strong>Entregarte lo que pides</strong> <em>(casilla 1)</em>: enviarte por correo el ebook, el reto, la guía u otro material gratuito que solicites en un formulario, incluidos los correos que forman parte de ese material o reto.</li>
- <li><strong>Enviarte información educativa</strong> <em>(casilla 2, opcional)</em>: consejos, ejercicios, recursos y contenidos para practicar español, acordes a tu nivel.</li>
- <li><strong>Enviarte información comercial</strong> <em>(casilla 2, opcional)</em>: noticias, invitaciones y ofertas de las clases, los retos, los productos y las comunidades de Habla Español Club, incluida la invitación a probar una clase.</li>
+ <li><strong>Enviarte información educativa</strong> <em>(casilla 2)</em>: consejos, ejercicios, recursos y contenidos para practicar español, acordes a tu nivel.</li>
+ <li><strong>Enviarte información comercial</strong> <em>(casilla 2)</em>: noticias, invitaciones y ofertas de las clases, los retos, los productos y las comunidades de Habla Español Club, incluida la invitación a probar una clase.</li>
  <li><strong>Conocer tu nivel</strong> <em>(casilla 1)</em> para decidir qué materiales y mensajes enviarte.</li>
  <li><strong>Medir y mejorar el sitio y mis anuncios</strong> <em>(aviso de cookies)</em>: saber cuánta gente visita las páginas, desde dónde llega y qué contenidos funcionan, con datos estadísticos o agregados.</li>
  <li><strong>Cumplir la ley y atender tus solicitudes</strong> <em>(casilla 1)</em>: responder consultas y reclamos, guardar la prueba de tu autorización y mantener una lista de personas que ya no quieren recibir mensajes.</li>
+ <li><strong>Grabar las clases en vivo y compartirlas con la comunidad</strong> <em>(casilla de las clases)</em>, para que puedas repasarlas.</li>
 </ol>
 <p>No vendo tus datos ni los cedo a terceros para que te envíen su publicidad.</p>
 
-<section class="card" aria-labelledby="autorizacion">
+<h2 id="es-grabaciones"><span class="n">5.</span>Grabaciones de las clases</h2>
+<p>Grabo las clases en vivo para que tú y los demás estudiantes de la comunidad puedan repasarlas.</p>
+<ul>
+ <li><strong>Qué queda grabado:</strong> tu voz, tu imagen si enciendes la cámara, el nombre que aparece en pantalla y lo que escribas en el chat.</li>
+ <li><strong>Dónde se guardan y con quién se comparten:</strong> subo el video como «no listado» en YouTube (Google) y comparto el enlace con los estudiantes en la comunidad de Skool. «No listado» significa que el video no aparece en las búsquedas ni en mi canal, pero que <strong>cualquier persona que tenga el enlace puede verlo</strong>. Por eso solo comparto el enlace dentro de la comunidad y te pido que no lo reenvíes.</li>
+ <li><strong>Tu autorización:</strong> la das al inscribirte en las clases en vivo, con una casilla específica (ver la sección <a href="#es-autorizacion">Tu autorización</a>), y te recuerdo al empezar cada clase que se está grabando.</li>
+ <li><strong>Tus opciones:</strong> puedes mantener tu cámara apagada, cambiar el nombre que aparece en pantalla y no escribir en el chat. Si no quieres que tu voz quede grabada, avísame antes de la clase.</li>
+ <li><strong>Cuánto tiempo:</strong> los videos permanecen mientras sean útiles para la comunidad. Puedes pedirme en cualquier momento que elimine o edite una grabación donde apareces, y lo hago dentro de los plazos de la sección <a href="#es-ejercer">Cómo ejercerlos</a>.</li>
+</ul>
+
+<section class="card" aria-labelledby="es-autorizacion">
  <div class="mini">
-  <h2 id="autorizacion" style="margin:0;flex:1 1 260px"><span class="n">5.</span>Tu autorización</h2>
+  <h2 id="es-autorizacion" style="margin:0;flex:1 1 260px"><span class="n">6.</span>Tu autorización</h2>
   <svg width="64" viewBox="0 0 100 110" aria-hidden="true"><g fill="none" stroke="#000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 50Q24 45 30 45H70Q76 45 76 51V88Q76 94 70 94H30Q24 94 24 88Z"/><path d="M34 45V32Q34 14 50 14 66 14 66 32V45"/><circle cx="50" cy="65" r="4.5"/><path d="M50 70V80"/></g><path d="M28 50q14-6 28-2" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/><path d="M82 24l9-8m-2 18l11-1" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/></svg>
  </div>
- <p style="margin-top:12px">Para tratar tus datos necesito tu <strong>autorización previa, expresa e informada</strong>, como exige el artículo 9 de la Ley 1581 de 2012. La das de forma voluntaria al <strong>marcar las casillas</strong> del formulario, que nunca vienen marcadas de antemano, y enviarlo. Los formularios de Habla Español Club tienen estas casillas:</p>
+ <p style="margin-top:12px">Para tratar tus datos necesito tu <strong>autorización previa, expresa e informada</strong>, como exige el artículo 9 de la Ley 1581 de 2012. La das de forma voluntaria al <strong>marcar las casillas</strong> del formulario, que nunca vienen marcadas de antemano, y enviarlo. Los formularios de Habla Español Club tienen estas casillas. <strong>Todas son necesarias</strong> para recibir el material y la información de Habla Español Club, porque el correo electrónico es el canal por el que llegan. Si no estás de acuerdo con alguna, puedes decidir no dejarme tu correo.</p>
  <h3>Casilla 1 · obligatoria</h3>
  <p class="autorizo">«Autorizo a Luna Marysol Rodríguez Vanegas (Habla Español Club) a tratar mis datos personales (nombre, correo electrónico y nivel de español) para enviarme el material que solicito y atender mis solicitudes, conforme a la Política de Privacidad y Tratamiento de Datos Personales. Autorizo de forma expresa que mis datos sean transmitidos o transferidos a los proveedores de esa política, incluidos los ubicados fuera de Colombia.»</p>
- <h3>Casilla 2 · opcional</h3>
- <p class="autorizo">«Quiero recibir por correo electrónico información educativa y comercial de Habla Español Club (consejos, ejercicios, invitaciones, clases y ofertas). Puedo darme de baja en cualquier momento.»</p>
+ <h3>Casilla 2 · obligatoria</h3>
+ <p class="autorizo">«Acepto recibir por correo electrónico información educativa y comercial de Habla Español Club (consejos, ejercicios, invitaciones, clases y ofertas). Puedo darme de baja en cualquier momento.»</p>
  <h3>Casilla 3 · obligatoria</h3>
  <p class="autorizo">«Declaro que soy mayor de 18 años.»</p>
+ <h3>Casilla adicional · solo al inscribirte en una clase en vivo · obligatoria</h3>
+ <p class="autorizo">«Autorizo que mi voz, mi imagen y mis intervenciones queden grabadas y se compartan con la comunidad de Habla Español Club a través de YouTube (video no listado) y Skool.»</p>
  <ul>
   <li><strong>Junto a las casillas</strong> el formulario muestra un resumen con quién es la responsable, para qué usaré tus datos, tus derechos y el enlace a esta política. Responder los campos de nombre, correo y nivel es necesario para recibir el material; no te pido ningún dato sensible.</li>
-  <li><strong>Sin la casilla 1 o la 3</strong> no puedo enviarte el material por correo. <strong>La casilla 2 es libre:</strong> si no la marcas, solo te escribo para entregarte lo que pediste y atender tus solicitudes.</li>
+  <li><strong>Sin las casillas 1, 2 y 3</strong> no puedo enviarte el material ni escribirte, porque no tendría para qué guardar tu correo. La casilla de las clases solo aparece en la inscripción a clases en vivo.</li>
   <li><strong>Queda registrada.</strong> Guardo la fecha y la hora en que autorizaste, cuáles casillas marcaste y el formulario desde el que lo hiciste, para poder demostrar tu autorización cuando me lo pidas o lo exija una autoridad.</li>
-  <li><strong>Puedes revocarla cuando quieras</strong>, sin costo, escribiéndome a <a href="mailto:hablaespanol@gmail.com">hablaespanol@gmail.com</a> o con el enlace para darte de baja que incluye cada correo. La revocación no afecta lo que hice antes de recibirla. Puedes revocar solo la casilla 2 y seguir con lo demás. Si revocas la casilla 1, dejo de escribirte y suprimo tus datos, salvo lo que la ley me obligue a conservar.</li>
+  <li><strong>Puedes revocarla cuando quieras</strong>, sin costo, escribiéndome a <a href="mailto:hablaespanol@gmail.com">hablaespanol@gmail.com</a> o con el enlace para darte de baja que incluye cada correo. La revocación no afecta lo que hice antes de recibirla. Si te das de baja de la información educativa y comercial, dejo de escribirte y ya no podré enviarte materiales nuevos por correo. Si revocas la casilla 1, además suprimo tus datos, salvo lo que la ley me obligue a conservar.</li>
  </ul>
 </section>
 
-<h2 id="comunicaciones"><span class="n">6.</span>Comunicaciones y horarios</h2>
-<p>Solo te envío información educativa y comercial si marcaste la casilla 2. Cada correo incluye una forma sencilla de darte de baja. Si me pides que no te escriba más, lo hago y guardo tu correo en una lista de exclusión únicamente para no volver a contactarte.</p>
+<h2 id="es-comunicaciones"><span class="n">7.</span>Comunicaciones y horarios</h2>
+<p>Te envío información educativa y comercial por correo porque aceptaste la casilla 2. Cada correo incluye una forma sencilla de darte de baja. Si me pides que no te escriba más, lo hago y guardo tu correo en una lista de exclusión únicamente para no volver a contactarte.</p>
 <p>Conforme a la Ley 2300 de 2023, envío mensajes publicitarios o comerciales solo de <strong>lunes a viernes entre las 7:00 a. m. y las 7:00 p. m. y los sábados entre las 8:00 a. m. y las 3:00 p. m. (hora de Colombia)</strong>, y no los domingos ni los días festivos.</p>
 
-<h2 id="terceros"><span class="n">7.</span>Con quién los comparto</h2>
+<h2 id="es-terceros"><span class="n">8.</span>Con quién los comparto</h2>
 <p>Para prestarte el servicio uso proveedores. Algunos tratan los datos por mi encargo (<strong>encargados del tratamiento</strong>) y solo para las finalidades de esta política. Otros, como Skool o Meta en sus propias plataformas, son responsables de sus propios datos y se rigen por sus políticas de privacidad.</p>
 <table class="tabla">
  <thead><tr><th>Proveedor</th><th>Para qué</th><th>Ubicación</th></tr></thead>
  <tbody>
-  <tr><td>Google (Gmail, Google Sheets, Google Analytics)</td><td>Enviar mis correos, guardar las listas de contactos y medir las visitas al sitio.</td><td>EE. UU. y otros países</td></tr>
+  <tr><td>Google (Gmail, Google Sheets, Google Analytics, YouTube)</td><td>Enviar mis correos, guardar las listas de contactos, medir las visitas al sitio y alojar los videos no listados de las clases.</td><td>EE. UU. y otros países</td></tr>
   <tr><td>Meta Platforms (Meta Pixel, Instagram, WhatsApp)</td><td>Medir y optimizar mis anuncios y atender los mensajes que me envíes por esos canales.</td><td>EE. UU., Irlanda y otros países</td></tr>
-  <tr><td>Skool</td><td>Alojar la comunidad y gestionar las compras y los pagos. Actúa como responsable de sus propios datos y se rige por su propia política.</td><td>EE. UU.</td></tr>
+  <tr><td>Skool</td><td>Alojar la comunidad, compartir las grabaciones de las clases y gestionar las compras y los pagos. Actúa como responsable de sus propios datos y se rige por su propia política.</td><td>EE. UU.</td></tr>
   <tr><td>GitHub (Microsoft)</td><td>Alojar este sitio web; puede registrar datos técnicos de las visitas, como la IP.</td><td>EE. UU.</td></tr>
-  <tr><td>Anthropic (Claude) y OpenAI (ChatGPT)</td><td>Herramientas de inteligencia artificial que uso para redactar y organizar mis mensajes y materiales (ver sección <a href="#ia">Inteligencia artificial</a>).</td><td>EE. UU.</td></tr>
+  <tr><td>Anthropic (Claude) y OpenAI (ChatGPT)</td><td>Herramientas de inteligencia artificial que uso para redactar y organizar mis mensajes y materiales (ver sección <a href="#es-ia">Inteligencia artificial</a>).</td><td>EE. UU.</td></tr>
  </tbody>
 </table>
 <p>Solo comparto tus datos con terceros distintos de estos si me lo exige una autoridad competente, si tú me lo autorizas o si la ley lo permite.</p>
 
-<h2 id="internacional"><span class="n">8.</span>Transferencias y transmisiones internacionales</h2>
+<h2 id="es-internacional"><span class="n">9.</span>Transferencias y transmisiones internacionales</h2>
 <p>Varios de los proveedores anteriores almacenan o procesan datos fuera de Colombia, principalmente en Estados Unidos e Irlanda. Esos dos países figuran, a la fecha de esta política, en la lista de países con nivel adecuado de protección de datos de la Superintendencia de Industria y Comercio. Si un proveedor usara otro país, el envío se apoya en tu <strong>autorización expresa e inequívoca</strong>, que das al marcar la casilla 1, como permite el artículo 26 de la Ley 1581 de 2012, y en los contratos o cláusulas que reconoce la Superintendencia cuando corresponde.</p>
 
-<h2 id="ia"><span class="n">9.</span>Inteligencia artificial</h2>
+<h2 id="es-ia"><span class="n">10.</span>Inteligencia artificial</h2>
 <p>Uso herramientas de inteligencia artificial, como Claude y ChatGPT, para ayudarme a redactar, traducir y organizar materiales y mensajes. Como regla, <strong>no ingreso tu correo electrónico</strong> en esas herramientas. No tomo decisiones automatizadas que produzcan efectos legales sobre ti ni te excluyo de ningún servicio por lo que responda una máquina. Si en el futuro usara tus datos con IA de otra forma, te lo informaré aquí antes de hacerlo.</p>
 
-<h2 id="cookies"><span class="n">10.</span>Cookies y píxeles</h2>
+<h2 id="es-cookies"><span class="n">11.</span>Cookies y píxeles</h2>
 <p>Este sitio usa <strong>Meta Pixel</strong> y <strong>Google Analytics</strong>. Son pequeños archivos y códigos que guardan o leen información en tu navegador para:</p>
 <ul>
  <li>contar visitas y ver desde dónde llegan las personas y qué páginas visitan;</li>
@@ -235,7 +268,7 @@ li{margin-bottom:6px}
 </ul>
 <p>Estas herramientas pueden recoger tu IP, datos del dispositivo y de navegación, y las gestionan Google y Meta bajo sus propias políticas. Se activan <strong>solo si las aceptas</strong> en el aviso de cookies que aparece al entrar, y puedes cambiar tu decisión cuando quieras con el botón «Preferencias de cookies» del pie de la página. También puedes borrar o bloquear las cookies desde la configuración de tu navegador, desactivar Google Analytics con el <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">complemento de inhabilitación de Google</a> y ajustar tus preferencias de anuncios en tu cuenta de Meta. Si las bloqueas, el sitio sigue funcionando.</p>
 
-<h2 id="conservacion"><span class="n">11.</span>Cuánto tiempo los conservo</h2>
+<h2 id="es-conservacion"><span class="n">12.</span>Cuánto tiempo los conservo</h2>
 <ul>
  <li>Tus datos de contacto y tus respuestas: mientras mantengas tu autorización y, como máximo, <strong>24 meses desde tu última interacción</strong> con mis mensajes (por ejemplo, abrir un correo, responder o hacer clic). Después los elimino o los anonimizo.</li>
  <li>Si revocas tu autorización o me pides suprimir tus datos, los elimino. Solo conservo lo mínimo para acreditar tu autorización y tu baja, y para no volver a escribirte, durante el tiempo necesario para atender posibles reclamaciones o cumplir deberes legales.</li>
@@ -243,7 +276,7 @@ li{margin-bottom:6px}
 </ul>
 <p>La base de datos de contactos de Habla Español Club estará vigente mientras la actividad lo requiera. Esta política rige desde el 22 de noviembre de 2026.</p>
 
-<h2 id="derechos"><span class="n">12.</span>Tus derechos</h2>
+<h2 id="es-derechos"><span class="n">13.</span>Tus derechos</h2>
 <p>Como titular de tus datos, el artículo 8 de la Ley 1581 de 2012 te da derecho a:</p>
 <ul>
  <li><strong>Conocer, actualizar y rectificar</strong> tus datos cuando sean inexactos, incompletos o induzcan a error.</li>
@@ -254,7 +287,7 @@ li{margin-bottom:6px}
  <li><strong>Presentar quejas</strong> ante la Superintendencia de Industria y Comercio por infracciones a la ley.</li>
 </ul>
 
-<h2 id="ejercer"><span class="n">13.</span>Cómo ejercerlos</h2>
+<h2 id="es-ejercer"><span class="n">14.</span>Cómo ejercerlos</h2>
 <p>Escríbeme a <a href="mailto:hablaespanol@gmail.com">hablaespanol@gmail.com</a>, por WhatsApp al +57 313 280 0420 o por escrito a mi dirección de la sección 1, indicando tu nombre, el correo con el que te registraste y qué quieres pedir. Si dudo de que seas tú, te pediré que me lo confirmes. El ejercicio de tus derechos es gratuito.</p>
 <ul>
  <li><strong>Consultas</strong> (saber qué datos tengo de ti o cómo los uso): respondo en máximo <strong>10 días hábiles</strong>. Si necesito más tiempo, te aviso los motivos y respondo en máximo <strong>5 días hábiles</strong> más.</li>
@@ -262,28 +295,28 @@ li{margin-bottom:6px}
 </ul>
 <p>Para darte de baja de mis correos basta con usar el enlace de baja de cada mensaje o escribirme «BAJA».</p>
 
-<h2 id="sic"><span class="n">14.</span>Quejas ante la SIC</h2>
+<h2 id="es-sic"><span class="n">15.</span>Quejas ante la SIC</h2>
 <p>Si crees que no he tratado bien tus datos, primero escríbeme para resolverlo. Después de agotar la consulta o el reclamo ante mí, puedes presentar una queja ante la <strong>Superintendencia de Industria y Comercio</strong>, autoridad de protección de datos de Colombia: <a href="https://www.sic.gov.co" rel="noopener">www.sic.gov.co</a>.</p>
 
-<h2 id="europa"><span class="n">15.</span>Si vives fuera de Colombia</h2>
+<h2 id="es-europa"><span class="n">16.</span>Si vives fuera de Colombia</h2>
 <p>Habla Español Club tiene estudiantes en Europa, Estados Unidos y otros países. Tus datos se tratan desde Colombia y esta política se rige por la ley colombiana. Si vives en el <strong>Espacio Económico Europeo o en el Reino Unido</strong>, aplico además, en lo que corresponda, el Reglamento General de Protección de Datos (RGPD):</p>
 <ul>
- <li>La base legal de mi tratamiento es tu <strong>consentimiento</strong>, que das con las casillas del formulario y puedes retirar en cualquier momento, tan fácil como lo diste. La casilla 2 (información educativa y comercial) es independiente de la casilla 1.</li>
- <li>Además de los derechos de la sección 12, tienes derecho a <strong>limitar u oponerte</strong> al tratamiento y a la <strong>portabilidad</strong> de tus datos (recibirlos en un formato que puedas llevarte).</li>
+ <li>La base legal de mi tratamiento es tu <strong>consentimiento</strong>, que das con las casillas del formulario y puedes retirar en cualquier momento, tan fácil como lo diste. Para recibir el material es necesario aceptar las casillas 1 y 2; puedes retirar tu consentimiento para las comunicaciones en cualquier momento dándote de baja, sin costo.</li>
+ <li>Además de los derechos de la sección 13, tienes derecho a <strong>limitar u oponerte</strong> al tratamiento y a la <strong>portabilidad</strong> de tus datos (recibirlos en un formato que puedas llevarte).</li>
  <li>Puedes reclamar ante la autoridad de protección de datos de tu país de residencia.</li>
- <li>Tus datos se transfieren a Colombia y a los países de mis proveedores. Lo hago con tu consentimiento (casilla 1) y con las garantías descritas en la sección 8.</li>
+ <li>Tus datos se transfieren a Colombia y a los países de mis proveedores. Lo hago con tu consentimiento (casilla 1) y con las garantías descritas en la sección 9.</li>
 </ul>
 <p>Si vives en otro país, respeto también las normas imperativas de protección de datos que te sean aplicables allí.</p>
 
-<h2 id="menores"><span class="n">16.</span>Menores de edad</h2>
+<h2 id="es-menores"><span class="n">17.</span>Menores de edad</h2>
 <p>Habla Español Club está dirigido a <strong>personas mayores de 18 años</strong>. No recojo a propósito datos de menores de edad, cuyo tratamiento está restringido por el artículo 7 de la Ley 1581 de 2012. Si eres menor de 18 años, por favor no completes los formularios. Si descubro que tengo datos de un menor, los elimino. Si crees que ha ocurrido, escríbeme.</p>
 
-<h2 id="seguridad"><span class="n">17.</span>Seguridad</h2>
+<h2 id="es-seguridad"><span class="n">18.</span>Seguridad</h2>
 <p>Este sitio se sirve por conexión cifrada (HTTPS). Guardo tus datos en herramientas con acceso protegido por contraseña y solo yo accedo a ellos, salvo que algún día dé acceso a una persona de mi equipo que lo necesite, con deber de confidencialidad. Ninguna medida es infalible: si ocurriera un incidente que ponga en riesgo tus datos, te lo comunicaré y lo reportaré a la Superintendencia de Industria y Comercio cuando la ley lo exija.</p>
 
-<h2 id="cambios"><span class="n">18.</span>Cambios y vigencia</h2>
+<h2 id="es-cambios"><span class="n">19.</span>Cambios y vigencia</h2>
 <p>Si cambio esta política de forma sustancial, te lo informaré antes de aplicar los cambios, por correo electrónico o con un aviso destacado en este sitio, y actualizaré la fecha de arriba. Si el cambio altera las finalidades para las que me autorizaste, te pediré una nueva autorización.</p>
-<p>Versión vigente desde el <strong>22 de noviembre de 2026</strong>.</p>
+<p>Versión vigente desde el <strong>22 de noviembre de 2026</strong>. Las traducciones de esta política al inglés y al francés son de cortesía; si hay diferencias, prevalece esta versión en español.</p>
 
 <footer class="pie">
  <svg width="78" viewBox="0 0 110 100" aria-hidden="true"><g fill="none" stroke="#000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 22Q19 14 28 14H84Q94 14 94 24V58Q94 68 84 68H52L34 84 36 68H28Q18 68 18 58Z"/><path d="M38 42l12 12 22-24"/></g><path d="M22 20q20-8 40-4" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/><path d="M98 8l7-6m-4 20l9 1" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/><path d="M12 76q6-5 11 1" fill="none" stroke="#CE1126" stroke-width="3.6" stroke-linecap="round"/></svg>
@@ -293,7 +326,528 @@ li{margin-bottom:6px}
  </nav>
  <p class="nota" style="margin:0;flex-basis:100%">© 2026 Habla Español Club. Todos los derechos reservados.</p>
 </footer>
+</div>
+
+<div class="doc" lang="en" data-lang="en" hidden>
+<header class="hero">
+ <div class="txt">
+  <p class="kicker">Your data, made clear</p>
+  <h1><span class="az">Privacy</span> policy and personal data processing</h1>
+  <svg class="subr" viewBox="0 0 120 10" aria-hidden="true"><path d="M2 6Q20 1 40 5T80 4 118 6" fill="none" stroke="#CE1126" stroke-width="3.4" stroke-linecap="round"/></svg>
+  <p class="sub" style="margin-top:14px">What data of yours I collect, what I use it for, who I share it with and how you can control it.</p>
+  <p class="fecha">Effective and last updated: <strong>November 22, 2026</strong></p>
+  <p class="fecha" style="margin-top:6px">Courtesy translation. If there is any difference, the Spanish version prevails.</p>
+ </div>
+ <div class="doodle-grande" aria-hidden="true">
+  <svg viewBox="0 0 190 150" xmlns="http://www.w3.org/2000/svg">
+   <g fill="none" stroke="#000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 52Q25 42 36 41L152 39Q164 40 165 51L164 112Q163 123 152 123L37 124Q25 123 24 112Z"/>
+    <path d="M26 50L95 90 163 49"/>
+    <path d="M69 28Q61 14 71 9 80 5 87 15 93 5 103 9 113 14 105 28 96 37 87 41 69 28Z"/>
+   </g>
+   <path d="M30 44q30-8 60 4" fill="none" stroke="#003893" stroke-width="4.2" stroke-linecap="round"/>
+   <path d="M150 20l9-10m-2 24l14-2M12 80l-8 4m10 12l-7 9" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/>
+   <path d="M112 100q9-5 17 1m-12 9l12 2" fill="none" stroke="#CE1126" stroke-width="3.7" stroke-linecap="round"/>
+  </svg>
+ </div>
+</header>
+
+<section class="card" aria-labelledby="en-aviso">
+ <h2 id="en-aviso" style="color:#000"><span class="n">★</span>Privacy notice (summary)</h2>
+ <ul>
+  <li><strong>Controller:</strong> Luna Marysol Rodríguez Vanegas (Habla Español Club). Contact: <a href="mailto:hablaespanol@gmail.com">hablaespanol@gmail.com</a>.</li>
+  <li><strong>What I process:</strong> your name, your email address and your Spanish level, plus technical browsing data and, if you take part in a live class, your voice, your image and your messages in the recording.</li>
+  <li><strong>Why:</strong> to deliver the material you ask for (ebook, challenge, other resources), to email you educational and commercial information from Habla Español Club and, in live classes, to record them and share them with the community.</li>
+  <li><strong>Your rights:</strong> to know, update, correct and delete your data, to ask for proof of your authorization, to withdraw it at any time and to file complaints with the Superintendence of Industry and Commerce.</li>
+  <li><strong>I do not ask for sensitive data.</strong> Answering any question about it, should one ever appear, would always be optional.</li>
+  <li><strong>Where to read everything:</strong> this page, <a href="https://hablaespanol.club/politicaprivacidadytratamientodedatos" target="_top">hablaespanol.club/politicaprivacidadytratamientodedatos</a>.</li>
+ </ul>
+</section>
+
+<nav aria-label="Contents">
+ <h2 style="margin-top:34px">Contents</h2>
+ <ol class="toc">
+  <li><a href="#en-responsable">Who is the controller</a></li>
+  <li><a href="#en-marco">Legal framework and principles</a></li>
+  <li><a href="#en-datos">What data I collect</a></li>
+  <li><a href="#en-finalidades">What I use it for</a></li>
+  <li><a href="#en-grabaciones">Class recordings</a></li>
+  <li><a href="#en-autorizacion">Your authorization</a></li>
+  <li><a href="#en-comunicaciones">Communications and hours</a></li>
+  <li><a href="#en-terceros">Who I share it with</a></li>
+  <li><a href="#en-internacional">International transfers</a></li>
+  <li><a href="#en-ia">Artificial intelligence</a></li>
+  <li><a href="#en-cookies">Cookies and pixels</a></li>
+  <li><a href="#en-conservacion">How long I keep it</a></li>
+  <li><a href="#en-derechos">Your rights</a></li>
+  <li><a href="#en-ejercer">How to exercise them</a></li>
+  <li><a href="#en-sic">Complaints to the SIC</a></li>
+  <li><a href="#en-europa">If you live outside Colombia</a></li>
+  <li><a href="#en-menores">Minors</a></li>
+  <li><a href="#en-seguridad">Security</a></li>
+  <li><a href="#en-cambios">Changes and effective date</a></li>
+ </ol>
+</nav>
+
+<h2 id="en-responsable"><span class="n">1.</span>Who is the controller</h2>
+<p>The controller of your personal data is:</p>
+<ul>
+ <li><strong>Name:</strong> Luna Marysol Rodríguez Vanegas (natural person), Colombian citizenship card (cédula de ciudadanía) no. 49.795.943.</li>
+ <li><strong>Trade name:</strong> Habla Español Club.</li>
+ <li><strong>Address:</strong> Carrera 82 No. 9A Sur - 79, apartment 202, Medellín (Antioquia), Colombia.</li>
+ <li><strong>Phone and WhatsApp:</strong> <a href="https://wa.me/573132800420" target="_top">+57 313 280 0420</a>.</li>
+ <li><strong>Email for any request about your data:</strong> <a href="mailto:hablaespanol@gmail.com">hablaespanol@gmail.com</a>.</li>
+ <li><strong>Website:</strong> <a href="https://hablaespanol.club/" target="_top">hablaespanol.club</a> and its pages and subdomains, including the forms where you leave your data to receive materials, challenges or other resources.</li>
+</ul>
+<p>I personally handle queries and complaints about personal data protection, through the email, WhatsApp or address above.</p>
+
+<h2 id="en-marco"><span class="n">2.</span>Legal framework and principles</h2>
+<p>This policy is governed by Article 15 of the Political Constitution of Colombia, Statutory Law 1581 of 2012, Decree 1074 of 2015 (which compiles Decree 1377 of 2013), the Single Circular of the Superintendence of Industry and Commerce and Law 2300 of 2023 on commercial communications with consumers.</p>
+<p>I process your data in line with the principles of Article 4 of Law 1581:</p>
+<ul>
+ <li><strong>Legality, purpose and freedom:</strong> I only use it for what I describe here and with your prior, express and informed authorization.</li>
+ <li><strong>Accuracy and transparency:</strong> you can find out at any time what data of yours I hold.</li>
+ <li><strong>Restricted access and circulation:</strong> only the people and tools needed for the service have access to it.</li>
+ <li><strong>Security and confidentiality:</strong> I protect it with reasonable measures and I do not disclose it without your authorization or a legal obligation.</li>
+</ul>
+
+<h2 id="en-datos"><span class="n">3.</span>What data I collect</h2>
+<h3>What you give me</h3>
+<ul>
+ <li>Your <strong>name</strong>.</li>
+ <li>Your <strong>email address</strong>.</li>
+ <li>Your <strong>Spanish level</strong> (for example, B1 or B2), so I can send you suitable materials and messages.</li>
+</ul>
+<p>If I later ask you for any other data, I will tell you in the form before you submit it and, if needed, I will update this policy.</p>
+<h3>What ends up in class recordings</h3>
+<ul>
+ <li>If you take part in a live class: your voice, your image if you turn on your camera, the name shown on screen and whatever you write in the chat (see the section <a href="#en-grabaciones">Class recordings</a>).</li>
+</ul>
+<h3>What is collected when you use the site</h3>
+<ul>
+ <li>Technical browsing data: IP address, type of device and browser, pages you visit, the link you came from and actions you take (for example, opening or submitting a form).</li>
+ <li>This data is collected by measurement and advertising tools described in the section <a href="#en-cookies">Cookies and pixels</a>.</li>
+</ul>
+<h3>What I do not collect</h3>
+<ul>
+ <li><strong>Payment data:</strong> purchases are made on Skool and I neither see nor store your card or bank details.</li>
+ <li><strong>Sensitive data</strong> (data that affects your privacy or could lead to discrimination, such as health, racial or ethnic origin, sexual orientation, religious beliefs or political ideology) or biometric data (I do not use your voice or your image to identify you). I do not ask for them. If a form ever included a question about them, answering it would be optional.</li>
+ <li><strong>Data of minors</strong> (see the section <a href="#en-menores">Minors</a>).</li>
+</ul>
+
+<h2 id="en-finalidades"><span class="n">4.</span>What I use it for</h2>
+<p>I use your data only for these purposes:</p>
+<ol>
+ <li><strong>Deliver what you ask for</strong> <em>(checkbox 1)</em>: email you the ebook, challenge, guide or other free material you request in a form, including the emails that are part of that material or challenge.</li>
+ <li><strong>Send you educational information</strong> <em>(checkbox 2)</em>: tips, exercises, resources and content to practice Spanish, suited to your level.</li>
+ <li><strong>Send you commercial information</strong> <em>(checkbox 2)</em>: news, invitations and offers about Habla Español Club classes, challenges, products and communities, including the invitation to try a class.</li>
+ <li><strong>Know your level</strong> <em>(checkbox 1)</em> to decide which materials and messages to send you.</li>
+ <li><strong>Measure and improve the site and my ads</strong> <em>(cookie notice)</em>: find out how many people visit the pages, where they come from and which content works, using statistical or aggregated data.</li>
+ <li><strong>Comply with the law and handle your requests</strong> <em>(checkbox 1)</em>: answer queries and complaints, keep proof of your authorization and maintain a list of people who no longer want to receive messages.</li>
+ <li><strong>Record live classes and share them with the community</strong> <em>(class checkbox)</em>, so you can review them.</li>
+</ol>
+<p>I do not sell your data or hand it over to third parties so they can send you their advertising.</p>
+
+<h2 id="en-grabaciones"><span class="n">5.</span>Class recordings</h2>
+<p>I record live classes so that you and the other students in the community can review them.</p>
+<ul>
+ <li><strong>What gets recorded:</strong> your voice, your image if you turn on your camera, the name shown on screen and whatever you write in the chat.</li>
+ <li><strong>Where it is stored and who it is shared with:</strong> I upload the video as “unlisted” on YouTube (Google) and share the link with students in the Skool community. “Unlisted” means the video does not appear in searches or on my channel, but <strong>anyone who has the link can watch it</strong>. That is why I only share the link inside the community and ask you not to forward it.</li>
+ <li><strong>Your authorization:</strong> you give it when you sign up for live classes, with a specific checkbox (see the section <a href="#en-autorizacion">Your authorization</a>), and I remind you at the start of each class that it is being recorded.</li>
+ <li><strong>Your options:</strong> you can keep your camera off, change the name shown on screen and not write in the chat. If you do not want your voice recorded, let me know before the class.</li>
+ <li><strong>How long:</strong> videos stay available while they are useful to the community. You can ask me at any time to delete or edit a recording in which you appear, and I will do so within the deadlines in the section <a href="#en-ejercer">How to exercise them</a>.</li>
+</ul>
+
+<section class="card" aria-labelledby="en-autorizacion">
+ <div class="mini">
+  <h2 id="en-autorizacion" style="margin:0;flex:1 1 260px"><span class="n">6.</span>Your authorization</h2>
+  <svg width="64" viewBox="0 0 100 110" aria-hidden="true"><g fill="none" stroke="#000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 50Q24 45 30 45H70Q76 45 76 51V88Q76 94 70 94H30Q24 94 24 88Z"/><path d="M34 45V32Q34 14 50 14 66 14 66 32V45"/><circle cx="50" cy="65" r="4.5"/><path d="M50 70V80"/></g><path d="M28 50q14-6 28-2" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/><path d="M82 24l9-8m-2 18l11-1" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/></svg>
+ </div>
+ <p style="margin-top:12px">To process your data I need your <strong>prior, express and informed authorization</strong>, as Article 9 of Law 1581 of 2012 requires. You give it voluntarily by <strong>ticking the checkboxes</strong> on the form, which are never pre-ticked, and submitting it. Habla Español Club forms have these checkboxes. <strong>All of them are required</strong> to receive the material and information from Habla Español Club, because email is the channel through which they reach you. If you do not agree with any of them, you can decide not to leave me your email.</p>
+ <h3>Checkbox 1 · required</h3>
+ <p class="autorizo">“I authorize Luna Marysol Rodríguez Vanegas (Habla Español Club) to process my personal data (name, email address and Spanish level) to send me the material I request and handle my requests, in accordance with the Privacy Policy and Personal Data Processing. I expressly authorize my data to be transmitted or transferred to the providers listed in that policy, including those located outside Colombia.”</p>
+ <h3>Checkbox 2 · required</h3>
+ <p class="autorizo">“I agree to receive educational and commercial information from Habla Español Club by email (tips, exercises, invitations, classes and offers). I can unsubscribe at any time.”</p>
+ <h3>Checkbox 3 · required</h3>
+ <p class="autorizo">“I declare that I am over 18 years old.”</p>
+ <h3>Additional checkbox · only when signing up for a live class · required</h3>
+ <p class="autorizo">“I authorize my voice, my image and my contributions to be recorded and shared with the Habla Español Club community through YouTube (unlisted video) and Skool.”</p>
+ <ul>
+  <li><strong>Next to the checkboxes</strong> the form shows a summary of who the controller is, what I will use your data for, your rights and the link to this policy. Filling in the name, email and level fields is necessary to receive the material; I do not ask for any sensitive data.</li>
+  <li><strong>Without checkboxes 1, 2 and 3</strong> I cannot send you the material or write to you, since I would have no reason to keep your email. The class checkbox only appears when signing up for live classes.</li>
+  <li><strong>It is recorded.</strong> I keep the date and time you authorized, which checkboxes you ticked and the form you used, so I can prove your authorization when you ask or an authority requires it.</li>
+  <li><strong>You can withdraw it whenever you want</strong>, at no cost, by writing to <a href="mailto:hablaespanol@gmail.com">hablaespanol@gmail.com</a> or using the unsubscribe link in every email. Withdrawal does not affect what I did before receiving it. If you unsubscribe from educational and commercial information, I stop writing to you and I will no longer be able to send you new materials by email. If you withdraw checkbox 1, I also delete your data, except what the law requires me to keep.</li>
+ </ul>
+</section>
+
+<h2 id="en-comunicaciones"><span class="n">7.</span>Communications and hours</h2>
+<p>I send you educational and commercial information by email because you accepted checkbox 2. Every email includes a simple way to unsubscribe. If you ask me not to write to you any more, I stop and keep your email on an exclusion list only so that I do not contact you again.</p>
+<p>In accordance with Law 2300 of 2023, I send advertising or commercial messages only <strong>Monday to Friday between 7:00 a.m. and 7:00 p.m. and on Saturdays between 8:00 a.m. and 3:00 p.m. (Colombia time)</strong>, and never on Sundays or public holidays.</p>
+
+<h2 id="en-terceros"><span class="n">8.</span>Who I share it with</h2>
+<p>To provide the service I use providers. Some process data on my behalf (<strong>data processors</strong>) and only for the purposes of this policy. Others, such as Skool or Meta on their own platforms, are controllers of their own data and are governed by their own privacy policies.</p>
+<table class="tabla">
+ <thead><tr><th>Provider</th><th>What for</th><th>Location</th></tr></thead>
+ <tbody>
+  <tr><td>Google (Gmail, Google Sheets, Google Analytics, YouTube)</td><td>Send my emails, store contact lists, measure visits to the site and host the unlisted class videos.</td><td>US and other countries</td></tr>
+  <tr><td>Meta Platforms (Meta Pixel, Instagram, WhatsApp)</td><td>Measure and optimize my ads and handle the messages you send me through those channels.</td><td>US, Ireland and other countries</td></tr>
+  <tr><td>Skool</td><td>Host the community, share class recordings and manage purchases and payments. It acts as controller of its own data and is governed by its own policy.</td><td>US</td></tr>
+  <tr><td>GitHub (Microsoft)</td><td>Host this website; it may log technical visit data, such as the IP address.</td><td>US</td></tr>
+  <tr><td>Anthropic (Claude) and OpenAI (ChatGPT)</td><td>Artificial intelligence tools I use to write and organize my messages and materials (see the section <a href="#en-ia">Artificial intelligence</a>).</td><td>US</td></tr>
+ </tbody>
+</table>
+<p>I only share your data with third parties other than these if a competent authority requires it, if you authorize it or if the law allows it.</p>
+
+<h2 id="en-internacional"><span class="n">9.</span>International transfers and transmissions</h2>
+<p>Several of the providers above store or process data outside Colombia, mainly in the United States and Ireland. As of the date of this policy, those two countries are on the list of countries with an adequate level of data protection published by the Superintendence of Industry and Commerce. If a provider used another country, the transfer relies on your <strong>express and unequivocal authorization</strong>, which you give by ticking checkbox 1, as Article 26 of Law 1581 of 2012 allows, and on the contracts or clauses recognized by the Superintendence where applicable.</p>
+
+<h2 id="en-ia"><span class="n">10.</span>Artificial intelligence</h2>
+<p>I use artificial intelligence tools, such as Claude and ChatGPT, to help me write, translate and organize materials and messages. As a rule, <strong>I do not enter your email address</strong> into those tools. I do not make automated decisions that produce legal effects on you, and I do not exclude you from any service because of what a machine answers. If in the future I used your data with AI in another way, I will tell you here before doing so.</p>
+
+<h2 id="en-cookies"><span class="n">11.</span>Cookies and pixels</h2>
+<p>This site uses <strong>Meta Pixel</strong> and <strong>Google Analytics</strong>. They are small files and code snippets that store or read information in your browser in order to:</p>
+<ul>
+ <li>count visits and see where people come from and which pages they visit;</li>
+ <li>measure whether my ads work and show Habla Español Club ads to people who have already visited the site.</li>
+</ul>
+<p>These tools may collect your IP address and device and browsing data, and they are managed by Google and Meta under their own policies. They are activated <strong>only if you accept them</strong> in the cookie notice that appears when you arrive, and you can change your decision whenever you want with the “Cookie settings” button in the page footer. You can also delete or block cookies in your browser settings, disable Google Analytics with the <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">Google opt-out add-on</a> and adjust your ad preferences in your Meta account. If you block them, the site keeps working.</p>
+
+<h2 id="en-conservacion"><span class="n">12.</span>How long I keep it</h2>
+<ul>
+ <li>Your contact data and answers: as long as you keep your authorization and, at most, <strong>24 months from your last interaction</strong> with my messages (for example, opening an email, replying or clicking). After that I delete or anonymize them.</li>
+ <li>If you withdraw your authorization or ask me to delete your data, I delete it. I only keep the minimum needed to prove your authorization and your unsubscription, and to not write to you again, for as long as needed to handle possible claims or meet legal duties.</li>
+ <li>Visit statistics do not identify you and are kept in aggregate form.</li>
+</ul>
+<p>The Habla Español Club contact database will remain in force as long as the activity requires it. This policy has been in force since November 22, 2026.</p>
+
+<h2 id="en-derechos"><span class="n">13.</span>Your rights</h2>
+<p>As the owner of your data, Article 8 of Law 1581 of 2012 gives you the right to:</p>
+<ul>
+ <li><strong>Know, update and correct</strong> your data when it is inaccurate, incomplete or misleading.</li>
+ <li><strong>Request proof</strong> of the authorization you gave me.</li>
+ <li><strong>Be informed</strong>, if you ask me, about how I have used your data.</li>
+ <li><strong>Access</strong> your personal data free of charge.</li>
+ <li><strong>Withdraw your authorization or request deletion</strong> of your data when legal principles, rights and guarantees are not respected. Deletion does not apply while you have a legal or contractual duty to remain in the database.</li>
+ <li><strong>File complaints</strong> with the Superintendence of Industry and Commerce for violations of the law.</li>
+</ul>
+
+<h2 id="en-ejercer"><span class="n">14.</span>How to exercise them</h2>
+<p>Write to me at <a href="mailto:hablaespanol@gmail.com">hablaespanol@gmail.com</a>, by WhatsApp at +57 313 280 0420 or in writing to my address in section 1, stating your name, the email you registered with and what you want to request. If I doubt that it is you, I will ask you to confirm it. Exercising your rights is free of charge.</p>
+<ul>
+ <li><strong>Queries</strong> (finding out what data I hold about you or how I use it): I reply within <strong>10 business days</strong>. If I need more time, I will tell you why and reply within <strong>5 more business days</strong>.</li>
+ <li><strong>Claims</strong> (correcting, deleting, withdrawing or reporting a breach): tell me your identification, what happened, your contact address and any documents you wish to provide. If something is missing, I will ask you within the next 5 days and you have 2 months to complete it; after that I will understand that you have withdrawn the claim. I reply within <strong>15 business days</strong>, extendable by <strong>8 more business days</strong> with notice of the reasons. While I resolve it, I mark your data with the legend “claim in process”.</li>
+</ul>
+<p>To unsubscribe from my emails, just use the unsubscribe link in every message or write “BAJA” to me.</p>
+
+<h2 id="en-sic"><span class="n">15.</span>Complaints to the SIC</h2>
+<p>If you think I have not handled your data properly, please write to me first so we can resolve it. After exhausting the query or claim with me, you can file a complaint with the <strong>Superintendence of Industry and Commerce</strong>, Colombia's data protection authority: <a href="https://www.sic.gov.co" rel="noopener">www.sic.gov.co</a>.</p>
+
+<h2 id="en-europa"><span class="n">16.</span>If you live outside Colombia</h2>
+<p>Habla Español Club has students in Europe, the United States and other countries. Your data is processed from Colombia and this policy is governed by Colombian law. If you live in the <strong>European Economic Area or the United Kingdom</strong>, I also apply, where relevant, the General Data Protection Regulation (GDPR):</p>
+<ul>
+ <li>The legal basis for my processing is your <strong>consent</strong>, which you give with the form checkboxes and can withdraw at any time, as easily as you gave it. To receive the material it is necessary to accept checkboxes 1 and 2; you can withdraw your consent to communications at any time by unsubscribing, at no cost.</li>
+ <li>In addition to the rights in section 13, you have the right to <strong>restrict or object to</strong> processing and to <strong>portability</strong> of your data (receiving it in a format you can take with you).</li>
+ <li>You can lodge a complaint with the data protection authority of your country of residence.</li>
+ <li>Your data is transferred to Colombia and to the countries of my providers. I do so with your consent (checkbox 1) and with the safeguards described in section 9.</li>
+</ul>
+<p>If you live in another country, I also respect the mandatory data protection rules that apply to you there.</p>
+
+<h2 id="en-menores"><span class="n">17.</span>Minors</h2>
+<p>Habla Español Club is intended for <strong>people over 18 years old</strong>. I do not knowingly collect data of minors, whose processing is restricted by Article 7 of Law 1581 of 2012. If you are under 18, please do not fill in the forms. If I discover that I hold data of a minor, I delete it. If you believe this has happened, write to me.</p>
+
+<h2 id="en-seguridad"><span class="n">18.</span>Security</h2>
+<p>This site is served over an encrypted connection (HTTPS). I store your data in tools with password-protected access and only I access it, unless one day I give access to a team member who needs it, with a duty of confidentiality. No measure is infallible: if an incident occurred that puts your data at risk, I will notify you and report it to the Superintendence of Industry and Commerce when the law requires.</p>
+
+<h2 id="en-cambios"><span class="n">19.</span>Changes and effective date</h2>
+<p>If I change this policy substantially, I will let you know before applying the changes, by email or with a prominent notice on this site, and I will update the date above. If the change alters the purposes for which you authorized me, I will ask for a new authorization.</p>
+<p>Version in force since <strong>November 22, 2026</strong>. The English and French translations of this policy are provided as a courtesy; if there is any difference, the Spanish version prevails.</p>
+
+<footer class="pie">
+ <svg width="78" viewBox="0 0 110 100" aria-hidden="true"><g fill="none" stroke="#000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 22Q19 14 28 14H84Q94 14 94 24V58Q94 68 84 68H52L34 84 36 68H28Q18 68 18 58Z"/><path d="M38 42l12 12 22-24"/></g><path d="M22 20q20-8 40-4" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/><path d="M98 8l7-6m-4 20l9 1" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/><path d="M12 76q6-5 11 1" fill="none" stroke="#CE1126" stroke-width="3.6" stroke-linecap="round"/></svg>
+ <nav aria-label="Official links">
+  <a href="https://hablaespanol.club/" target="_top">hablaespanol.club</a>
+  <a href="https://www.instagram.com/hablaespanolclub/" target="_top">@hablaespanolclub</a>
+ </nav>
+ <p class="nota" style="margin:0;flex-basis:100%">© 2026 Habla Español Club. All rights reserved.</p>
+</footer>
 
 </div>
+
+<div class="doc" lang="fr" data-lang="fr" hidden>
+<header class="hero">
+ <div class="txt">
+  <p class="kicker">Vos données, en toute clarté</p>
+  <h1>Politique de <span class="az">confidentialité</span> et de traitement des données personnelles</h1>
+  <svg class="subr" viewBox="0 0 120 10" aria-hidden="true"><path d="M2 6Q20 1 40 5T80 4 118 6" fill="none" stroke="#CE1126" stroke-width="3.4" stroke-linecap="round"/></svg>
+  <p class="sub" style="margin-top:14px">Quelles données vous concernant je collecte, à quoi elles me servent, avec qui je les partage et comment vous pouvez les contrôler.</p>
+  <p class="fecha">Entrée en vigueur et dernière mise à jour : <strong>22 novembre 2026</strong></p>
+  <p class="fecha" style="margin-top:6px">Traduction de courtoisie. En cas de différence, la version espagnole prévaut.</p>
+ </div>
+ <div class="doodle-grande" aria-hidden="true">
+  <svg viewBox="0 0 190 150" xmlns="http://www.w3.org/2000/svg">
+   <g fill="none" stroke="#000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 52Q25 42 36 41L152 39Q164 40 165 51L164 112Q163 123 152 123L37 124Q25 123 24 112Z"/>
+    <path d="M26 50L95 90 163 49"/>
+    <path d="M69 28Q61 14 71 9 80 5 87 15 93 5 103 9 113 14 105 28 96 37 87 41 69 28Z"/>
+   </g>
+   <path d="M30 44q30-8 60 4" fill="none" stroke="#003893" stroke-width="4.2" stroke-linecap="round"/>
+   <path d="M150 20l9-10m-2 24l14-2M12 80l-8 4m10 12l-7 9" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/>
+   <path d="M112 100q9-5 17 1m-12 9l12 2" fill="none" stroke="#CE1126" stroke-width="3.7" stroke-linecap="round"/>
+  </svg>
+ </div>
+</header>
+
+<section class="card" aria-labelledby="fr-aviso">
+ <h2 id="fr-aviso" style="color:#000"><span class="n">★</span>Avis de confidentialité (résumé)</h2>
+ <ul>
+  <li><strong>Responsable du traitement :</strong> Luna Marysol Rodríguez Vanegas (Habla Español Club). Contact : <a href="mailto:hablaespanol@gmail.com">hablaespanol@gmail.com</a>.</li>
+  <li><strong>Ce que je traite :</strong> votre nom, votre adresse e-mail et votre niveau d'espagnol, ainsi que des données techniques de navigation et, si vous participez à un cours en direct, votre voix, votre image et vos messages dans l'enregistrement.</li>
+  <li><strong>Pourquoi :</strong> vous remettre le matériel demandé (ebook, défi, autres ressources), vous écrire par e-mail avec des informations pédagogiques et commerciales d'Habla Español Club et, pour les cours en direct, les enregistrer et les partager avec la communauté.</li>
+  <li><strong>Vos droits :</strong> connaître, mettre à jour, rectifier et supprimer vos données, demander la preuve de votre autorisation, la retirer à tout moment et déposer une plainte auprès de la Superintendance de l'Industrie et du Commerce.</li>
+  <li><strong>Je ne demande pas de données sensibles.</strong> Répondre à toute question à leur sujet, si elle apparaissait un jour, serait toujours facultatif.</li>
+  <li><strong>Où lire l'intégralité :</strong> cette page, <a href="https://hablaespanol.club/politicaprivacidadytratamientodedatos" target="_top">hablaespanol.club/politicaprivacidadytratamientodedatos</a>.</li>
+ </ul>
+</section>
+
+<nav aria-label="Sommaire">
+ <h2 style="margin-top:34px">Sommaire</h2>
+ <ol class="toc">
+  <li><a href="#fr-responsable">Qui est le responsable</a></li>
+  <li><a href="#fr-marco">Cadre juridique et principes</a></li>
+  <li><a href="#fr-datos">Quelles données je collecte</a></li>
+  <li><a href="#fr-finalidades">À quoi elles me servent</a></li>
+  <li><a href="#fr-grabaciones">Enregistrements des cours</a></li>
+  <li><a href="#fr-autorizacion">Votre autorisation</a></li>
+  <li><a href="#fr-comunicaciones">Communications et horaires</a></li>
+  <li><a href="#fr-terceros">Avec qui je les partage</a></li>
+  <li><a href="#fr-internacional">Transferts internationaux</a></li>
+  <li><a href="#fr-ia">Intelligence artificielle</a></li>
+  <li><a href="#fr-cookies">Cookies et pixels</a></li>
+  <li><a href="#fr-conservacion">Combien de temps je les conserve</a></li>
+  <li><a href="#fr-derechos">Vos droits</a></li>
+  <li><a href="#fr-ejercer">Comment les exercer</a></li>
+  <li><a href="#fr-sic">Plaintes auprès de la SIC</a></li>
+  <li><a href="#fr-europa">Si vous vivez hors de Colombie</a></li>
+  <li><a href="#fr-menores">Mineurs</a></li>
+  <li><a href="#fr-seguridad">Sécurité</a></li>
+  <li><a href="#fr-cambios">Modifications et entrée en vigueur</a></li>
+ </ol>
+</nav>
+
+<h2 id="fr-responsable"><span class="n">1.</span>Qui est le responsable</h2>
+<p>Le responsable du traitement de vos données personnelles est :</p>
+<ul>
+ <li><strong>Nom :</strong> Luna Marysol Rodríguez Vanegas (personne physique), carte d'identité colombienne (cédula de ciudadanía) n° 49.795.943.</li>
+ <li><strong>Nom commercial :</strong> Habla Español Club.</li>
+ <li><strong>Domicile et adresse :</strong> Carrera 82 n° 9A Sur - 79, appartement 202, Medellín (Antioquia), Colombie.</li>
+ <li><strong>Téléphone et WhatsApp :</strong> <a href="https://wa.me/573132800420" target="_top">+57 313 280 0420</a>.</li>
+ <li><strong>E-mail pour toute demande concernant vos données :</strong> <a href="mailto:hablaespanol@gmail.com">hablaespanol@gmail.com</a>.</li>
+ <li><strong>Site web :</strong> <a href="https://hablaespanol.club/" target="_top">hablaespanol.club</a> et ses pages et sous-domaines, y compris les formulaires où vous laissez vos données pour recevoir des documents, des défis ou d'autres ressources.</li>
+</ul>
+<p>Je traite moi-même les demandes de renseignements et les réclamations relatives à la protection des données personnelles, par l'e-mail, le WhatsApp ou l'adresse ci-dessus.</p>
+
+<h2 id="fr-marco"><span class="n">2.</span>Cadre juridique et principes</h2>
+<p>Cette politique est régie par l'article 15 de la Constitution politique de la Colombie, la loi statutaire 1581 de 2012, le décret 1074 de 2015 (qui compile le décret 1377 de 2013), la Circulaire unique de la Superintendance de l'Industrie et du Commerce et la loi 2300 de 2023 sur les communications commerciales avec les consommateurs.</p>
+<p>Je traite vos données dans le respect des principes de l'article 4 de la loi 1581 :</p>
+<ul>
+ <li><strong>Légalité, finalité et liberté :</strong> je ne les utilise que pour ce que je décris ici et avec votre autorisation préalable, expresse et éclairée.</li>
+ <li><strong>Exactitude et transparence :</strong> vous pouvez savoir à tout moment quelles données vous concernant je détiens.</li>
+ <li><strong>Accès et circulation restreints :</strong> seuls les personnes et outils nécessaires au service y ont accès.</li>
+ <li><strong>Sécurité et confidentialité :</strong> je les protège par des mesures raisonnables et je ne les divulgue pas sans votre autorisation ou sans obligation légale.</li>
+</ul>
+
+<h2 id="fr-datos"><span class="n">3.</span>Quelles données je collecte</h2>
+<h3>Celles que vous me donnez</h3>
+<ul>
+ <li>Votre <strong>nom</strong>.</li>
+ <li>Votre <strong>adresse e-mail</strong>.</li>
+ <li>Votre <strong>niveau d'espagnol</strong> (par exemple, B1 ou B2), pour vous envoyer des documents et des messages adaptés.</li>
+</ul>
+<p>Si je vous demande plus tard une autre donnée, je vous l'indiquerai dans le formulaire avant que vous ne l'envoyiez et, si nécessaire, je mettrai à jour cette politique.</p>
+<h3>Celles qui restent dans les enregistrements des cours</h3>
+<ul>
+ <li>Si vous participez à un cours en direct : votre voix, votre image si vous activez votre caméra, le nom affiché à l'écran et ce que vous écrivez dans le chat (voir la section <a href="#fr-grabaciones">Enregistrements des cours</a>).</li>
+</ul>
+<h3>Celles qui sont collectées lors de l'utilisation du site</h3>
+<ul>
+ <li>Données techniques de navigation : adresse IP, type d'appareil et de navigateur, pages que vous consultez, lien par lequel vous êtes arrivé(e) et actions que vous effectuez (par exemple, ouvrir ou envoyer un formulaire).</li>
+ <li>Ces données sont collectées par des outils de mesure et de publicité décrits dans la section <a href="#fr-cookies">Cookies et pixels</a>.</li>
+</ul>
+<h3>Ce que je ne collecte pas</h3>
+<ul>
+ <li><strong>Données de paiement :</strong> les achats se font sur Skool et je ne vois ni ne conserve votre carte ni vos coordonnées bancaires.</li>
+ <li><strong>Données sensibles</strong> (celles qui affectent votre vie privée ou peuvent entraîner une discrimination, comme la santé, l'origine raciale ou ethnique, l'orientation sexuelle, les convictions religieuses ou l'idéologie politique) ni données biométriques (je n'utilise pas votre voix ni votre image pour vous identifier). Je ne les demande pas. Si un formulaire comportait un jour une question à leur sujet, y répondre serait facultatif.</li>
+ <li><strong>Données de mineurs</strong> (voir la section <a href="#fr-menores">Mineurs</a>).</li>
+</ul>
+
+<h2 id="fr-finalidades"><span class="n">4.</span>À quoi elles me servent</h2>
+<p>J'utilise vos données uniquement pour ces finalités :</p>
+<ol>
+ <li><strong>Vous remettre ce que vous demandez</strong> <em>(case 1)</em> : vous envoyer par e-mail l'ebook, le défi, le guide ou tout autre document gratuit que vous demandez dans un formulaire, y compris les e-mails qui font partie de ce document ou de ce défi.</li>
+ <li><strong>Vous envoyer des informations pédagogiques</strong> <em>(case 2)</em> : conseils, exercices, ressources et contenus pour pratiquer l'espagnol, adaptés à votre niveau.</li>
+ <li><strong>Vous envoyer des informations commerciales</strong> <em>(case 2)</em> : nouveautés, invitations et offres concernant les cours, les défis, les produits et les communautés d'Habla Español Club, y compris l'invitation à essayer un cours.</li>
+ <li><strong>Connaître votre niveau</strong> <em>(case 1)</em> pour décider quels documents et messages vous envoyer.</li>
+ <li><strong>Mesurer et améliorer le site et mes annonces</strong> <em>(avis sur les cookies)</em> : savoir combien de personnes visitent les pages, d'où elles viennent et quels contenus fonctionnent, avec des données statistiques ou agrégées.</li>
+ <li><strong>Respecter la loi et traiter vos demandes</strong> <em>(case 1)</em> : répondre aux demandes et réclamations, conserver la preuve de votre autorisation et tenir une liste des personnes qui ne souhaitent plus recevoir de messages.</li>
+ <li><strong>Enregistrer les cours en direct et les partager avec la communauté</strong> <em>(case des cours)</em>, pour que vous puissiez les revoir.</li>
+</ol>
+<p>Je ne vends pas vos données et je ne les cède pas à des tiers pour qu'ils vous envoient leur publicité.</p>
+
+<h2 id="fr-grabaciones"><span class="n">5.</span>Enregistrements des cours</h2>
+<p>J'enregistre les cours en direct pour que vous et les autres étudiants de la communauté puissiez les revoir.</p>
+<ul>
+ <li><strong>Ce qui est enregistré :</strong> votre voix, votre image si vous activez votre caméra, le nom affiché à l'écran et ce que vous écrivez dans le chat.</li>
+ <li><strong>Où c'est stocké et avec qui c'est partagé :</strong> je mets la vidéo en ligne en mode « non répertorié » sur YouTube (Google) et je partage le lien avec les étudiants de la communauté Skool. « Non répertorié » signifie que la vidéo n'apparaît pas dans les recherches ni sur ma chaîne, mais que <strong>toute personne disposant du lien peut la regarder</strong>. C'est pourquoi je ne partage le lien qu'au sein de la communauté et je vous demande de ne pas le transférer.</li>
+ <li><strong>Votre autorisation :</strong> vous la donnez lors de votre inscription aux cours en direct, avec une case spécifique (voir la section <a href="#fr-autorizacion">Votre autorisation</a>), et je vous rappelle au début de chaque cours qu'il est enregistré.</li>
+ <li><strong>Vos options :</strong> vous pouvez garder votre caméra éteinte, changer le nom affiché à l'écran et ne pas écrire dans le chat. Si vous ne souhaitez pas que votre voix soit enregistrée, prévenez-moi avant le cours.</li>
+ <li><strong>Pendant combien de temps :</strong> les vidéos restent disponibles tant qu'elles sont utiles à la communauté. Vous pouvez me demander à tout moment de supprimer ou de modifier un enregistrement dans lequel vous apparaissez, et je le fais dans les délais de la section <a href="#fr-ejercer">Comment les exercer</a>.</li>
+</ul>
+
+<section class="card" aria-labelledby="fr-autorizacion">
+ <div class="mini">
+  <h2 id="fr-autorizacion" style="margin:0;flex:1 1 260px"><span class="n">6.</span>Votre autorisation</h2>
+  <svg width="64" viewBox="0 0 100 110" aria-hidden="true"><g fill="none" stroke="#000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 50Q24 45 30 45H70Q76 45 76 51V88Q76 94 70 94H30Q24 94 24 88Z"/><path d="M34 45V32Q34 14 50 14 66 14 66 32V45"/><circle cx="50" cy="65" r="4.5"/><path d="M50 70V80"/></g><path d="M28 50q14-6 28-2" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/><path d="M82 24l9-8m-2 18l11-1" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/></svg>
+ </div>
+ <p style="margin-top:12px">Pour traiter vos données, j'ai besoin de votre <strong>autorisation préalable, expresse et éclairée</strong>, comme l'exige l'article 9 de la loi 1581 de 2012. Vous la donnez volontairement en <strong>cochant les cases</strong> du formulaire, qui ne sont jamais cochées d'avance, et en l'envoyant. Les formulaires d'Habla Español Club comportent ces cases. <strong>Toutes sont nécessaires</strong> pour recevoir le matériel et les informations d'Habla Español Club, car l'e-mail est le canal par lequel ils vous parviennent. Si vous n'êtes pas d'accord avec l'une d'elles, vous pouvez décider de ne pas me laisser votre e-mail.</p>
+ <h3>Case 1 · obligatoire</h3>
+ <p class="autorizo">« J'autorise Luna Marysol Rodríguez Vanegas (Habla Español Club) à traiter mes données personnelles (nom, adresse e-mail et niveau d'espagnol) pour m'envoyer le matériel que je demande et traiter mes demandes, conformément à la Politique de confidentialité et de traitement des données personnelles. J'autorise expressément que mes données soient transmises ou transférées aux prestataires de cette politique, y compris ceux situés hors de Colombie. »</p>
+ <h3>Case 2 · obligatoire</h3>
+ <p class="autorizo">« J'accepte de recevoir par e-mail des informations pédagogiques et commerciales d'Habla Español Club (conseils, exercices, invitations, cours et offres). Je peux me désabonner à tout moment. »</p>
+ <h3>Case 3 · obligatoire</h3>
+ <p class="autorizo">« Je déclare avoir plus de 18 ans. »</p>
+ <h3>Case supplémentaire · uniquement lors de l'inscription à un cours en direct · obligatoire</h3>
+ <p class="autorizo">« J'autorise l'enregistrement de ma voix, de mon image et de mes interventions, et leur partage avec la communauté d'Habla Español Club via YouTube (vidéo non répertoriée) et Skool. »</p>
+ <ul>
+  <li><strong>À côté des cases</strong>, le formulaire affiche un résumé indiquant qui est le responsable, pourquoi j'utiliserai vos données, vos droits et le lien vers cette politique. Remplir les champs nom, e-mail et niveau est nécessaire pour recevoir le matériel ; je ne demande aucune donnée sensible.</li>
+  <li><strong>Sans les cases 1, 2 et 3</strong>, je ne peux ni vous envoyer le matériel ni vous écrire, car je n'aurais aucune raison de conserver votre e-mail. La case des cours n'apparaît que lors de l'inscription aux cours en direct.</li>
+  <li><strong>Elle est enregistrée.</strong> Je conserve la date et l'heure de votre autorisation, les cases que vous avez cochées et le formulaire utilisé, afin de pouvoir prouver votre autorisation lorsque vous me le demandez ou qu'une autorité l'exige.</li>
+  <li><strong>Vous pouvez la retirer quand vous le souhaitez</strong>, sans frais, en m'écrivant à <a href="mailto:hablaespanol@gmail.com">hablaespanol@gmail.com</a> ou en utilisant le lien de désabonnement présent dans chaque e-mail. Le retrait n'affecte pas ce que j'ai fait avant de le recevoir. Si vous vous désabonnez des informations pédagogiques et commerciales, je cesse de vous écrire et je ne pourrai plus vous envoyer de nouveaux documents par e-mail. Si vous retirez la case 1, je supprime en outre vos données, sauf ce que la loi m'oblige à conserver.</li>
+ </ul>
+</section>
+
+<h2 id="fr-comunicaciones"><span class="n">7.</span>Communications et horaires</h2>
+<p>Je vous envoie des informations pédagogiques et commerciales par e-mail parce que vous avez accepté la case 2. Chaque e-mail comporte un moyen simple de vous désabonner. Si vous me demandez de ne plus vous écrire, je m'exécute et je conserve votre e-mail dans une liste d'exclusion uniquement pour ne plus vous contacter.</p>
+<p>Conformément à la loi 2300 de 2023, j'envoie des messages publicitaires ou commerciaux uniquement du <strong>lundi au vendredi entre 7 h 00 et 19 h 00 et le samedi entre 8 h 00 et 15 h 00 (heure de Colombie)</strong>, et jamais les dimanches ni les jours fériés.</p>
+
+<h2 id="fr-terceros"><span class="n">8.</span>Avec qui je les partage</h2>
+<p>Pour vous fournir le service, j'utilise des prestataires. Certains traitent les données pour mon compte (<strong>sous-traitants</strong>) et uniquement pour les finalités de cette politique. D'autres, comme Skool ou Meta sur leurs propres plateformes, sont responsables de leurs propres données et sont soumis à leurs propres politiques de confidentialité.</p>
+<table class="tabla">
+ <thead><tr><th>Prestataire</th><th>Pour quoi faire</th><th>Localisation</th></tr></thead>
+ <tbody>
+  <tr><td>Google (Gmail, Google Sheets, Google Analytics, YouTube)</td><td>Envoyer mes e-mails, stocker les listes de contacts, mesurer les visites du site et héberger les vidéos non répertoriées des cours.</td><td>États-Unis et autres pays</td></tr>
+  <tr><td>Meta Platforms (Meta Pixel, Instagram, WhatsApp)</td><td>Mesurer et optimiser mes annonces et traiter les messages que vous m'envoyez par ces canaux.</td><td>États-Unis, Irlande et autres pays</td></tr>
+  <tr><td>Skool</td><td>Héberger la communauté, partager les enregistrements des cours et gérer les achats et les paiements. Il agit comme responsable de ses propres données et est soumis à sa propre politique.</td><td>États-Unis</td></tr>
+  <tr><td>GitHub (Microsoft)</td><td>Héberger ce site web ; il peut enregistrer des données techniques des visites, comme l'adresse IP.</td><td>États-Unis</td></tr>
+  <tr><td>Anthropic (Claude) et OpenAI (ChatGPT)</td><td>Outils d'intelligence artificielle que j'utilise pour rédiger et organiser mes messages et documents (voir la section <a href="#fr-ia">Intelligence artificielle</a>).</td><td>États-Unis</td></tr>
+ </tbody>
+</table>
+<p>Je ne partage vos données avec d'autres tiers que ceux-ci que si une autorité compétente l'exige, si vous l'autorisez ou si la loi le permet.</p>
+
+<h2 id="fr-internacional"><span class="n">9.</span>Transferts et transmissions internationaux</h2>
+<p>Plusieurs des prestataires ci-dessus stockent ou traitent des données hors de Colombie, principalement aux États-Unis et en Irlande. À la date de cette politique, ces deux pays figurent sur la liste des pays offrant un niveau adéquat de protection des données de la Superintendance de l'Industrie et du Commerce. Si un prestataire utilisait un autre pays, le transfert repose sur votre <strong>autorisation expresse et non équivoque</strong>, que vous donnez en cochant la case 1, comme le permet l'article 26 de la loi 1581 de 2012, et sur les contrats ou clauses reconnus par la Superintendance le cas échéant.</p>
+
+<h2 id="fr-ia"><span class="n">10.</span>Intelligence artificielle</h2>
+<p>J'utilise des outils d'intelligence artificielle, comme Claude et ChatGPT, pour m'aider à rédiger, traduire et organiser des documents et des messages. En règle générale, <strong>je ne saisis pas votre adresse e-mail</strong> dans ces outils. Je ne prends pas de décisions automatisées produisant des effets juridiques à votre égard et je ne vous exclus d'aucun service en fonction de ce qu'une machine répond. Si, à l'avenir, j'utilisais vos données avec l'IA d'une autre manière, je vous en informerai ici avant de le faire.</p>
+
+<h2 id="fr-cookies"><span class="n">11.</span>Cookies et pixels</h2>
+<p>Ce site utilise <strong>Meta Pixel</strong> et <strong>Google Analytics</strong>. Ce sont de petits fichiers et codes qui enregistrent ou lisent des informations dans votre navigateur pour :</p>
+<ul>
+ <li>compter les visites et voir d'où viennent les personnes et quelles pages elles consultent ;</li>
+ <li>mesurer si mes annonces fonctionnent et afficher des annonces d'Habla Español Club aux personnes qui ont déjà visité le site.</li>
+</ul>
+<p>Ces outils peuvent collecter votre adresse IP, des données sur votre appareil et votre navigation, et sont gérés par Google et Meta selon leurs propres politiques. Ils ne s'activent <strong>que si vous les acceptez</strong> dans l'avis sur les cookies qui s'affiche à votre arrivée, et vous pouvez modifier votre choix à tout moment avec le bouton « Préférences de cookies » en bas de page. Vous pouvez aussi supprimer ou bloquer les cookies dans les paramètres de votre navigateur, désactiver Google Analytics avec le <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">module de désactivation de Google</a> et ajuster vos préférences publicitaires dans votre compte Meta. Si vous les bloquez, le site continue de fonctionner.</p>
+
+<h2 id="fr-conservacion"><span class="n">12.</span>Combien de temps je les conserve</h2>
+<ul>
+ <li>Vos données de contact et vos réponses : tant que vous maintenez votre autorisation et, au maximum, <strong>24 mois à compter de votre dernière interaction</strong> avec mes messages (par exemple, ouvrir un e-mail, répondre ou cliquer). Ensuite, je les supprime ou je les anonymise.</li>
+ <li>Si vous retirez votre autorisation ou me demandez de supprimer vos données, je les supprime. Je ne conserve que le minimum nécessaire pour prouver votre autorisation et votre désabonnement, et pour ne plus vous écrire, pendant le temps nécessaire pour traiter d'éventuelles réclamations ou respecter des obligations légales.</li>
+ <li>Les statistiques de visites ne vous identifient pas et sont conservées sous forme agrégée.</li>
+</ul>
+<p>La base de données de contacts d'Habla Español Club restera en vigueur tant que l'activité l'exigera. Cette politique est en vigueur depuis le 22 novembre 2026.</p>
+
+<h2 id="fr-derechos"><span class="n">13.</span>Vos droits</h2>
+<p>En tant que titulaire de vos données, l'article 8 de la loi 1581 de 2012 vous donne le droit de :</p>
+<ul>
+ <li><strong>Connaître, mettre à jour et rectifier</strong> vos données lorsqu'elles sont inexactes, incomplètes ou trompeuses.</li>
+ <li><strong>Demander la preuve</strong> de l'autorisation que vous m'avez donnée.</li>
+ <li><strong>Être informé(e)</strong>, sur demande, de l'usage que j'ai fait de vos données.</li>
+ <li><strong>Accéder gratuitement</strong> à vos données personnelles.</li>
+ <li><strong>Retirer l'autorisation ou demander la suppression</strong> de vos données lorsque les principes, droits et garanties légaux ne sont pas respectés. La suppression n'est pas possible tant que vous avez une obligation légale ou contractuelle de rester dans la base de données.</li>
+ <li><strong>Déposer des plaintes</strong> auprès de la Superintendance de l'Industrie et du Commerce pour violation de la loi.</li>
+</ul>
+
+<h2 id="fr-ejercer"><span class="n">14.</span>Comment les exercer</h2>
+<p>Écrivez-moi à <a href="mailto:hablaespanol@gmail.com">hablaespanol@gmail.com</a>, par WhatsApp au +57 313 280 0420 ou par écrit à mon adresse de la section 1, en indiquant votre nom, l'e-mail avec lequel vous vous êtes inscrit(e) et ce que vous souhaitez demander. Si j'ai un doute sur votre identité, je vous demanderai de la confirmer. L'exercice de vos droits est gratuit.</p>
+<ul>
+ <li><strong>Demandes de renseignements</strong> (savoir quelles données je détiens sur vous ou comment je les utilise) : je réponds sous <strong>10 jours ouvrables</strong> au maximum. Si j'ai besoin de plus de temps, je vous en indique les raisons et je réponds sous <strong>5 jours ouvrables</strong> supplémentaires au maximum.</li>
+ <li><strong>Réclamations</strong> (corriger, supprimer, retirer ou signaler un manquement) : indiquez-moi votre identification, ce qui s'est passé, votre adresse de contact et les documents que vous souhaitez joindre. S'il manque quelque chose, je vous le demande dans les 5 jours suivants et vous avez 2 mois pour le compléter ; passé ce délai, je considère que vous avez renoncé. Je réponds sous <strong>15 jours ouvrables</strong> au maximum, prorogeables de <strong>8 jours ouvrables</strong> supplémentaires avec indication des motifs. Pendant le traitement, j'ajoute à votre donnée la mention « réclamation en cours ».</li>
+</ul>
+<p>Pour vous désabonner de mes e-mails, il suffit d'utiliser le lien de désabonnement de chaque message ou de m'écrire « BAJA ».</p>
+
+<h2 id="fr-sic"><span class="n">15.</span>Plaintes auprès de la SIC</h2>
+<p>Si vous pensez que je n'ai pas bien traité vos données, écrivez-moi d'abord pour que nous le résolvions. Après avoir épuisé la demande ou la réclamation auprès de moi, vous pouvez déposer une plainte auprès de la <strong>Superintendance de l'Industrie et du Commerce</strong>, autorité de protection des données de la Colombie : <a href="https://www.sic.gov.co" rel="noopener">www.sic.gov.co</a>.</p>
+
+<h2 id="fr-europa"><span class="n">16.</span>Si vous vivez hors de Colombie</h2>
+<p>Habla Español Club compte des étudiants en Europe, aux États-Unis et dans d'autres pays. Vos données sont traitées depuis la Colombie et cette politique est régie par la loi colombienne. Si vous vivez dans l'<strong>Espace économique européen ou au Royaume-Uni</strong>, j'applique en outre, dans la mesure applicable, le Règlement général sur la protection des données (RGPD) :</p>
+<ul>
+ <li>La base juridique de mon traitement est votre <strong>consentement</strong>, que vous donnez avec les cases du formulaire et pouvez retirer à tout moment, aussi facilement que vous l'avez donné. Pour recevoir le matériel, il est nécessaire d'accepter les cases 1 et 2 ; vous pouvez retirer votre consentement aux communications à tout moment en vous désabonnant, sans frais.</li>
+ <li>Outre les droits de la section 13, vous avez le droit de <strong>limiter le traitement ou de vous y opposer</strong> et à la <strong>portabilité</strong> de vos données (les recevoir dans un format que vous pouvez emporter).</li>
+ <li>Vous pouvez introduire une réclamation auprès de l'autorité de protection des données de votre pays de résidence.</li>
+ <li>Vos données sont transférées vers la Colombie et vers les pays de mes prestataires. Je le fais avec votre consentement (case 1) et avec les garanties décrites à la section 9.</li>
+</ul>
+<p>Si vous vivez dans un autre pays, je respecte aussi les règles impératives de protection des données qui vous y sont applicables.</p>
+
+<h2 id="fr-menores"><span class="n">17.</span>Mineurs</h2>
+<p>Habla Español Club s'adresse aux <strong>personnes de plus de 18 ans</strong>. Je ne collecte pas sciemment de données de mineurs, dont le traitement est restreint par l'article 7 de la loi 1581 de 2012. Si vous avez moins de 18 ans, veuillez ne pas remplir les formulaires. Si je découvre que je détiens des données d'un mineur, je les supprime. Si vous pensez que cela s'est produit, écrivez-moi.</p>
+
+<h2 id="fr-seguridad"><span class="n">18.</span>Sécurité</h2>
+<p>Ce site est servi via une connexion chiffrée (HTTPS). Je conserve vos données dans des outils dont l'accès est protégé par mot de passe et je suis la seule à y accéder, sauf si je donne un jour accès à un membre de mon équipe qui en a besoin, avec un devoir de confidentialité. Aucune mesure n'est infaillible : en cas d'incident mettant vos données en danger, je vous en informerai et je le signalerai à la Superintendance de l'Industrie et du Commerce lorsque la loi l'exige.</p>
+
+<h2 id="fr-cambios"><span class="n">19.</span>Modifications et entrée en vigueur</h2>
+<p>Si je modifie cette politique de manière substantielle, je vous en informerai avant d'appliquer les changements, par e-mail ou par un avis visible sur ce site, et je mettrai à jour la date ci-dessus. Si le changement modifie les finalités pour lesquelles vous m'avez autorisée, je vous demanderai une nouvelle autorisation.</p>
+<p>Version en vigueur depuis le <strong>22 novembre 2026</strong>. Les traductions de cette politique en anglais et en français sont fournies à titre de courtoisie ; en cas de différence, la version espagnole prévaut.</p>
+
+<footer class="pie">
+ <svg width="78" viewBox="0 0 110 100" aria-hidden="true"><g fill="none" stroke="#000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 22Q19 14 28 14H84Q94 14 94 24V58Q94 68 84 68H52L34 84 36 68H28Q18 68 18 58Z"/><path d="M38 42l12 12 22-24"/></g><path d="M22 20q20-8 40-4" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/><path d="M98 8l7-6m-4 20l9 1" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/><path d="M12 76q6-5 11 1" fill="none" stroke="#CE1126" stroke-width="3.6" stroke-linecap="round"/></svg>
+ <nav aria-label="Liens officiels">
+  <a href="https://hablaespanol.club/" target="_top">hablaespanol.club</a>
+  <a href="https://www.instagram.com/hablaespanolclub/" target="_top">@hablaespanolclub</a>
+ </nav>
+ <p class="nota" style="margin:0;flex-basis:100%">© 2026 Habla Español Club. Tous droits réservés.</p>
+</footer>
+
+</div>
+
+</div>
+<script>
+(function(){
+ var KEY='saw-language-v1',LANGS=['es','en','fr'];
+ var TITLES={
+  es:'Política de Privacidad y Tratamiento de Datos Personales | Habla Español Club',
+  en:'Privacy Policy and Personal Data Processing | Habla Español Club',
+  fr:'Politique de confidentialité et de traitement des données personnelles | Habla Español Club'};
+ var DESCS={
+  es:'Política de privacidad y tratamiento de datos personales de Habla Español Club, conforme a la Ley 1581 de 2012 de Colombia: qué datos recojo, para qué los uso y cómo ejercer tus derechos.',
+  en:'Privacy policy and personal data processing of Habla Español Club under Colombian Law 1581 of 2012: what data I collect, what I use it for and how to exercise your rights.',
+  fr:'Politique de confidentialité et de traitement des données personnelles d\'Habla Español Club selon la loi colombienne 1581 de 2012 : quelles données je collecte, à quoi elles servent et comment exercer vos droits.'};
+ var docs=[].slice.call(document.querySelectorAll('.doc')),buttons=[].slice.call(document.querySelectorAll('[data-language]'));
+ var meta=document.querySelector('meta[name="description"]');
+ function initial(){
+  try{var q=new URLSearchParams(location.search).get('lang');if(LANGS.indexOf(q)>-1)return q}catch(e){}
+  try{var s=localStorage.getItem(KEY);if(LANGS.indexOf(s)>-1)return s}catch(e){}
+  var nav=navigator.languages||[navigator.language];
+  for(var i=0;i<nav.length;i++){var c=String(nav[i]||'').toLowerCase().split('-')[0];if(LANGS.indexOf(c)>-1)return c}
+  return 'es';
+ }
+ function setLanguage(l,remember){
+  docs.forEach(function(d){d.hidden=d.getAttribute('data-lang')!==l});
+  buttons.forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-language')===l))});
+  document.documentElement.lang=l;document.title=TITLES[l];if(meta)meta.setAttribute('content',DESCS[l]);
+  if(remember){try{localStorage.setItem(KEY,l)}catch(e){}window.scrollTo(0,0)}
+ }
+ buttons.forEach(function(b){b.addEventListener('click',function(){setLanguage(b.getAttribute('data-language'),true)})});
+ setLanguage(initial(),false);
+})();
+</script>
 </body>
 </html>
