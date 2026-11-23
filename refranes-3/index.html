@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Tus 10 refranes · Habla Español Club</title>
+  <link rel="icon" href="/MARCA/logotipo-original.png">
+  <link rel="preload" href="/MARCA/fuentes/LeagueSpartan-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/MARCA/fuentes/GochiHand-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <style>
+    @font-face{font-family:"League Spartan";src:url("/MARCA/fuentes/LeagueSpartan-VariableFont_wght.ttf") format("truetype");font-weight:100 900;font-style:normal;font-display:swap}
+    @font-face{font-family:"Gochi Hand";src:url("/MARCA/fuentes/GochiHand-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+    :root{--blue:#003893;--yellow:#FCD116;--red:#CE1126;--black:#000;--white:#fff;--line:rgba(0,56,147,.22);--font:"League Spartan",Arial,sans-serif;--hand:"Gochi Hand",cursive;--blob:42% 58% 55% 45% / 48% 42% 58% 52%;--card:30px 36px 28px 38px / 36px 28px 38px 30px}
+    *{box-sizing:border-box}
+    html{background:#fff;scroll-behavior:smooth}
+    body{margin:0;background:#fff;color:#000;font-family:var(--font);font-size:19px;font-weight:450;line-height:1.5;min-height:100vh;display:flex;flex-direction:column}
+    h1,h2,h3{font-weight:550;letter-spacing:-.012em;line-height:1.14;margin:0;text-wrap:balance}
+    p{margin:0}
+    a{color:var(--blue);text-underline-offset:3px}
+    button{font:inherit;cursor:pointer;color:inherit}
+    button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--red);outline-offset:4px;border-radius:12px}
+    .shell{width:min(1080px,calc(100% - 40px));margin:0 auto}
+    header.top{border-bottom:1px solid rgba(0,56,147,.13)}
+    .top-in{min-height:72px;display:flex;align-items:center;gap:12px}
+    .brand{display:flex;align-items:center;gap:11px;color:var(--blue);text-decoration:none}
+    .brand img{width:50px;height:50px;object-fit:contain}
+    .brand b{font-weight:500;font-size:15px;letter-spacing:.02em;line-height:1.1}
+    .hand{font-family:var(--hand);color:var(--blue);font-weight:400}
+    main{flex:1;padding:34px 0 60px}
+    [hidden]{display:none!important}
+    h1[tabindex="-1"]:focus,h2[tabindex="-1"]:focus{outline:none}
+
+    /* inicio */
+    .hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:30px;align-items:center}
+    .kicker{font-family:var(--hand);font-size:25px;color:var(--blue)}
+    h1{font-size:clamp(38px,6vw,64px);margin:6px 0 14px}
+    h1 .wave{color:var(--blue);text-decoration:underline wavy var(--red);text-decoration-thickness:3px;text-underline-offset:9px}
+    .lead{font-size:clamp(19px,2.4vw,23px);max-width:34em}
+    .hero-art{display:flex;justify-content:center}
+    .hero-art svg{width:min(100%,300px);height:auto;overflow:visible}
+    .levels-title{margin:44px 0 16px;font-size:clamp(25px,3.4vw,34px)}
+    .levels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+    .level{position:relative;text-align:left;background:#fff;border:2px solid var(--blue);border-radius:var(--card);padding:22px 20px 20px;min-height:230px;display:flex;flex-direction:column;gap:8px;box-shadow:0 6px 0 rgba(0,56,147,.12);transition:transform .15s ease,box-shadow .15s ease;overflow:hidden;text-decoration:none;color:#000}
+    .level:hover{transform:translateY(-3px);box-shadow:0 10px 0 rgba(252,209,22,.7)}
+    .level .tag{font-family:var(--hand);font-size:22px;color:var(--blue)}
+    .level .big{font-size:42px;font-weight:550;line-height:1;color:var(--blue)}
+    .level p{font-size:18px;line-height:1.4}
+    .level .mini{position:absolute;right:8px;bottom:6px;width:86px;opacity:1;pointer-events:none}
+    .level .mini svg{width:100%;height:auto;display:block}
+    .level .go{margin-top:auto;color:var(--blue);font-weight:550;font-size:18px;padding-right:80px}
+    .note{margin-top:34px;font-size:17px;color:#333;max-width:44em}
+
+    /* nivel */
+    .bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}
+    .back{border:2px solid var(--blue);background:#fff;color:var(--blue);border-radius:999px;padding:9px 18px;font-weight:550;font-size:18px}
+    .back:hover{background:var(--yellow);color:#000;border-color:#000}
+    .lv-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;margin-bottom:22px}
+    .lv-head svg{width:150px;height:auto;display:block}
+    .lv-head h2{font-size:clamp(32px,5vw,50px)}
+    .lv-head h2 span{color:var(--blue)}
+    .lv-sub{font-size:20px;margin-top:6px;max-width:34em}
+    .progress{margin:6px 0 24px}
+    .progress-row{display:flex;justify-content:space-between;gap:10px;font-size:18px;color:var(--blue);font-weight:550;margin-bottom:6px}
+    .track{height:12px;border:2px solid var(--blue);border-radius:999px;overflow:hidden;background:#fff}
+    .fill{height:100%;width:0;background:var(--red);transition:width .35s ease}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
+    .rcard{background:#fff;border:2px solid var(--line);border-radius:var(--card);box-shadow:0 5px 0 rgba(0,56,147,.1);overflow:hidden}
+    .rcard.open{border-color:var(--blue)}
+    .rhead{width:100%;display:flex;gap:14px;align-items:flex-start;text-align:left;background:none;border:0;padding:20px 20px 18px}
+    .num{flex:none;width:44px;height:44px;border:2px solid var(--blue);border-radius:var(--blob);display:grid;place-items:center;font-weight:550;color:var(--blue);font-size:20px;background:#fff}
+    .rcard.seen .num{background:var(--yellow);color:#000;border-color:#000}
+    .rtext{display:block;font-size:clamp(22px,2.8vw,27px);font-weight:550;line-height:1.2;letter-spacing:-.01em}
+    .rhint{display:block;margin-top:6px;font-family:var(--hand);font-size:20px;color:var(--blue)}
+    .rbody{padding:0 20px 20px 78px;display:grid;gap:12px;animation:in .25s ease}
+    @keyframes in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+    .rbody h3{font-family:var(--hand);font-weight:400;font-size:21px;color:var(--blue);letter-spacing:0;margin-bottom:1px}
+    .rbody .ex{border-left:4px solid var(--red);padding-left:12px}
+    .listen{justify-self:start;border:2px solid var(--blue);background:#fff;color:var(--blue);border-radius:999px;padding:6px 16px;font-size:17px;font-weight:550}
+    .listen:hover{background:var(--yellow);color:#000;border-color:#000}
+
+    /* juego */
+    .game{margin-top:46px;border:2px solid var(--blue);border-radius:var(--card);padding:26px 24px 24px;position:relative;box-shadow:0 6px 0 rgba(252,209,22,.7)}
+    .game h2{font-size:clamp(27px,3.6vw,38px);margin:2px 0 8px}
+    .game .art{position:absolute;right:16px;top:12px;width:110px;pointer-events:none}
+    .game .art svg{width:100%;height:auto;display:block}
+    .game .intro{max-width:30em;padding-right:100px}
+    .q{margin-top:18px}
+    .q-count{font-family:var(--hand);font-size:22px;color:var(--blue)}
+    .q-text{font-size:clamp(21px,2.6vw,26px);font-weight:550;line-height:1.25;margin:4px 0 14px}
+    .opts{display:grid;gap:10px}
+    .opt{text-align:left;background:#fff;border:2px solid var(--line);border-radius:20px;padding:13px 16px;font-size:20px;font-weight:550}
+    .opt:hover:not(:disabled){border-color:var(--blue)}
+    .opt.ok{border-color:var(--blue);background:var(--yellow);color:#000}
+    .opt.no{border-color:var(--red);color:var(--red)}
+    .opt:disabled{cursor:default}
+    .fb{min-height:30px;margin-top:12px;font-weight:550;color:var(--blue)}
+    .btn{border:2px solid var(--blue);background:#fff;color:var(--blue);border-radius:999px;padding:10px 22px;font-weight:550;font-size:19px}
+    .btn:hover{background:var(--yellow);color:#000;border-color:#000}
+    .score{font-size:clamp(30px,4.6vw,46px);font-weight:550;color:var(--blue)}
+
+    /* cierre */
+    .close{margin-top:46px;display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:20px;align-items:center;border:2px solid var(--line);border-radius:var(--card);padding:26px 24px}
+    .close h2{font-size:clamp(25px,3.4vw,34px);margin-bottom:8px}
+    .close p{max-width:32em;margin-bottom:14px}
+    .close svg{width:100%;height:auto;display:block}
+    .cta{display:inline-block;border:2px solid #000;background:var(--yellow);color:#000;border-radius:999px;padding:11px 24px;font-weight:550;text-decoration:none;font-size:20px}
+    .cta:hover{background:#fff}
+    .more{margin-top:18px;font-size:17px}
+
+    footer{border-top:1px solid rgba(0,56,147,.13);padding:20px 0 26px;font-size:16px}
+    footer .shell{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;justify-content:center}
+    footer a{color:var(--blue)}
+
+    @media(max-width:960px){.levels{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:760px){
+      body{font-size:18px}
+      .hero{grid-template-columns:1fr}
+      .hero-art{order:-1;justify-content:flex-start}
+      .hero-art svg{width:170px}
+      .grid{grid-template-columns:1fr}
+      .rbody{padding-left:20px}
+      .lv-head{grid-template-columns:1fr}
+      .lv-head svg{width:110px}
+      .game .art{position:static;width:96px;margin:0 0 4px auto}
+      .game .intro{padding-right:0}
+      .close{grid-template-columns:1fr}
+      .close svg{width:120px}
+    }
+    @media(max-width:480px){.levels{grid-template-columns:1fr}.level{min-height:190px}}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="shell top-in">
+      <a class="brand" href="/" target="_top" aria-label="Habla Español Club">
+        <img src="/MARCA/logotipo-original.png" alt="Logo de Habla Español Club" width="50" height="50">
+        <b>HABLA ESPAÑOL CLUB</b>
+      </a>
+    </div>
+  </header>
+
+  <main class="shell">
+    <!-- INICIO -->
+    <section id="home" aria-labelledby="home-title">
+      <div class="hero">
+        <div>
+          <p class="kicker">Un regalo de la profe Luna</p>
+          <h1 id="home-title" tabindex="-1">Tus 10 <span class="wave">refranes</span> en español</h1>
+          <p class="lead">Los refranes son frases cortas que los hispanohablantes usamos para explicar una idea sin dar muchas vueltas. Elige tu nivel, toca cada refrán y descubre qué significa, cuándo se dice y cómo usarlo.</p>
+        </div>
+        <div class="hero-art" aria-hidden="true"><svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="none" stroke="#000000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 23Q27 15 39 15H112Q126 16 127 29V62Q126 75 112 76H69L48 94 51 76H39Q24 75 24 61Z"/><path d="M75 61Q76 76 91 78H129Q145 78 146 91V105Q145 117 132 117H116L120 128 101 117H93"/><path d="M47 42q6-7 12 0m11 0q6-7 12 0m12 0q6-7 12 0"/><path d="M98 93q5-7 11-1 6-6 11 1 1 8-11 15-12-7-11-15Z"/></g><path d="M28 24q13-12 27-8" fill="none" stroke="#003893" stroke-width="4.2" stroke-linecap="round"/><path d="M130 18l7-8m1 17 10-3M17 90l-7 5m14 3-5 8" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/><path d="M145 67q8-4 14 2m-8 7 10 2" fill="none" stroke="#CE1126" stroke-width="3.7" stroke-linecap="round"/></svg></div>
+      </div>
+
+      <h2 class="levels-title">¿Cuál es tu nivel?</h2>
+      <div class="levels">
+        <a class="level" href="#a1" data-level="a1">
+          <span class="tag">Nivel</span><span class="big">A1</span>
+          <p>Frases cortas y palabras sencillas.</p>
+          <span class="go">Empezar</span>
+          <span class="mini" aria-hidden="true"><svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="none" stroke="#000000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M38 99L117 21Q123 15 130 22L140 32Q146 39 139 46L60 124 35 128Z"/><path d="M38 99l22 25m57-103 24 25"/><path d="M35 128l5-22 17 17Z"/><path d="M82 21l7-14 7 14 15 6-15 7-7 15-7-15-14-7Z"/><path d="M139 78l6-12 6 12 12 6-12 5-6 12-6-12-12-5Z"/></g><path d="M116 24l20 20" fill="none" stroke="#CE1126" stroke-width="4.2" stroke-linecap="round"/><path d="M80 21l8-13m7 23 12-5" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/><path d="M27 72l-10-4m13 17-12 3" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/></svg></span>
+        </a>
+        <a class="level" href="#a2" data-level="a2">
+          <span class="tag">Nivel</span><span class="big">A2</span>
+          <p>Situaciones de todos los días.</p>
+          <span class="go">Empezar</span>
+          <span class="mini" aria-hidden="true"><svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="none" stroke="#000000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 114Q23 86 43 80 60 74 73 87L82 114"/><path d="M107 114Q110 84 131 79 151 76 165 96L170 114"/><path d="M57 112Q61 79 89 73 117 77 122 112"/><path d="M35 58Q33 36 51 29 70 26 76 45 81 66 62 76 43 77 35 58Z"/><path d="M104 53Q105 33 122 29 142 29 147 49 148 68 129 75 109 72 104 53Z"/><path d="M70 49Q70 24 91 21 111 24 111 48 108 68 91 70 73 66 70 49Z"/><path d="M44 51q7-5 13 0m4 0q6-5 11 0m40 0q7-5 13 0m4 0q6-5 11 0"/></g><path d="M27 93q10-15 24-12m82-1q15 1 23 14" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/><path d="M81 18q10-7 20 0m-13-8 2-7" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/><path d="M13 45l-7-5m10 17-9 2m155-28 8-7" fill="none" stroke="#CE1126" stroke-width="3.7" stroke-linecap="round"/></svg></span>
+        </a>
+        <a class="level" href="#intermedio" data-level="intermedio">
+          <span class="tag">Nivel</span><span class="big">Intermedio</span>
+          <p>Ideas con más matices y ejemplos reales.</p>
+          <span class="go">Empezar</span>
+          <span class="mini" aria-hidden="true"><svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="none" stroke="#000000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 32Q48 19 87 39V112Q50 91 17 103Z"/><path d="M163 32Q126 19 87 39V112Q127 91 163 103Z"/><path d="M87 39V112"/><path d="M31 48q21-7 43 5m-43 8q21-7 43 5m-42 8q20-6 40 5"/><path d="M103 53q23-12 44-5m-44 18q22-11 44-5m-44 18q22-10 42-4"/><path d="M130 25v26l-9-7-9 7V29"/></g><path d="M19 33q30-13 56 2" fill="none" stroke="#003893" stroke-width="4.2" stroke-linecap="round"/><path d="M115 25q9-7 17-4" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/><path d="M78 118q10 5 20 0m-87-6-7 6" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/></svg></span>
+        </a>
+        <a class="level" href="#avanzado" data-level="avanzado">
+          <span class="tag">Nivel</span><span class="big">Avanzado</span>
+          <p>Refranes con contexto, tono y matices.</p>
+          <span class="go">Empezar</span>
+          <span class="mini" aria-hidden="true"><svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="none" stroke="#000000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M90 17v91m-27 0h54M62 37h56M90 17l-28 20m28-20 28 20"/><path d="M62 37 43 69h38L62 37Zm56 0-19 32h38l-19-32Z"/><path d="M43 69q19 13 38 0m18 0q19 13 38 0"/></g><path d="M78 22q12-8 24 0" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/><path d="M43 69q17 8 34 1m34-1q17 8 34 1" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/><path d="M86 108l4 7 4-7" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/></svg></span>
+        </a>
+      </div>
+      <p class="note">¿No estás seguro? Empieza por el nivel que te parezca más cómodo. Puedes volver y cambiarlo cuando quieras.</p>
+    </section>
+
+    <!-- NIVEL -->
+    <section id="level" aria-labelledby="level-title" hidden>
+      <div class="bar"><button class="back" id="back" type="button">← Cambiar de nivel</button></div>
+      <div class="lv-head">
+        <div>
+          <h2 id="level-title" tabindex="-1"></h2>
+          <p class="lv-sub" id="level-sub"></p>
+        </div>
+        <div id="level-art" aria-hidden="true"></div>
+      </div>
+      <div class="progress">
+        <div class="progress-row"><span id="prog-text">0 de 10 descubiertos</span></div>
+        <div class="track" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" aria-label="Refranes descubiertos" id="track"><div class="fill" id="fill"></div></div>
+      </div>
+      <div class="grid" id="grid"></div>
+
+      <section class="game" aria-labelledby="game-title">
+        <div class="art" aria-hidden="true"><svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="none" stroke="#000000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><rect x="57" y="29" width="66" height="68" rx="10"/><path d="M90 13v16m0 68v17M57 62H34m89 0h23M75 49h30m-30 13h30m-30 13h20"/><circle cx="90" cy="62" r="7"/><circle cx="34" cy="62" r="4"/><circle cx="146" cy="62" r="4"/></g><path d="M61 35q12-10 25-5m30 62q10 7 19 1" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/><path d="M90 13l-5 6m5-6 5 6M34 62l6-5m-6 5 6 5" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/><path d="M146 62l-6-5m6 5-6 5" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/></svg></div>
+        <p class="kicker">Ahora, a jugar</p>
+        <h2 id="game-title">¿Qué refrán es?</h2>
+        <p class="intro">Lee el significado y elige el refrán correcto. Son cinco preguntas.</p>
+        <div id="quiz" aria-live="polite"></div>
+      </section>
+
+      <section class="close" aria-labelledby="close-title">
+        <div>
+          <h2 id="close-title">¿Te gustaría usar estos refranes hablando?</h2>
+          <p>Practicar con otras personas es la mejor manera de que las frases te salgan solas.</p>
+          <a class="cta" href="https://skool.hablaespanol.club/" target="_top" rel="noopener">Prueba una clase gratis.</a>
+        </div>
+        <div aria-hidden="true"><svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="none" stroke="#000000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M91 82Q87 65 91 48"/><path d="M91 70Q72 55 66 68 66 82 91 82"/><path d="M92 62Q109 43 119 56 124 70 93 76"/><path d="M90 48Q77 37 83 25 90 16 99 27 108 17 116 27 123 39 105 49"/><path d="M90 82Q66 83 51 93L34 104Q25 111 33 118H83Q99 117 108 107"/><path d="M47 95q8 7 17 6m-22 6q10 7 22 4m31-22q11 9 23 7"/><path d="M91 82q5 13 19 17"/></g><path d="M84 26q6-10 15-3m5-1q9-5 13 4" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/><path d="M90 49q4-10 12-11" fill="none" stroke="#FCD116" stroke-width="4.2" stroke-linecap="round"/><path d="M31 87l-8-5m13-7-2-8m93 12 8-4" fill="none" stroke="#003893" stroke-width="3.7" stroke-linecap="round"/></svg></div>
+      </section>
+      <p class="more">Para seguir explorando: <a href="https://cvc.cervantes.es/lengua/refranero/" target="_blank" rel="noopener">Refranero multilingüe del Centro Virtual Cervantes</a>.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <a href="https://hablaespanol.club/" target="_top">hablaespanol.club</a>
+      <a href="https://www.instagram.com/hablaespanolclub/" target="_top">@hablaespanolclub</a>
+    </div>
+  </footer>
+
+<script>
+(function(){
+  "use strict";
+  var DOODLES={a1:`<svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="none" stroke="#000000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M38 99L117 21Q123 15 130 22L140 32Q146 39 139 46L60 124 35 128Z"/><path d="M38 99l22 25m57-103 24 25"/><path d="M35 128l5-22 17 17Z"/><path d="M82 21l7-14 7 14 15 6-15 7-7 15-7-15-14-7Z"/><path d="M139 78l6-12 6 12 12 6-12 5-6 12-6-12-12-5Z"/></g><path d="M116 24l20 20" fill="none" stroke="#CE1126" stroke-width="4.2" stroke-linecap="round"/><path d="M80 21l8-13m7 23 12-5" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/><path d="M27 72l-10-4m13 17-12 3" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/></svg>`,a2:`<svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="none" stroke="#000000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 114Q23 86 43 80 60 74 73 87L82 114"/><path d="M107 114Q110 84 131 79 151 76 165 96L170 114"/><path d="M57 112Q61 79 89 73 117 77 122 112"/><path d="M35 58Q33 36 51 29 70 26 76 45 81 66 62 76 43 77 35 58Z"/><path d="M104 53Q105 33 122 29 142 29 147 49 148 68 129 75 109 72 104 53Z"/><path d="M70 49Q70 24 91 21 111 24 111 48 108 68 91 70 73 66 70 49Z"/><path d="M44 51q7-5 13 0m4 0q6-5 11 0m40 0q7-5 13 0m4 0q6-5 11 0"/></g><path d="M27 93q10-15 24-12m82-1q15 1 23 14" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/><path d="M81 18q10-7 20 0m-13-8 2-7" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/><path d="M13 45l-7-5m10 17-9 2m155-28 8-7" fill="none" stroke="#CE1126" stroke-width="3.7" stroke-linecap="round"/></svg>`,intermedio:`<svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="none" stroke="#000000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 32Q48 19 87 39V112Q50 91 17 103Z"/><path d="M163 32Q126 19 87 39V112Q127 91 163 103Z"/><path d="M87 39V112"/><path d="M31 48q21-7 43 5m-43 8q21-7 43 5m-42 8q20-6 40 5"/><path d="M103 53q23-12 44-5m-44 18q22-11 44-5m-44 18q22-10 42-4"/><path d="M130 25v26l-9-7-9 7V29"/></g><path d="M19 33q30-13 56 2" fill="none" stroke="#003893" stroke-width="4.2" stroke-linecap="round"/><path d="M115 25q9-7 17-4" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/><path d="M78 118q10 5 20 0m-87-6-7 6" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/></svg>`,avanzado:`<svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="none" stroke="#000000" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M90 17v91m-27 0h54M62 37h56M90 17l-28 20m28-20 28 20"/><path d="M62 37 43 69h38L62 37Zm56 0-19 32h38l-19-32Z"/><path d="M43 69q19 13 38 0m18 0q19 13 38 0"/></g><path d="M78 22q12-8 24 0" fill="none" stroke="#003893" stroke-width="4" stroke-linecap="round"/><path d="M43 69q17 8 34 1m34-1q17 8 34 1" fill="none" stroke="#FCD116" stroke-width="4" stroke-linecap="round"/><path d="M86 108l4 7 4-7" fill="none" stroke="#CE1126" stroke-width="4" stroke-linecap="round"/></svg>`};
+
+  var LEVELS={
+    a1:{name:"A1",title:"Nivel A1",sub:"Frases cortas y palabras sencillas. Toca un refrán para descubrirlo.",items:[
+      {r:"Más vale tarde que nunca.",s:"Es mejor hacer algo tarde que no hacerlo.",c:"Cuando alguien llega tarde o empieza algo después de lo planeado.",e:"Hoy empiezo a estudiar español. Más vale tarde que nunca."},
+      {r:"Poco a poco se va lejos.",s:"Con pasos pequeños también llegas muy lejos.",c:"Cuando aprendes algo despacio y quieres seguir.",e:"Estudio diez minutos cada día. Poco a poco se va lejos."},
+      {r:"La práctica hace al maestro.",s:"Si practicas mucho, mejoras.",c:"Cuando quieres animar a alguien que está aprendiendo.",e:"Hablo español cada semana. La práctica hace al maestro."},
+      {r:"Más vale solo que mal acompañado.",s:"Es mejor estar solo que con personas que no te hacen bien.",c:"Cuando prefieres no ir con alguien que te cae mal.",e:"No voy a la fiesta con ellos. Más vale solo que mal acompañado."},
+      {r:"Al mal tiempo, buena cara.",s:"Cuando hay un problema, mantén una actitud positiva.",c:"Cuando algo sale mal, pero tú sigues con buen ánimo.",e:"Perdí el bus, pero camino y escucho música. Al mal tiempo, buena cara."},
+      {r:"Ojos que no ven, corazón que no siente.",s:"Si no sabes una cosa mala, no sufres por ella.",c:"Cuando prefieres no saber algo que te puede molestar.",e:"No quiero ver cuánto costó la cuenta. Ojos que no ven, corazón que no siente."},
+      {r:"En boca cerrada no entran moscas.",s:"A veces es mejor callar que decir algo que no debes.",c:"Cuando es mejor no hablar de un tema.",e:"Mi amigo me preguntó por la reunión, pero no dije nada. En boca cerrada no entran moscas."},
+      {r:"No hay mal que por bien no venga.",s:"Algo malo puede traer algo bueno.",c:"Cuando un problema termina siendo una buena noticia.",e:"Perdí mi trabajo, pero ahora tengo uno mejor. No hay mal que por bien no venga."},
+      {r:"Lo barato sale caro.",s:"Si compras algo muy barato, puede ser de mala calidad y al final pagas más.",c:"Cuando compras algo barato y no dura.",e:"Compré zapatos baratos y se rompieron en un mes. Lo barato sale caro."},
+      {r:"A buen hambre no hay pan duro.",s:"Cuando necesitas algo mucho, no eres exigente.",c:"Cuando estás muy cansado, con mucha hambre o con mucha necesidad.",e:"Estoy tan cansado que duermo en cualquier cama. A buen hambre no hay pan duro."}
+    ]},
+    a2:{name:"A2",title:"Nivel A2",sub:"Situaciones de todos los días. Toca un refrán para descubrirlo.",items:[
+      {r:"A caballo regalado no se le miran los dientes.",s:"Si te dan algo gratis, no lo critiques.",c:"Cuando alguien se queja de un regalo o de algo que no costó dinero.",e:"El sofá es viejo, pero es gratis. A caballo regalado no se le miran los dientes.",n:"Antes, para saber la edad de un caballo, la gente le miraba los dientes."},
+      {r:"Camarón que se duerme se lo lleva la corriente.",s:"Si no estás atento o no actúas a tiempo, pierdes la oportunidad.",c:"Cuando hay que decidir rápido.",e:"Las entradas se acaban hoy. ¡Compra ya! Camarón que se duerme se lo lleva la corriente."},
+      {r:"Perro que ladra no muerde.",s:"Las personas que gritan o amenazan mucho normalmente no hacen nada.",c:"Cuando alguien parece muy enojado, pero no es peligroso.",e:"Mi jefe grita mucho, pero nunca despide a nadie. Perro que ladra no muerde."},
+      {r:"Cada loco con su tema.",s:"Cada persona tiene sus propias manías o gustos, y hay que respetarlos.",c:"Cuando alguien tiene un interés raro y tú lo aceptas con humor.",e:"Mi hermano colecciona tapas de botellas. Bueno, cada loco con su tema.",n:"Es informal y se dice con humor, entre personas de confianza."},
+      {r:"Dime con quién andas y te diré quién eres.",s:"Las personas con las que pasas tiempo muestran cómo eres.",c:"Cuando hablas de las amistades de alguien.",e:"Tu nuevo amigo siempre llega tarde. Dime con quién andas y te diré quién eres."},
+      {r:"Después de la tormenta viene la calma.",s:"Después de un momento difícil, llegan tiempos tranquilos.",c:"Cuando termina una época complicada.",e:"Terminamos la mudanza y por fin podemos descansar. Después de la tormenta viene la calma."},
+      {r:"No dejes para mañana lo que puedas hacer hoy.",s:"Si puedes hacer algo hoy, hazlo hoy y no lo dejes para después.",c:"Cuando alguien aplaza una tarea.",e:"Voy a pagar la factura ahora mismo. No dejes para mañana lo que puedas hacer hoy."},
+      {r:"Cuando el río suena, agua lleva.",s:"Si mucha gente habla de algo, normalmente hay algo de verdad.",c:"Cuando hay rumores y piensas que pueden ser ciertos.",e:"Todos dicen que la oficina va a cambiar de sede. Cuando el río suena, agua lleva."},
+      {r:"Al que madruga, Dios le ayuda.",s:"Levantarse temprano ayuda a conseguir buenos resultados.",c:"Cuando alguien se levanta temprano para hacer algo importante.",e:"Llegué a las seis y encontré los mejores precios. Al que madruga, Dios le ayuda.",n:"Madrugar es levantarse muy temprano."},
+      {r:"Quien ríe último, ríe mejor.",s:"No celebres demasiado pronto: el final todavía puede cambiar.",c:"Cuando alguien presume antes de que termine una competencia.",e:"Hoy ganas tú, pero la final es el sábado. Quien ríe último, ríe mejor."}
+    ]},
+    intermedio:{name:"Intermedio",title:"Nivel intermedio",sub:"Ideas con más matices y ejemplos reales. Toca un refrán para descubrirlo.",items:[
+      {r:"Del dicho al hecho hay mucho trecho.",s:"Es mucho más fácil decir o prometer algo que hacerlo de verdad.",c:"Cuando alguien promete mucho y tú dudas de que lo cumpla.",e:"Dice que va a correr una maratón, pero no ha salido a trotar ni una vez. Del dicho al hecho hay mucho trecho.",n:"Un trecho es una distancia."},
+      {r:"No todo lo que brilla es oro.",s:"Las apariencias engañan: algo que se ve muy bien no siempre es bueno.",c:"Cuando una oferta, una persona o un plan parece perfecto, pero tienes dudas.",e:"El apartamento era precioso, pero tenía humedad en todas las paredes. No todo lo que brilla es oro."},
+      {r:"Cría cuervos y te sacarán los ojos.",s:"A veces ayudas mucho a alguien y esa persona te responde con ingratitud.",c:"Cuando te sientes decepcionado por alguien a quien ayudaste.",e:"Le pagué los estudios a mi sobrino y ahora ni me llama. Cría cuervos y te sacarán los ojos.",n:"Suena amargo. Se usa con enojo o tristeza."},
+      {r:"Más vale prevenir que curar.",s:"Es mejor evitar un problema que arreglarlo después.",c:"Cuando recomiendas tomar precauciones.",e:"Haz copia de tus archivos hoy. Más vale prevenir que curar."},
+      {r:"Más sabe el diablo por viejo que por diablo.",s:"La experiencia enseña más que la inteligencia.",c:"Cuando reconoces la sabiduría de una persona mayor o con mucha experiencia.",e:"Mi abuela supo que la empresa tenía problemas antes que todos. Más sabe el diablo por viejo que por diablo."},
+      {r:"Genio y figura, hasta la sepultura.",s:"El carácter de una persona casi nunca cambia.",c:"Cuando alguien sigue siendo igual que siempre, aunque pase el tiempo.",e:"A los ochenta años sigue siendo igual de terco. Genio y figura, hasta la sepultura.",n:"La sepultura es la tumba."},
+      {r:"Quien mucho abarca, poco aprieta.",s:"Si intentas hacer demasiadas cosas a la vez, no haces bien ninguna.",c:"Cuando alguien acepta más trabajo del que puede manejar.",e:"Tienes tres proyectos, dos cursos y una mudanza. Quien mucho abarca, poco aprieta."},
+      {r:"En casa del herrero, cuchillo de palo.",s:"A veces quien trabaja en algo para otros no lo aplica en su propia casa.",c:"Cuando un experto descuida justo lo que mejor conoce.",e:"Es electricista y en su baño no funciona la luz. En casa del herrero, cuchillo de palo.",n:"Un herrero hace cuchillos de metal; aquí el suyo es de madera."},
+      {r:"Al que no quiere caldo, tres tazas.",s:"Lo que no quieres suele llegar en exceso.",c:"Cuando alguien recibe mucho de lo que quería evitar. Casi siempre se dice con ironía.",e:"No quería hablar del tema y ahora me llama toda la familia. Al que no quiere caldo, tres tazas.",n:"También se oye con otras cantidades: «dos tazas»."},
+      {r:"No hay peor sordo que el que no quiere oír.",s:"Quien no quiere aceptar un consejo no lo escucha, aunque se lo repitas.",c:"Cuando alguien ignora lo que le dices a propósito.",e:"Le expliqué el problema cinco veces. No hay peor sordo que el que no quiere oír."}
+    ]},
+    avanzado:{name:"Avanzado",title:"Nivel avanzado",sub:"Refranes con contexto, tono y matices. Toca un refrán para descubrirlo.",items:[
+      {r:"A lo hecho, pecho.",s:"Hay que aceptar las consecuencias de lo que ya pasó.",c:"Cuando ya no se puede cambiar una decisión y toca asumirla.",e:"Firmé el contrato sin leerlo bien, pero a lo hecho, pecho.",n:"Suena firme y resignado. Normalmente no se usa para consolar."},
+      {r:"Donde fueres, haz lo que vieres.",s:"Adáptate a las costumbres del lugar donde estás.",c:"Cuando viajas o llegas a un grupo con otras normas.",e:"En esa casa se come muy temprano; donde fueres, haz lo que vieres.",n:"«Fueres» y «vieres» son formas antiguas del futuro de subjuntivo, que casi solo sobreviven en refranes."},
+      {r:"A palabras necias, oídos sordos.",s:"Es mejor ignorar las críticas o provocaciones tontas.",c:"Cuando decides no responder a un comentario absurdo.",e:"Siguió insultándome en la reunión y no contesté: a palabras necias, oídos sordos.",n:"«Necio» significa tonto o terco. Es una forma elegante de decir que no vas a entrar en la discusión."},
+      {r:"El hábito no hace al monje.",s:"La ropa o el cargo no demuestran cómo es una persona de verdad.",c:"Cuando dudas de alguien que parece importante solo por su apariencia.",e:"Llegó con traje y mucha seguridad, pero no sabía nada del tema. El hábito no hace al monje.",n:"El hábito es la túnica que usan los monjes."},
+      {r:"Una golondrina no hace verano.",s:"Un solo caso no demuestra una regla general.",c:"Cuando alguien saca una conclusión con una sola prueba.",e:"Que un cliente haya quedado contento no significa que el producto sea perfecto. Una golondrina no hace verano.",n:"Muy útil en discusiones para frenar generalizaciones."},
+      {r:"Quien siembra vientos, recoge tempestades.",s:"Quien provoca problemas termina sufriendo consecuencias aún mayores.",c:"Cuando alguien empieza un conflicto y después lo paga caro.",e:"Estuvo difundiendo rumores y ahora nadie confía en él. Quien siembra vientos, recoge tempestades.",n:"Tiene un tono de advertencia o de reproche."},
+      {r:"Hecha la ley, hecha la trampa.",s:"Cuando aparece una norma, alguien encuentra la forma de evitarla.",c:"Cuando comentas con ironía que la gente siempre busca atajos.",e:"Prohibieron las bolsas de plástico y ahora venden bolsas «reutilizables» que se usan una vez. Hecha la ley, hecha la trampa.",n:"Suele decirse con una mezcla de cinismo y realismo."},
+      {r:"Lo cortés no quita lo valiente.",s:"Puedes ser educado y firme al mismo tiempo.",c:"Cuando defiendes tu posición sin perder la amabilidad.",e:"Le dije que no con respeto, pero sin cambiar de opinión. Lo cortés no quita lo valiente.",n:"Sirve para justificar la cortesía en medio de un desacuerdo."},
+      {r:"A río revuelto, ganancia de pescadores.",s:"En medio del desorden, algunas personas obtienen beneficios.",c:"Cuando hay una crisis y alguien aprovecha la confusión.",e:"Con tanta confusión por el cambio de sistema, algunos intermediarios subieron los precios. A río revuelto, ganancia de pescadores.",n:"Casi siempre es una crítica."},
+      {r:"Zapatero, a tus zapatos.",s:"Cada uno debe opinar sobre lo que conoce y no meterse en lo demás.",c:"Cuando alguien da órdenes o consejos sobre algo que no es su especialidad.",e:"Es abogado y ahora quiere explicarle al médico cómo operar. Zapatero, a tus zapatos.",n:"Puede sonar brusco; mejor úsalo con confianza o con humor."}
+    ]}
+  };
+
+  var $=function(s){return document.querySelector(s)};
+  var home=$("#home"),level=$("#level"),grid=$("#grid");
+  var cur=null,seen={},quizState=null;
+
+  function esc(t){var d=document.createElement("div");d.textContent=t;return d.innerHTML}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+
+  function speak(text){
+    if(!("speechSynthesis" in window))return;
+    try{var u=new SpeechSynthesisUtterance(text);u.lang="es-CO";u.rate=.9;window.speechSynthesis.cancel();window.speechSynthesis.speak(u)}catch(e){}
+  }
+
+  function route(){
+    var key=(location.hash||"").replace("#","");
+    if(LEVELS[key]){showLevel(key)}else{showHome()}
+  }
+
+  function showHome(){
+    cur=null;level.hidden=true;home.hidden=false;
+    document.title="Tus 10 refranes · Habla Español Club";
+    window.scrollTo(0,0);
+    var h=$("#home-title");if(h)h.focus({preventScroll:true});
+  }
+
+  function showLevel(key){
+    cur=key;seen={};
+    var L=LEVELS[key];
+    home.hidden=true;level.hidden=false;
+    document.title=L.title+" · 10 refranes · Habla Español Club";
+    $("#level-title").innerHTML=esc(L.title)+" · <span>10 refranes</span>";
+    $("#level-sub").textContent=L.sub;
+    $("#level-art").innerHTML=DOODLES[key];
+    buildCards(L);updateProgress();startQuiz();
+    window.scrollTo(0,0);
+    $("#level-title").focus({preventScroll:true});
+  }
+
+  function buildCards(L){
+    grid.innerHTML="";
+    L.items.forEach(function(it,i){
+      var card=document.createElement("article");card.className="rcard";
+      var head=document.createElement("button");head.type="button";head.className="rhead";head.setAttribute("aria-expanded","false");
+      head.innerHTML='<span class="num" aria-hidden="true">'+(i+1)+'</span><span><span class="rtext">'+esc(it.r)+'</span><span class="rhint">Toca para descubrir</span></span>';
+      var body=document.createElement("div");body.className="rbody";body.hidden=true;
+      var html='<div><h3>Significa</h3><p>'+esc(it.s)+'</p></div><div><h3>Se dice cuando</h3><p>'+esc(it.c)+'</p></div><div class="ex"><h3>Ejemplo</h3><p>'+esc(it.e)+'</p></div>';
+      if(it.n)html+='<div><h3>Para fijarte</h3><p>'+esc(it.n)+'</p></div>';
+      body.innerHTML=html;
+      if("speechSynthesis" in window){
+        var b=document.createElement("button");b.type="button";b.className="listen";b.textContent="Escuchar";
+        b.addEventListener("click",function(){speak(it.r+" "+it.e)});
+        body.appendChild(b);
+      }
+      head.addEventListener("click",function(){
+        var open=head.getAttribute("aria-expanded")==="true";
+        head.setAttribute("aria-expanded",open?"false":"true");
+        body.hidden=open;card.classList.toggle("open",!open);
+        head.querySelector(".rhint").textContent=open?"Toca para descubrir":"Toca para cerrar";
+        if(!open){card.classList.add("seen");seen[i]=true;updateProgress()}
+      });
+      card.appendChild(head);card.appendChild(body);grid.appendChild(card);
+    });
+  }
+
+  function updateProgress(){
+    var n=Object.keys(seen).length;
+    $("#prog-text").textContent=n===10?"¡Descubriste los 10 refranes!":n+" de 10 descubiertos";
+    $("#fill").style.width=(n*10)+"%";
+    $("#track").setAttribute("aria-valuenow",n);
+  }
+
+  /* juego */
+  function startQuiz(){
+    var L=LEVELS[cur];
+    var order=shuffle(L.items.map(function(_,i){return i})).slice(0,5);
+    quizState={order:order,pos:0,score:0};
+    renderQ();
+  }
+
+  function renderQ(){
+    var L=LEVELS[cur],box=$("#quiz"),st=quizState;
+    if(st.pos>=st.order.length){
+      var msg=st.score===5?"¡Perfecto! Te sabes los refranes.":st.score>=3?"¡Muy bien! Ya los dominas casi todos.":"Buen comienzo. Repasa las tarjetas y vuelve a intentarlo.";
+      box.innerHTML='<div class="q"><p class="q-count">Resultado</p><p class="score">'+st.score+' de 5</p><p class="q-text">'+msg+'</p><button type="button" class="btn" id="again">Jugar otra vez</button></div>';
+      $("#again").addEventListener("click",startQuiz);return;
+    }
+    var idx=st.order[st.pos],it=L.items[idx];
+    var others=shuffle(L.items.map(function(_,i){return i}).filter(function(i){return i!==idx})).slice(0,2);
+    var opts=shuffle([idx].concat(others));
+    var h='<div class="q"><p class="q-count">Pregunta '+(st.pos+1)+' de 5</p><p class="q-text">Significa: «'+esc(it.s.replace(/\.$/,""))+'».</p><div class="opts" role="group" aria-label="Opciones">';
+    opts.forEach(function(o){h+='<button type="button" class="opt" data-i="'+o+'">'+esc(L.items[o].r)+'</button>'});
+    h+='</div><p class="fb" id="fb"></p><div id="nextwrap"></div></div>';
+    box.innerHTML=h;
+    box.querySelectorAll(".opt").forEach(function(b){
+      b.addEventListener("click",function(){
+        var chosen=+b.getAttribute("data-i"),ok=chosen===idx;
+        box.querySelectorAll(".opt").forEach(function(x){
+          x.disabled=true;
+          if(+x.getAttribute("data-i")===idx)x.classList.add("ok");
+        });
+        if(!ok)b.classList.add("no");
+        if(ok)st.score++;
+        $("#fb").textContent=ok?"¡Correcto! "+it.e:"Casi. La respuesta es «"+it.r.replace(/\.$/,"")+"». "+it.e;
+        var nb=document.createElement("button");nb.type="button";nb.className="btn";nb.textContent=st.pos===4?"Ver resultado":"Siguiente";
+        nb.addEventListener("click",function(){st.pos++;renderQ();$("#quiz").scrollIntoView({block:"nearest",behavior:"smooth"})});
+        $("#nextwrap").appendChild(nb);nb.focus({preventScroll:true});
+      });
+    });
+  }
+
+  $("#back").addEventListener("click",function(){location.hash="";showHome()});
+  window.addEventListener("hashchange",route);
+  document.querySelectorAll(".level").forEach(function(a){
+    a.addEventListener("click",function(e){e.preventDefault();var k=a.getAttribute("data-level");if(location.hash==="#"+k){showLevel(k)}else{location.hash=k}});
+  });
+  route();
+})();
+</script>
+</body>
+</html>
