@@ -1,161 +1,70 @@
 <!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#FFFFFF">
-<meta name="description" content="Clase 67 B1-C1: La radio y los pódcast: voces que nos acercan al mundo. Habla Español Club.">
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff">
 <title>Tema 067 · La radio y los pódcast | Habla Español Club</title>
-<link rel="preload" href="/MARCA/fuentes/LeagueSpartan-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="preload" href="/MARCA/fuentes/GochiHand-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="/MARCA/fuentes/LeagueSpartan-VariableFont_wght.ttf" as="font" crossorigin><link rel="preload" href="/MARCA/fuentes/GochiHand-Regular.ttf" as="font" crossorigin>
 <style>
 @font-face{font-family:League;src:url('/MARCA/fuentes/LeagueSpartan-VariableFont_wght.ttf')}@font-face{font-family:Gochi;src:url('/MARCA/fuentes/GochiHand-Regular.ttf')}
-:root{--blue:#003893;--yellow:#FCD116;--red:#CE1126;--black:#000;--white:#fff;--font:League,Arial,sans-serif;--hand:Gochi,cursive}
-*{box-sizing:border-box}html,body{margin:0;background:#fff;color:#000;font-family:var(--font);height:100%;overflow:hidden}
-button,textarea{font:inherit}button{cursor:pointer}a{color:var(--blue);text-underline-offset:3px}
-.deck{height:100dvh;display:flex;flex-direction:column;background:#fff}
-.top{height:58px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid #e9edf3;gap:12px}
-.brand{display:flex;align-items:center;gap:12px;color:var(--blue);font-size:14px;font-weight:600}.brand img{width:42px;height:42px;object-fit:contain}.brand span{font-family:var(--hand);font-size:17px;font-weight:400}
-.top-right{display:flex;align-items:center;gap:10px;color:var(--blue);font-size:13px}
-.nav{display:flex;gap:5px;overflow-x:auto;padding:8px 18px;flex:none;scrollbar-width:thin}
-.nav button{border:0;background:#fff;color:var(--blue);border-radius:20px;padding:7px 11px;font-size:12px;font-weight:600;white-space:nowrap}
-.nav button[aria-current=true]{background:var(--yellow);color:#000}
-.progress{height:3px;background:#edf1f6;flex:none}.bar{height:100%;background:var(--red);width:0;transition:width .2s}
-.stage{flex:1;min-height:0;display:grid;place-items:center;padding:12px 22px 18px}
-.slide{display:none;width:min(calc((100dvh - 120px)*16/9),calc(100vw - 44px));height:min(calc(100dvh - 120px),calc((100vw - 44px)*9/16));aspect-ratio:16/9;background:#fff;position:relative;overflow:hidden;padding:clamp(24px,4vw,62px);border:1px solid #f0f1f4}
-.slide.active{display:flex;flex-direction:column;justify-content:center;animation:fade .18s ease}
-@keyframes fade{from{opacity:.4;transform:translateY(3px)}to{opacity:1;transform:none}}
-.kicker{font:20px var(--hand);color:var(--blue);margin:0 0 12px}
-h1,h2,h3,p{margin-top:0}h1{font-size:clamp(34px,5.4vw,70px);line-height:.98;letter-spacing:-.035em;color:var(--blue);max-width:880px;margin-bottom:18px}
-h2{font-size:clamp(28px,3.6vw,48px);line-height:1.02;letter-spacing:-.025em;color:var(--blue);margin-bottom:18px}
-h3{font-size:clamp(18px,1.8vw,24px);color:var(--blue);margin-bottom:8px}
-p,li{font-size:clamp(15px,1.45vw,20px);line-height:1.35}
-.lead{font-size:clamp(18px,2vw,26px);max-width:860px;line-height:1.25}
-.small{font-size:clamp(12px,1vw,15px);line-height:1.35;color:#555}
-.blue{color:var(--blue)}.redline{text-decoration:underline wavy var(--red);text-underline-offset:8px}.hand{font-family:var(--hand);font-size:1.25em;color:var(--blue)}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,3vw,40px);align-items:center}
-.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.panel{padding:16px 18px;border-left:3px solid var(--yellow);background:#fff;box-shadow:0 2px 14px rgba(0,56,147,.06)}
-.panel p:last-child{margin-bottom:0}.tag{display:inline-block;color:var(--blue);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
-.phrases{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.phrase{border-bottom:2px solid var(--yellow);padding:9px 2px;font-size:clamp(16px,1.6vw,22px);font-weight:600}
-.doodle{position:absolute;right:34px;top:30px;width:94px;height:94px;opacity:.95}
-.doodle path,.doodle line,.doodle circle,.doodle polyline{fill:none;stroke:#000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.doodle .y{fill:var(--yellow);stroke:none}.doodle .r{fill:var(--red);stroke:none}.doodle .b{fill:var(--blue);stroke:none}
-.video{width:100%;aspect-ratio:16/9;border:0;background:#fff}
-.video-wrap{max-width:520px;justify-self:center;width:100%}
-.video-wrap iframe{width:100%;aspect-ratio:16/9;border:0}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.btn{border:0;border-radius:30px;padding:10px 17px;background:var(--yellow);color:#000;font-weight:700;font-size:14px}
-.btn.secondary{background:#eef3fb;color:var(--blue)}.btn:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid var(--red);outline-offset:3px}
-.prompt{padding:13px 16px;border-left:3px solid var(--red);margin:10px 0;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.04)}
-.option{border:1px solid #dfe6f0;border-radius:14px;padding:12px;background:#fff;text-align:left;font-size:15px}
-.option[aria-pressed=true]{border-color:var(--blue);background:#fff9d8}
-.result{min-height:30px;margin-top:12px;color:var(--blue);font-weight:600;font-size:15px}
-.story{font-size:clamp(14px,1.35vw,18px);line-height:1.42;max-width:980px}
-textarea{width:100%;min-height:110px;border:1px solid #cdd6e3;border-radius:14px;padding:12px;resize:vertical;font-size:16px}
-.footer{position:absolute;bottom:14px;left:clamp(24px,4vw,62px);right:clamp(24px,4vw,62px);display:flex;justify-content:space-between;color:var(--blue);font-size:11px;letter-spacing:.04em}
-.controls{height:54px;flex:none;display:flex;align-items:center;justify-content:center;gap:16px}
-.controls button{border:0;border-radius:25px;padding:9px 18px;background:#eef3fb;color:var(--blue);font-weight:700}
-.controls button.primary{background:var(--yellow);color:#000}
-.counter{font-size:13px;color:#555;min-width:54px;text-align:center}
-@media(max-width:760px){.top{padding:0 12px;height:48px}.brand img{width:32px;height:32px}.brand{font-size:11px}.brand span{display:none}.nav{padding:6px 8px}.nav button{padding:6px 9px}.stage{padding:6px}.slide{width:calc(100vw - 12px);height:calc((100vw - 12px)*9/16);padding:14px 16px}.kicker{font-size:14px;margin-bottom:6px}h1{font-size:clamp(22px,5.2vw,38px);margin-bottom:8px}h2{font-size:clamp(20px,4.4vw,32px);margin-bottom:8px}h3{font-size:15px}p,li{font-size:clamp(10px,1.9vw,14px);line-height:1.25}.lead{font-size:clamp(13px,2.6vw,18px)}.small{font-size:9px}.panel{padding:8px 10px}.phrase{font-size:clamp(10px,2vw,15px);padding:5px}.doodle{width:48px;height:48px;right:10px;top:10px}.footer{bottom:6px;font-size:8px;left:16px;right:16px}.video-wrap{max-width:44%}.video-wrap iframe{aspect-ratio:9/16}.two{gap:10px}.three{gap:7px}.actions{margin-top:6px}.btn{padding:6px 10px;font-size:10px}.option{padding:7px;font-size:10px}.story{font-size:clamp(10px,1.8vw,13px)}textarea{min-height:54px;font-size:11px}.controls{height:42px}.controls button{padding:7px 13px;font-size:11px}}
-@media(max-width:520px){.top-right .label{display:none}.slide{padding:11px 12px}.two{grid-template-columns:1fr 1fr}.three{grid-template-columns:repeat(3,1fr)}}
-</style>
-</head>
-<body>
-<div class="deck">
-<header class="top"><div class="brand"><img src="/MARCA/logotipo-original.png" alt="Habla Español Club"><div>HABLA ESPAÑOL CLUB<br><span>UNIDOS POR EL ESPAÑOL</span></div></div><div class="top-right"><span class="label">CULTURA Y MUNDO · B1–C1</span><span id="screenNo">00 / 09</span></div></header>
-<nav class="nav" id="nav" aria-label="Navegación de la clase"></nav><div class="progress"><div class="bar" id="bar"></div></div>
+:root{--b:#003893;--y:#FCD116;--r:#CE1126;--ink:#080808;--muted:#626262}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#fff;color:var(--ink);font-family:League,Arial,sans-serif}
+.app{height:100dvh;display:flex;flex-direction:column}.head{height:54px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 22px;border-bottom:1px solid #e8edf3;color:var(--b)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px}.brand img{width:38px;height:38px;object-fit:contain}.brand em{display:block;font:16px Gochi,cursive;font-style:normal}
+.meta{font-size:13px}.nav{height:42px;flex:none;display:flex;align-items:center;gap:5px;padding:0 16px;overflow-x:auto;scrollbar-width:thin;border-bottom:1px solid #edf0f4}
+.nav button{flex:none;border:0;background:white;color:var(--b);border-radius:50%;width:29px;height:29px;font-weight:700}.nav button.active{background:var(--y);color:#000}.nav .first{width:auto;border-radius:18px;padding:0 10px}
+.track{height:3px;background:#edf0f4;flex:none}.fill{height:100%;background:var(--r);width:0;transition:width .15s}
+.stage{flex:1;min-height:0;display:grid;place-items:center;padding:8px 12px}
+.slide{display:none;position:relative;width:min(calc(100vw - 24px),calc((100dvh - 155px)*16/9));height:min(calc(100dvh - 155px),calc((100vw - 24px)*9/16));aspect-ratio:16/9;padding:clamp(25px,3.5vw,56px);background:#fff;border:1px solid #edf0f4;overflow:hidden}
+.slide.active{display:flex;flex-direction:column;justify-content:center}
+.kicker{font:clamp(15px,1.45vw,20px) Gochi,cursive;color:var(--b);margin:0 0 10px}
+h1{font-size:clamp(34px,5vw,68px);line-height:.98;color:var(--b);letter-spacing:-.03em;margin:0 0 16px;max-width:1000px}
+h2{font-size:clamp(29px,3.7vw,50px);line-height:1.02;color:var(--b);letter-spacing:-.025em;margin:0 0 16px}
+h3{font-size:clamp(19px,2vw,26px);color:var(--b);margin:0 0 9px}
+p,li{font-size:clamp(16px,1.55vw,21px);line-height:1.32;margin:0 0 12px}
+.lead{font-size:clamp(19px,2vw,27px);line-height:1.25;max-width:900px}
+.small{font-size:clamp(12px,1vw,15px);color:var(--muted);line-height:1.3}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,44px);align-items:center}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{padding:16px 18px;border-left:4px solid var(--y);box-shadow:0 2px 13px #00389310}
+.card p:last-child{margin-bottom:0}.tag{font-size:12px;font-weight:700;color:var(--b);letter-spacing:.06em;text-transform:uppercase;margin-bottom:7px}
+.phrases{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;margin-top:14px}.phrase{border-bottom:2px solid var(--y);padding:8px 0;font-size:clamp(17px,1.7vw,23px);font-weight:650;color:var(--b)}
+.prompt{padding:12px 15px;border-left:3px solid var(--r);margin:8px 0;background:#fafbfd}
+.video iframe{width:100%;aspect-ratio:16/9;border:0;display:block}.video{max-width:520px;width:100%}
+.btn{border:0;border-radius:22px;padding:9px 15px;background:var(--y);font-weight:700;color:#000;cursor:pointer}.choice{border:1px solid #dbe2ec;border-radius:12px;background:#fff;padding:13px;text-align:left;font:inherit;font-size:15px;cursor:pointer}.choice[aria-pressed=true]{background:#fff9d9;border-color:var(--b)}
+textarea{width:100%;height:95px;border:1px solid #cdd6e3;border-radius:10px;padding:10px;font:16px League,Arial}
+.footer{position:absolute;bottom:12px;left:clamp(25px,3.5vw,56px);right:clamp(25px,3.5vw,56px);display:flex;justify-content:space-between;color:var(--b);font-size:11px;letter-spacing:.04em}
+.controls{height:48px;flex:none;display:flex;align-items:center;justify-content:center;gap:14px}.controls button{border:0;border-radius:22px;padding:8px 16px;background:#edf2f9;color:var(--b);font-weight:700;cursor:pointer}.controls .next{background:var(--y);color:#000}.controls button:disabled{opacity:.35}.count{min-width:65px;text-align:center;font-size:13px;color:#555}
+@media(max-width:700px){.head{height:42px;padding:0 10px}.brand{font-size:11px}.brand img{width:30px;height:30px}.brand em{font-size:12px}.meta{font-size:10px}.nav{height:35px;padding:0 6px}.nav button{width:25px;height:25px}.stage{padding:4px}.slide{width:calc(100vw - 8px);height:calc((100vw - 8px)*9/16);padding:clamp(12px,2.3vw,20px)}.kicker{font-size:clamp(11px,2vw,15px);margin-bottom:5px}h1{font-size:clamp(22px,5vw,36px);margin-bottom:7px}h2{font-size:clamp(20px,4.4vw,31px);margin-bottom:8px}h3{font-size:clamp(13px,2.5vw,17px)}p,li{font-size:clamp(10px,2vw,14px);line-height:1.23;margin-bottom:6px}.lead{font-size:clamp(13px,2.6vw,18px)}.small{font-size:9px}.card{padding:8px 10px}.phrases{gap:4px 10px;margin-top:5px}.phrase{font-size:clamp(10px,2.2vw,15px);padding:4px 0}.grid2{gap:10px}.grid3{gap:7px}.prompt{padding:6px 8px;margin:4px 0}.video{max-width:45%}.video iframe{aspect-ratio:9/16}.choice{font-size:10px;padding:7px}.footer{bottom:5px;font-size:8px;left:12px;right:12px}.controls{height:38px}.controls button{padding:6px 11px;font-size:10px}textarea{height:52px;font-size:11px}}
+</style></head><body><div class="app">
+<header class="head"><div class="brand"><img src="/MARCA/logotipo-original.png" alt="Habla Español Club"><div>HABLA ESPAÑOL CLUB<em>UNIDOS POR EL ESPAÑOL</em></div></div><div class="meta">CULTURA Y MUNDO · B1–C1 <span id="position">01 / 22</span></div></header>
+<nav class="nav" id="nav" aria-label="Ir a una diapositiva"></nav><div class="track"><div class="fill" id="fill"></div></div>
 <main class="stage" id="stage">
-<section class="slide active" data-n="0">
-<svg class="doodle" viewBox="0 0 100 100" aria-hidden="true"><path d="M15 22 Q10 10 25 12 L77 12 Q91 12 88 28 L88 64 Q88 78 74 77 L42 77 L25 91 L27 77 Q12 76 13 62Z"/><circle class="y" cx="78" cy="16" r="6"/><path d="M33 42h38M33 53h25"/><circle class="r" cx="22" cy="18" r="4"/></svg>
-<p class="kicker">JUEVES · 26 DE NOVIEMBRE DE 2026 · TEMA 067</p>
-<h1>La radio y los pódcast: <span class="redline">voces que nos acercan al mundo</span></h1>
-<p class="lead">¿Qué cambia cuando escuchamos una voz de otro lugar, otra generación o una realidad que no conocemos?</p>
-<div class="phrases"><div class="phrase">Me enteré de…</div><div class="phrase">Lo escucho mientras…</div><div class="phrase">La voz del presentador…</div><div class="phrase">Me llamó la atención…</div></div>
-<div class="footer"><span>HABLA ESPAÑOL CLUB</span><span>RELACIÓNATE · OBSERVA · LÁNZATE</span></div>
-</section>
-<section class="slide" data-n="1">
-<p class="kicker">ACTIVIDAD 1 · RELACIÓNATE</p><h2>¿Qué voces forman parte de tu día?</h2>
-<div class="two"><div><p class="lead">Piensa en las voces que escuchas sin tener que mirar una pantalla.</p><div class="panel"><span class="tag">Elige una puerta de entrada</span><p>Una emisora · Un pódcast · Una entrevista · Un audiolibro · Un programa deportivo · Un mensaje de voz</p></div></div>
-<div><h3>Conversa</h3><p>1. ¿Qué escuchas con frecuencia y por qué?</p><p>2. ¿Lo escuchas mientras haces otra cosa o le dedicas toda tu atención?</p><p>3. ¿Recuerdas una noticia o historia de la que te enteraste por audio?</p><p class="small">B1: cuenta un ejemplo y explica cuándo lo escuchas. C1: analiza cómo influye el formato en tu atención y en la confianza que depositas en la voz.</p></div></div>
-<div class="footer"><span>ACTIVIDAD 1 / 9</span><span>10 MIN · CONVERSACIÓN DE APERTURA</span></div>
-</section>
-<section class="slide" data-n="2">
-<p class="kicker">ACTIVIDAD 2 · OBSERVA · SHORT 1</p><h2>La voz cambia cuando se enciende el micrófono</h2>
-<div class="two"><div class="video-wrap"><iframe src="https://www.youtube.com/embed/zL-Qu5SN-m0" title="Esta es la verdadera voz de los locutores - Periodista Multimedios" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe><p class="small">Short aportado para esta clase · 19 segundos · <a href="https://www.youtube.com/watch?v=zL-Qu5SN-m0" target="_blank" rel="noopener">Abrir en YouTube</a></p></div>
-<div><span class="tag">Antes de reproducir</span><p>Fíjate en la postura, el tono, el ritmo y la intención de la voz.</p><span class="tag">Después de verlo</span><p>1. ¿Qué cambia cuando el locutor está «al aire»?</p><p>2. ¿Qué recursos usa para captar la atención?</p><p>3. ¿La voz profesional transmite cercanía, autoridad o ambas?</p><div class="prompt"><strong>Usa la expresión</strong><p>«La voz del presentador…»</p></div></div></div>
-<div class="footer"><span>ACTIVIDAD 2 / 9</span><span>10 MIN · OBSERVACIÓN Y ANÁLISIS</span></div>
-</section>
-<section class="slide" data-n="3">
-<p class="kicker">ACTIVIDAD 3 · OBSERVA · SHORT 2</p><h2>Del pódcast al vídeo: ¿qué gana y qué pierde?</h2>
-<div class="two"><div class="video-wrap"><iframe src="https://www.youtube.com/embed/o206fltDQdM" title="La clave para que vean tus videos - Juan Lombana con Luisito Comunica" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe><p class="small">Short aportado · 55 segundos · <a href="https://www.youtube.com/watch?v=o206fltDQdM" target="_blank" rel="noopener">Abrir en YouTube</a></p></div>
-<div><span class="tag">Escucha con una misión</span><p>Identifica qué se dice sobre la audiencia, los títulos y las miniaturas.</p><span class="tag">Debate</span><p>1. ¿Un pódcast necesita vídeo para llegar a más personas?</p><p>2. ¿Los clips cortos representan fielmente una conversación larga?</p><p>3. ¿Qué puede perderse cuando una idea se convierte en un fragmento de 30 segundos?</p><div class="prompt"><strong>Usa la expresión</strong><p>«Me llamó la atención…»</p></div></div></div>
-<div class="footer"><span>ACTIVIDAD 3 / 9</span><span>10 MIN · FORMATO Y DIFUSIÓN DIGITAL</span></div>
-</section>
-<section class="slide" data-n="4">
-<p class="kicker">ACTIVIDAD 4 · ESCUCHA Y CONECTA</p><h2>Una canción también puede contar una época</h2>
-<div class="two"><div><p class="lead">Escucha el fragmento de «En la radio», de Los Rancheros.</p><div class="panel"><span class="tag">Recurso musical</span><h3>Los Rancheros · En la radio</h3><p class="small">Videoclip oficial en YouTube. No se ha localizado un Short musical verificable para este tema; se deja el enlace oficial como recurso alternativo.</p><a href="https://www.youtube.com/watch?v=eURy1-FFwbo" target="_blank" rel="noopener">Escuchar la canción en YouTube ↗</a></div></div>
-<div><span class="tag">Primera escucha</span><p>¿Qué imágenes, recuerdos o ideas aparecen? ¿Qué relación establece la canción entre la radio y la música?</p><span class="tag">Segunda escucha</span><p>¿Qué puede hacer que una canción se convierta en parte de la memoria de una generación?</p><div class="prompt"><strong>Completa</strong><p>«Me enteré de…» / «Me llamó la atención…»</p></div></div></div>
-<div class="footer"><span>ACTIVIDAD 4 / 9</span><span>10 MIN · ESCUCHA E INTERPRETACIÓN</span></div>
-</section>
-<section class="slide" data-n="5">
-<p class="kicker">ACTIVIDAD 5 · LÁNZATE · JUEGO</p><h2>La recomendación imposible 🎙️</h2>
-<p class="lead">Tienen que elegir un único audio para una persona que llega a una ciudad desconocida. Hay poco tiempo y cada opción tiene una ventaja y una limitación.</p>
-<div class="three" id="gameOptions">
-<button class="option" data-choice="A"><strong>A · Radio local en directo</strong><br><span class="small">Noticias, tráfico y voces del lugar. Puede ser rápida y espontánea.</span></button>
-<button class="option" data-choice="B"><strong>B · Pódcast de entrevistas</strong><br><span class="small">Historias personales y contexto. Requiere más tiempo.</span></button>
-<button class="option" data-choice="C"><strong>C · Pódcast cultural breve</strong><br><span class="small">Explica costumbres y referencias. Puede simplificar la realidad.</span></button>
-</div>
-<div class="result" id="gameResult">Elige una opción. Después tendrás que defenderla y responder a una objeción.</div>
-<div class="prompt"><strong>Reglas</strong><p>1 minuto para elegir · 2 minutos para defender · otra persona plantea una objeción · 1 minuto para revisar o mantener la elección. Gana la recomendación mejor justificada, no la más rápida.</p></div>
-<div class="footer"><span>ACTIVIDAD 5 / 9</span><span>10 MIN · DECISIÓN Y ARGUMENTACIÓN</span></div>
-</section>
-<section class="slide" data-n="6">
-<p class="kicker">ACTIVIDAD 6 · OBSERVA · LECTURA</p><h2>¿Escuchar otra realidad significa conocerla?</h2>
-<div class="story">
-<p>Una emisora comunitaria de una ciudad costera abre su programación con mensajes de los vecinos: el estado del mercado, una fiesta del barrio, una discusión sobre el transporte y una entrevista a una pescadora. A la misma hora, un pódcast producido desde la capital publica un episodio sobre «la vida en los pueblos costeros». Tiene buena música, datos interesantes y una narración cuidada, pero ninguno de sus participantes vive en la zona.</p>
-<p>Ambos contenidos pueden aportar información. La radio local ofrece voces situadas y asuntos cotidianos; el pódcast puede reunir contexto, investigación y una audiencia más amplia. Sin embargo, ninguno representa por sí solo a toda una comunidad. Dentro de una misma ciudad conviven experiencias, intereses y opiniones diferentes.</p>
-<p>Escuchar es una puerta de entrada. Para comprender mejor, conviene preguntar quién habla, desde dónde, a quién representa y qué voces no aparecen.</p>
-</div>
-<div class="two"><div class="panel"><span class="tag">Comprensión</span><p>¿Qué aporta cada formato? ¿Qué limitación tiene cada uno?</p></div><div class="panel"><span class="tag">Profundización</span><p>¿Cómo distinguimos una experiencia personal de una afirmación sobre toda una comunidad?</p></div></div>
-<div class="footer"><span>ACTIVIDAD 6 / 9</span><span>10 MIN · LECTURA CRÍTICA</span></div>
-</section>
-<section class="slide" data-n="7">
-<p class="kicker">ACTIVIDAD 7 · LÁNZATE · ESCRITURA BREVE</p><h2>Recomienda un contenido que merezca ser escuchado</h2>
-<div class="two"><div><p class="lead">Escribe una recomendación de 40–70 palabras para alguien que quiere conocer una realidad distinta.</p><div class="panel"><span class="tag">Incluye</span><p>• Nombre del programa, pódcast o emisora (real o inventado).<br>• De qué trata y qué voces aparecen.<br>• Cuándo lo escucharías y por qué.<br>• Una advertencia o matiz sobre su perspectiva.</p></div></div>
-<div><textarea id="writing" placeholder="Te recomiendo…"></textarea><p class="small">B1: usa dos expresiones del tema y una razón. C1: añade una valoración crítica sobre la perspectiva, las fuentes o el enfoque del contenido.</p><div class="actions"><button class="btn" id="countBtn">Contar palabras</button><span id="wordCount" class="small"></span></div><div class="prompt"><strong>Después</strong><p>Lee tu recomendación. Tu compañero debe hacer una pregunta antes de decidir si lo escucharía.</p></div></div></div>
-<div class="footer"><span>ACTIVIDAD 7 / 9</span><span>10 MIN · PRODUCCIÓN Y REACCIÓN</span></div>
-</section>
-<section class="slide" data-n="8">
-<p class="kicker">ACTIVIDAD 8 · LÁNZATE · MESA DE PROGRAMACIÓN</p><h2>Diseñen una parrilla para acercar mundos</h2>
-<p class="lead">Una emisora internacional quiere crear un bloque de 30 minutos para que su audiencia conozca voces y realidades de distintos lugares.</p>
-<div class="three">
-<div class="panel"><span class="tag">Minutos 0–10</span><h3>Una voz local</h3><p>¿Quién habla? ¿Qué historia cotidiana puede compartir?</p></div>
-<div class="panel"><span class="tag">Minutos 10–20</span><h3>Una conversación</h3><p>¿Qué pregunta permite escuchar dos perspectivas distintas?</p></div>
-<div class="panel"><span class="tag">Minutos 20–30</span><h3>Una ventana cultural</h3><p>¿Qué sonido, noticia o recomendación conecta con otro lugar?</p></div>
-</div>
-<div class="prompt"><strong>Condición</strong><p>Incluyan al menos dos voces diferentes y una pregunta que evite generalizar. Presenten el bloque y expliquen por qué ese orden ayuda a la audiencia.</p></div>
-<p class="small">B1: describe cada segmento con frases claras. C1: justifica el equilibrio entre entretenimiento, información, representación y contexto.</p>
-<div class="footer"><span>ACTIVIDAD 8 / 9</span><span>10 MIN · PLANIFICACIÓN COLABORATIVA</span></div>
-</section>
-<section class="slide" data-n="9">
-<p class="kicker">ACTIVIDAD 9 · CIERRE</p><h2>Una voz puede abrir una puerta. ¿Cuál te llevas?</h2>
-<div class="two"><div><p class="lead">Imagina que mañana tienes que recomendar un solo contenido de audio a alguien que quiere conocer mejor una cultura distinta.</p><div class="prompt"><strong>Tu recomendación final</strong><p>¿Qué elegirías, a quién escucharíamos y qué podríamos descubrir?</p></div></div>
-<div><h3>Recupera las expresiones</h3><p>«Me enteré de…»</p><p>«Lo escucho mientras…»</p><p>«La voz del presentador…»</p><p>«Me llamó la atención…»</p><div class="panel"><span class="tag">Última pregunta</span><p>¿Qué historia, voz o idea de esta conversación te gustaría seguir escuchando?</p></div></div></div>
-<div class="footer"><span>ACTIVIDAD 9 / 9</span><span>UNIDOS POR EL ESPAÑOL</span></div>
-</section>
+<section class="slide active"><p class="kicker">JUEVES · 26 DE NOVIEMBRE DE 2026 · TEMA 067</p><h1>La radio y los pódcast: voces que nos acercan al mundo</h1><p class="lead">¿Qué cambia cuando escuchamos una voz de otro lugar, otra generación o una realidad que no conocemos?</p><div class="phrases"><div class="phrase">Me enteré de…</div><div class="phrase">Lo escucho mientras…</div><div class="phrase">La voz del presentador…</div><div class="phrase">Me llamó la atención…</div></div><div class="footer"><span>HABLA ESPAÑOL CLUB</span><span>UNIDOS POR EL ESPAÑOL</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 1 · RELACIÓNATE</p><h2>¿Qué voces forman parte de tu día?</h2><p class="lead">Piensa en las voces que escuchas sin tener que mirar una pantalla.</p><div class="card"><div class="tag">Elige una puerta de entrada</div><p>Una emisora · Un pódcast · Una entrevista · Un audiolibro · Un programa deportivo · Un mensaje de voz</p></div><div class="footer"><span>ACTIVIDAD 1 / 9</span><span>10 MIN · APERTURA</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 1 · CONVERSACIÓN</p><h2>¿Qué escuchas y cuándo?</h2><ol><li>¿Qué escuchas con frecuencia y por qué?</li><li>¿Lo escuchas mientras haces otra cosa o le dedicas toda tu atención?</li><li>¿Recuerdas una noticia o historia de la que te enteraste por audio?</li></ol><p class="small">B1: cuenta un ejemplo y explica cuándo lo escuchas. C1: analiza cómo influye el formato en tu atención y en la confianza que depositas en la voz.</p><div class="footer"><span>ACTIVIDAD 1 / 9</span><span>HABLA CON TU GRUPO</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 2 · OBSERVA · SHORT 1</p><h2>La voz cambia cuando se enciende el micrófono</h2><div class="grid2"><div class="video"><iframe src="https://www.youtube.com/embed/zL-Qu5SN-m0" title="Esta es la verdadera voz de los locutores" allowfullscreen loading="lazy"></iframe><p class="small"><a href="https://www.youtube.com/watch?v=zL-Qu5SN-m0" target="_blank">Abrir Short en YouTube · 19 s</a></p></div><div><div class="tag">Antes de reproducir</div><p>Fíjate en la postura, el tono, el ritmo y la intención de la voz.</p><div class="tag">Después de verlo</div><p>¿Qué cambia cuando el locutor está «al aire»?</p></div></div><div class="footer"><span>ACTIVIDAD 2 / 9</span><span>OBSERVACIÓN</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 2 · ANALIZA</p><h2>¿Qué transmite una voz profesional?</h2><ol><li>¿Qué recursos usa para captar la atención?</li><li>¿La voz transmite cercanía, autoridad o ambas?</li><li>¿Qué aporta la radio en directo que no siempre ofrece un contenido grabado?</li></ol><div class="prompt"><strong>Usa la expresión:</strong> «La voz del presentador…»</div><div class="footer"><span>ACTIVIDAD 2 / 9</span><span>10 MIN · ESCUCHA Y ANÁLISIS</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 3 · OBSERVA · SHORT 2</p><h2>Del pódcast al vídeo: ¿qué gana y qué pierde?</h2><div class="grid2"><div class="video"><iframe src="https://www.youtube.com/embed/o206fltDQdM" title="La clave para que vean tus videos" allowfullscreen loading="lazy"></iframe><p class="small"><a href="https://www.youtube.com/watch?v=o206fltDQdM" target="_blank">Abrir Short en YouTube · 55 s</a></p></div><div><div class="tag">Escucha con una misión</div><p>Identifica qué se dice sobre la audiencia, los títulos y las miniaturas.</p><div class="tag">Recuerda</div><p>¿Qué idea te llamó más la atención?</p></div></div><div class="footer"><span>ACTIVIDAD 3 / 9</span><span>FORMATO DIGITAL</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 3 · DEBATE</p><h2>¿Un pódcast necesita vídeo?</h2><ol><li>¿Un pódcast necesita vídeo para llegar a más personas?</li><li>¿Los clips cortos representan fielmente una conversación larga?</li><li>¿Qué se pierde cuando una idea se convierte en un fragmento de 30 segundos?</li></ol><div class="prompt"><strong>Usa la expresión:</strong> «Me llamó la atención…»</div><div class="footer"><span>ACTIVIDAD 3 / 9</span><span>10 MIN · OPINIÓN Y ARGUMENTACIÓN</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 4 · ESCUCHA Y CONECTA</p><h2>Una canción también puede contar una época</h2><p class="lead">Escucha un fragmento de «En la radio», de Los Rancheros.</p><div class="card"><div class="tag">Recurso musical</div><h3>Los Rancheros · En la radio</h3><p class="small">Enlace al videoclip en YouTube. Se utiliza como recurso musical complementario, no como Short.</p><a href="https://www.youtube.com/watch?v=eURy1-FFwbo" target="_blank">Escuchar la canción ↗</a></div><div class="footer"><span>ACTIVIDAD 4 / 9</span><span>ESCUCHA E INTERPRETACIÓN</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 4 · CONVERSACIÓN</p><h2>¿Qué relación tenemos con la música?</h2><ol><li>¿Qué imágenes, recuerdos o ideas aparecen al escucharla?</li><li>¿Qué relación establece la canción entre la radio y la música?</li><li>¿Por qué una canción puede convertirse en parte de la memoria de una generación?</li></ol><div class="prompt"><strong>Completa:</strong> «Me enteré de…» / «Me llamó la atención…»</div><div class="footer"><span>ACTIVIDAD 4 / 9</span><span>10 MIN · ESCUCHA Y MEMORIA</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 5 · LÁNZATE · JUEGO</p><h2>La recomendación imposible 🎙️</h2><p class="lead">Una persona llega a una ciudad desconocida. Solo puedes recomendarle un audio para empezar a conocerla.</p><div class="grid3"><div class="card"><h3>A · Radio local</h3><p>Noticias, tráfico y voces del lugar. Información espontánea.</p></div><div class="card"><h3>B · Entrevistas</h3><p>Historias personales y contexto. Requiere más tiempo.</p></div><div class="card"><h3>C · Pódcast cultural</h3><p>Explica costumbres y referencias. Puede simplificar la realidad.</p></div></div><div class="footer"><span>ACTIVIDAD 5 / 9</span><span>DECISIÓN Y ARGUMENTACIÓN</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 5 · ELIGE</p><h2>¿Qué contenido recomendarías?</h2><p>Selecciona una opción y prepara una defensa. Después, otra persona planteará una objeción.</p><div class="grid3" id="choices"><button class="choice" data-c="A">A · Radio local</button><button class="choice" data-c="B">B · Entrevistas</button><button class="choice" data-c="C">C · Pódcast cultural</button></div><div class="prompt" id="feedback">Elige una opción para recibir una posible objeción.</div><div class="footer"><span>ACTIVIDAD 5 / 9</span><span>1 MIN PARA ELEGIR · 2 MIN PARA DEFENDER</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 6 · OBSERVA · LECTURA</p><h2>¿Escuchar otra realidad significa conocerla?</h2><p>Una emisora comunitaria de una ciudad costera abre su programación con mensajes de los vecinos: el estado del mercado, una fiesta del barrio, una discusión sobre el transporte y una entrevista a una pescadora.</p><p>A la misma hora, un pódcast producido desde la capital publica un episodio sobre «la vida en los pueblos costeros». Tiene buena música, datos interesantes y una narración cuidada, pero ninguno de sus participantes vive en la zona.</p><div class="footer"><span>ACTIVIDAD 6 / 9</span><span>LECTURA CRÍTICA · 1/2</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 6 · INTERPRETA</p><h2>¿Quién habla y desde dónde?</h2><p>Ambos contenidos pueden aportar información. La radio local ofrece voces situadas y asuntos cotidianos; el pódcast puede reunir contexto, investigación y una audiencia más amplia.</p><p>Sin embargo, ninguno representa por sí solo a toda una comunidad. Dentro de una misma ciudad conviven experiencias, intereses y opiniones diferentes.</p><div class="card"><p>Escuchar es una puerta de entrada. Para comprender mejor, conviene preguntar quién habla, desde dónde, a quién representa y qué voces no aparecen.</p></div><div class="footer"><span>ACTIVIDAD 6 / 9</span><span>LECTURA CRÍTICA · 2/2</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 6 · CONVERSA</p><h2>Comprender también exige cuestionar</h2><ol><li>¿Qué aporta cada formato y qué limitación tiene?</li><li>¿Cómo distinguimos una experiencia personal de una afirmación sobre toda una comunidad?</li><li>¿Qué voces faltan en el relato y cómo podríamos incorporarlas?</li></ol><p class="small">B1: identifica dos diferencias entre los contenidos. C1: analiza representación, selección de fuentes y posibles sesgos.</p><div class="footer"><span>ACTIVIDAD 6 / 9</span><span>10 MIN · COMPRENSIÓN Y DEBATE</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 7 · LÁNZATE · ESCRITURA</p><h2>Recomienda un contenido que merezca ser escuchado</h2><p class="lead">Escribe una recomendación de 40–70 palabras para alguien que quiere conocer una realidad distinta.</p><div class="card"><div class="tag">Incluye</div><p>Nombre del programa · De qué trata · Qué voces aparecen · Cuándo lo escucharías · Por qué lo recomiendas · Un matiz sobre su perspectiva</p></div><div class="footer"><span>ACTIVIDAD 7 / 9</span><span>PRODUCCIÓN ESCRITA · 1/2</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 7 · ESCRIBE Y COMPARTE</p><h2>Tu recomendación</h2><textarea id="draft" placeholder="Te recomiendo…"></textarea><p class="small">B1: usa dos expresiones del tema y una razón. C1: añade una valoración crítica sobre las fuentes o el enfoque.</p><button class="btn" id="words">Contar palabras</button> <span class="small" id="wordcount"></span><div class="prompt">Lee tu recomendación. Tu compañero debe hacer una pregunta antes de decidir si lo escucharía.</div><div class="footer"><span>ACTIVIDAD 7 / 9</span><span>PRODUCCIÓN ESCRITA · 2/2</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 8 · LÁNZATE · CREACIÓN</p><h2>Diseñen una parrilla para acercar mundos</h2><p class="lead">Una emisora internacional quiere crear un bloque de 30 minutos para que su audiencia conozca voces y realidades de distintos lugares.</p><div class="grid3"><div class="card"><div class="tag">Minutos 0–10</div><h3>Una voz local</h3><p>¿Quién habla? ¿Qué historia cotidiana comparte?</p></div><div class="card"><div class="tag">Minutos 10–20</div><h3>Una conversación</h3><p>¿Qué pregunta permite escuchar dos perspectivas?</p></div><div class="card"><div class="tag">Minutos 20–30</div><h3>Una ventana cultural</h3><p>¿Qué sonido, noticia o recomendación conecta con otro lugar?</p></div></div><div class="footer"><span>ACTIVIDAD 8 / 9</span><span>PLANIFICACIÓN COLABORATIVA · 1/2</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 8 · PRESENTEN</p><h2>¿Por qué ese orden?</h2><p>Incluyan al menos dos voces diferentes y una pregunta que evite generalizar. Presenten el bloque y expliquen por qué ese orden ayuda a la audiencia.</p><div class="prompt"><strong>B1:</strong> describe cada segmento con frases claras.<br><strong>C1:</strong> justifica el equilibrio entre entretenimiento, información, representación y contexto.</div><div class="footer"><span>ACTIVIDAD 8 / 9</span><span>10 MIN · DISEÑO Y PRESENTACIÓN · 2/2</span></div></section>
+<section class="slide"><p class="kicker">ACTIVIDAD 9 · CIERRE</p><h2>Una voz puede abrir una puerta. ¿Cuál te llevas?</h2><p class="lead">Imagina que mañana tienes que recomendar un solo contenido de audio a alguien que quiere conocer mejor una cultura distinta.</p><p>¿Qué elegirías, a quién escucharíamos y qué podríamos descubrir?</p><div class="phrases"><div class="phrase">Me enteré de…</div><div class="phrase">Lo escucho mientras…</div><div class="phrase">La voz del presentador…</div><div class="phrase">Me llamó la atención…</div></div><div class="footer"><span>ACTIVIDAD 9 / 9</span><span>UNIDOS POR EL ESPAÑOL</span></div></section>
 </main>
-<footer class="controls"><button id="prev">← Anterior</button><span class="counter" id="counter">1 / 10</span><button class="primary" id="next">Siguiente →</button><button id="full">⛶</button></footer>
-</div>
+<footer class="controls"><button id="prev">← Anterior</button><span class="count" id="count">1 / 22</span><button class="next" id="next">Siguiente →</button><button id="full">⛶ Pantalla completa</button></footer></div>
 <script>
-const slides=[...document.querySelectorAll('.slide')],nav=document.getElementById('nav'),bar=document.getElementById('bar'),counter=document.getElementById('counter'),screenNo=document.getElementById('screenNo');let current=0;
-slides.forEach((s,i)=>{const b=document.createElement('button');b.textContent=i===0?'Inicio':String(i);b.setAttribute('aria-label',i===0?'Ir a la introducción':'Ir a la actividad '+i);b.onclick=()=>go(i);nav.appendChild(b)});
-function go(i){current=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,j)=>s.classList.toggle('active',j===current));[...nav.children].forEach((b,j)=>b.setAttribute('aria-current',j===current?'true':'false'));counter.textContent=(current+1)+' / '+slides.length;screenNo.textContent=String(current).padStart(2,'0')+' / 09';bar.style.width=((current+1)/slides.length*100)+'%';document.getElementById('prev').disabled=current===0;document.getElementById('next').disabled=current===slides.length-1}
-document.getElementById('prev').onclick=()=>go(current-1);document.getElementById('next').onclick=()=>go(current+1);document.getElementById('full').onclick=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()};
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown')go(current+1);if(e.key==='ArrowLeft'||e.key==='PageUp')go(current-1);if(e.key==='Home')go(0);if(e.key==='End')go(slides.length-1)});
-document.querySelectorAll('#gameOptions .option').forEach(b=>b.onclick=()=>{document.querySelectorAll('#gameOptions .option').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));const messages={A:'Defensa posible: ofrece información inmediata y voces del lugar. Objeción: ¿qué pasa si la emisora no representa a todos?',B:'Defensa posible: permite escuchar experiencias con más contexto. Objeción: ¿quién eligió a los invitados y desde qué perspectiva?',C:'Defensa posible: facilita una primera aproximación temática. Objeción: ¿cómo evitamos que una explicación breve simplifique una cultura?'};document.getElementById('gameResult').textContent=messages[b.dataset.choice]});
-document.getElementById('countBtn').onclick=()=>{const t=document.getElementById('writing').value.trim();document.getElementById('wordCount').textContent=(t?t.split(/\s+/).length:0)+' palabras'};
-go(0);
-</script>
-</body></html>
+const slides=[...document.querySelectorAll('.slide')],nav=document.getElementById('nav'),count=document.getElementById('count'),position=document.getElementById('position'),fill=document.getElementById('fill');let n=0;
+slides.forEach((s,i)=>{let b=document.createElement('button');b.textContent=i===0?'Inicio':i;b.className=i===0?'first':'';b.onclick=()=>show(i);b.title='Diapositiva '+(i+1);nav.appendChild(b)});
+function show(i){n=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,j)=>s.classList.toggle('active',j===n));[...nav.children].forEach((b,j)=>b.classList.toggle('active',j===n));count.textContent=(n+1)+' / '+slides.length;position.textContent=String(n+1).padStart(2,'0')+' / '+slides.length;fill.style.width=((n+1)/slides.length*100)+'%';document.getElementById('prev').disabled=n===0;document.getElementById('next').disabled=n===slides.length-1}
+document.getElementById('prev').onclick=()=>show(n-1);document.getElementById('next').onclick=()=>show(n+1);document.getElementById('full').onclick=()=>!document.fullscreenElement?document.documentElement.requestFullscreen?.():document.exitFullscreen?.();
+document.addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(n+1)}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(n-1)}if(e.key==='Home')show(0);if(e.key==='End')show(slides.length-1)});
+document.querySelectorAll('#choices button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#choices button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));const m={A:'Objeción: ¿la emisora representa a toda la ciudad o solo a algunas voces?',B:'Objeción: ¿quién eligió a los invitados y qué perspectivas quedaron fuera?',C:'Objeción: ¿cómo evitar que una explicación breve simplifique una cultura?'};document.getElementById('feedback').textContent=m[b.dataset.c]});
+document.getElementById('words').onclick=()=>{let t=document.getElementById('draft').value.trim();document.getElementById('wordcount').textContent=(t?t.split(/\s+/).length:0)+' palabras'};
+show(0);
+</script></body></html>
